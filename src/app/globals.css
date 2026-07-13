@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  /*
+   * Brand palette — see docs/adr/0001-single-primary-color-scale.md.
+   * Anchors from the design team: 400 = #8DC63F, 700 = #006B38, 950 = #132A00.
+   * All other stops are OKLCH-interpolated; prefer the anchors in new UI.
+   * The Figma file's pervasive #11663A maps to primary-700.
+   */
+  --color-primary-50: #f1f9ea;
+  --color-primary-100: #e3f2d5;
+  --color-primary-200: #c8e5aa;
+  --color-primary-300: #acd77e;
+  --color-primary-400: #8dc63f;
+  --color-primary-500: #60a842;
+  --color-primary-600: #35893f;
+  --color-primary-700: #006b38;
+  --color-primary-800: #145422;
+  --color-primary-900: #173e0e;
+  --color-primary-950: #132a00;
+
+  /* Section-background tint sampled from Figma (Rectangle 17456998) */
+  --color-surface-tint: #f0f6f3;
+
+  /* CTA/band lime sampled from Figma (Enquire Now, Know More, ticker band) —
+     a designed color distinct from the primary scale's 400/500 stops */
+  --color-accent: #77bb44;
+
+  /* Warm card/segmented-control background (savings calculator) */
+  --color-surface-warm: #f3f1e9;
+
+  /* Header contact strip (Rectangle 17456982) */
+  --color-surface-gray: #ebebeb;
+
+  /* Mint card background (environmental impact) */
+  --color-surface-mint: #eaf8f2;
+
+  /* Ticker marquee (see ticker.tsx) and certification-logo strip.
+     Each strip holds 6 runs, so the -50% shift travels 3 run-widths;
+     durations are 3x the per-run pace (40s/60s) to keep the same speed. */
+  --animate-marquee: marquee 120s linear infinite;
+  --animate-marquee-slow: marquee 180s linear infinite;
+
+  /* Counter-pan for hero.mp4: the globe sits +208px right of center at t=0
+     and drifts to +14px by t=8s (measured per-frame), so this pans the frame
+     left by the same curve — synced to the video restarting on slide entry —
+     with just enough zoom to keep the frame covered. */
+  --animate-hero-pan: hero-pan 8.03s linear forwards;
+
+  @keyframes hero-pan {
+    0% {
+      transform: translateX(-10.8%) scale(1.22);
+    }
+    6% {
+      transform: translateX(-8.3%) scale(1.18);
+    }
+    100% {
+      transform: translateX(-0.7%) scale(1.02);
+    }
+  }
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  --font-sans: var(--font-lato), ui-sans-serif, system-ui, sans-serif;
+
+  /* Content column: Figma content starts at x=246 on the 1920 frame → 1428px */
+  --container-content: 89.25rem;
+
+  /* Vertical rhythm between page sections */
+  --spacing-section: 6rem;
+
+  /* Hero headline letter-spacing from Figma (1.8px at 60px) */
+  --tracking-hero: 0.03em;
+}
+
+body {
+  @apply bg-white font-sans text-neutral-900 antialiased;
+}
+
+/* Nav anchor targets must clear the fixed header (contact strip + nav bar,
+   ~123px mobile / ~139px from lg where the logo grows to 72px) */
+section[id] {
+  scroll-margin-top: 8.5rem;
+}
+
+@media (min-width: 1024px) {
+  section[id] {
+    scroll-margin-top: 9.5rem;
+  }
+}

@@ -1,0 +1,3 @@
+# Full static export (output: 'export')
+
+The site must be servable from any static host, so we build with Next.js `output: 'export'` producing a pure `out/` directory. This was chosen over default static prerendering on a Node host (which would have kept `next/image` optimization and allowed API routes). Consequences: `next/image` runs with `unoptimized: true`, so all raster assets are pre-optimized at import time (Figma PNG → right-sized WebP in `public/images`); the contact form cannot POST to a Next.js route and must target an external endpoint; all interactivity (savings calculator, carousels) is client-side only.

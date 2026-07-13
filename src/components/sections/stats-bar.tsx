@@ -6,13 +6,12 @@ const stats = [
   { value: "3 Plants", label: "Jaipur, Dholera & Vizag" },
   { value: "23,000", label: "Modules Per Day" },
   { value: "$100 M", label: "Marquee investment from BII" },
-  { value: "No. 1", label: "ESG Ranked #1 in India" },
 ];
 
 export function StatsBar() {
   return (
     <section className="bg-white py-14 lg:py-9">
-      <dl className="mx-auto grid max-w-content grid-cols-1 gap-x-12 gap-y-10 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-5">
+      <dl className="mx-auto grid max-w-content grid-cols-1 gap-x-12 gap-y-10 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-4">
         {stats.map((stat) => (
           <div key={stat.label} className="flex items-start gap-4">
             <Image

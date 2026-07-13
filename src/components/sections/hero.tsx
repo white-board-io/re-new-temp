@@ -105,10 +105,9 @@ export function Hero() {
         <div
           className={`relative flex h-full flex-col items-center justify-center px-4 pb-24 pt-10 text-center sm:px-6 ${contentClass(0)}`}
         >
-          <h1 className="max-w-5xl text-4xl font-bold leading-[0.95] tracking-hero text-white sm:text-5xl lg:text-6xl">
-            Choose India&apos;s
-            <br />
-            most reliable solar panels
+          <h1 className="max-w-6xl text-4xl font-bold leading-[0.95] tracking-hero text-white sm:text-5xl lg:text-6xl">
+           Switch to clean energy with ReNew Solar Panels, engineered for lasting performance.
+           
           </h1>
           <p className="mt-8 text-lg leading-snug text-white sm:text-xl">
             When you put solar on your roof,
@@ -133,12 +132,14 @@ export function Hero() {
         >
           <div>
             <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl">
-              The company behind India&apos;s clean energy transition. Now making the panels
-              too.
+             The company behind the world's clean energy transition. Now making the panels too.
             </h2>
             <p className="mt-8 max-w-xs text-lg leading-7 text-white/90 sm:text-xl">
-              ReNew Solar Panels is backed by ReNew - the manufacturing arm of India&apos;s
-              decarbonisation leader.
+              20 GW portfolio
+              <br />
+              18.6M+ tonnes of CO₂ avoided
+              <br />
+              End-to-end decarbonisation solutions.
             </p>
             <EnquireButton className="mt-10 inline-block" />
           </div>
@@ -182,11 +183,15 @@ export function Hero() {
             <span aria-hidden className="mx-3 opacity-60">
               |
             </span>
-            Three world-class plants{" "}
+            3 plants{" "}
             <span aria-hidden className="mx-3 opacity-60">
               |
             </span>
-            One mission.
+            23,000 modules a day
+            <span aria-hidden className="mx-3 opacity-60">
+              |
+            </span>
+           30-year power warranty
           </p>
           <div className="mt-8 flex items-start justify-center gap-10 sm:gap-16">
             {plants.map((plant) => (

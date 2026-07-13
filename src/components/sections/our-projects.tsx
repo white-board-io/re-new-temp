@@ -5,7 +5,7 @@ const projects = [
     capacity: "1000 MWp",
     image: "/images/project-1000mwp.webp",
     logo: { src: "/images/logo-seci.png", alt: "Solar Energy Corporation of India", width: 60, height: 48 },
-    module: "Bifacial 540 Wp TOPCon",
+    module: "Bifacial 540 Wp PERC",
     developer: "ReNew",
     offtaker: "Solar Energy Corporation of India",
     location: "Rajasthan",

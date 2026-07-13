@@ -1,0 +1,23 @@
+.gitignore
+  db19b2245eecad87 1-30
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.23",
+  "base_commit_sha": "dba845467b2cf15290a184735b90f7e92da40841",
+  "prompts": {
+    "db19b2245eecad87": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0a229fda-c27c-4605-a4c2-4a1a676f2442",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Arun Selva Kumar <arun@joinassembly.com>",
+      "messages": [],
+      "total_additions": 30,
+      "total_deletions": 0,
+      "accepted_lines": 30,
+      "overriden_lines": 0
+    }
+  }
+}

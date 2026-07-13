@@ -81,13 +81,13 @@ export function WhoWeServe() {
             return (
               <div
                 key={card.title}
-                className="md:flex md:h-[480px] md:items-center lg:h-[671px]"
+                className="md:flex md:h-[450px] md:items-center lg:h-[620px]"
               >
               <article
                 onMouseEnter={() => setActive(i)}
                 onFocus={() => setActive(i)}
                 className={`relative w-full overflow-hidden rounded-3xl transition-[height] ${GROW} ${
-                  isActive ? "h-[480px] lg:h-[671px]" : "h-[380px] lg:h-[461px]"
+                  isActive ? "h-[450px] lg:h-[620px]" : "h-[380px] lg:h-[461px]"
                 }`}
               >
                 <Image

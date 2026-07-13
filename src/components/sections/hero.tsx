@@ -105,7 +105,7 @@ export function Hero() {
         <div
           className={`relative flex h-full flex-col items-center justify-center px-4 pb-24 pt-10 text-center sm:px-6 ${contentClass(0)}`}
         >
-          <h1 className="max-w-6xl text-4xl font-bold leading-[0.95] tracking-hero text-white sm:text-5xl lg:text-6xl">
+          <h1 className="max-w-6xl text-4xl font-bold leading-[0.95] tracking-hero text-white sm:text-5xl lg:text-5xl">
            Switch to clean energy with ReNew Solar Panels, engineered for lasting performance.
            
           </h1>

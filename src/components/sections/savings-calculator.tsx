@@ -43,6 +43,7 @@ const STATE_TARIFFS: Record<string, number> = {
   "West Bengal": 7.3,
 };
 const STATES = Object.keys(STATE_TARIFFS);
+const DEFAULT_UNIT_COST = "8.00";
 
 type Category = "residential" | "commercial" | "industrial";
 
@@ -66,18 +67,23 @@ export function SavingsCalculator() {
   const [state, setState] = useState("Maharashtra");
   const [category, setCategory] = useState<Category>("residential");
   const [subsidy, setSubsidy] = useState(true);
-  const [unitCost, setUnitCost] = useState("11.00");
+  const [unitCost, setUnitCost] = useState(DEFAULT_UNIT_COST);
+  const [isManualCost, setIsManualCost] = useState(false);
   const [locationStatus, setLocationStatus] = useState("Choose your state manually");
 
   const changeState = (next: string) => {
     setState(next);
-    setUnitCost(STATE_TARIFFS[next].toFixed(2));
     setLocationStatus("Selected manually");
   };
 
   const changeCategory = (next: Category) => {
     setCategory(next);
     if (next !== "residential") setSubsidy(false);
+  };
+
+  const toggleUnitCostMode = () => {
+    if (isManualCost) setUnitCost(DEFAULT_UNIT_COST);
+    setIsManualCost(!isManualCost);
   };
 
   const result = useMemo(() => calculateSolar(usage, unitCost), [usage, unitCost]);
@@ -101,9 +107,9 @@ export function SavingsCalculator() {
           </p>
         </div>
 
-        <div className="mt-14 grid items-start gap-8 lg:grid-cols-[1fr_1.15fr]">
+        <div className="mt-14 grid gap-8 lg:grid-cols-[1fr_1.15fr]">
           <form
-            className="rounded-2xl border border-neutral-200 bg-white p-8"
+            className="rounded-2xl border border-neutral-200 bg-white p-8 lg:flex lg:flex-col lg:justify-between"
             onSubmit={(e) => e.preventDefault()}
           >
             <h3 className="text-2xl font-bold text-primary-950">Your details</h3>
@@ -181,40 +187,41 @@ export function SavingsCalculator() {
             </div>
 
             <div className="mt-8 flex items-center justify-between gap-4 border-t border-neutral-100 pt-6">
-              <div>
-                <p className="font-bold text-primary-950">Rooftop subsidy applicable</p>
-                <p className="mt-1 text-sm text-neutral-500">
-                  For residential rooftop under PM Surya Ghar.
-                </p>
-              </div>
-              <button
-                type="button"
-                role="switch"
-                aria-checked={subsidy}
-                aria-label="Rooftop subsidy applicable"
-                disabled={category !== "residential"}
-                onClick={() => setSubsidy(!subsidy)}
-                className={`relative h-8 w-14 shrink-0 rounded-full transition-colors disabled:opacity-50 ${
-                  subsidy ? "bg-primary-700" : "bg-neutral-300"
-                }`}
-              >
-                <span
-                  className={`absolute top-1 size-6 rounded-full bg-white transition-all ${
-                    subsidy ? "left-7" : "left-1"
-                  }`}
-                />
-              </button>
-            </div>
-
-            <div className="mt-8 flex items-center justify-between border-t border-neutral-100 pt-6">
               <label htmlFor="calc-cost" className="font-bold text-primary-950">
                 Electricity unit cost
               </label>
-              <span className="rounded-full bg-surface-warm px-3 py-1 text-xs font-bold text-neutral-600">
-                Auto
-              </span>
+              <button
+                type="button"
+                role="switch"
+                aria-checked={isManualCost}
+                aria-label={`Electricity unit cost mode: ${isManualCost ? "Manual" : "Auto"}`}
+                onClick={toggleUnitCostMode}
+                className="flex shrink-0 items-center gap-2 rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700"
+              >
+                <span className="text-xs font-bold text-neutral-600">
+                  {isManualCost ? "Manual" : "Auto"}
+                </span>
+                <span
+                  aria-hidden
+                  className={`relative h-7 w-12 rounded-full transition-colors ${
+                    isManualCost ? "bg-primary-700" : "bg-neutral-300"
+                  }`}
+                >
+                  <span
+                    className={`absolute top-1 size-5 rounded-full bg-white shadow-sm transition-all ${
+                      isManualCost ? "left-6" : "left-1"
+                    }`}
+                  />
+                </span>
+              </button>
             </div>
-            <div className="mt-3 flex items-center rounded-lg border border-neutral-300 px-4 py-3 focus-within:border-primary-700">
+            <div
+              className={`mt-3 flex items-center rounded-lg border px-4 py-3 ${
+                isManualCost
+                  ? "border-neutral-300 focus-within:border-primary-700"
+                  : "border-neutral-200 bg-neutral-100"
+              }`}
+            >
               <span className="text-neutral-500">₹</span>
               <input
                 id="calc-cost"
@@ -224,24 +231,27 @@ export function SavingsCalculator() {
                 max={100}
                 value={unitCost}
                 onChange={(e) => setUnitCost(e.target.value)}
-                className="w-full px-2 text-primary-950 focus:outline-none"
+                disabled={!isManualCost}
+                className="w-full bg-transparent px-2 text-primary-950 focus:outline-none disabled:cursor-not-allowed disabled:text-neutral-500"
               />
               <span className="shrink-0 text-neutral-500">/ kWh</span>
             </div>
             <p className="mt-2 text-sm text-neutral-500">
-              Auto-filled for {state} · edit to match your bill.
+              {isManualCost
+                ? "Enter the unit cost shown on your electricity bill."
+                : "Auto value is ₹8.00. Switch to Manual to edit."}
             </p>
           </form>
 
-          <div className="flex flex-col gap-5">
-            <div className="rounded-2xl bg-primary-700 p-8 text-white">
+          <div className="flex flex-col gap-4">
+            <div className="rounded-2xl bg-primary-700 p-6 text-white">
               <p className="text-sm font-bold uppercase tracking-widest">
                 Recommended plant size
               </p>
               <p className="mt-2 text-5xl font-bold">
                 {twoDecimals(result.plantSize)} kW
               </p>
-              <p className="mt-6 flex items-center gap-3 border-t border-white/20 pt-5">
+              <p className="mt-4 flex items-center gap-3 border-t border-white/20 pt-4">
                 <Zap aria-hidden className="size-5 fill-primary-400 text-primary-400" />
                 <span>
                   Generates about{" "}
@@ -253,12 +263,12 @@ export function SavingsCalculator() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-neutral-200 p-8">
+            <div className="rounded-2xl border border-neutral-200 p-6">
               <h3 className="flex items-center gap-3 text-2xl font-bold text-primary-950">
                 <Zap aria-hidden className="size-6 text-primary-700" />
                 Electricity generation
               </h3>
-              <dl className="mt-4 divide-y divide-neutral-100">
+              <dl className="mt-3 divide-y divide-neutral-100">
                 {(
                   [
                     ["Monthly", result.monthlyGeneration],
@@ -266,7 +276,7 @@ export function SavingsCalculator() {
                     ["Lifetime (30 yr)", result.lifetimeGeneration],
                   ] as const
                 ).map(([label, value]) => (
-                  <div key={label} className="flex items-center justify-between py-4">
+                  <div key={label} className="flex items-center justify-between py-3">
                     <dt className="text-neutral-600">{label}</dt>
                     <dd className="text-xl font-bold text-primary-950">{inr(value)} kWh</dd>
                   </div>
@@ -274,12 +284,12 @@ export function SavingsCalculator() {
               </dl>
             </div>
 
-            <div className="rounded-2xl border border-neutral-200 p-8">
+            <div className="rounded-2xl border border-neutral-200 p-6">
               <h3 className="flex items-center gap-3 text-2xl font-bold text-primary-950">
                 <IndianRupee aria-hidden className="size-6 text-primary-700" />
                 Bill savings
               </h3>
-              <div className="mt-6 grid gap-4 sm:grid-cols-3">
+              <div className="mt-4 grid gap-4 sm:grid-cols-3">
                 {(
                   [
                     ["Monthly", result.monthlySavings, false],
@@ -289,7 +299,7 @@ export function SavingsCalculator() {
                 ).map(([label, value, highlight]) => (
                   <div
                     key={label}
-                    className={`rounded-xl p-5 ${
+                    className={`rounded-xl p-4 ${
                       highlight ? "bg-primary-700 text-white" : "bg-surface-warm"
                     }`}
                   >
@@ -310,17 +320,17 @@ export function SavingsCalculator() {
                   </div>
                 ))}
               </div>
-              <p className="mt-4 text-sm text-neutral-500">
+              <p className="mt-3 text-sm text-neutral-500">
                 Estimated savings at ₹{Number(unitCost || 0).toFixed(2)}/kWh.
               </p>
             </div>
 
-            <div className="rounded-2xl bg-surface-mint p-8">
+            <div className="rounded-2xl bg-surface-mint p-6">
               <h3 className="flex items-center gap-3 text-2xl font-bold text-primary-950">
                 <Leaf aria-hidden className="size-6 text-primary-700" />
                 Environmental impact
               </h3>
-              <div className="mt-6 grid gap-8 sm:grid-cols-2 sm:divide-x sm:divide-primary-950/10">
+              <div className="mt-4 grid gap-8 sm:grid-cols-2 sm:divide-x sm:divide-primary-950/10">
                 <div>
                   <p className="text-4xl font-bold text-primary-950">
                     {twoDecimals(result.carbonReduced)}

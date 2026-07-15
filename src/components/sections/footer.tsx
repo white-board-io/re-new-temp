@@ -90,7 +90,7 @@ const socials = [
   { label: "YouTube", href: "https://www.youtube.com/@ReNewOfficial", Icon: YouTubeLogo },
 ];
 
-export function Footer() {
+export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) {
   return (
     <footer className="bg-primary-950 py-20 text-white">
       <div className="mx-auto max-w-content px-4 sm:px-6">
@@ -131,7 +131,10 @@ export function Footer() {
               <ul className="flex flex-wrap gap-x-10 gap-y-3 lg:justify-between">
                 {navItems.map((item) => (
                   <li key={item.href}>
-                    <a href={item.href} className="text-lg hover:text-primary-300">
+                    <a
+                      href={`${sectionPrefix}${item.href}`}
+                      className="text-lg hover:text-primary-300"
+                    >
                       {item.label}
                     </a>
                   </li>

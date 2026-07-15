@@ -11,7 +11,7 @@ const stats = [
 export function StatsBar() {
   return (
     <section className="bg-white py-14 lg:py-9">
-      <dl className="mx-auto grid max-w-content grid-cols-1 gap-x-12 gap-y-10 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-4">
+      <dl className="mx-auto grid max-w-content grid-cols-1 gap-x-12 gap-y-10 px-4 sm:grid-cols-2 sm:px-6 lg:[grid-template-columns:repeat(4,minmax(4px,auto))]">
         {stats.map((stat) => (
           <div key={stat.label} className="flex items-start gap-4">
             <Image

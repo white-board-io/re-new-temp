@@ -13,7 +13,15 @@ const navItems = [
   { label: "Channel Partners", href: "#channel-partners" },
 ];
 
-export function Header() {
+export function Header({
+  sectionPrefix = "",
+  contactHref = "#contact",
+  savingsHref = "#savings-calculator",
+}: {
+  sectionPrefix?: string;
+  contactHref?: string;
+  savingsHref?: string;
+} = {}) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -44,7 +52,7 @@ export function Header() {
               {navItems.map((item) => (
                 <li key={item.href}>
                   <a
-                    href={item.href}
+                    href={`${sectionPrefix}${item.href}`}
                     className="text-xl leading-8 text-black transition-colors hover:text-primary-700"
                   >
                     {item.label}
@@ -55,13 +63,13 @@ export function Header() {
           </nav>
           <div className="hidden items-center gap-4 lg:flex">
             <a
-              href="#contact"
+              href={contactHref}
               className="rounded-full border border-primary-700 px-6 py-1.5 text-base font-bold leading-8 text-primary-700 transition-colors hover:bg-primary-50"
             >
               Contact Us
             </a>
             <a
-              href="#savings-calculator"
+              href={savingsHref}
               className="rounded-full bg-primary-950 px-6 py-1.5 text-base font-bold leading-8 text-white transition-colors hover:bg-primary-900"
             >
               Savings Calculator
@@ -83,7 +91,7 @@ export function Header() {
               {navItems.map((item) => (
                 <li key={item.href}>
                   <a
-                    href={item.href}
+                    href={`${sectionPrefix}${item.href}`}
                     onClick={() => setMenuOpen(false)}
                     className="text-lg text-black"
                   >
@@ -93,14 +101,14 @@ export function Header() {
               ))}
               <li className="flex flex-wrap gap-3 pt-2">
                 <a
-                  href="#contact"
+                  href={contactHref}
                   onClick={() => setMenuOpen(false)}
                   className="rounded-full border border-primary-700 px-5 py-2 text-sm font-bold text-primary-700"
                 >
                   Contact Us
                 </a>
                 <a
-                  href="#savings-calculator"
+                  href={savingsHref}
                   onClick={() => setMenuOpen(false)}
                   className="rounded-full bg-primary-950 px-5 py-2 text-sm font-bold text-white"
                 >

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 const DEFAULT_PRODUCT = 0;
@@ -13,6 +14,7 @@ const products = [
     // there so they stay in frame when the card is in its narrow state.
     position: "object-[10%_50%]",
     alt: "Two ReNew solar modules standing in a grassy valley at sunrise",
+    href: "/products/solar-module",
     features: [
       { lead: "Mono PERC cells", rest: "with up to 23.7% conversion efficiency" },
       { lead: "TOPCon cells", rest: "with industry-leading efficiency of up to 25.2%" },
@@ -23,6 +25,7 @@ const products = [
     image: "/images/product-cell.webp",
     position: "object-center",
     alt: "A ReNew solar cell standing in a misty field at sunrise",
+    href: "/products/solar-cell",
     features: [
       { lead: "TOPCon & Mono PERC cells", rest: "with conversion efficiency of up to 25.2%" },
       { lead: "6.4 lakh cells produced daily", rest: "across three world-class plants" },
@@ -119,16 +122,15 @@ export function Products() {
                       </p>
                     ))}
                   </div>
-                  {/* TODO(batch-2-followup): product detail page */}
-                  <a
-                    href="#"
+                  <Link
+                    href={product.href}
                     className={`rounded-full bg-accent px-8 py-2.5 text-xl font-medium text-white hover:bg-primary-400 ${contentIn(
                       isActive,
                       "delay-[450ms]",
                     )}`}
                   >
                     Know More
-                  </a>
+                  </Link>
                 </div>
               </article>
             );

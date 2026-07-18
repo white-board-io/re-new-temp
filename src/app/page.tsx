@@ -1,4 +1,3 @@
-import { EnquireFab } from "@/components/sections/enquire-fab";
 import { Header } from "@/components/sections/header";
 import { Hero } from "@/components/sections/hero";
 import { PriceListTab } from "@/components/sections/price-list-tab";
@@ -13,6 +12,8 @@ import { ChannelPartners } from "@/components/sections/channel-partners";
 import { WhyRenew } from "@/components/sections/why-renew";
 import { Contact } from "@/components/sections/contact";
 import { Footer } from "@/components/sections/footer";
+import { PressReleases } from "@/components/sections/press-releases";
+import { Blogs } from "@/components/sections/blogs";
 
 const organizationSchema = {
   "@context": "https://schema.org",
@@ -36,8 +37,7 @@ export default function Home() {
       />
       <Header />
       <PriceListTab />
-      <EnquireFab />
-      <main className="pt-[104px] lg:pt-[136px]">
+      <main className="pt-[120px] lg:pt-[136px]">
         {/* First fold: hero + stats share the viewport below the fixed header,
             matching the Figma 1080px frame (hero ~776px, stats ~168px). */}
         <div className="lg:grid lg:h-[calc(100svh-136px)] lg:min-h-[760px] lg:grid-rows-[minmax(0,1fr)_auto]">
@@ -49,8 +49,10 @@ export default function Home() {
         <Ticker />
         <Manufacturing />
         <SavingsCalculator />
-        <OurProjects />
         <ChannelPartners />
+        <OurProjects />
+        <PressReleases />
+        <Blogs />
         <WhyRenew />
         <Contact />
       </main>

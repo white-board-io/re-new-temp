@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { Lato } from "next/font/google";
+import { EnquireFab } from "@/components/sections/enquire-fab";
 import "./globals.css";
 
 const lato = Lato({
   variable: "--font-lato",
   subsets: ["latin"],
-  weight: ["400", "700", "900"],
+  weight: ["300", "400", "700", "900"],
 });
 
 export const metadata: Metadata = {
@@ -21,7 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${lato.variable} h-full`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <EnquireFab />
+      </body>
     </html>
   );
 }

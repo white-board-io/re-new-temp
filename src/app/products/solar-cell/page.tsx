@@ -16,7 +16,7 @@ export default function SolarCellPage() {
   return (
     <>
       <Header sectionPrefix="/" savingsHref="/#savings-calculator" />
-      <main className="pt-[104px] lg:pt-[136px]">
+      <main className="pt-[120px] lg:pt-[136px]">
         <SolarCellDetail />
         <WhyRenew />
         <Contact />

@@ -132,7 +132,7 @@ export function Hero() {
         >
           <div>
             <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl">
-             The company behind the world's clean energy transition. Now making the panels too.
+             The company behind the world&apos;s clean energy transition. Now making the panels too.
             </h2>
             <p className="mt-8 max-w-xs text-lg leading-7 text-white/90 sm:text-xl">
               20 GW portfolio

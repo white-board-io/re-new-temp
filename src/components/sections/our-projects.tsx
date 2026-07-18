@@ -1,91 +1,49 @@
 import Image from "next/image";
 
-const projects = [
-  {
-    capacity: "1000 MWp",
-    image: "/images/project-1000mwp.webp",
-    logo: { src: "/images/logo-seci.png", alt: "Solar Energy Corporation of India", width: 60, height: 48 },
-    module: "Bifacial 540 Wp PERC",
-    developer: "ReNew",
-    offtaker: "Solar Energy Corporation of India",
-    location: "Rajasthan",
-  },
-  {
-    capacity: "80 MWp",
-    image: "/images/project-80mwp.webp",
-    logo: { src: "/images/logo-seci.png", alt: "Solar Energy Corporation of India", width: 60, height: 48 },
-    module: "Bifacial 540 Wp Mono PERC",
-    developer: "ReNew",
-    offtaker: "Solar Energy Corporation of India",
-    location: "Rajasthan",
-  },
-  {
-    capacity: "40 MWp",
-    image: "/images/project-40mwp.webp",
-    logo: { src: "/images/logo-amazon.png", alt: "Amazon", width: 110, height: 36 },
-    module: "Monofacial 600 Wp Mono PERC",
-    developer: "ReNew",
-    offtaker: "Amazon",
-    location: "Rajasthan",
-  },
-];
-
 export function OurProjects() {
   return (
-    <section id="our-projects" className="bg-white py-section">
-      <div className="mx-auto max-w-content px-4 sm:px-6">
-        <div className="text-center">
-          <p className="text-2xl font-bold uppercase leading-8 text-primary-700">
-            Our Projects
-          </p>
-          <h2 className="mt-6 text-4xl font-bold text-primary-950 sm:text-[54px] sm:leading-[62px]">
-            Where our panels meet the ground.
-          </h2>
-          <p className="mx-auto mt-6 max-w-xl text-xl leading-8 text-neutral-900">
-            From utility-scale plants to commercial rooftops, powered by ReNew Solar Panels.
-          </p>
-        </div>
+    <section id="our-projects" className="overflow-hidden bg-white pb-section">
+      <div className="relative h-[330px] sm:h-[420px] lg:h-[500px]">
+        <Image
+          src="/images/projects-seasons.webp"
+          alt="Solar installations operating through forest, storm, desert, and snow conditions"
+          fill
+          className="object-cover"
+          sizes="100vw"
+        />
+      </div>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-3">
-          {projects.map((project) => (
-            <article key={project.capacity} className="overflow-hidden rounded-2xl">
-              <Image
-                src={project.image}
-                alt={`Aerial view of the ${project.capacity} solar plant in ${project.location}`}
-                width={900}
-                height={683}
-                className="h-56 w-full object-cover lg:h-72"
-                sizes="(min-width: 768px) 33vw, 100vw"
-              />
-              <div className="bg-surface-tint p-8">
-                <div className="flex items-center justify-between gap-4">
-                  <p className="text-3xl font-bold text-primary-700">{project.capacity}</p>
-                  <Image
-                    src={project.logo.src}
-                    alt={project.logo.alt}
-                    width={project.logo.width}
-                    height={project.logo.height}
-                    className="h-10 w-auto"
-                  />
-                </div>
-                <dl className="mt-6 space-y-3 text-lg">
-                  {(
-                    [
-                      ["Module", project.module],
-                      ["Developer", project.developer],
-                      ["Offtaker", project.offtaker],
-                      ["Location", project.location],
-                    ] as const
-                  ).map(([label, value]) => (
-                    <div key={label} className="flex gap-2">
-                      <dt className="shrink-0 font-bold text-neutral-900">{label}</dt>
-                      <dd className="text-neutral-600">{value}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-            </article>
-          ))}
+      <div className="relative mx-auto -mt-14 max-w-content px-4 sm:-mt-24 sm:px-6 lg:-mt-28">
+        <div className="relative overflow-hidden rounded-md bg-primary-700 px-7 py-12 text-white sm:px-12 lg:px-20 lg:py-14">
+          <Image
+            src="/images/sunburst.svg"
+            alt=""
+            width={608}
+            height={314}
+            className="pointer-events-none absolute -bottom-24 right-10 hidden w-[560px] opacity-10 lg:block"
+          />
+          <div className="relative grid items-end gap-10 lg:grid-cols-[1fr_auto]">
+            <div>
+              <p className="text-xl font-bold uppercase leading-8 text-primary-300">
+                Projects
+              </p>
+              <h2 className="mt-7 text-4xl font-bold leading-tight sm:text-[54px] sm:leading-[62px]">
+                Solar solutions across every scale.
+              </h2>
+              <p className="mt-7 max-w-xl text-xl leading-8 text-white/95">
+                From utility-scale plants to commercial rooftops,
+                <br className="hidden sm:block" /> powered by ReNew Solar Panels.
+              </p>
+            </div>
+            <a
+              href="https://www.renew.com/our-business/solar"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex w-fit items-center justify-center rounded-full bg-accent px-12 py-3 text-xl font-medium text-white transition-colors hover:bg-primary-400 lg:mb-5"
+            >
+              Know More
+            </a>
+          </div>
         </div>
       </div>
     </section>

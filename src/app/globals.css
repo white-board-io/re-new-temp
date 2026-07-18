@@ -35,11 +35,9 @@
   /* Mint card background (environmental impact) */
   --color-surface-mint: #eaf8f2;
 
-  /* Ticker marquee (see ticker.tsx) and certification-logo strip.
-     Each strip holds 6 runs, so the -50% shift travels 3 run-widths;
-     durations are 3x the per-run pace (40s/60s) to keep the same speed. */
+  /* Ticker marquee (see ticker.tsx) and certification-logo strip. */
   --animate-marquee: marquee 120s linear infinite;
-  --animate-marquee-slow: marquee 180s linear infinite;
+  --animate-marquee-slow: marquee 70s linear infinite;
 
   /* Counter-pan for hero.mp4: the globe sits +208px right of center at t=0
      and drifts to +14px by t=8s (measured per-frame), so this pans the frame

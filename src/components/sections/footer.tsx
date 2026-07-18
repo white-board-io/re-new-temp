@@ -1,26 +1,31 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const navItems = [
   { label: "Who We Serve", href: "#who-we-serve" },
   { label: "Products", href: "#products" },
   { label: "Manufacturing", href: "#manufacturing" },
-  { label: "Our Projects", href: "#our-projects" },
   { label: "Channel Partners", href: "#channel-partners" },
 ];
 
-// TODO(batch-4-followup): real download URLs (datasheets, warranty docs, brochure)
 const linkColumns = [
   {
     heading: "Downloads",
+    headingHref: "/downloads",
     links: [
-      { label: "Product Datasheets", href: "#" },
-      { label: "Installation & Warranty", href: "#" },
-      { label: "Certificates", href: "#" },
+      { label: "Product Datasheets", href: "/downloads#product-datasheets" },
+      { label: "Installation & Warranty", href: "/downloads#installation-warranty" },
+      { label: "Certificates", href: "/downloads#certificates" },
     ],
   },
   {
-    heading: "Corporate",
-    links: [{ label: "Corporate Brochure", href: "#" }],
+    heading: "Projects",
+    headingHref: undefined,
+    links: [
+      { label: "Blogs", href: "#blogs" },
+      { label: "Press Releases", href: "#press-releases" },
+      { label: "Why ReNew", href: "#why-renew" },
+    ],
   },
 ];
 
@@ -83,16 +88,16 @@ function YouTubeLogo({ className }: IconProps) {
 }
 
 const socials = [
-  { label: "Facebook", href: "https://www.facebook.com/renewofficial", Icon: FacebookLogo },
-  { label: "Instagram", href: "https://www.instagram.com/renew_official", Icon: InstagramLogo },
   { label: "LinkedIn", href: "https://www.linkedin.com/company/renew-", Icon: LinkedInLogo },
+  { label: "Instagram", href: "https://www.instagram.com/renew_official", Icon: InstagramLogo },
+  { label: "Facebook", href: "https://www.facebook.com/renewofficial", Icon: FacebookLogo },
   { label: "X", href: "https://x.com/ReNew_Official", Icon: XLogo },
   { label: "YouTube", href: "https://www.youtube.com/@ReNewOfficial", Icon: YouTubeLogo },
 ];
 
 export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) {
   return (
-    <footer className="bg-primary-950 py-20 text-white">
+    <footer className="bg-primary-950 py-24 text-white">
       <div className="mx-auto max-w-content px-4 sm:px-6">
         <div className="grid gap-14 lg:grid-cols-[1fr_1.4fr]">
           <div>
@@ -101,15 +106,15 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
               alt="ReNew Solar Panels"
               width={239}
               height={159}
-              className="h-36 w-auto"
+              className="h-40 w-auto"
             />
-            <p className="mt-10 max-w-md text-lg leading-8 text-white/90">
-              ReNew Solar is the manufacturing arm of ReNew, India&apos;s leading
+            <p className="mt-20 max-w-md text-lg font-light leading-8 text-white/90">
+              ReNew Solar Panels is the manufacturing arm of ReNew, India&apos;s leading
               decarbonisation solutions company listed on Nasdaq. With three world-class
               facilities in Jaipur, Dholera, and Vizag, we build the panels that are powering
               India&apos;s net-zero future.
             </p>
-            <ul className="mt-12 flex gap-4">
+            <ul className="mt-20 flex gap-4">
               {socials.map(({ label, href, Icon }) => (
                 <li key={label}>
                   <a
@@ -117,7 +122,7 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="flex size-12 items-center justify-center rounded-full bg-white/10 transition hover:bg-primary-700"
+                    className="flex size-12 items-center justify-center rounded-full bg-primary-700 text-primary-400 transition hover:bg-primary-800"
                   >
                     <Icon className="size-5" />
                   </a>
@@ -126,7 +131,7 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
             </ul>
           </div>
 
-          <div>
+          <div className="lg:pt-40">
             <nav aria-label="Footer">
               <ul className="flex flex-wrap gap-x-10 gap-y-3 lg:justify-between">
                 {navItems.map((item) => (
@@ -141,32 +146,45 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
                 ))}
               </ul>
             </nav>
-            <div className="mt-16 grid gap-10 sm:grid-cols-3">
+            <div className="mt-16 grid gap-10 sm:grid-cols-2 xl:grid-cols-4">
               {linkColumns.map((column) => (
                 <div key={column.heading}>
-                  <h3 className="text-xl font-bold">{column.heading}</h3>
+                  <h3 className="text-xl font-bold leading-8">
+                    {column.headingHref ? (
+                      <Link href={column.headingHref} className="hover:text-primary-300">
+                        {column.heading}
+                      </Link>
+                    ) : (
+                      column.heading
+                    )}
+                  </h3>
                   <ul className="mt-6 space-y-4">
                     {column.links.map((link) => (
                       <li key={link.label}>
-                        <a href={link.href} className="text-white/90 hover:text-primary-300">
+                        <Link
+                          href={link.href.startsWith("#") ? `${sectionPrefix}${link.href}` : link.href}
+                          className="text-lg font-light leading-7 text-white/90 hover:text-primary-300"
+                        >
                           {link.label}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
                 </div>
               ))}
               <div>
-                <h3 className="text-xl font-bold">Support Portals</h3>
+                <h3 className="text-xl font-bold leading-8">Support Portals</h3>
                 <ul className="mt-6 space-y-6">
                   {portals.map((portal) => (
                     <li key={portal.label}>
-                      <p className="text-sm text-white/60">{portal.caption}</p>
+                      <p className="text-[10px] font-light leading-[22px] text-white/60">
+                        {portal.caption}
+                      </p>
                       <a
                         href={portal.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-1 inline-block underline underline-offset-4 hover:text-primary-300"
+                        className="inline-block text-lg font-light leading-[22px] underline hover:text-primary-300"
                       >
                         {portal.label}
                       </a>
@@ -174,10 +192,23 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
                   ))}
                 </ul>
               </div>
+              <div>
+                <h3 className="text-xl font-bold leading-8">Corporate</h3>
+                <ul className="mt-6 space-y-4">
+                  <li>
+                    <a
+                      href="#"
+                      className="text-lg font-light leading-7 text-white/90 hover:text-primary-300"
+                    >
+                      Corporate Brochure
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-        <p className="mt-20 border-t border-white/10 pt-8 text-sm text-white/60">
+        <p className="mt-20 border-t border-white/30 pt-8 text-sm font-light text-white/60">
           © {new Date().getFullYear()} ReNew. All rights reserved.
         </p>
       </div>

@@ -9,8 +9,14 @@ const navItems = [
   { label: "Who We Serve", href: "#who-we-serve" },
   { label: "Products", href: "#products" },
   { label: "Manufacturing", href: "#manufacturing" },
-  { label: "Our Projects", href: "#our-projects" },
   { label: "Channel Partners", href: "#channel-partners" },
+];
+
+const utilityItems = [
+  { label: "Projects", href: "#our-projects" },
+  { label: "Press Releases", href: "#press-releases" },
+  { label: "Blogs", href: "#blogs" },
+  { label: "Why ReNew Solar Panels", href: "#why-renew" },
 ];
 
 export function Header({
@@ -26,14 +32,30 @@ export function Header({
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      <div className="bg-surface-gray text-right">
-        <p className="mx-auto max-w-content px-4 py-2 text-xs text-neutral-900 sm:px-6">
-          ReNew solar panels, call{" "}
-          <a href="tel:9220440044" className="ml-2 inline-flex items-center gap-1 font-bold">
+      <div className="bg-surface-gray/70">
+        <div className="mx-auto flex max-w-content items-center justify-end gap-7 px-4 py-1.5 text-xs uppercase text-neutral-900 sm:px-6">
+          <nav aria-label="Utility" className="hidden lg:block">
+            <ul className="flex items-center divide-x divide-neutral-500">
+              {utilityItems.map((item) => (
+                <li key={item.href} className="px-6 first:pl-0">
+                  <a
+                    href={`${sectionPrefix}${item.href}`}
+                    className="transition-colors hover:text-primary-700"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <a
+            href="tel:9220440044"
+            className="inline-flex items-center gap-1 normal-case font-bold text-primary-700"
+          >
             <Phone aria-hidden className="size-3" />
-            9220 440 044
+            Call Us 9220 440 044
           </a>
-        </p>
+        </div>
       </div>
       <div className="border-t border-neutral-100 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
         <div className="mx-auto flex max-w-content items-center justify-between gap-6 px-4 py-4 sm:px-6">
@@ -48,7 +70,7 @@ export function Header({
             />
           </Link>
           <nav aria-label="Main" className="hidden xl:block">
-            <ul className="flex items-center gap-9">
+            <ul className="flex items-center gap-10">
               {navItems.map((item) => (
                 <li key={item.href}>
                   <a
@@ -89,6 +111,17 @@ export function Header({
           <nav aria-label="Main" className="border-t border-neutral-100 bg-white px-6 pb-6 pt-2 xl:hidden">
             <ul className="flex flex-col gap-4">
               {navItems.map((item) => (
+                <li key={item.href}>
+                  <a
+                    href={`${sectionPrefix}${item.href}`}
+                    onClick={() => setMenuOpen(false)}
+                    className="text-lg text-black"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+              {utilityItems.map((item) => (
                 <li key={item.href}>
                   <a
                     href={`${sectionPrefix}${item.href}`}

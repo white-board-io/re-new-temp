@@ -2,7 +2,7 @@ import Image from "next/image";
 import { CountUp } from "@/components/count-up";
 
 const stats = [
-  { value: "6.4 GW &  2.5 GW", label: "Module Manufacturing & Cell Capacity" },
+  { value: "6.5 GW", label: "Integrated Module Capacity" },
   { value: "3 Plants", label: "Jaipur, Dholera & Vizag" },
   { value: "23,000", label: "Modules Per Day" },
   { value: "$100 M", label: "Marquee investment from BII" },

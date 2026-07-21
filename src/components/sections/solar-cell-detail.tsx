@@ -125,7 +125,7 @@ export function SolarCellDetail() {
 
   return (
     <>
-      <section className="relative flex min-h-[620px] items-start justify-center overflow-hidden px-4 pb-20 pt-24 text-center sm:min-h-[700px] sm:px-6 sm:pt-32 lg:min-h-[calc(100svh-136px)]">
+      <section className="relative flex min-h-[460px] items-start justify-center overflow-hidden px-4 pb-20 pt-24 text-center sm:min-h-[560px] sm:px-6 sm:pt-32 lg:min-h-[75svh]">
         <Image
           src="/images/solar-cell-hero.webp"
           alt="Solar panels across a desert landscape"
@@ -149,7 +149,7 @@ export function SolarCellDetail() {
       </section>
 
       <section id="cell-range" className="relative bg-white">
-        <div className="sticky top-[104px] z-30 border-b border-neutral-100 bg-neutral-50 shadow-[0_2px_8px_rgba(0,0,0,0.04)] lg:top-[136px]">
+        <div className="sticky top-[104px] z-30 border-b border-neutral-100 bg-neutral-50 shadow-[0_2px_8px_rgba(0,0,0,0.04)] lg:top-[133px]">
           <div className="mx-auto grid max-w-content px-4 sm:px-6 md:grid-cols-3">
             <div className="border-b-[14px] border-primary-400 px-4 py-7 text-left text-lg font-bold text-primary-700 sm:text-xl md:text-center lg:text-2xl">
               M10R PERC Cell - P-Type

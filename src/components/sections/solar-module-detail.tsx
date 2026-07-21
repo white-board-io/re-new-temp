@@ -103,7 +103,7 @@ export function SolarModuleDetail() {
 
   return (
     <>
-      <section className="relative flex min-h-[620px] items-start justify-center overflow-hidden px-4 pb-20 pt-24 text-center sm:min-h-[700px] sm:px-6 sm:pt-32 lg:min-h-[calc(100svh-136px)]">
+      <section className="relative flex min-h-[460px] items-start justify-center overflow-hidden px-4 pb-20 pt-24 text-center sm:min-h-[560px] sm:px-6 sm:pt-32 lg:min-h-[75svh]">
         <Image
           src="/images/solar-module-hero.webp"
           alt="A large solar farm across green hills at sunrise"
@@ -127,7 +127,7 @@ export function SolarModuleDetail() {
       </section>
 
       <section id="module-range" className="relative bg-white">
-        <div className="sticky top-[104px] z-30 border-b border-neutral-100 bg-neutral-50 shadow-[0_2px_8px_rgba(0,0,0,0.04)] lg:top-[136px]">
+        <div className="sticky top-[104px] z-30 border-b border-neutral-100 bg-neutral-50 shadow-[0_2px_8px_rgba(0,0,0,0.04)] lg:top-[133px]">
           <div className="mx-auto flex max-w-content overflow-x-auto px-4 sm:px-6 md:grid md:grid-cols-3">
             {[
               "G12R TOPCon Bifacial Module",

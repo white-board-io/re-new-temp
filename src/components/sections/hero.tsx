@@ -4,8 +4,8 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const SLIDE_COUNT = 3;
-// Slide 1 runs for the full length of hero.mp4 (8.03s, hardcoded).
-const SLIDE_DURATIONS_MS = [8100, 7000, 7000];
+// Every slide stays visible for the full length of hero.mp4 (8.03s, rounded).
+const SLIDE_DURATION_MS = 8100;
 
 const plants = [
   { name: "Jaipur", src: "/images/state-jaipur.svg", width: 135, height: 111, offset: "" },
@@ -34,19 +34,6 @@ export function Hero() {
       videoRef.current?.pause();
     }
   }, []);
-
-  // Auto-advance; restarts its window on any slide change (so a manual dot
-  // click gets a full interval before moving on). Hovering pauses the reading
-  // slides, but the video slide always hands off when the video ends.
-  useEffect(() => {
-    if (hovered && activeSlide !== 0) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const timer = setTimeout(
-      () => setActiveSlide((slide) => (slide + 1) % SLIDE_COUNT),
-      SLIDE_DURATIONS_MS[activeSlide],
-    );
-    return () => clearTimeout(timer);
-  }, [hovered, activeSlide]);
 
   // The background video restarts each time its slide comes back into view.
   useEffect(() => {
@@ -213,9 +200,9 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Shared slide dots */}
+      {/* Shared slide progress */}
       <div
-        className="absolute inset-x-0 bottom-14 flex items-center justify-center gap-6"
+        className="absolute inset-x-0 bottom-14 flex items-center justify-center gap-4"
         role="tablist"
         aria-label="Hero slides"
       >
@@ -227,10 +214,25 @@ export function Hero() {
             aria-selected={activeSlide === i}
             aria-label={`Slide ${i + 1}`}
             onClick={() => selectSlide(i)}
-            className={`size-4 rounded-full transition ${
-              activeSlide === i ? "bg-primary-950 ring-2 ring-white" : "bg-white"
-            }`}
-          />
+            className="flex h-8 w-[88px] items-center"
+          >
+            <span className="h-2 w-full overflow-hidden rounded-[1px] bg-white">
+              {activeSlide === i && (
+                <span
+                  aria-hidden
+                  className="hero-progress-fill block h-full w-full bg-primary-400"
+                  style={{
+                    animationDuration: `${SLIDE_DURATION_MS}ms`,
+                    animationPlayState:
+                      hovered && activeSlide !== 0 ? "paused" : "running",
+                  }}
+                  onAnimationEnd={() =>
+                    setActiveSlide((slide) => (slide + 1) % SLIDE_COUNT)
+                  }
+                />
+              )}
+            </span>
+          </button>
         ))}
       </div>
     </section>

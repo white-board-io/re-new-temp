@@ -79,6 +79,30 @@ body {
   @apply bg-white font-sans text-neutral-900 antialiased;
 }
 
+@keyframes hero-slide-progress {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.hero-progress-fill {
+  animation-name: hero-slide-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  transform-origin: left;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-progress-fill {
+    animation: none;
+    transform: scaleX(1);
+  }
+}
+
 /* Nav anchor targets must clear the fixed header (contact strip + nav bar,
    ~123px mobile / ~139px from lg where the logo grows to 72px) */
 section[id] {

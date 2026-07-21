@@ -32,7 +32,7 @@ export function Header({
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      <div className="bg-surface-gray/70">
+      <div className="bg-surface-gray">
         <div className="mx-auto flex max-w-content items-center justify-end gap-7 px-4 py-1.5 text-xs uppercase text-neutral-900 sm:px-6">
           <nav aria-label="Utility" className="hidden lg:block">
             <ul className="flex items-center divide-x divide-neutral-500">

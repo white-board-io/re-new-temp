@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { CountUp } from "@/components/count-up";
 
 const plants = [
@@ -51,6 +52,12 @@ export function Manufacturing() {
               <br />
               Built to last.
             </h2>
+            <Link
+              href="/manufacturing"
+              className="mt-8 inline-flex min-w-36 items-center justify-center rounded-full bg-accent px-8 py-3 text-base font-bold text-white transition-colors hover:bg-primary-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            >
+              Know More
+            </Link>
           </div>
           <p className="lg:text-right">
             <span className="text-4xl font-bold">

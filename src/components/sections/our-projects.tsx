@@ -5,11 +5,12 @@ export function OurProjects() {
     <section id="our-projects" className="overflow-hidden bg-white pb-section">
       <div className="relative h-[330px] sm:h-[420px] lg:h-[500px]">
         <Image
-          src="/images/projects-seasons.webp"
+          src="/images/projects-seasons-hd.webp"
           alt="Solar installations operating through forest, storm, desert, and snow conditions"
           fill
           className="object-cover"
           sizes="100vw"
+          quality={90}
         />
       </div>
 

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export function OurProjects() {
   return (
@@ -36,14 +37,12 @@ export function OurProjects() {
                 <br className="hidden sm:block" /> powered by ReNew Solar Panels.
               </p>
             </div>
-            <a
-              href="https://www.renew.com/our-business/solar"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/projects"
               className="inline-flex w-fit items-center justify-center rounded-full bg-accent px-12 py-3 text-xl font-medium text-white transition-colors hover:bg-primary-400 lg:mb-5"
             >
               Know More
-            </a>
+            </Link>
           </div>
         </div>
       </div>

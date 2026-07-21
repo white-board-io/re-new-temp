@@ -51,7 +51,7 @@ export function Contact() {
         <div>
           <h2 className="max-w-lg text-4xl font-bold sm:text-[54px] sm:leading-[62px]">
             Power your next <span className="text-accent">project</span> with ReNew Solar
-            Panel.
+            Panels.
           </h2>
           <p className="mt-8 max-w-md text-2xl leading-9 text-white/90">
             Tell us what you need and our team will get back to you within 24 hours.

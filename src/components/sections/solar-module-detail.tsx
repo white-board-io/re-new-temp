@@ -127,7 +127,7 @@ export function SolarModuleDetail() {
       </section>
 
       <section id="module-range" className="relative bg-white">
-        <div className="sticky top-[104px] z-30 border-b border-neutral-100 bg-neutral-50 shadow-[0_2px_8px_rgba(0,0,0,0.04)] lg:top-[133px]">
+        <div className="sticky top-[104px] z-30 border-b border-neutral-100 bg-neutral-50 shadow-[0_2px_8px_rgba(0,0,0,0.04)] lg:top-[133px] xl:top-[min(138px,7.1875vw)]">
           <div className="mx-auto flex max-w-content overflow-x-auto px-4 sm:px-6 md:grid md:grid-cols-3">
             {[
               "G12R TOPCon Bifacial Module",

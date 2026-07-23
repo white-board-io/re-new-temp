@@ -16,7 +16,7 @@ export default function DownloadsPage() {
   return (
     <>
       <Header sectionPrefix="/" contactHref="#contact" savingsHref="/#savings-calculator" />
-      <main className="pt-[120px] lg:pt-[136px]">
+      <main className="pt-[120px] lg:pt-[136px] xl:pt-[min(138px,7.1875vw)]">
         <section className="relative flex h-[260px] items-center overflow-hidden sm:h-[310px] lg:h-[330px]">
           <Image
             src="/images/downloads-hero.png"

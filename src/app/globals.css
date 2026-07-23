@@ -75,6 +75,19 @@
   --tracking-hero: 0.03em;
 }
 
+@media (min-width: 1280px) {
+  :root {
+    /* Figma desktop grid: 1428px content within a 1920px frame. */
+    --container-content: min(89.25rem, 74.375vw);
+  }
+
+  main .max-w-content,
+  footer .max-w-content {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 body {
   @apply bg-white font-sans text-neutral-900 antialiased;
 }
@@ -112,5 +125,11 @@ section[id] {
 @media (min-width: 1024px) {
   section[id] {
     scroll-margin-top: 9.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  section[id] {
+    scroll-margin-top: min(138px, 7.1875vw);
   }
 }

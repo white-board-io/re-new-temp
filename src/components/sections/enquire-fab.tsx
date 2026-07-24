@@ -57,7 +57,7 @@ export function EnquireFab() {
     // The wrapper spans the whole artwork, so it takes no pointer events — only
     // the dome is clickable. Hovering the dome still puts :hover on the wrapper,
     // which is what drives the sunburst's group-hover.
-    <div className="group pointer-events-none fixed bottom-0 right-4 z-40 h-[95px] w-[183px] lg:right-16">
+    <div className="design-scale-fixed-bottom group pointer-events-none fixed bottom-0 right-4 z-40 h-[95px] w-[183px] lg:right-16">
       <Sunburst />
       <Link
         href="/#contact"

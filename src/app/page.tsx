@@ -37,10 +37,9 @@ export default function Home() {
       />
       <Header />
       <PriceListTab />
-      <main className="pt-[120px] lg:pt-[136px] xl:pt-[min(138px,7.1875vw)]">
-        {/* First fold: hero + stats share the viewport below the fixed header,
-            matching the Figma 1080px frame (hero ~776px, stats ~168px). */}
-        <div className="lg:grid lg:h-[calc(100svh-136px)] lg:min-h-[760px] lg:grid-rows-[minmax(0,1fr)_auto]">
+      <main className="pt-[120px] lg:pt-[136px] xl:pt-[138px]">
+        {/* First fold: hero + stats share the viewport below the fixed header. */}
+        <div className="lg:grid lg:h-[calc(100svh-136px)] lg:min-h-[760px] lg:grid-rows-[minmax(0,1fr)_auto] xl:h-[942px] xl:grid-rows-[742px_200px]">
           <Hero />
           <StatsBar />
         </div>

@@ -97,9 +97,9 @@ const socials = [
 
 export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) {
   return (
-    <footer className="bg-primary-950 py-24 text-white">
-      <div className="mx-auto max-w-content px-4 sm:px-6">
-        <div className="grid gap-14 lg:grid-cols-[1fr_1.4fr]">
+    <footer className="bg-primary-950 pt-24 text-white">
+      <div className="mx-auto max-w-[1650px] px-4 sm:px-6 xl:px-0">
+        <div className="grid gap-14 lg:grid-cols-[1fr_1.4fr] xl:grid-cols-[620px_1fr] xl:gap-[140px]">
           <div>
             <Image
               src="/images/logo-white.svg"
@@ -108,13 +108,13 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
               height={159}
               className="h-40 w-auto"
             />
-            <p className="mt-20 max-w-md text-lg font-light leading-8 text-white/90">
+            <p className="mt-20 max-w-[480px] text-lg font-light leading-8 text-white/90 xl:mt-[88px] xl:text-xl">
               ReNew Solar Panels is the manufacturing arm of ReNew, India&apos;s leading
               decarbonisation solutions company listed on Nasdaq. With three world-class
               facilities in Jaipur, Dholera, and Vizag, we build the panels that are powering
               India&apos;s net-zero future.
             </p>
-            <ul className="mt-20 flex gap-4">
+            <ul className="mt-20 flex gap-4 xl:mt-[88px] xl:gap-[52px]">
               {socials.map(({ label, href, Icon }) => (
                 <li key={label}>
                   <a
@@ -122,57 +122,79 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="flex size-12 items-center justify-center rounded-full bg-primary-700 text-primary-400 transition hover:bg-primary-800"
+                    className="flex size-12 items-center justify-center rounded-full bg-primary-700 text-primary-400 transition hover:bg-primary-800 xl:size-[60px]"
                   >
-                    <Icon className="size-5" />
+                    <Icon className="size-5 xl:size-6" />
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="lg:pt-40">
-            <nav aria-label="Footer">
-              <ul className="flex flex-wrap gap-x-10 gap-y-3 lg:justify-between">
-                {navItems.map((item) => (
-                  <li key={item.href}>
-                    <a
-                      href={`${sectionPrefix}${item.href}`}
-                      className="text-lg hover:text-primary-300"
-                    >
-                      {item.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-            <div className="mt-16 grid gap-10 sm:grid-cols-2 xl:grid-cols-4">
-              {linkColumns.map((column) => (
-                <div key={column.heading}>
-                  <h3 className="text-xl font-bold leading-8">
-                    {column.headingHref ? (
-                      <Link href={column.headingHref} className="hover:text-primary-300">
-                        {column.heading}
+          <nav
+            aria-label="Footer"
+            className="grid gap-12 sm:grid-cols-2 xl:grid-cols-[213px_159px_210px_158px] xl:gap-[50px] xl:pt-[170px]"
+          >
+            <div>
+              <a
+                href={`${sectionPrefix}${navItems[0].href}`}
+                className="text-lg hover:text-primary-300 xl:text-xl"
+              >
+                {navItems[0].label}
+              </a>
+              <div className="mt-16 xl:mt-14">
+                <h3 className="text-xl font-bold leading-8">
+                  <Link href={linkColumns[0].headingHref!} className="hover:text-primary-300">
+                    {linkColumns[0].heading}
+                  </Link>
+                </h3>
+                <ul className="mt-6 space-y-4">
+                  {linkColumns[0].links.map((link) => (
+                    <li key={link.label}>
+                      <Link
+                        href={link.href}
+                        className="text-lg font-light leading-7 text-white/90 hover:text-primary-300"
+                      >
+                        {link.label}
                       </Link>
-                    ) : (
-                      column.heading
-                    )}
-                  </h3>
-                  <ul className="mt-6 space-y-4">
-                    {column.links.map((link) => (
-                      <li key={link.label}>
-                        <Link
-                          href={link.href.startsWith("#") ? `${sectionPrefix}${link.href}` : link.href}
-                          className="text-lg font-light leading-7 text-white/90 hover:text-primary-300"
-                        >
-                          {link.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-              <div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <a
+                href={`${sectionPrefix}${navItems[1].href}`}
+                className="text-lg hover:text-primary-300 xl:text-xl"
+              >
+                {navItems[1].label}
+              </a>
+              <div className="mt-16 xl:mt-14">
+                <h3 className="text-xl font-bold leading-8">{linkColumns[1].heading}</h3>
+                <ul className="mt-6 space-y-4">
+                  {linkColumns[1].links.map((link) => (
+                    <li key={link.label}>
+                      <Link
+                        href={`${sectionPrefix}${link.href}`}
+                        className="text-lg font-light leading-7 text-white/90 hover:text-primary-300"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <a
+                href={`${sectionPrefix}${navItems[2].href}`}
+                className="text-lg hover:text-primary-300 xl:text-xl"
+              >
+                {navItems[2].label}
+              </a>
+              <div className="mt-16 xl:mt-14">
                 <h3 className="text-xl font-bold leading-8">Support Portals</h3>
                 <ul className="mt-6 space-y-6">
                   {portals.map((portal) => (
@@ -192,7 +214,16 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
                   ))}
                 </ul>
               </div>
-              <div>
+            </div>
+
+            <div>
+              <a
+                href={`${sectionPrefix}${navItems[3].href}`}
+                className="text-lg hover:text-primary-300 xl:text-xl"
+              >
+                {navItems[3].label}
+              </a>
+              <div className="mt-16 xl:mt-14">
                 <h3 className="text-xl font-bold leading-8">Corporate</h3>
                 <ul className="mt-6 space-y-4">
                   <li>
@@ -206,12 +237,10 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
                 </ul>
               </div>
             </div>
-          </div>
+          </nav>
         </div>
-        <p className="mt-20 border-t border-white/30 pt-8 text-sm font-light text-white/60">
-          © {new Date().getFullYear()} ReNew. All rights reserved.
-        </p>
       </div>
+      <div className="mt-20 h-16 border-t border-white" aria-hidden />
     </footer>
   );
 }

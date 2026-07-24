@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 const SLIDE_COUNT = 3;
 // Every slide stays visible for the full length of hero.mp4 (8.03s, rounded).
@@ -17,7 +17,7 @@ function EnquireButton({ className = "" }: { className?: string }) {
   return (
     <a
       href="#contact"
-      className={`rounded-full bg-accent px-8 py-2.5 text-xl font-medium text-white transition-colors hover:bg-primary-400 ${className}`}
+      className={`rounded-full bg-accent px-11 py-2.5 text-xl font-medium text-white transition-colors hover:bg-primary-400 ${className}`}
     >
       Enquire Now
     </a>
@@ -25,27 +25,8 @@ function EnquireButton({ className = "" }: { className?: string }) {
 }
 
 export function Hero() {
-  const videoRef = useRef<HTMLVideoElement>(null);
   const [activeSlide, setActiveSlide] = useState(0);
   const [hovered, setHovered] = useState(false);
-
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      videoRef.current?.pause();
-    }
-  }, []);
-
-  // The background video restarts each time its slide comes back into view.
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    if (activeSlide !== 0) {
-      video.pause();
-    } else if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      video.currentTime = 0;
-      video.play().catch(() => {});
-    }
-  }, [activeSlide]);
 
   const selectSlide = (i: number) => setActiveSlide(i);
 
@@ -74,34 +55,28 @@ export function Hero() {
           "polygon(0 0, 100% 0, 100% calc(100% - 56px), calc(100% - 56px) 100%, 56px 100%, 0 calc(100% - 56px))",
       }}
     >
-      {/* Slide 1 — video */}
+      {/* Slide 1 */}
       <div className={slideClass(0)} aria-hidden={activeSlide !== 0}>
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          playsInline
-          poster="/images/hero-poster.webp"
-          className={`absolute inset-0 size-full object-cover motion-reduce:-translate-x-[10.8%] motion-reduce:scale-[1.22] motion-reduce:animate-none ${
-            activeSlide === 0 ? "animate-hero-pan" : ""
-          }`}
+        <Image
+          src="/images/hero-poster.webp"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="absolute inset-0 size-full object-cover object-[center_60%]"
           aria-hidden
-        >
-          <source src="/videos/hero.mp4" type="video/mp4" />
-        </video>
+        />
         <div
-          className={`relative flex h-full flex-col items-center justify-center px-4 pb-24 pt-10 text-center sm:px-6 ${contentClass(0)}`}
+          className={`relative flex h-full flex-col items-center justify-center px-4 pb-24 pt-10 text-center sm:px-6 xl:justify-start xl:pt-[130px] ${contentClass(0)}`}
         >
-          <h1 className="max-w-6xl text-4xl font-bold leading-[0.95] tracking-hero text-white sm:text-5xl lg:text-5xl">
+          <h1 className="max-w-6xl text-4xl font-bold leading-[0.95] tracking-hero text-white sm:text-5xl lg:text-5xl xl:max-w-[1240px] xl:text-[54px] xl:leading-[50px]">
            Switch to clean energy with ReNew Solar Panels, engineered for lasting performance.
            
           </h1>
           <p className="mt-8 text-lg leading-snug text-white sm:text-xl">
-            When you put solar on your roof,
-            <br />
-            the manufacturer matters.
+            When you put solar on your roof, the manufacturer matters.
           </p>
-          <EnquireButton className="mt-20" />
+          <EnquireButton className="mt-16" />
         </div>
       </div>
 

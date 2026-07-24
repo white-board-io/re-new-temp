@@ -5,9 +5,22 @@ import Link from "next/link";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
-const navItems = [
+type NavItem = {
+  label: string;
+  href: string;
+  children?: { label: string; href: string }[];
+};
+
+const navItems: NavItem[] = [
   { label: "Who We Serve", href: "#who-we-serve" },
-  { label: "Products", href: "#products" },
+  {
+    label: "Products",
+    href: "#products",
+    children: [
+      { label: "Solar Module", href: "/products/solar-module" },
+      { label: "Solar Cell", href: "/products/solar-cell" },
+    ],
+  },
   { label: "Manufacturing", href: "#manufacturing" },
   { label: "Channel Partners", href: "#channel-partners" },
 ];
@@ -84,13 +97,27 @@ export function Header({
           >
             <ul className="flex h-full items-center gap-[min(40px,2.083333vw)]">
               {navItems.map((item) => (
-                <li key={item.href} className="flex h-full items-center">
+                <li key={item.href} className="group relative flex h-full items-center">
                   <a
                     href={`${sectionPrefix}${item.href}`}
                     className="inline-flex h-full items-center text-[min(20px,1.041667vw)] font-normal leading-[min(32px,1.666667vw)] text-black transition-colors hover:text-primary-700"
                   >
                     {item.label}
                   </a>
+                  {item.children && (
+                    <ul className="invisible absolute left-1/2 top-full w-[min(190px,9.895833vw)] -translate-x-1/2 translate-y-2 rounded-md border border-neutral-100 bg-white py-[min(10px,0.520833vw)] opacity-0 shadow-lg transition group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                      {item.children.map((child) => (
+                        <li key={child.href}>
+                          <Link
+                            href={child.href}
+                            className="block px-[min(18px,0.9375vw)] py-[min(8px,0.416667vw)] text-[min(16px,0.833333vw)] leading-[min(24px,1.25vw)] text-neutral-800 hover:bg-primary-50 hover:text-primary-700"
+                          >
+                            {child.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </li>
               ))}
             </ul>
@@ -131,6 +158,21 @@ export function Header({
                   >
                     {item.label}
                   </a>
+                  {item.children && (
+                    <ul className="mt-2 space-y-2 border-l border-primary-200 pl-4">
+                      {item.children.map((child) => (
+                        <li key={child.href}>
+                          <Link
+                            href={child.href}
+                            onClick={() => setMenuOpen(false)}
+                            className="text-base text-neutral-600"
+                          >
+                            {child.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </li>
               ))}
               {utilityItems.map((item) => (

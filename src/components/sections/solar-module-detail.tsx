@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { Building2, Factory, House } from "lucide-react";
 
 const gallery = [
   {
@@ -48,9 +49,21 @@ const features = [
 ];
 
 const applications = [
-  "Utility-scale solar power plants",
-  "High capacity commercial and industrial installations",
-  "High power requirement residential units",
+  {
+    line1: "Utility-scale solar",
+    line2: "power plants",
+    icon: Factory,
+  },
+  {
+    line1: "High capacity commercial",
+    line2: "and industrial installations",
+    icon: Building2,
+  },
+  {
+    line1: "High power requirement",
+    line2: "residential units",
+    icon: House,
+  },
 ];
 
 function FeatureIcon() {
@@ -75,35 +88,13 @@ function FeatureIcon() {
   );
 }
 
-function SolarApplicationIcon() {
-  return (
-    <span className="flex size-28 items-center justify-center rounded-full bg-primary-700 sm:size-32">
-      <svg
-        aria-hidden
-        viewBox="0 0 80 80"
-        fill="none"
-        stroke="#8dc63f"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2.5"
-        className="size-16 sm:size-[72px]"
-      >
-        <circle cx="40" cy="25" r="10" />
-        <path d="M40 8v6M40 36v6M23 25h-6M63 25h-6M28 13l4 5M52 13l-4 5M28 37l4-5M52 37l-4-5" />
-        <path d="M22 47h36l6 23H16l6-23Z" />
-        <path d="m28 47-3 23M52 47l3 23M18 59h44M40 47v23" />
-      </svg>
-    </span>
-  );
-}
-
 export function SolarModuleDetail() {
   const [selectedImage, setSelectedImage] = useState(1);
   const [activeFeature, setActiveFeature] = useState(1);
 
   return (
     <>
-      <section className="relative flex min-h-[460px] items-start justify-center overflow-hidden px-4 pb-20 pt-24 text-center sm:min-h-[560px] sm:px-6 sm:pt-32 lg:min-h-[75svh]">
+      <section className="relative flex min-h-[460px] items-start justify-center overflow-hidden px-4 pb-20 pt-20 text-center sm:min-h-[560px] sm:px-6 lg:min-h-[804px] lg:pt-20">
         <Image
           src="/images/solar-module-hero.webp"
           alt="A large solar farm across green hills at sunrise"
@@ -114,12 +105,12 @@ export function SolarModuleDetail() {
         />
         <div className="absolute inset-0 bg-white/15" />
         <div className="relative max-w-5xl text-primary-950">
-          <h1 className="text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-[64px] lg:leading-[1.02]">
+          <h1 className="text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-[54px] lg:leading-[58px]">
             Engineered for performance.
             <br />
             Built for the long run.
           </h1>
-          <p className="mx-auto mt-8 max-w-2xl text-xl leading-8 sm:text-2xl sm:leading-9">
+          <p className="mx-auto mt-8 max-w-2xl text-xl font-normal leading-8">
             Three module offerings built for homes, businesses, and large-scale utility
             projects across India.
           </p>
@@ -127,7 +118,7 @@ export function SolarModuleDetail() {
       </section>
 
       <section id="module-range" className="relative bg-white">
-        <div className="sticky top-[104px] z-30 border-b border-neutral-100 bg-neutral-50 shadow-[0_2px_8px_rgba(0,0,0,0.04)] lg:top-[133px] xl:top-[min(138px,7.1875vw)]">
+        <div className="sticky top-[104px] z-30 border-b border-neutral-100 bg-neutral-50 shadow-[0_2px_8px_rgba(0,0,0,0.04)] lg:top-[133px] xl:top-[138px]">
           <div className="mx-auto flex max-w-content overflow-x-auto px-4 sm:px-6 md:grid md:grid-cols-3">
             {[
               "G12R TOPCon Bifacial Module",
@@ -216,6 +207,16 @@ export function SolarModuleDetail() {
               </div>
               <div className="grid grid-cols-2 gap-8 border-t border-neutral-200 py-8">
                 <div>
+                  <dt>First year degradation</dt>
+                  <dd className="mt-2 text-neutral-500">1%</dd>
+                </div>
+                <div>
+                  <dt>Annual power attenuation</dt>
+                  <dd className="mt-2 text-neutral-500">0.40%</dd>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-8 border-t border-neutral-200 py-8">
+                <div>
                   <dt>Dimensions</dt>
                   <dd className="mt-2 text-neutral-500">2382 × 1134 × 30 mm</dd>
                 </div>
@@ -290,7 +291,7 @@ export function SolarModuleDetail() {
             <p className="text-xl font-bold uppercase text-primary-700">
               Performance you can count on
             </p>
-            <div className="relative mt-14 aspect-[433/257] w-full">
+            <div className="product-chart-reveal relative mt-14 aspect-[433/257] w-full overflow-hidden">
               <Image
                 src="/images/solar-module-output-chart.webp"
                 alt="Power output chart showing 99 percent in year one and 87.4 percent in year 30"
@@ -305,17 +306,26 @@ export function SolarModuleDetail() {
         <div className="mx-auto max-w-content px-4 pb-24 text-center sm:px-6 lg:pb-32">
           <h2 className="text-3xl font-medium text-primary-700">Ideal Applications</h2>
           <div className="mt-16 grid gap-14 md:grid-cols-3 md:gap-8">
-            {applications.map((application) => (
-              <div key={application} className="flex flex-col items-center">
-                <SolarApplicationIcon />
-                <p className="mt-10 max-w-sm text-2xl leading-8 text-[#143b58]">{application}</p>
-              </div>
-            ))}
+            {applications.map((application) => {
+              const Icon = application.icon;
+              return (
+                <div key={application.line1} className="flex flex-col items-center">
+                  <span className="flex size-28 items-center justify-center rounded-full bg-primary-700 text-primary-400 sm:size-32">
+                    <Icon aria-hidden className="size-16 stroke-[1.7] sm:size-[72px]" />
+                  </span>
+                  <p className="mt-10 max-w-sm text-2xl leading-8 text-[#143b58]">
+                    {application.line1}
+                    <br />
+                    {application.line2}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
 
         <div className="bg-primary-700 pb-32">
-          <div className="mx-auto max-w-content -translate-y-1 px-4 sm:px-6">
+          <div className="mx-auto max-w-content px-4 sm:px-6">
             <button
               type="button"
               aria-label="Play rooftop solar installation video"
@@ -332,6 +342,22 @@ export function SolarModuleDetail() {
                 <span className="ml-3 block h-0 w-0 border-y-[28px] border-l-[44px] border-y-transparent border-l-white sm:border-y-[44px] sm:border-l-[66px]" />
               </span>
             </button>
+            <div className="mt-12 flex flex-wrap justify-center gap-8">
+              <a
+                href="#contact"
+                className="rounded-full bg-primary-400 px-12 py-4 text-xl font-bold text-white transition hover:bg-primary-500"
+              >
+                Enquire Now
+              </a>
+              <button
+                type="button"
+                disabled
+                title="Datasheet coming soon"
+                className="rounded-full bg-primary-950 px-12 py-4 text-xl font-bold text-white disabled:cursor-not-allowed disabled:opacity-100"
+              >
+                Download Datasheet
+              </button>
+            </div>
           </div>
         </div>
       </section>

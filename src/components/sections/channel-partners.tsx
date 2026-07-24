@@ -11,10 +11,12 @@ const videos = [
   {
     src: "/images/partner-video-factory.webp",
     alt: "Play video: quality inspection on the module manufacturing line",
+    desktopSize: "xl:h-[510px] xl:w-[803px]",
   },
   {
     src: "/images/partner-video-field.webp",
     alt: "Play video: engineers reviewing a rooftop installation",
+    desktopSize: "xl:h-[510px] xl:w-[793px]",
   },
 ];
 
@@ -67,17 +69,17 @@ export function ChannelPartners() {
         </div>
       </div>
 
-      <div className="mx-auto -mt-52 max-w-content px-4 sm:px-6">
+      <div className="mx-auto -mt-52 max-w-[1652px] px-4 sm:px-6 xl:px-0">
         <div
           ref={trackRef}
-          className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 xl:gap-[45px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {videos.map((video) => (
             <button
               key={video.src}
               type="button"
               aria-label={video.alt}
-              className="group relative aspect-video w-[88%] shrink-0 snap-start overflow-hidden rounded-2xl md:w-[calc(50%-12px)]"
+              className={`group relative aspect-video w-[88%] shrink-0 snap-start overflow-hidden rounded-2xl md:w-[calc(50%-12px)] xl:aspect-auto xl:rounded-[6px] ${video.desktopSize}`}
             >
               <Image
                 src={video.src}
@@ -133,7 +135,7 @@ export function ChannelPartners() {
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-5 pb-24 pt-16">
+        <div className="flex flex-wrap justify-center gap-10 pb-24 pt-16">
           <a
             href="#contact"
             className="rounded-full bg-primary-950 px-8 py-3 text-lg font-bold text-white transition hover:bg-primary-900"

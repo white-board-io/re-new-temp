@@ -1,47 +1,30 @@
-"use client";
-
 import Image from "next/image";
-import { useState } from "react";
-
-const DEFAULT_CARD = -1;
 
 const cards = [
   {
     title: "For your home",
+    image: "/images/who-we-serve-card.webp",
     position: "object-[35%_60%]",
     description:
       "Cut your electricity bills for decades with panels engineered for Indian rooftops - from the manufacturer powering the country's clean energy transition.",
   },
   {
     title: "For your business",
+    image: "/images/solar-module-rooftop.webp",
     position: "object-center",
     description:
       "When your energy costs are high, and your timelines are tight, you need a manufacturer you can count on - consistent availability, committed supply, and panels that perform.",
   },
   {
     title: "For large-scale projects",
-    position: "object-[65%_60%]",
+    image: "/images/project-1000mwp.webp",
+    position: "object-center",
     description:
       "From utility-scale farms to industrial parks, get committed gigawatt-scale supply and consistent quality, delivered on your project's schedule.",
   },
 ];
 
-// Size, position, and overlay fades all share one clock so the card reads as a
-// single object growing, not parts moving independently.
-const GROW = "duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]";
-
-// Text exits fast and together; it re-enters with a gentle rise once the card
-// is most of the way open.
-const textIn = (isActive: boolean, delay: string) =>
-  `transition-[opacity,transform] ease-out ${
-    isActive
-      ? `translate-y-0 opacity-100 duration-500 ${delay}`
-      : "translate-y-2 opacity-0 duration-200"
-  }`;
-
 export function WhoWeServe() {
-  const [active, setActive] = useState(DEFAULT_CARD);
-
   return (
     <section
       id="who-we-serve"
@@ -70,88 +53,45 @@ export function WhoWeServe() {
           </li>
         </ul>
 
-        {/* Fixed columns and a fixed row height: only the hovered card animates,
-            growing from its own center — idle cards never move. */}
-        <div
-          className="mt-16 grid gap-6 md:grid-cols-3 lg:mt-24"
-          onMouseLeave={() => setActive(DEFAULT_CARD)}
-        >
-          {cards.map((card, i) => {
-            const isActive = i === active;
-            return (
-              <div
-                key={card.title}
-                className="md:flex md:h-[450px] md:items-center lg:h-[480px]"
-              >
-              <article
-                onMouseEnter={() => setActive(i)}
-                onFocus={() => setActive(i)}
-                className={`relative w-full overflow-hidden rounded-3xl transition-[height] ${GROW} ${
-                  isActive ? "h-[450px] lg:h-[480px]" : "h-[380px] lg:h-[421px]"
-                }`}
-              >
-                <Image
-                  src="/images/who-we-serve-card.webp"
-                  alt={`${card.title}: rooftop solar installation`}
-                  fill
-                  className={`object-cover ${card.position}`}
-                  sizes="(min-width: 768px) 33vw, 100vw"
-                />
+        <div className="mt-16 grid gap-6 md:grid-cols-3 lg:mt-24 lg:gap-[90px]">
+          {cards.map((card) => (
+            <article
+              key={card.title}
+              tabIndex={0}
+              className="group h-[462px] rounded-md perspective-[1600px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-700 lg:h-[590px]"
+            >
+              <div className="grid h-full transform-3d transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:rotate-y-180 group-focus-within:rotate-y-180 motion-reduce:transition-none">
+                <div className="relative overflow-hidden rounded-md [grid-area:1/1] backface-hidden">
+                  <Image
+                    src={card.image}
+                    alt={`${card.title}: rooftop solar installation`}
+                    fill
+                    className={`object-cover ${card.position}`}
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary-950/85 via-primary-950/10 to-transparent" />
+                  <h3 className="absolute bottom-8 left-8 max-w-56 text-3xl font-bold leading-tight text-white">
+                    {card.title}
+                  </h3>
+                </div>
 
-                {/* Collapsed scrim ⇄ expanded green wash crossfade */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-t from-primary-950/85 via-primary-950/10 to-transparent transition-opacity ${GROW} ${
-                    isActive ? "opacity-0" : "opacity-100"
-                  }`}
-                />
-                <div
-                  className={`absolute inset-0 bg-gradient-to-b from-primary-800/90 via-primary-800/80 to-primary-950/90 transition-opacity ${GROW} ${
-                    isActive ? "opacity-100" : "opacity-0"
-                  }`}
-                />
-
-                {/* Collapsed state: title anchored bottom-left */}
-                <h3
-                  aria-hidden={isActive}
-                  className={`absolute bottom-8 left-8 max-w-56 text-3xl font-bold leading-tight text-white transition-[opacity,transform] ease-out ${
-                    isActive
-                      ? "translate-y-2 opacity-0 duration-200"
-                      : "translate-y-0 opacity-100 delay-300 duration-400"
-                  }`}
-                >
-                  {card.title}
-                </h3>
-
-                {/* Expanded state: centered title, copy, CTA */}
-                <div
-                  aria-hidden={!isActive}
-                  className={`absolute inset-0 flex flex-col items-center justify-between p-8 text-center lg:p-10 ${
-                    isActive ? "" : "pointer-events-none"
-                  }`}
-                >
+                <div className="flex h-full rotate-y-180 flex-col items-center justify-between rounded-md bg-gradient-to-b from-primary-800 to-primary-950 p-8 text-center text-white [grid-area:1/1] backface-hidden lg:p-10">
                   <div>
-                    <h3
-                      className={`text-3xl font-bold text-white lg:mt-2 ${textIn(isActive, "delay-200")}`}
-                    >
-                      {card.title}
-                    </h3>
-                    <p
-                      className={`mx-auto mt-8 max-w-[354px] text-2xl leading-8 text-white ${textIn(isActive, "delay-300")}`}
-                    >
+                    <h3 className="text-3xl font-bold lg:mt-2">{card.title}</h3>
+                    <p className="mx-auto mt-8 max-w-[430px] text-2xl leading-8">
                       {card.description}
                     </p>
                   </div>
                   <a
                     href="#contact"
-                    className={`rounded-full bg-white px-7 py-2.5 text-base font-bold text-primary-950 hover:bg-primary-50 ${textIn(isActive, "delay-[400ms]")}`}
+                    className="rounded-full bg-white px-7 py-2.5 text-base font-bold text-primary-950 hover:bg-primary-50"
                   >
                     Get in Touch
                   </a>
                 </div>
-              </article>
               </div>
-            );
-          })}
+            </article>
+          ))}
         </div>
       </div>
     </section>

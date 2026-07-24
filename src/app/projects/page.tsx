@@ -17,7 +17,7 @@ export default function ProjectsPage() {
     <>
       <Header sectionPrefix="/" contactHref="#contact" savingsHref="/#savings-calculator" />
       <PriceListTab />
-      <main className="pt-[120px] lg:pt-[136px] xl:pt-[min(138px,7.1875vw)]">
+      <main className="pt-[120px] lg:pt-[136px] xl:pt-[138px]">
         <ProjectShowcase />
         <Contact />
       </main>

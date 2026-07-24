@@ -49,7 +49,7 @@ export function Products() {
   const [active, setActive] = useState(DEFAULT_PRODUCT);
 
   const columns = products
-    .map((_, i) => (i === active ? "1.9fr" : "1fr"))
+    .map((_, i) => (i === active ? "2fr" : "1fr"))
     .join(" ");
 
   return (
@@ -76,7 +76,7 @@ export function Products() {
         </div>
 
         <div
-          className={`mt-12 grid gap-6 pb-24 transition-[grid-template-columns] md:mt-56 md:grid-cols-[var(--product-cols)] ${GROW}`}
+          className={`mt-12 grid gap-6 pb-24 transition-[grid-template-columns] md:mt-56 md:grid-cols-[var(--product-cols)] md:gap-12 ${GROW}`}
           style={{ "--product-cols": columns } as React.CSSProperties}
           onMouseLeave={() => setActive(DEFAULT_PRODUCT)}
         >
@@ -87,7 +87,7 @@ export function Products() {
                 key={product.title}
                 onMouseEnter={() => setActive(i)}
                 onFocus={() => setActive(i)}
-                className="relative flex h-[420px] flex-col justify-between overflow-hidden rounded-3xl p-8 lg:h-[558px]"
+                className="relative flex h-[420px] flex-col justify-between overflow-hidden rounded-md p-8 lg:h-[558px]"
               >
                 <Image
                   src={product.image}

@@ -125,7 +125,7 @@ export function SolarCellDetail() {
 
   return (
     <>
-      <section className="relative flex min-h-[460px] items-start justify-center overflow-hidden px-4 pb-20 pt-24 text-center sm:min-h-[560px] sm:px-6 sm:pt-32 lg:min-h-[75svh]">
+      <section className="relative flex min-h-[460px] items-start justify-center overflow-hidden px-4 pb-20 pt-20 text-center sm:min-h-[560px] sm:px-6 lg:min-h-[804px] lg:pt-20">
         <Image
           src="/images/solar-cell-hero.webp"
           alt="Solar panels across a desert landscape"
@@ -136,12 +136,12 @@ export function SolarCellDetail() {
         />
         <div className="absolute inset-0 bg-white/10" />
         <div className="relative max-w-5xl text-primary-950">
-          <h1 className="text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-[64px] lg:leading-[1.02]">
+          <h1 className="text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-[54px] lg:leading-[58px]">
             The cell at the heart of every
             <br />
             ReNew Solar module.
           </h1>
-          <p className="mx-auto mt-8 max-w-3xl text-xl leading-8 sm:text-2xl sm:leading-9">
+          <p className="mx-auto mt-8 max-w-3xl text-xl font-normal leading-8">
             High-efficiency bifacial cells manufactured at our Dholera facility. Built
             for precision. Graded for performance.
           </p>
@@ -149,7 +149,7 @@ export function SolarCellDetail() {
       </section>
 
       <section id="cell-range" className="relative bg-white">
-        <div className="sticky top-[104px] z-30 border-b border-neutral-100 bg-neutral-50 shadow-[0_2px_8px_rgba(0,0,0,0.04)] lg:top-[133px] xl:top-[min(138px,7.1875vw)]">
+        <div className="sticky top-[104px] z-30 border-b border-neutral-100 bg-neutral-50 shadow-[0_2px_8px_rgba(0,0,0,0.04)] lg:top-[133px] xl:top-[138px]">
           <div className="mx-auto grid max-w-content px-4 sm:px-6 md:grid-cols-3">
             <div className="border-b-[14px] border-primary-400 px-4 py-7 text-left text-lg font-bold text-primary-700 sm:text-xl md:text-center lg:text-2xl">
               M10R PERC Cell - P-Type
@@ -285,7 +285,7 @@ export function SolarCellDetail() {
             <p className="text-xl font-bold uppercase text-primary-700">
               Performance you can count on
             </p>
-            <div className="relative mt-14 aspect-[420/278] w-full">
+            <div className="product-chart-reveal relative mt-14 aspect-[420/278] w-full overflow-hidden">
               <Image
                 src="/images/solar-cell-output-chart.webp"
                 alt="Thirty-year power warranty chart ending at 84.95 percent in year 30"

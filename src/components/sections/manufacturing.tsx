@@ -16,7 +16,7 @@ const plants = [
     image: { src: "/images/plant-dholera.png", width: 478, height: 688 },
     imageClassName: "max-w-[332px]",
     alt: "Aerial view of the Dholera, Gujarat plant within the outline of Gujarat state",
-    caption: null,
+    caption: "2.4 GW module manufacturing capacity across 55 acres.",
     details:
       "(including a 4 GW TOPCon facility under development) and 2.4 GW module manufacturing capacity, spread across 55 acres in Gujarat's Special Investment Region. Equipped with AI-driven defect diagnostics and automated material movement systems.",
   },
@@ -69,32 +69,34 @@ export function Manufacturing() {
           </p>
         </div>
 
-        <div className="mt-16 grid items-center gap-10 md:grid-cols-3">
+        <div className="mt-16 grid gap-12 md:grid-cols-3 lg:gap-[90px]">
           {plants.map((plant) => (
-            <div key={plant.title} tabIndex={0} className="group perspective-[1600px]">
-              <div className="grid transition-transform duration-700 transform-3d group-hover:rotate-y-180 group-focus-within:rotate-y-180 motion-reduce:transition-none">
-                <figure className="flex flex-col justify-center [grid-area:1/1] backface-hidden">
+            <article
+              key={plant.title}
+              tabIndex={0}
+              className="group h-[550px] rounded-md perspective-[1600px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            >
+              <div className="grid h-full transform-3d transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:rotate-y-180 group-focus-within:rotate-y-180 motion-reduce:transition-none">
+                <figure className="flex h-full flex-col items-center justify-center rounded-md bg-black/10 p-8 [grid-area:1/1] backface-hidden">
                   <Image
                     src={plant.image.src}
                     alt={plant.alt}
                     width={plant.image.width}
                     height={plant.image.height}
-                    className={`mx-auto w-full ${plant.imageClassName}`}
+                    className={`mx-auto max-h-[390px] w-full object-contain ${plant.imageClassName}`}
                     sizes="(min-width: 768px) 33vw, 100vw"
                   />
-                  {plant.caption && (
-                    <figcaption className="mx-auto mt-6 max-w-md text-center text-2xl leading-9">
-                      {plant.caption}
-                    </figcaption>
-                  )}
+                  <figcaption className="mx-auto mt-8 max-w-md text-center text-2xl font-bold leading-9">
+                    {plant.caption}
+                  </figcaption>
                 </figure>
 
-                <article className="flex rotate-y-180 flex-col justify-center bg-black/25 p-10 text-center [grid-area:1/1] backface-hidden">
+                <div className="flex h-full rotate-y-180 flex-col items-center justify-center rounded-md bg-black/25 p-10 text-center [grid-area:1/1] backface-hidden">
                   <h3 className="text-3xl font-bold">{plant.title}</h3>
                   <p className="mt-10 text-2xl leading-9">{plant.details}</p>
-                </article>
+                </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

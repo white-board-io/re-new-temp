@@ -39,24 +39,6 @@
   --animate-marquee: marquee 120s linear infinite;
   --animate-marquee-slow: marquee 70s linear infinite;
 
-  /* Counter-pan for hero.mp4: the globe sits +208px right of center at t=0
-     and drifts to +14px by t=8s (measured per-frame), so this pans the frame
-     left by the same curve — synced to the video restarting on slide entry —
-     with just enough zoom to keep the frame covered. */
-  --animate-hero-pan: hero-pan 8.03s linear forwards;
-
-  @keyframes hero-pan {
-    0% {
-      transform: translateX(-10.8%) scale(1.22);
-    }
-    6% {
-      transform: translateX(-8.3%) scale(1.18);
-    }
-    100% {
-      transform: translateX(-0.7%) scale(1.02);
-    }
-  }
-
   @keyframes marquee {
     to {
       transform: translateX(-50%);
@@ -77,14 +59,34 @@
 
 @media (min-width: 1280px) {
   :root {
-    /* Figma desktop grid: 1428px content within a 1920px frame. */
-    --container-content: min(89.25rem, 74.375vw);
+    /*
+     * The approved prototype is a fixed 1920px canvas using
+     * "scale down to fit". Scale the application content by that same ratio,
+     * while compensating its layout width so full-bleed sections still span
+     * the viewport. Header and floating controls have their own fixed layers.
+     */
+    --design-scale: min(1, tan(atan2(100vw, 1920px)));
+  }
+
+  main,
+  footer {
+    zoom: var(--design-scale);
   }
 
   main .max-w-content,
   footer .max-w-content {
     padding-left: 0;
     padding-right: 0;
+  }
+
+  .design-scale-fixed-center {
+    transform: translateY(-50%) scale(var(--design-scale));
+    transform-origin: right center;
+  }
+
+  .design-scale-fixed-bottom {
+    transform: scale(var(--design-scale));
+    transform-origin: right bottom;
   }
 }
 
@@ -109,10 +111,37 @@ body {
   transform-origin: left;
 }
 
+@keyframes product-chart-reveal {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  to {
+    clip-path: inset(0);
+  }
+}
+
+.product-chart-reveal {
+  animation: product-chart-reveal 1.6s 250ms ease-out both;
+}
+
+@supports (animation-timeline: view()) {
+  .product-chart-reveal {
+    animation-delay: 0s;
+    animation-duration: auto;
+    animation-timeline: view();
+    animation-range: entry 10% cover 45%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-progress-fill {
     animation: none;
     transform: scaleX(1);
+  }
+
+  .product-chart-reveal {
+    animation: none;
   }
 }
 
@@ -130,6 +159,6 @@ section[id] {
 
 @media (min-width: 1280px) {
   section[id] {
-    scroll-margin-top: min(138px, 7.1875vw);
+    scroll-margin-top: 138px;
   }
 }

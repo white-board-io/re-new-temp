@@ -66,7 +66,6 @@ export function SavingsCalculator() {
   const [usage, setUsage] = useState("500");
   const [state, setState] = useState("Maharashtra");
   const [category, setCategory] = useState<Category>("residential");
-  const [subsidy, setSubsidy] = useState(true);
   const [unitCost, setUnitCost] = useState(DEFAULT_UNIT_COST);
   const [isManualCost, setIsManualCost] = useState(false);
   const [locationStatus, setLocationStatus] = useState("Choose your state manually");
@@ -78,7 +77,6 @@ export function SavingsCalculator() {
 
   const changeCategory = (next: Category) => {
     setCategory(next);
-    if (next !== "residential") setSubsidy(false);
   };
 
   const toggleUnitCostMode = () => {
@@ -95,7 +93,7 @@ export function SavingsCalculator() {
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-2xl font-bold uppercase leading-8 text-primary-700">
-              Savings Calculator
+              Solar Calculator
             </p>
             <h2 className="mt-6 max-w-xl text-4xl font-bold text-primary-950 sm:text-[54px] sm:leading-[62px]">
               How much could you <span className="text-primary-700">save</span> this year?
@@ -107,7 +105,7 @@ export function SavingsCalculator() {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-8 lg:grid-cols-[1fr_1.15fr]">
+        <div className="mt-14 grid gap-8 lg:grid-cols-[1fr_1.34fr]">
           <form
             className="rounded-2xl border border-neutral-200 bg-white p-8 lg:flex lg:flex-col lg:justify-between"
             onSubmit={(e) => e.preventDefault()}
@@ -244,14 +242,14 @@ export function SavingsCalculator() {
           </form>
 
           <div className="flex flex-col gap-4">
-            <div className="rounded-2xl bg-primary-700 p-6 text-white">
+            <div className="rounded-2xl bg-primary-700 p-5 text-white">
               <p className="text-sm font-bold uppercase tracking-widest">
                 Recommended plant size
               </p>
               <p className="mt-2 text-5xl font-bold">
                 {twoDecimals(result.plantSize)} kW
               </p>
-              <p className="mt-4 flex items-center gap-3 border-t border-white/20 pt-4">
+              <p className="mt-2 flex items-center gap-3 border-t border-white/20 pt-2">
                 <Zap aria-hidden className="size-5 fill-primary-400 text-primary-400" />
                 <span>
                   Generates about{" "}

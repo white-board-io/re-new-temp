@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Phone } from "lucide-react";
+import { ChevronDown, Mail, Phone } from "lucide-react";
 
 const REQUIREMENT_TYPES = [
   "Residential Rooftop",
@@ -29,7 +29,7 @@ function Field({
         required
         placeholder=" "
         aria-label={label}
-        className="peer w-full rounded-lg bg-white px-6 py-5 text-lg text-primary-950 focus:outline-none focus:ring-2 focus:ring-primary-400"
+        className="peer w-full rounded-lg bg-white px-6 py-6 text-lg text-primary-950 focus:outline-none focus:ring-2 focus:ring-primary-400"
       />
       <label
         htmlFor={`contact-${name}`}
@@ -47,7 +47,7 @@ export function Contact() {
 
   return (
     <section id="contact" className="bg-primary-700 py-section text-white">
-      <div className="mx-auto grid max-w-content gap-14 px-4 sm:px-6 lg:grid-cols-2 lg:gap-24">
+      <div className="mx-auto grid max-w-content gap-14 px-4 sm:px-6 lg:grid-cols-2 lg:gap-24 xl:grid-cols-[560px_545px] xl:gap-[323px]">
         <div>
           <h2 className="max-w-lg text-4xl font-bold sm:text-[54px] sm:leading-[62px]">
             Power your next <span className="text-accent">project</span> with ReNew Solar
@@ -87,23 +87,31 @@ export function Contact() {
           <Field name="company" label="Company" />
           <Field name="phone" label="Phone" type="tel" />
           <Field name="state" label="State" />
-          <select
-            name="requirement"
-            required
-            defaultValue=""
-            aria-label="Requirement type"
-            className="w-full appearance-none rounded-lg bg-white bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2210%22%3E%3Cpath d=%22M1 1l7 7 7-7%22 stroke=%22%23404040%22 stroke-width=%222%22 fill=%22none%22/%3E%3C/svg%3E')] bg-[position:right_1.5rem_center] bg-no-repeat px-6 py-5 text-lg text-primary-950 invalid:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-400"
-          >
-            <option value="" disabled>
-              Requirement type*
-            </option>
-            {REQUIREMENT_TYPES.map((t) => (
-              <option key={t} value={t} className="text-primary-950">
-                {t}
+          <div className="relative">
+            <select
+              name="requirement"
+              required
+              defaultValue=""
+              aria-label="Requirement type"
+              className="w-full appearance-none rounded-lg bg-white px-6 py-6 pr-16 text-lg text-primary-950 invalid:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-400"
+            >
+              <option value="" disabled>
+                Requirement type*
               </option>
-            ))}
-          </select>
-          <div className="mt-2 flex items-center justify-end gap-6">
+              {REQUIREMENT_TYPES.map((t) => (
+                <option key={t} value={t} className="text-primary-950">
+                  {t}
+                </option>
+              ))}
+            </select>
+            <span
+              aria-hidden
+              className="pointer-events-none absolute inset-y-0 right-0 flex w-16 items-center justify-center rounded-r-lg bg-neutral-100 text-neutral-900"
+            >
+              <ChevronDown className="size-7" />
+            </span>
+          </div>
+          <div className="mt-2 flex items-center justify-center gap-6">
             {submitted && (
               <p role="status" className="text-primary-200">
                 Thanks — we&apos;ll get back to you within 24 hours.
@@ -111,7 +119,7 @@ export function Contact() {
             )}
             <button
               type="submit"
-              className="rounded-full bg-accent px-14 py-3.5 text-xl font-medium text-white transition hover:bg-primary-400"
+              className="rounded-full bg-accent px-16 py-3.5 text-xl font-medium text-white transition hover:bg-primary-400"
             >
               Submit
             </button>

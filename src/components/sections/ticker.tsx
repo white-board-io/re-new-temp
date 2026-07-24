@@ -10,7 +10,7 @@ function TickerRun({ hidden = false }: { hidden?: boolean }) {
   return (
     <ul
       aria-hidden={hidden}
-      className="flex shrink-0 items-center whitespace-nowrap text-xl font-medium text-primary-950"
+      className="flex shrink-0 items-center whitespace-nowrap text-xl font-medium text-white"
     >
       {items.map((item) => (
         <li key={item} className="flex items-center">

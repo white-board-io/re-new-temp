@@ -45,7 +45,7 @@ export function Header({
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      <div className="bg-surface-gray lg:absolute lg:inset-x-0 lg:top-0 lg:z-10 lg:h-8 lg:bg-[linear-gradient(to_right,#fff_0%,#fff_50%,#ebebeb_50%,#ebebeb_100%)] xl:h-[min(32px,1.666667vw)]">
+      <div className="bg-surface-gray lg:absolute lg:inset-x-0 lg:top-0 lg:z-10 lg:h-8 lg:bg-[linear-gradient(to_left,#ebebeb_0%,#ebebeb_16%,#f1f1f1_42%,#fafafa_72%,#fff_100%)] xl:h-[min(32px,1.666667vw)]">
         <div className="mx-auto flex max-w-content items-center justify-end gap-7 px-4 py-1.5 text-xs uppercase text-neutral-900 sm:px-6 lg:h-full lg:py-0 xl:relative xl:max-w-none xl:px-0">
           <nav
             aria-label="Utility"

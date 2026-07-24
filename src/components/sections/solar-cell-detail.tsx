@@ -299,49 +299,68 @@ export function SolarCellDetail() {
         </div>
 
         <div className="bg-primary-700 pb-28 pt-1 sm:pb-32">
-          <div className="relative mx-auto max-w-content px-4 sm:px-6">
-            <div className="relative aspect-[16/6] min-h-[280px] w-full overflow-hidden rounded-md">
-              <Image
-                key={carouselImages[activeSlide].src}
-                src={carouselImages[activeSlide].src}
-                alt={carouselImages[activeSlide].alt}
-                fill
-                sizes="(min-width: 1536px) 1428px, 100vw"
-                className="object-cover transition-opacity duration-500"
-              />
+          <div className="mx-auto max-w-[1532px] px-4 sm:px-6 xl:px-0">
+            <div className="relative">
+              <div className="relative aspect-[1532/445] min-h-[220px] w-full overflow-hidden rounded-md sm:min-h-[280px] lg:min-h-0">
+                <Image
+                  key={carouselImages[activeSlide].src}
+                  src={carouselImages[activeSlide].src}
+                  alt={carouselImages[activeSlide].alt}
+                  fill
+                  sizes="(min-width: 1536px) 1532px, 100vw"
+                  className="object-cover transition-opacity duration-500"
+                />
 
-              <div className="absolute inset-x-0 bottom-7 flex justify-center gap-3">
-                {carouselImages.map((image, index) => (
-                  <button
-                    key={image.src}
-                    type="button"
-                    aria-label={`Show installation image ${index + 1}`}
-                    aria-pressed={activeSlide === index}
-                    onClick={() => setActiveSlide(index)}
-                    className={`size-3 rounded-full border-2 border-white transition ${
-                      activeSlide === index ? "bg-primary-400" : "bg-white"
-                    }`}
-                  />
-                ))}
+                <div className="absolute inset-x-0 bottom-7 flex justify-center gap-3">
+                  {carouselImages.map((image, index) => (
+                    <button
+                      key={image.src}
+                      type="button"
+                      aria-label={`Show installation image ${index + 1}`}
+                      aria-pressed={activeSlide === index}
+                      onClick={() => setActiveSlide(index)}
+                      className={`size-3 rounded-full border-2 border-white transition ${
+                        activeSlide === index ? "bg-primary-400" : "bg-white"
+                      }`}
+                    />
+                  ))}
+                </div>
               </div>
+
+              <button
+                type="button"
+                aria-label="Previous installation image"
+                onClick={() => moveSlide(-1)}
+                className="absolute left-4 top-1/2 flex size-14 -translate-y-1/2 items-center justify-center bg-white/90 text-primary-950 transition hover:bg-white sm:left-6 lg:-left-24"
+              >
+                <Arrow direction="left" />
+              </button>
+              <button
+                type="button"
+                aria-label="Next installation image"
+                onClick={() => moveSlide(1)}
+                className="absolute right-4 top-1/2 flex size-14 -translate-y-1/2 items-center justify-center bg-white/90 text-primary-950 transition hover:bg-white sm:right-6 lg:-right-24"
+              >
+                <Arrow direction="right" />
+              </button>
             </div>
 
-            <button
-              type="button"
-              aria-label="Previous installation image"
-              onClick={() => moveSlide(-1)}
-              className="absolute left-4 top-1/2 flex size-14 -translate-y-1/2 items-center justify-center bg-white/90 text-primary-950 transition hover:bg-white sm:left-6 lg:-left-12"
-            >
-              <Arrow direction="left" />
-            </button>
-            <button
-              type="button"
-              aria-label="Next installation image"
-              onClick={() => moveSlide(1)}
-              className="absolute right-4 top-1/2 flex size-14 -translate-y-1/2 items-center justify-center bg-white/90 text-primary-950 transition hover:bg-white sm:right-6 lg:-right-12"
-            >
-              <Arrow direction="right" />
-            </button>
+            <div className="mt-16 flex flex-wrap justify-center gap-8 lg:mt-44">
+              <a
+                href="#contact"
+                className="rounded-full bg-primary-400 px-12 py-4 text-xl font-bold text-white transition hover:bg-primary-500"
+              >
+                Enquire Now
+              </a>
+              <button
+                type="button"
+                disabled
+                title="Datasheet coming soon"
+                className="rounded-full bg-primary-950 px-12 py-4 text-xl font-bold text-white disabled:cursor-not-allowed disabled:opacity-100"
+              >
+                Download Datasheet
+              </button>
+            </div>
           </div>
         </div>
       </section>

@@ -4,8 +4,9 @@ const downloadGroups = [
     title: "Product Datasheets",
     items: [
       "G12R TOPCon Bifacial Module",
-      "TOPCon Bifacial Module M10 144",
-      "Mono PERC Bifacial Module M10 144",
+      "M10R TOPCon",
+      "M10R PERC",
+      "M10R PERC Cell P-Type"
     ],
   },
   {
@@ -28,6 +29,7 @@ const downloadGroups = [
       "UL 61730 Certificate",
       "BIS Certificate - Jaipur",
       "BIS Certificate - Dholera",
+      "Certificate of Accreditation"
     ],
   },
 ];
@@ -74,9 +76,8 @@ export function Downloads() {
                     </p>
                     <button
                       type="button"
-                      disabled
                       title={`${item} will be available soon`}
-                      className="inline-flex w-full shrink-0 cursor-not-allowed items-center justify-center gap-4 rounded-full bg-neutral-400 px-8 py-2.5 text-lg font-bold text-white transition-colors group-hover:bg-primary-700 sm:w-[245px]"
+                      className="inline-flex w-full shrink-0 items-center justify-center gap-4 rounded-full bg-neutral-400 px-8 py-2.5 text-lg font-bold text-white transition-colors group-hover:bg-primary-700 sm:w-[245px]"
                     >
                       Download
                       <DownloadIcon />

@@ -325,24 +325,24 @@ export function SolarModuleDetail() {
         </div>
 
         <div className="bg-primary-700 pb-32">
-          <div className="mx-auto max-w-content px-4 sm:px-6">
+          <div className="mx-auto max-w-[1532px] px-4 sm:px-6 xl:px-0">
             <button
               type="button"
               aria-label="Play rooftop solar installation video"
-              className="group relative block aspect-[16/7] w-full overflow-hidden rounded-md"
+              className="group relative block aspect-[1532/445] min-h-[220px] w-full overflow-hidden rounded-md sm:min-h-[280px] lg:min-h-0"
             >
               <Image
                 src="/images/solar-module-rooftop.webp"
                 alt="Solar panels installed on a residential rooftop"
                 fill
-                sizes="(min-width: 1536px) 1428px, 100vw"
+                sizes="(min-width: 1536px) 1532px, 100vw"
                 className="object-cover transition duration-500 group-hover:scale-[1.02]"
               />
               <span className="absolute left-1/2 top-1/2 flex size-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[6px] border-white sm:size-48">
                 <span className="ml-3 block h-0 w-0 border-y-[28px] border-l-[44px] border-y-transparent border-l-white sm:border-y-[44px] sm:border-l-[66px]" />
               </span>
             </button>
-            <div className="mt-12 flex flex-wrap justify-center gap-8">
+            <div className="mt-16 flex flex-wrap justify-center gap-8 lg:mt-44">
               <a
                 href="#contact"
                 className="rounded-full bg-primary-400 px-12 py-4 text-xl font-bold text-white transition hover:bg-primary-500"

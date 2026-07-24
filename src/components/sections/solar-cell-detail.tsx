@@ -125,34 +125,35 @@ export function SolarCellDetail() {
 
   return (
     <>
-      <section className="relative flex min-h-[460px] items-start justify-center overflow-hidden px-4 pb-20 pt-20 text-center sm:min-h-[560px] sm:px-6 lg:min-h-[804px] lg:pt-20">
+      <section className="relative flex min-h-[460px] items-start justify-center overflow-hidden px-4 pb-20 pt-20 text-center sm:min-h-[560px] sm:px-6 lg:min-h-[704px] lg:pt-[114px]">
         <Image
           src="/images/solar-cell-hero.webp"
           alt="Solar panels across a desert landscape"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center"
+          className="object-cover object-[center_25%]"
         />
         <div className="absolute inset-0 bg-white/10" />
         <div className="relative max-w-5xl text-primary-950">
-          <h1 className="text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-[54px] lg:leading-[58px]">
+          <h1 className="text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-[60px] lg:leading-[64px] lg:tracking-hero">
             The cell at the heart of every
             <br />
             ReNew Solar module.
           </h1>
-          <p className="mx-auto mt-8 max-w-3xl text-xl font-normal leading-8">
-            High-efficiency bifacial cells manufactured at our Dholera facility. Built
-            for precision. Graded for performance.
+          <p className="mx-auto mt-8 max-w-3xl text-xl font-normal leading-8 lg:mt-7 lg:text-2xl">
+            High-efficiency bifacial cells manufactured at our Dholera facility.{" "}
+            <br className="hidden sm:block" />
+            Built for precision. Graded for performance.
           </p>
         </div>
       </section>
 
       <section id="cell-range" className="relative bg-white">
         <div className="sticky top-[104px] z-30 border-b border-neutral-100 bg-neutral-50 shadow-[0_2px_8px_rgba(0,0,0,0.04)] lg:top-[133px] xl:top-[138px]">
-          <div className="mx-auto grid max-w-content px-4 sm:px-6 md:grid-cols-3">
-            <div className="border-b-[14px] border-primary-400 px-4 py-7 text-left text-lg font-bold text-primary-700 sm:text-xl md:text-center lg:text-2xl">
-              M10R PERC Cell - P-Type
+          <div className="mx-auto grid max-w-content px-4 sm:px-6 md:grid-cols-3 xl:max-w-[1532px] xl:grid-cols-[repeat(3,426.6667px)]">
+            <div className="border-b-[14px] border-primary-400 px-4 py-7 text-left text-lg font-normal text-primary-700 sm:text-xl md:text-center lg:pb-6 lg:pt-9 lg:text-2xl">
+              M10R PERC Cell P-Type
             </div>
           </div>
         </div>

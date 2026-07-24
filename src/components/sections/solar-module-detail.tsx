@@ -94,23 +94,23 @@ export function SolarModuleDetail() {
 
   return (
     <>
-      <section className="relative flex min-h-[460px] items-start justify-center overflow-hidden px-4 pb-20 pt-20 text-center sm:min-h-[560px] sm:px-6 lg:min-h-[804px] lg:pt-20">
+      <section className="relative flex min-h-[460px] items-start justify-center overflow-hidden px-4 pb-20 pt-20 text-center sm:min-h-[560px] sm:px-6 lg:min-h-[704px] lg:pt-[114px]">
         <Image
           src="/images/solar-module-hero.webp"
           alt="A large solar farm across green hills at sunrise"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center"
+          className="object-cover object-top"
         />
         <div className="absolute inset-0 bg-white/15" />
         <div className="relative max-w-5xl text-primary-950">
-          <h1 className="text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-[54px] lg:leading-[58px]">
+          <h1 className="text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-[60px] lg:leading-[64px] lg:tracking-hero">
             Engineered for performance.
             <br />
             Built for the long run.
           </h1>
-          <p className="mx-auto mt-8 max-w-2xl text-xl font-normal leading-8">
+          <p className="mx-auto mt-8 max-w-2xl text-xl font-normal leading-8 lg:mt-7 lg:text-2xl">
             Three module offerings built for homes, businesses, and large-scale utility
             projects across India.
           </p>
@@ -119,17 +119,17 @@ export function SolarModuleDetail() {
 
       <section id="module-range" className="relative bg-white">
         <div className="sticky top-[104px] z-30 border-b border-neutral-100 bg-neutral-50 shadow-[0_2px_8px_rgba(0,0,0,0.04)] lg:top-[133px] xl:top-[138px]">
-          <div className="mx-auto flex max-w-content overflow-x-auto px-4 sm:px-6 md:grid md:grid-cols-3">
+          <div className="mx-auto flex max-w-content overflow-x-auto px-4 sm:px-6 md:grid md:grid-cols-3 xl:max-w-[1532px] xl:grid-cols-[repeat(3,426.6667px)]">
             {[
-              "G12R TOPCon Bifacial Module",
-              "TOPCon Bifacial Module - M10 144",
-              "TopCorn PERC",
+              "G12R TOPCon Bifacial",
+              "M10R TOPCon",
+              "M10R PERC",
             ].map((label, index) => (
               <button
                 key={label}
                 type="button"
                 disabled={index !== 0}
-                className={`min-w-[280px] shrink-0 border-b-[14px] px-4 py-7 text-left text-lg font-bold sm:text-xl md:min-w-0 md:text-center lg:text-2xl ${
+                className={`min-w-[280px] shrink-0 border-b-[14px] px-4 py-7 text-left text-lg font-normal sm:text-xl md:min-w-0 md:text-center lg:pb-6 lg:pt-9 lg:text-2xl ${
                   index === 0
                     ? "border-primary-400 text-primary-700"
                     : "border-transparent text-neutral-400"

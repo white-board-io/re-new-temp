@@ -30,10 +30,6 @@ export function WhoWeServe() {
       id="who-we-serve"
       className="relative overflow-hidden bg-gradient-to-b from-surface-tint to-white pb-section pt-section lg:pt-40"
     >
-      {/* Full ring, hung half above the section top so only the bottom half
-          shows (clipped by overflow-hidden) while it spins about its centre.
-          The wrapper owns the -50% offset so the ring stays exactly half-clipped
-          at any width; the image owns the spin. */}
       <div className="pointer-events-none absolute right-[18%] top-0 w-[clamp(200px,42vw,608px)] -translate-y-1/2">
         <Image
           src="/images/sunburst_full.svg"

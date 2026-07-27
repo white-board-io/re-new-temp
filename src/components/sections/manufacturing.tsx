@@ -36,10 +36,6 @@ export function Manufacturing() {
       id="manufacturing"
       className="relative overflow-hidden bg-primary-950 py-section text-white"
     >
-      {/* Full ring, hung half above the section top so only the bottom half
-          shows (clipped by overflow-hidden) while it spins about its centre.
-          The wrapper owns the -50% offset so the ring stays exactly half-clipped
-          at any width; the image owns the spin. */}
       <div className="pointer-events-none absolute right-[18%] top-0 w-[clamp(200px,42vw,608px)] -translate-y-1/2">
         <Image
           src="/images/sunburst_full-dark.svg"

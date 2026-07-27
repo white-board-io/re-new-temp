@@ -1,0 +1,27 @@
+public/images/sunburst_full-dark.svg
+  s_183abe85a452a5::t_9a57c04ed8d4c6 1-218
+public/images/sunburst_full.svg
+  s_183abe85a452a5::t_29b83e6675d5d4 1-218
+src/app/globals.css
+  s_183abe85a452a5::t_f791526d812a5a 48-57
+src/components/sections/manufacturing.tsx
+  s_183abe85a452a5::t_0d17fec5d82d56 39-51
+src/components/sections/who-we-serve.tsx
+  s_183abe85a452a5::t_a49476d5b7fb12 33-45
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.11",
+  "base_commit_sha": "ad0f28291b3b65b09a9604e76983aab11b29f778",
+  "prompts": {},
+  "sessions": {
+    "s_183abe85a452a5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "678648d2-f430-4abc-bbde-d8206bfe2d94",
+        "model": "unknown"
+      },
+      "human_author": "Arun Selva Kumar <arun@joinassembly.com>"
+    }
+  }
+}

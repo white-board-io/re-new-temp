@@ -45,6 +45,16 @@
     }
   }
 
+  /* Decorative sunburst ring (who-we-serve, manufacturing). Only the bottom
+     half is visible; the slow spin reads as a drift, not a spinner. */
+  --animate-sunburst: sunburst 120s linear infinite;
+
+  @keyframes sunburst {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
   --font-sans: var(--font-lato), ui-sans-serif, system-ui, sans-serif;
 
   /* Content column: Figma content starts at x=246 on the 1920 frame → 1428px */

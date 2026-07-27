@@ -30,13 +30,15 @@ export function WhoWeServe() {
       id="who-we-serve"
       className="relative overflow-hidden bg-gradient-to-b from-surface-tint to-white pb-section pt-section lg:pt-40"
     >
-      <Image
-        src="/images/sunburst.svg"
-        alt=""
-        width={608}
-        height={314}
-        className="pointer-events-none absolute right-[18%] top-0 hidden w-[608px] lg:block"
-      />
+      <div className="pointer-events-none absolute right-[18%] top-0 w-[clamp(200px,42vw,608px)] -translate-y-1/2">
+        <Image
+          src="/images/sunburst_full.svg"
+          alt=""
+          width={702}
+          height={701}
+          className="w-full animate-sunburst motion-reduce:animate-none"
+        />
+      </div>
       <div className="relative mx-auto max-w-content px-4 sm:px-6">
         <p className="text-2xl font-bold uppercase leading-8 text-primary-700">Who We Serve</p>
         <h2 className="mt-6 text-4xl font-bold text-primary-950 sm:text-[54px] sm:leading-[58px]">

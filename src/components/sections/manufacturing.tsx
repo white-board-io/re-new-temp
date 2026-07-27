@@ -36,13 +36,15 @@ export function Manufacturing() {
       id="manufacturing"
       className="relative overflow-hidden bg-primary-950 py-section text-white"
     >
-      <Image
-        src="/images/sunburst-dark.svg"
-        alt=""
-        width={608}
-        height={314}
-        className="pointer-events-none absolute right-[18%] top-0 hidden w-[608px] lg:block"
-      />
+      <div className="pointer-events-none absolute right-[18%] top-0 w-[clamp(200px,42vw,608px)] -translate-y-1/2">
+        <Image
+          src="/images/sunburst_full-dark.svg"
+          alt=""
+          width={702}
+          height={701}
+          className="w-full animate-sunburst motion-reduce:animate-none"
+        />
+      </div>
       <div className="relative mx-auto max-w-content px-4 sm:px-6">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
           <div>

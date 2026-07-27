@@ -48,7 +48,7 @@ export function Contact() {
   return (
     <section id="contact" className="bg-primary-700 py-section text-white">
       <div className="mx-auto grid max-w-content gap-14 px-4 sm:px-6 lg:grid-cols-2 lg:gap-24 xl:grid-cols-[560px_545px] xl:gap-[323px]">
-        <div>
+        <div className="min-w-0">
           <h2 className="max-w-lg text-4xl font-bold sm:text-[54px] sm:leading-[62px]">
             Power your next <span className="text-accent">project</span> with ReNew Solar
             Panels.
@@ -59,17 +59,17 @@ export function Contact() {
           <address className="mt-12 space-y-5 not-italic">
             <a
               href="mailto:pv.marketing@renew.com"
-              className="flex items-center gap-4 text-2xl font-bold text-primary-300 hover:text-primary-200"
+              className="flex min-w-0 items-center gap-3 text-lg font-bold text-primary-300 hover:text-primary-200 min-[360px]:text-xl sm:gap-4 sm:text-2xl"
             >
-              <Mail aria-hidden className="size-7" />
-              pv.marketing@renew.com
+              <Mail aria-hidden className="size-6 shrink-0 sm:size-7" />
+              <span className="min-w-0 break-all">pv.marketing@renew.com</span>
             </a>
             <a
               href="tel:9220440044"
-              className="flex items-center gap-4 text-2xl font-bold text-primary-300 hover:text-primary-200"
+              className="flex min-w-0 items-center gap-3 text-lg font-bold text-primary-300 hover:text-primary-200 min-[360px]:text-xl sm:gap-4 sm:text-2xl"
             >
-              <Phone aria-hidden className="size-7" />
-              9220 440 044
+              <Phone aria-hidden className="size-6 shrink-0 sm:size-7" />
+              <span>9220 440 044</span>
             </a>
           </address>
         </div>
@@ -81,7 +81,7 @@ export function Contact() {
             e.preventDefault();
             setSubmitted(true);
           }}
-          className="flex flex-col gap-5"
+          className="min-w-0 flex flex-col gap-5"
         >
           <Field name="name" label="Name" />
           <Field name="company" label="Company" />
@@ -89,21 +89,27 @@ export function Contact() {
           <Field name="state" label="State" />
           <div className="relative">
             <select
+              id="contact-requirement"
               name="requirement"
               required
               defaultValue=""
               aria-label="Requirement type"
-              className="w-full appearance-none rounded-lg bg-white px-6 py-6 pr-16 text-lg text-primary-950 invalid:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-400"
+              className="peer w-full appearance-none rounded-lg bg-white px-6 py-6 pr-16 text-lg text-primary-950 focus:outline-none focus:ring-2 focus:ring-primary-400"
             >
-              <option value="" disabled>
-                Requirement type*
-              </option>
+              <option value="" disabled />
               {REQUIREMENT_TYPES.map((t) => (
                 <option key={t} value={t} className="text-primary-950">
                   {t}
                 </option>
               ))}
             </select>
+            {/* Floating placeholder — hidden once a value is selected (select becomes :valid) */}
+            <label
+              htmlFor="contact-requirement"
+              className="pointer-events-none absolute left-6 top-1/2 -translate-y-1/2 text-lg text-neutral-500 peer-valid:hidden"
+            >
+              Requirement type<span className="text-red-500">*</span>
+            </label>
             <span
               aria-hidden
               className="pointer-events-none absolute inset-y-0 right-0 flex w-16 items-center justify-center rounded-r-lg bg-neutral-100 text-neutral-900"
@@ -111,7 +117,7 @@ export function Contact() {
               <ChevronDown className="size-7" />
             </span>
           </div>
-          <div className="mt-2 flex items-center justify-center gap-6">
+          <div className="mt-2 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
             {submitted && (
               <p role="status" className="text-primary-200">
                 Thanks — we&apos;ll get back to you within 24 hours.

@@ -94,21 +94,23 @@ export function ProjectShowcase() {
       aria-label="Featured ReNew solar projects"
     >
       <div className="sticky top-[120px] h-[calc(100svh-120px)] min-h-[560px] overflow-hidden lg:top-[136px] lg:h-[calc(100svh-136px)] lg:min-h-[640px]">
-        {PROJECT_SLIDES.map((slide, index) => (
-          <Image
-            key={slide.capacity}
-            src={slide.image}
-            alt={slide.alt}
-            fill
-            priority={index === 0}
-            sizes="100vw"
-            quality={90}
-            style={{ objectPosition: slide.objectPosition }}
-            className={`object-cover transition-opacity duration-700 ease-out ${
-              activeSlide === index ? "opacity-100" : "opacity-0"
-            }`}
-          />
-        ))}
+        <div className="absolute inset-0">
+          {PROJECT_SLIDES.map((slide, index) => (
+            <Image
+              key={slide.capacity}
+              src={slide.image}
+              alt={slide.alt}
+              fill
+              priority={index === 0}
+              sizes="100vw"
+              quality={90}
+              style={{ objectPosition: slide.objectPosition }}
+              className={`object-cover transition-opacity duration-700 ease-out ${
+                activeSlide === index ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          ))}
+        </div>
 
         <div className="absolute inset-0 bg-black/45" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.48)_0%,rgba(0,0,0,0.24)_38%,rgba(0,0,0,0.1)_100%)]" />

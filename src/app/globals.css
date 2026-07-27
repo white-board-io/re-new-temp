@@ -94,6 +94,34 @@ body {
   @apply bg-white font-sans text-neutral-900 antialiased;
 }
 
+:where(
+  a[href],
+  button:not(:disabled),
+  [role="button"],
+  [role="tab"],
+  [role="radio"],
+  [role="switch"],
+  summary,
+  label[for],
+  select,
+  input[type="checkbox"],
+  input[type="radio"],
+  input[type="range"],
+  input[type="file"]
+) {
+  cursor: pointer;
+}
+
+:where(
+  button:disabled,
+  [aria-disabled="true"],
+  input:disabled,
+  select:disabled,
+  textarea:disabled
+) {
+  cursor: not-allowed;
+}
+
 @keyframes hero-slide-progress {
   from {
     transform: scaleX(0);

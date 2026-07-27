@@ -77,10 +77,10 @@ export function Header({
         </div>
       </div>
       <div className="border-t border-neutral-100 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04)] lg:h-[138px] lg:border-t-0 xl:h-[min(138px,7.1875vw)] xl:border-b-[0.5px] xl:border-primary-700 xl:shadow-none">
-        <div className="mx-auto flex max-w-content items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:relative lg:z-20 lg:h-full lg:py-0 lg:pt-8 xl:max-w-none xl:px-0 xl:pt-0">
+        <div className="mx-auto flex max-w-content items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:pointer-events-none lg:relative lg:z-20 lg:h-full lg:py-0 lg:pt-8 xl:max-w-none xl:px-0 xl:pt-0">
           <Link
             href="/"
-            className="shrink-0 lg:-translate-y-4 xl:absolute xl:left-[min(181px,9.427083vw)] xl:top-[min(16px,0.833333vw)] xl:translate-y-0"
+            className="shrink-0 lg:pointer-events-auto lg:-translate-y-4 xl:absolute xl:left-[min(181px,9.427083vw)] xl:top-[min(16px,0.833333vw)] xl:translate-y-0"
           >
             <Image
               src="/images/logo.svg"
@@ -93,7 +93,7 @@ export function Header({
           </Link>
           <nav
             aria-label="Main"
-            className="hidden xl:absolute xl:right-[min(613px,31.927083vw)] xl:top-[min(70px,3.645833vw)] xl:block xl:h-[min(32px,1.666667vw)]"
+            className="hidden xl:pointer-events-auto xl:absolute xl:right-[min(613px,31.927083vw)] xl:top-[min(70px,3.645833vw)] xl:block xl:h-[min(32px,1.666667vw)]"
           >
             <ul className="flex h-full items-center gap-[min(40px,2.083333vw)]">
               {navItems.map((item) => (
@@ -122,7 +122,7 @@ export function Header({
               ))}
             </ul>
           </nav>
-          <div className="hidden items-center gap-4 lg:flex xl:absolute xl:left-[min(1347px,70.15625vw)] xl:top-[min(66px,3.4375vw)] xl:gap-[min(22px,1.145833vw)]">
+          <div className="hidden items-center gap-4 lg:flex lg:pointer-events-auto xl:absolute xl:left-[min(1347px,70.15625vw)] xl:top-[min(66px,3.4375vw)] xl:gap-[min(22px,1.145833vw)]">
             <a
               href={contactHref}
               className="rounded-full border border-primary-700 px-6 py-1.5 text-base font-bold leading-8 text-primary-700 transition-colors hover:bg-primary-50 xl:flex xl:h-[min(40px,2.083333vw)] xl:w-[min(145px,7.552083vw)] xl:items-center xl:justify-center xl:border-[min(2px,0.104167vw)] xl:p-0 xl:text-[min(16px,0.833333vw)] xl:leading-[min(32px,1.666667vw)]"
@@ -141,7 +141,7 @@ export function Header({
             aria-expanded={menuOpen}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             onClick={() => setMenuOpen((open) => !open)}
-            className="text-primary-950 xl:hidden"
+            className="pointer-events-auto text-primary-950 xl:hidden"
           >
             {menuOpen ? <X className="size-7" /> : <Menu className="size-7" />}
           </button>

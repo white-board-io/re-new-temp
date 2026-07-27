@@ -114,7 +114,7 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
               facilities in Jaipur, Dholera, and Vizag, we build the panels that are powering
               India&apos;s net-zero future.
             </p>
-            <ul className="mt-20 flex gap-4 xl:mt-[88px] xl:gap-[52px]">
+            <ul className="mt-14 flex max-w-xs items-center justify-between gap-2 sm:mt-20 sm:justify-start sm:gap-4 xl:mt-[88px] xl:max-w-none xl:gap-[52px]">
               {socials.map(({ label, href, Icon }) => (
                 <li key={label}>
                   <a
@@ -122,7 +122,7 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="flex size-12 items-center justify-center rounded-full bg-primary-700 text-primary-400 transition hover:bg-primary-800 xl:size-[60px]"
+                    className="flex size-11 items-center justify-center rounded-full bg-primary-700 text-primary-400 transition hover:bg-primary-800 sm:size-12 xl:size-[60px]"
                   >
                     <Icon className="size-5 xl:size-6" />
                   </a>

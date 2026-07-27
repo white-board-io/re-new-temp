@@ -66,6 +66,12 @@ const applications = [
   },
 ];
 
+const moduleTabs = [
+  "G12R TOPCon Bifacial",
+  "M10R TOPCon",
+  "M10R PERC",
+];
+
 function FeatureIcon() {
   return (
     <span aria-hidden className="relative mt-1 block h-9 w-11 shrink-0 text-primary-700">
@@ -91,6 +97,8 @@ function FeatureIcon() {
 export function SolarModuleDetail() {
   const [selectedImage, setSelectedImage] = useState(1);
   const [activeFeature, setActiveFeature] = useState(1);
+  const [activeModule, setActiveModule] = useState(0);
+  const activeModuleLabel = moduleTabs[activeModule];
 
   return (
     <>
@@ -119,25 +127,31 @@ export function SolarModuleDetail() {
 
       <section id="module-range" className="relative bg-white">
         <div className="sticky top-[104px] z-30 border-b border-neutral-100 bg-neutral-50 shadow-[0_2px_8px_rgba(0,0,0,0.04)] lg:top-[133px] xl:top-[138px]">
-          <div className="mx-auto flex max-w-content overflow-x-auto px-4 sm:px-6 md:grid md:grid-cols-3 xl:max-w-[1532px] xl:grid-cols-[repeat(3,426.6667px)]">
-            {[
-              "G12R TOPCon Bifacial",
-              "M10R TOPCon",
-              "M10R PERC",
-            ].map((label, index) => (
-              <button
-                key={label}
-                type="button"
-                disabled={index !== 0}
-                className={`min-w-[280px] shrink-0 border-b-[14px] px-4 py-7 text-left text-lg font-normal sm:text-xl md:min-w-0 md:text-center lg:pb-6 lg:pt-9 lg:text-2xl ${
-                  index === 0
-                    ? "border-primary-400 text-primary-700"
-                    : "border-transparent text-neutral-400"
-                }`}
-              >
-                {label}
-              </button>
-            ))}
+          <div
+            role="tablist"
+            aria-label="Solar module range"
+            className="mx-auto flex max-w-content overflow-x-auto px-4 sm:px-6 md:grid md:grid-cols-3 xl:max-w-[1532px] xl:grid-cols-[repeat(3,426.6667px)]"
+          >
+            {moduleTabs.map((label, index) => {
+              const active = activeModule === index;
+
+              return (
+                <button
+                  key={label}
+                  type="button"
+                  role="tab"
+                  aria-selected={active}
+                  onClick={() => setActiveModule(index)}
+                  className={`min-w-[280px] shrink-0 border-b-[14px] px-4 py-7 text-left text-lg font-normal transition-colors sm:text-xl md:min-w-0 md:text-center lg:pb-6 lg:pt-9 lg:text-2xl ${
+                    active
+                      ? "border-primary-400 text-primary-700"
+                      : "border-transparent text-neutral-500 hover:border-primary-200 hover:text-primary-700"
+                  }`}
+                >
+                  {label}
+                </button>
+              );
+            })}
           </div>
         </div>
 
@@ -152,7 +166,7 @@ export function SolarModuleDetail() {
                 className="object-contain"
               />
             </div>
-            <div className="mt-8 flex justify-center gap-4 sm:gap-7">
+            <div className="mt-8 grid grid-cols-5 gap-2 sm:flex sm:justify-center sm:gap-7">
               {gallery.map((image, index) => (
                 <button
                   key={`${image.src}-${index}`}
@@ -160,7 +174,7 @@ export function SolarModuleDetail() {
                   aria-label={`Show module view ${index + 1}`}
                   aria-pressed={selectedImage === index}
                   onClick={() => setSelectedImage(index)}
-                  className={`relative size-16 overflow-hidden rounded-lg border bg-white p-1 transition sm:size-24 ${
+                  className={`relative aspect-square w-full min-w-0 overflow-hidden rounded-lg border bg-white p-1 transition sm:size-24 sm:w-24 ${
                     selectedImage === index
                       ? "border-primary-400 bg-neutral-100"
                       : "border-neutral-200 hover:border-primary-300"
@@ -173,7 +187,7 @@ export function SolarModuleDetail() {
           </div>
 
           <div className="pt-4 text-primary-950 lg:pt-10">
-            <h2 className="text-3xl font-bold sm:text-4xl">G12R TOPCon Bifacial Module</h2>
+            <h2 className="text-3xl font-bold sm:text-4xl">{activeModuleLabel} Module</h2>
             <p className="mt-4 text-2xl font-bold text-primary-700">Right. Reliable. Ready.</p>
 
             <dl className="mt-16 text-lg sm:text-xl">
@@ -269,16 +283,22 @@ export function SolarModuleDetail() {
                     className="flex w-full gap-6 text-left"
                   >
                     <FeatureIcon />
-                    <span>
+                    <span className="min-w-0 flex-1">
                       <span className="block text-2xl font-bold text-[#143b58] sm:text-3xl">
                         {feature.title}
                       </span>
                       <span
-                        className={`mt-3 block max-w-xl text-lg leading-7 text-[#143b58] transition ${
-                          active ? "opacity-100" : "h-0 overflow-hidden opacity-0"
+                        className={`grid max-w-xl transition-[grid-template-rows,opacity] duration-500 ease-out motion-reduce:transition-none ${
+                          active
+                            ? "grid-rows-[1fr] opacity-100"
+                            : "grid-rows-[0fr] opacity-0"
                         }`}
                       >
-                        {feature.description}
+                        <span className="min-h-0 overflow-hidden">
+                          <span className="block pt-3 text-lg leading-7 text-[#143b58]">
+                            {feature.description}
+                          </span>
+                        </span>
                       </span>
                     </span>
                   </button>

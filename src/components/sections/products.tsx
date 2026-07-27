@@ -60,7 +60,7 @@ export function Products() {
           alt=""
           width={1920}
           height={887}
-          className="w-full object-cover"
+          className="h-auto w-full object-cover"
           sizes="100vw"
         />
         <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white via-white/70 to-transparent" />

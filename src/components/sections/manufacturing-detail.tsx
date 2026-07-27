@@ -211,7 +211,7 @@ export function ManufacturingDetail() {
                 aria-selected={active}
                 aria-controls="plant-panel"
                 onClick={() => setActiveId(plant.id)}
-                className={`relative flex min-h-28 items-center justify-center gap-3 px-2 text-sm font-bold transition-colors sm:text-lg lg:text-2xl ${
+                className={`relative flex min-h-20 items-center justify-center gap-3 px-1 text-xs font-bold transition-colors sm:min-h-28 sm:px-2 sm:text-lg lg:text-2xl ${
                   active ? "text-primary-700" : "text-neutral-400 hover:text-primary-700"
                 }`}
               >
@@ -222,7 +222,14 @@ export function ManufacturingDetail() {
                   height={48}
                   className={`hidden h-10 w-12 object-contain sm:block ${active ? "" : "grayscale opacity-55"}`}
                 />
-                <span>{plant.name}</span>
+                <span className="sm:hidden">
+                  {plant.id === "jaipur"
+                    ? "Jaipur"
+                    : plant.id === "dholera"
+                      ? "Dholera"
+                      : "Visakhapatnam"}
+                </span>
+                <span className="hidden sm:inline">{plant.name}</span>
                 <span
                   className={`absolute inset-x-0 bottom-0 h-3 origin-left bg-primary-400 transition-transform ${
                     active ? "scale-x-100" : "scale-x-0"

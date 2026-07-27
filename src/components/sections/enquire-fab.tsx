@@ -29,7 +29,7 @@ function Sunburst() {
     <svg
       viewBox="0 0 183 95"
       aria-hidden
-      className="absolute inset-0 size-full origin-bottom fill-primary-400 transition-transform duration-500 ease-out group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+      className="absolute inset-0 hidden size-full origin-bottom fill-primary-400 transition-transform duration-500 ease-out group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100 sm:block"
     >
       {ARC_RINGS.map(({ radius, size }) =>
         ARC_SPOKES.map((deg) => {
@@ -57,15 +57,16 @@ export function EnquireFab() {
     // The wrapper spans the whole artwork, so it takes no pointer events — only
     // the dome is clickable. Hovering the dome still puts :hover on the wrapper,
     // which is what drives the sunburst's group-hover.
-    <div className="design-scale-fixed-bottom group pointer-events-none fixed bottom-0 right-4 z-40 h-[95px] w-[183px] lg:right-16">
+    <div className="design-scale-fixed-bottom group pointer-events-none fixed bottom-3 right-3 z-40 h-12 w-36 sm:bottom-0 sm:right-4 sm:h-[95px] sm:w-[183px] lg:right-16">
       <Sunburst />
       <Link
         href="/#contact"
         aria-label="Enquire now"
-        className="pointer-events-auto absolute bottom-0 left-1/2 block h-[55px] w-[105px] -translate-x-1/2 rounded-t-full bg-primary-700 pt-4 text-center text-xs font-black uppercase leading-[14px] text-primary-400 transition-colors hover:bg-primary-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400"
+        className="pointer-events-auto absolute inset-0 flex items-center justify-center rounded-full bg-primary-700 text-center text-sm font-black uppercase leading-4 text-white shadow-lg transition-colors hover:bg-primary-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400 sm:inset-auto sm:bottom-0 sm:left-1/2 sm:block sm:h-[55px] sm:w-[105px] sm:-translate-x-1/2 sm:rounded-t-full sm:pt-4 sm:text-xs sm:leading-[14px] sm:text-primary-400 sm:shadow-none"
       >
         Enquire
-        <br />
+        <br className="hidden sm:block" />
+        <span className="sm:hidden">&nbsp;</span>
         Now
       </Link>
     </div>

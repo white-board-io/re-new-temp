@@ -107,7 +107,7 @@ export function SavingsCalculator() {
 
         <div className="mt-14 grid gap-8 lg:grid-cols-[1fr_1.34fr]">
           <form
-            className="rounded-2xl border border-neutral-200 bg-white p-8 lg:flex lg:flex-col lg:justify-between"
+            className="min-w-0 rounded-2xl border border-neutral-200 bg-white p-5 min-[360px]:p-8 lg:flex lg:flex-col lg:justify-between"
             onSubmit={(e) => e.preventDefault()}
           >
             <h3 className="text-2xl font-bold text-primary-950">Your details</h3>
@@ -115,7 +115,7 @@ export function SavingsCalculator() {
               Tweak these to match your home or business.
             </p>
 
-            <div className="mt-8 flex items-baseline justify-between">
+            <div className="mt-8 flex flex-col gap-1 min-[360px]:flex-row min-[360px]:items-baseline min-[360px]:justify-between">
               <label htmlFor="calc-units" className="font-bold text-primary-950">
                 Electricity used per month
               </label>
@@ -173,7 +173,7 @@ export function SavingsCalculator() {
                   role="radio"
                   aria-checked={category === c}
                   onClick={() => changeCategory(c)}
-                  className={`flex-1 rounded-lg px-2 py-2.5 text-sm font-bold transition ${
+                  className={`min-w-0 flex-1 rounded-lg px-1 py-2.5 text-[11px] font-bold transition min-[360px]:px-2 min-[360px]:text-sm ${
                     category === c
                       ? "bg-primary-700 text-white"
                       : "text-neutral-600 hover:text-primary-950"
@@ -241,7 +241,7 @@ export function SavingsCalculator() {
             </p>
           </form>
 
-          <div className="flex flex-col gap-4">
+          <div className="min-w-0 flex flex-col gap-4">
             <div className="rounded-2xl bg-primary-700 p-5 text-white">
               <p className="text-sm font-bold uppercase tracking-widest">
                 Recommended plant size
@@ -261,9 +261,9 @@ export function SavingsCalculator() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-neutral-200 p-6">
-              <h3 className="flex items-center gap-3 text-2xl font-bold text-primary-950">
-                <Zap aria-hidden className="size-6 text-primary-700" />
+            <div className="min-w-0 rounded-2xl border border-neutral-200 p-5 min-[360px]:p-6">
+              <h3 className="flex min-w-0 items-center gap-3 text-xl font-bold text-primary-950 min-[360px]:text-2xl">
+                <Zap aria-hidden className="size-6 shrink-0 text-primary-700" />
                 Electricity generation
               </h3>
               <dl className="mt-3 divide-y divide-neutral-100">
@@ -274,17 +274,19 @@ export function SavingsCalculator() {
                     ["Lifetime (30 yr)", result.lifetimeGeneration],
                   ] as const
                 ).map(([label, value]) => (
-                  <div key={label} className="flex items-center justify-between py-3">
+                  <div key={label} className="flex items-center justify-between gap-3 py-3">
                     <dt className="text-neutral-600">{label}</dt>
-                    <dd className="text-xl font-bold text-primary-950">{inr(value)} kWh</dd>
+                    <dd className="shrink-0 text-lg font-bold text-primary-950 min-[360px]:text-xl">
+                      {inr(value)} kWh
+                    </dd>
                   </div>
                 ))}
               </dl>
             </div>
 
-            <div className="rounded-2xl border border-neutral-200 p-6">
-              <h3 className="flex items-center gap-3 text-2xl font-bold text-primary-950">
-                <IndianRupee aria-hidden className="size-6 text-primary-700" />
+            <div className="min-w-0 rounded-2xl border border-neutral-200 p-5 min-[360px]:p-6">
+              <h3 className="flex min-w-0 items-center gap-3 text-xl font-bold text-primary-950 min-[360px]:text-2xl">
+                <IndianRupee aria-hidden className="size-6 shrink-0 text-primary-700" />
                 Bill savings
               </h3>
               <div className="mt-4 grid gap-4 sm:grid-cols-3">
@@ -323,9 +325,9 @@ export function SavingsCalculator() {
               </p>
             </div>
 
-            <div className="rounded-2xl bg-surface-mint p-6">
-              <h3 className="flex items-center gap-3 text-2xl font-bold text-primary-950">
-                <Leaf aria-hidden className="size-6 text-primary-700" />
+            <div className="min-w-0 rounded-2xl bg-surface-mint p-5 min-[360px]:p-6">
+              <h3 className="flex min-w-0 items-center gap-3 text-xl font-bold text-primary-950 min-[360px]:text-2xl">
+                <Leaf aria-hidden className="size-6 shrink-0 text-primary-700" />
                 Environmental impact
               </h3>
               <div className="mt-4 grid gap-8 sm:grid-cols-2 sm:divide-x sm:divide-primary-950/10">

@@ -169,7 +169,7 @@ export function SolarCellDetail() {
                 className="object-contain"
               />
             </div>
-            <div className="mt-8 flex justify-center gap-2 sm:gap-7">
+            <div className="mt-8 grid grid-cols-5 gap-2 sm:flex sm:justify-center sm:gap-7">
               {gallery.map((image, index) => (
                 <button
                   key={`${image.src}-${index}`}
@@ -177,7 +177,7 @@ export function SolarCellDetail() {
                   aria-label={`Show solar cell product view ${index + 1}`}
                   aria-pressed={selectedImage === index}
                   onClick={() => setSelectedImage(index)}
-                  className={`relative size-14 overflow-hidden rounded-lg border bg-white p-1 transition sm:size-24 ${
+                  className={`relative aspect-square w-full min-w-0 overflow-hidden rounded-lg border bg-white p-1 transition sm:size-24 sm:w-24 ${
                     selectedImage === index
                       ? "border-primary-400 bg-neutral-100"
                       : "border-neutral-200 hover:border-primary-300"

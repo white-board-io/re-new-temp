@@ -56,7 +56,7 @@ export function Products() {
     <section id="products" className="relative overflow-hidden pt-20">
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 hidden md:block">
         <Image
-          src="/images/products-bg.webp"
+          src="/images/products-bg1.png"
           alt=""
           width={1920}
           height={887}

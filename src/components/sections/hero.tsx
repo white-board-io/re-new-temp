@@ -57,14 +57,15 @@ export function Hero() {
     >
       {/* Slide 1 */}
       <div className={slideClass(0)} aria-hidden={activeSlide !== 0}>
-        <Image
-          src="/images/hero-poster.webp"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="absolute inset-0 size-full object-cover object-[center_60%]"
+        <video
+          src="/videos/hero1.mp4"
+          poster="/images/hero-poster.webp"
+          autoPlay
+          muted
+          loop
+          playsInline
           aria-hidden
+          className="absolute inset-0 size-full object-cover object-[center_60%]"
         />
         <div
           className={`relative flex h-full flex-col items-center justify-center px-4 pb-24 pt-10 text-center sm:px-6 xl:justify-start xl:pt-[130px] ${contentClass(0)}`}

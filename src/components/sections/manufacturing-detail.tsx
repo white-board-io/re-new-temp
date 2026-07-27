@@ -9,6 +9,7 @@ type Plant = {
   name: string;
   shortName: string;
   map: string;
+  mapLabelClassName: string;
   eyebrow: string;
   headline: string;
   stats: Array<{
@@ -28,6 +29,7 @@ const plants: Plant[] = [
     name: "Jaipur, Rajasthan",
     shortName: "Jaipur,\nRajasthan",
     map: "/images/state-jaipur.svg",
+    mapLabelClassName: "text-2xl sm:text-[32px]",
     eyebrow: "4 GW under one roof.",
     headline: "India's largest single-location module manufacturing facility.",
     stats: [
@@ -71,6 +73,7 @@ const plants: Plant[] = [
     name: "Dholera, Gujarat",
     shortName: "Dholera,\nGujarat",
     map: "/images/state-dholera.svg",
+    mapLabelClassName: "text-2xl sm:text-[32px]",
     eyebrow: "Built for the next generation.",
     headline: "Advanced TOPCon cell and module manufacturing at scale.",
     stats: [
@@ -113,6 +116,7 @@ const plants: Plant[] = [
     name: "Visakhapatnam, Andhra Pradesh",
     shortName: "Visakhapatnam,\nAndhra Pradesh",
     map: "/images/state-vizag.svg",
+    mapLabelClassName: "text-xl sm:text-[26px]",
     eyebrow: "6.5 GW at the source.",
     headline: "A wafer and ingot facility strengthening India's solar value chain.",
     stats: [
@@ -237,7 +241,9 @@ export function ManufacturingDetail() {
               <p className="text-4xl font-bold uppercase leading-tight text-primary-700 sm:text-[56px] sm:leading-[1.08]">
                 {activePlant.eyebrow}
               </p>
-              <h2 className="mt-10 max-w-2xl text-4xl font-light leading-tight text-primary-950 sm:text-[58px] sm:leading-[1.18]">
+              <h2
+                className="mt-10 max-w-2xl text-4xl font-normal leading-tight tracking-[0.03em] text-primary-950 sm:text-[60px] sm:leading-[70px]"
+              >
                 {activePlant.headline}
               </h2>
             </div>
@@ -249,7 +255,9 @@ export function ManufacturingDetail() {
                 height={440}
                 className="h-full w-full object-contain"
               />
-              <p className="pointer-events-none absolute whitespace-pre-line text-center text-3xl font-bold leading-tight text-white sm:text-[44px]">
+              <p
+                className={`pointer-events-none absolute inset-0 flex items-center justify-center whitespace-pre-line px-10 text-center font-bold leading-tight text-white ${activePlant.mapLabelClassName}`}
+              >
                 {activePlant.shortName}
               </p>
             </div>

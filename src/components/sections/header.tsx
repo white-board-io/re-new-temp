@@ -141,7 +141,7 @@ export function Header({
               href={savingsHref}
               className="rounded-full bg-primary-950 px-6 py-1.5 text-base font-bold leading-8 text-white transition-colors hover:bg-primary-900 xl:flex xl:h-[min(40px,2.083333vw)] xl:w-[min(210px,10.9375vw)] xl:items-center xl:justify-center xl:p-0 xl:text-[min(16px,0.833333vw)] xl:leading-[min(32px,1.666667vw)]"
             >
-              Solar Calculator
+              Savings Calculator
             </a>
           </div>
           <input
@@ -217,7 +217,7 @@ export function Header({
                   href={savingsHref}
                   className="rounded-full bg-primary-950 px-5 py-2 text-sm font-bold text-white"
                 >
-                  Solar Calculator
+                  Savings Calculator
                 </a>
               </li>
             </ul>

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { CalendarDays, Factory, MapPin, Play, Sun } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
 type Plant = {
@@ -12,6 +12,8 @@ type Plant = {
   mapLabelClassName: string;
   eyebrow: string;
   headline: string;
+  gallery: Array<{ src: string; alt: string }>;
+  sustainabilityImage: { src: string; alt: string };
   stats: Array<{
     label: string;
     value: string;
@@ -31,7 +33,33 @@ const plants: Plant[] = [
     map: "/images/state-jaipur.svg",
     mapLabelClassName: "text-2xl sm:text-[32px]",
     eyebrow: "4 GW under one roof.",
-    headline: "India's largest single-location module manufacturing facility.",
+    headline: "India's largest\nsingle-location module\nmanufacturing facility.",
+    gallery: [
+      {
+        src: "/images/partner-video-factory.webp",
+        alt: "ReNew technicians inspecting a solar module on the Jaipur manufacturing line",
+      },
+      {
+        src: "/images/figma-jaipur-manufacturing-line.png",
+        alt: "ReNew engineer testing a solar module on the Jaipur manufacturing line",
+      },
+      {
+        src: "/images/figma-jaipur-cleanroom.jpg",
+        alt: "ReNew cleanroom team holding solar cells at the Jaipur facility",
+      },
+      {
+        src: "/images/figma-jaipur-automation.jpg",
+        alt: "ReNew technician monitoring automated solar equipment at the Jaipur facility",
+      },
+      {
+        src: "/images/figma-jaipur-cell-inspection.jpg",
+        alt: "ReNew technician inspecting a solar cell at the Jaipur facility",
+      },
+    ],
+    sustainabilityImage: {
+      src: "/images/figma-jaipur-aerial.jpg",
+      alt: "Aerial view of the Jaipur plant and its rooftop solar installation",
+    },
     stats: [
       {
         label: "Capacity",
@@ -47,8 +75,8 @@ const plants: Plant[] = [
       },
       {
         label: "Output",
-        value: "17,000 / day",
-        details: "Approximately 17,000 modules manufactured per day.",
+        value: "23,000 / day",
+        details: "Approximately 23,000 modules manufactured per day.",
         icon: "output",
       },
       {
@@ -61,12 +89,12 @@ const plants: Plant[] = [
     paragraphs: [
       "The Jaipur plant is ReNew Solar's flagship manufacturing facility and one of the largest single-location solar module manufacturing plants in India. Operating at 4 GW capacity under a single roof, it is designed for high-volume, consistent output — purpose-built to meet the supply requirements of large-scale utility and commercial projects.",
       "The plant produces TOPCon and Mono PERC bifacial modules using advanced automation across the full production line, with rigorous in-line quality control at every stage. An in-house NABL accredited PV Module Test Lab — accredited under ISO/IEC 17025:2017 — ensures every batch meets international performance and reliability standards before dispatch.",
-      "Every module produced at Jaipur is backed by a 30-year performance warranty and a 12-year product warranty. The facility is PLI commissioned and uses domestically manufactured cells, making the panels manufactured on-site in Rajasthan fully eligible for government and public sector procurement.",
+      "The facility was the first of its scale to supply 100% Made-in-India modules for a 1.3 GW utility project, with 90% of those panels manufactured on-site in Rajasthan. It operates in compliance with BIS certification requirements and is ALMM approved, making it fully eligible for government and public sector procurement.",
     ],
     sustainabilityTitle:
       "The Jaipur plant is one of India's few LEED Gold certified solar module manufacturing facilities.",
     sustainabilityBody:
-      "The facility runs on a 7.2 MW rooftop solar system comprising 13,340 of its own panels, generating 10 million kWh annually. An internal sewage treatment plant recycles 80 to 90% of treated water within the premises, while local hiring and a dedicated Centre of Excellence support inclusive growth.",
+      "The facility runs on a 7.2 MW rooftop solar system comprising 13,340 of its own panels, generating 10 million kWh annually. An internal sewage treatment plant recycles 80 to 90% of treated water within the premises. The plant has generated over 1,900 direct jobs, with a Centre of Excellence focused on women in STEM.",
   },
   {
     id: "dholera",
@@ -76,6 +104,32 @@ const plants: Plant[] = [
     mapLabelClassName: "text-2xl sm:text-[32px]",
     eyebrow: "Built for the next generation.",
     headline: "Advanced TOPCon cell and module manufacturing at scale.",
+    gallery: [
+      {
+        src: "/images/manufacturing-hero.png",
+        alt: "Automated solar cell and module manufacturing equipment at Dholera",
+      },
+      {
+        src: "/images/partner-video-factory.webp",
+        alt: "Technicians inspecting a solar module on the production line",
+      },
+      {
+        src: "/images/home-service-projects.jpg",
+        alt: "Aerial view of a utility-scale solar installation",
+      },
+      {
+        src: "/images/solar-module-landscape.webp",
+        alt: "ReNew solar module ready for dispatch",
+      },
+      {
+        src: "/images/solar-module-rooftop.webp",
+        alt: "Solar modules installed on a rooftop",
+      },
+    ],
+    sustainabilityImage: {
+      src: "/images/manufacturing-hero.png",
+      alt: "Automated solar manufacturing equipment at the Dholera facility",
+    },
     stats: [
       {
         label: "Cell capacity",
@@ -119,6 +173,32 @@ const plants: Plant[] = [
     mapLabelClassName: "text-xl sm:text-[26px]",
     eyebrow: "6.5 GW at the source.",
     headline: "A wafer and ingot facility strengthening India's solar value chain.",
+    gallery: [
+      {
+        src: "/images/manufacturing-hero.png",
+        alt: "Automated equipment for upstream solar manufacturing",
+      },
+      {
+        src: "/images/partner-video-factory.webp",
+        alt: "Technicians inspecting a solar module on the production line",
+      },
+      {
+        src: "/images/home-service-projects.jpg",
+        alt: "Aerial view of a utility-scale solar installation",
+      },
+      {
+        src: "/images/solar-module-landscape.webp",
+        alt: "ReNew solar module ready for dispatch",
+      },
+      {
+        src: "/images/solar-module-rooftop.webp",
+        alt: "Solar modules installed on a rooftop",
+      },
+    ],
+    sustainabilityImage: {
+      src: "/images/manufacturing-hero.png",
+      alt: "Automated solar manufacturing equipment at the Visakhapatnam facility",
+    },
     stats: [
       {
         label: "Capacity",
@@ -164,19 +244,32 @@ function getPlantIdFromHash(): Plant["id"] | null {
 }
 
 function StatIcon({ icon }: { icon: Plant["stats"][number]["icon"] }) {
-  const className = "size-16 stroke-[1.4]";
-  if (icon === "capacity") return <Sun aria-hidden className={className} />;
-  if (icon === "area") return <MapPin aria-hidden className={className} />;
-  if (icon === "date") return <CalendarDays aria-hidden className={className} />;
-  return <Factory aria-hidden className={className} />;
+  const src =
+    icon === "area"
+      ? "/images/figma-stat-area.png"
+      : icon === "date"
+        ? "/images/figma-stat-commissioned.png"
+        : "/images/figma-stat-capacity.png";
+
+  return (
+    <Image
+      src={src}
+      alt=""
+      width={132}
+      height={132}
+      className="size-[132px] object-contain"
+    />
+  );
 }
 
 export function ManufacturingDetail() {
   const [activeId, setActiveId] = useState<Plant["id"]>("jaipur");
+  const [galleryIndex, setGalleryIndex] = useState(0);
   const activePlant = plants.find((plant) => plant.id === activeId) ?? plants[0];
 
   const selectPlant = (plantId: Plant["id"]) => {
     setActiveId(plantId);
+    setGalleryIndex(0);
     window.history.replaceState(null, "", `#${plantId}`);
   };
 
@@ -185,6 +278,7 @@ export function ManufacturingDetail() {
       const plantId = getPlantIdFromHash();
       if (plantId) {
         setActiveId(plantId);
+        setGalleryIndex(0);
       }
     };
 
@@ -198,7 +292,7 @@ export function ManufacturingDetail() {
 
   return (
     <>
-      <section className="relative isolate flex min-h-[620px] items-center justify-center overflow-hidden text-white lg:min-h-[660px]">
+      <section className="relative isolate flex min-h-[620px] items-center justify-center overflow-hidden text-white lg:min-h-[700px]">
         <video
           src="/videos/Manufacturing.webm"
           autoPlay
@@ -208,7 +302,7 @@ export function ManufacturingDetail() {
           className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
         />
         <div className="absolute inset-0 -z-10 bg-primary-950/70" />
-        <div className="mx-auto -translate-y-20 max-w-content px-4 py-20 text-center sm:px-6 lg:-translate-y-24">
+        <div className="mx-auto max-w-content px-4 py-20 text-center sm:px-6">
           <h1 className="text-4xl font-light leading-tight tracking-wide sm:text-[42px] lg:text-[46px]">
             Driving solar innovation through
             <strong className="mt-2 block font-bold text-primary-400">
@@ -227,7 +321,7 @@ export function ManufacturingDetail() {
         <div
           role="tablist"
           aria-label="Manufacturing plants"
-          className="mx-auto grid max-w-content grid-cols-3 px-2 sm:px-6"
+          className="mx-auto grid max-w-[1580px] grid-cols-3 px-2 sm:px-6"
         >
           {plants.map((plant) => {
             const active = plant.id === activeId;
@@ -270,19 +364,19 @@ export function ManufacturingDetail() {
       </div>
 
       <div id="plant-panel" role="tabpanel" className="bg-white">
-        <section className="mx-auto max-w-content px-4 py-20 sm:px-6 lg:py-28">
-          <div className="grid items-center gap-14 lg:grid-cols-2">
-            <div>
-              <p className="text-4xl font-bold uppercase leading-tight text-primary-700 sm:text-[56px] sm:leading-[1.08]">
+        <section className="mx-auto max-w-[1580px] px-4 py-20 sm:px-6 lg:py-24">
+          <div className="mx-auto grid max-w-[1350px] items-center gap-14 pb-20 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8 lg:pb-[150px]">
+            <div className="max-w-[680px]">
+              <p className="max-w-[400px] text-4xl font-bold uppercase leading-[1.08] text-primary-700 sm:text-[56px] sm:leading-[1.05]">
                 {activePlant.eyebrow}
               </p>
               <h2
-                className="mt-10 max-w-2xl text-4xl font-normal leading-tight tracking-[0.03em] text-primary-950 sm:text-[60px] sm:leading-[70px]"
+                className="mt-10 max-w-[650px] whitespace-pre-line text-4xl font-normal leading-tight tracking-[0.03em] text-primary-950 sm:text-[60px] sm:leading-[70px]"
               >
                 {activePlant.headline}
               </h2>
             </div>
-            <div className="relative mx-auto flex aspect-[1.2/1] w-full max-w-[520px] items-center justify-center">
+            <div className="relative mx-auto flex aspect-[1.16/1] w-full max-w-[540px] items-center justify-center">
               <Image
                 src={activePlant.map}
                 alt={`Outline map for ${activePlant.name}`}
@@ -298,21 +392,42 @@ export function ManufacturingDetail() {
             </div>
           </div>
 
-          <div className="mt-20 grid gap-7 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="grid gap-7 sm:grid-cols-2 xl:grid-cols-4 xl:gap-[72px]">
             {activePlant.stats.map((stat) => (
               <article
                 key={stat.label}
                 tabIndex={0}
                 aria-label={`${stat.label}: ${stat.value}. ${stat.details}`}
-              className="group h-[22rem] rounded-md perspective-[1200px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-700"
+                className="group h-[344px] rounded-md perspective-[1200px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-700"
             >
               <div className="grid h-full transition-transform duration-700 transform-3d group-hover:rotate-y-180 group-focus-within:rotate-y-180 motion-reduce:transition-none">
-                <div className="flex h-full flex-col items-center justify-center rounded-md bg-primary-700 px-7 py-10 text-center text-white [grid-area:1/1] backface-hidden">
-                    <StatIcon icon={stat.icon} />
-                    <p className="mt-7 text-3xl font-bold leading-tight">{stat.value}</p>
-                    <h3 className="mt-5 text-xl font-bold uppercase tracking-wide">
-                      {stat.label}
-                    </h3>
+                <div
+                  className={`flex h-full flex-col items-center justify-center rounded-md px-7 py-10 text-center text-white [grid-area:1/1] backface-hidden ${
+                    stat.icon === "output" ? "bg-primary-950" : "bg-primary-700"
+                  }`}
+                >
+                    {stat.icon === "output" && activePlant.id === "jaipur" ? (
+                      <div className="text-center">
+                        <p className="text-[30px] font-normal leading-tight">Approximately</p>
+                        <p className="mt-3 text-[54px] font-bold leading-none">23,000</p>
+                        <p className="mt-4 text-[30px] font-normal leading-[1.3]">
+                          modules
+                          <br />
+                          per day
+                        </p>
+                      </div>
+                    ) : stat.icon === "output" ? (
+                      <p className="max-w-[250px] text-2xl font-bold leading-snug">
+                        {stat.details}
+                      </p>
+                    ) : (
+                      <>
+                        <StatIcon icon={stat.icon} />
+                        <h3 className="mt-10 text-2xl font-bold uppercase tracking-wide">
+                          {stat.label}
+                        </h3>
+                      </>
+                    )}
                   </div>
 
                 <div className="flex h-full rotate-y-180 flex-col items-center justify-center rounded-md bg-primary-950 px-7 py-10 text-center text-white [grid-area:1/1] backface-hidden">
@@ -327,27 +442,52 @@ export function ManufacturingDetail() {
             ))}
           </div>
 
-          <figure className="mt-24 overflow-hidden rounded-md">
-            <div className="relative aspect-[16/7] min-h-72">
+          <figure className="relative mt-[180px]">
+            <div className="relative aspect-[2.11/1] min-h-72 overflow-hidden rounded-md">
               <Image
-                src="/images/manufacturing-rooftop.png"
-                alt="Rooftop solar panels installed on a ReNew facility"
+                src={activePlant.gallery[galleryIndex].src}
+                alt={activePlant.gallery[galleryIndex].alt}
                 fill
-                sizes="(min-width: 1428px) 1428px, 100vw"
+                sizes="(min-width: 1532px) 1532px, 100vw"
                 className="object-cover"
               />
-              <div className="absolute inset-x-0 bottom-8 flex justify-center gap-6" aria-hidden>
-                {[true, false, false, false, false].map((selected, index) => (
+              <button
+                type="button"
+                aria-label="Previous manufacturing image"
+                onClick={() =>
+                  setGalleryIndex(Math.max(0, galleryIndex - 1))
+                }
+                disabled={galleryIndex === 0}
+                className="absolute left-3 top-1/2 flex size-12 -translate-y-1/2 items-center justify-center rounded-sm bg-primary-50/90 text-primary-700 transition-colors hover:bg-white disabled:text-neutral-300 xl:-left-[88px] xl:bg-neutral-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700"
+              >
+                <ChevronLeft aria-hidden className="size-8" />
+              </button>
+              <button
+                type="button"
+                aria-label="Next manufacturing image"
+                onClick={() =>
+                  setGalleryIndex(Math.min(activePlant.gallery.length - 1, galleryIndex + 1))
+                }
+                disabled={galleryIndex === activePlant.gallery.length - 1}
+                className="absolute right-3 top-1/2 flex size-12 -translate-y-1/2 items-center justify-center rounded-sm bg-primary-50/90 text-primary-700 transition-colors hover:bg-white disabled:text-neutral-300 xl:-right-[88px] xl:bg-primary-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700"
+              >
+                <ChevronRight aria-hidden className="size-8" />
+              </button>
+              <div className="absolute inset-x-0 bottom-8 flex justify-center gap-6">
+                {activePlant.gallery.map((image, index) => (
                   <span
-                    key={index}
-                    className={`size-5 rounded-full border-2 border-white ${selected ? "bg-primary-700" : "bg-white"}`}
+                    key={image.src}
+                    aria-hidden
+                    className={`h-[8px] w-[44px] rounded-full ${
+                      index === galleryIndex ? "bg-primary-400" : "bg-white"
+                    }`}
                   />
                 ))}
               </div>
             </div>
           </figure>
 
-          <div className="mt-20 space-y-10 text-xl font-light leading-9 text-neutral-500 sm:text-2xl sm:leading-10">
+          <div className="mt-20 space-y-10 text-xl font-light leading-9 text-neutral-500 sm:text-[26px] sm:leading-[1.55]">
             {activePlant.paragraphs.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
@@ -372,22 +512,15 @@ export function ManufacturingDetail() {
             </p>
           </div>
 
-          <div className="relative mx-auto mt-20 max-w-content px-4 sm:px-6">
-            <div className="relative aspect-[16/8.2] overflow-hidden rounded-md">
+          <div className="relative mx-auto mt-20 max-w-[1580px] px-4 sm:px-6">
+            <div className="relative aspect-[16/7] overflow-hidden rounded-md">
               <Image
-                src="/images/manufacturing-rooftop.png"
-                alt="Solar panels on the roof of a ReNew facility"
+                src={activePlant.sustainabilityImage.src}
+                alt={activePlant.sustainabilityImage.alt}
                 fill
-                sizes="(min-width: 1428px) 1428px, 100vw"
+                sizes="(min-width: 1532px) 1532px, 100vw"
                 className="object-cover"
               />
-              <button
-                type="button"
-                aria-label="Play manufacturing facility video"
-                className="absolute left-1/2 top-1/2 flex size-32 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-white text-white transition-transform hover:scale-105"
-              >
-                <Play aria-hidden className="ml-2 size-16 fill-current" />
-              </button>
             </div>
           </div>
         </section>

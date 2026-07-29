@@ -89,9 +89,9 @@ export function Hero() {
         />
         <SlideFilm />
         <div
-          className={`relative flex h-full flex-col items-center justify-center px-4 pb-24 pt-10 text-center sm:px-6 xl:justify-start xl:pt-[130px] ${contentClass(0)}`}
+          className={`relative flex h-full flex-col items-start justify-center px-5 pb-24 pt-10 text-left sm:px-6 xl:px-[181px] xl:justify-start xl:pt-[130px] ${contentClass(0)}`}
         >
-          <h1 className="max-w-6xl text-4xl font-bold leading-[0.95] tracking-hero text-white sm:text-5xl lg:text-5xl xl:max-w-[1240px] xl:text-[54px] xl:leading-[50px]">
+          <h1 className="max-w-6xl text-4xl font-bold leading-[0.95] tracking-hero text-white sm:text-5xl lg:text-5xl xl:max-w-[880px] xl:text-[54px] xl:leading-[50px]">
             Switch to clean energy with ReNew Solar Panels, engineered for
             lasting performance.
           </h1>

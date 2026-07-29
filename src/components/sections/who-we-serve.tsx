@@ -47,17 +47,29 @@ export function WhoWeServe() {
         />
       </div>
       <div className="relative mx-auto max-w-content px-4 sm:px-6">
-        <p className="text-2xl font-bold uppercase leading-8 text-primary-700">Who We Serve</p>
+        <p className="text-2xl font-bold uppercase leading-8 text-primary-700">
+          Who We Serve
+        </p>
         <h2 className="mt-6 text-4xl font-bold text-primary-950 sm:text-[54px] sm:leading-[58px]">
           Solar for <span className="text-primary-400">Every Life</span>
         </h2>
         <ul className="mt-6 flex flex-wrap gap-x-8 gap-y-2 text-lg text-neutral-500">
           <li className="flex items-center gap-2">
-            <Image src="/images/icon-factory.svg" alt="" width={26} height={26} />
+            <Image
+              src="/images/icon-factory.svg"
+              alt=""
+              width={26}
+              height={26}
+            />
             Manufactured by us
           </li>
           <li className="flex items-center gap-2">
-            <Image src="/images/icon-handshake.svg" alt="" width={26} height={26} />
+            <Image
+              src="/images/icon-handshake.svg"
+              alt=""
+              width={26}
+              height={26}
+            />
             Installed by our certified partner network
           </li>
         </ul>
@@ -81,11 +93,11 @@ export function WhoWeServe() {
                 onMouseEnter={() => setActive(index)}
                 onMouseLeave={() => setActive(null)}
                 onFocus={() => setActive(index)}
-                className={`relative h-[462px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-700 ${
+                className={`relative h-[460px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-700 ${
                   isActive ? "z-10" : "z-0"
                 }`}
-                >
-                  <div
+              >
+                <div
                   className={`absolute inset-0 origin-center overflow-hidden rounded-md transition-[scale,box-shadow] motion-reduce:transition-none ${GROW} ${
                     isActive
                       ? "shadow-[0_8px_18px_rgba(0,0,0,0.18)] md:scale-[1.14]"
@@ -110,39 +122,43 @@ export function WhoWeServe() {
                   />
 
                   <h3
-                    className={`absolute bottom-8 left-8 z-10 max-w-56 text-3xl font-bold leading-tight text-white transition-[opacity,translate] duration-300 ${
+                    className={`absolute bottom-16 left-8 z-10 max-w-56 text-2xl font-bold leading-tight text-white transition-[opacity,translate] duration-300 ${
                       isActive
                         ? "translate-y-2 opacity-0"
                         : "translate-y-0 opacity-100 delay-200"
                     }`}
                   >
                     {card.title.map((line) => (
-                      <span key={line} className="block">{line}</span>
+                      <span key={line} className="block">
+                        {line}
+                      </span>
                     ))}
                   </h3>
 
                   <div
                     aria-hidden={!isActive}
-                    className={`absolute inset-x-8 top-20 z-10 text-center text-3xl font-bold leading-tight text-white transition-[opacity,translate] duration-500 ${
+                    className={`absolute inset-x-12 top-20 z-10 text-center text-4xl font-bold leading-tight text-white transition-[opacity,translate] duration-500 ${
                       isActive
                         ? "translate-y-0 opacity-100 delay-150"
                         : "pointer-events-none translate-y-3 opacity-0"
                     }`}
                   >
                     {card.title.map((line) => (
-                      <span key={line} className="block">{line}</span>
+                      <span key={line} className="block">
+                        {line}
+                      </span>
                     ))}
                   </div>
 
                   <div
                     aria-hidden={!isActive}
-                    className={`absolute inset-x-8 bottom-7 top-[138px] z-10 flex flex-col items-center text-center text-white transition-[opacity,translate] duration-500 ${
+                    className={`absolute inset-x-12 bottom-10 top-[180px] z-10 flex flex-col items-center text-center text-white transition-[opacity,translate] duration-500 ${
                       isActive
                         ? "translate-y-0 opacity-100 delay-200"
                         : "pointer-events-none translate-y-4 opacity-0"
                     }`}
                   >
-                    <p className="mx-auto max-w-[430px] text-2xl leading-8">
+                    <p className="mx-auto max-w-[430px] text-lg leading-7">
                       {card.description}
                     </p>
                     <a

@@ -9,20 +9,21 @@ const DEFAULT_PRODUCT = 0;
 const products = [
   {
     title: "Solar Module",
-    image: "/images/product-module.webp",
-    // The module panels sit in the left third of the photo; anchor the crop
-    // there so they stay in frame when the card is in its narrow state.
-    position: "object-[10%_50%]",
+    image: "/images/Solarmodule-s.webp",
+    expandedImage: "/images/solarmodule-e.webp",
+    position: "object-center",
     alt: "Two ReNew solar modules standing in a grassy valley at sunrise",
     href: "/products/solar-module",
     features: [
-      { lead: "Mono PERC cells", rest: "with up to 23.7% conversion efficiency" },
-      { lead: "TOPCon cells", rest: "with industry-leading efficiency of up to 25.2%" },
+      { lead: "G12R TOPCon Bifacial", rest: "Range up to 640 Wp | Efficiency up to 23.69%" },
+      { lead: "M10R TOPCon", rest: "Range up to 610Wp | Efficiency up to 23.61%" },
+      { lead: "M10R PERC", rest: "Range up to 560Wp | Efficiency up to 21.68%" },
     ],
   },
   {
     title: "Solar Cell",
-    image: "/images/product-cell.webp",
+    image: "/images/solarcell-s.webp",
+    expandedImage: "/images/Solarcell-e.webp",
     position: "object-center",
     alt: "A ReNew solar cell standing in a misty field at sunrise",
     href: "/products/solar-cell",
@@ -54,7 +55,9 @@ export function Products() {
 
   return (
     <section id="products" className="relative overflow-hidden pt-20">
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 hidden md:block">
+      {/* End the section artwork at the midpoint of the product cards:
+          half the card height + the grid's 6rem bottom padding. */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-[306px] top-0 -z-10 hidden overflow-hidden md:block lg:bottom-[375px]">
         <Image
           src="/images/products-bg1.png"
           alt=""
@@ -82,39 +85,39 @@ export function Products() {
         >
           {products.map((product, i) => {
             const isActive = i === active;
+            const usesLightArtwork = i === 1;
             return (
               <article
                 key={product.title}
                 onMouseEnter={() => setActive(i)}
                 onFocus={() => setActive(i)}
-                className="relative flex h-[420px] flex-col justify-between overflow-hidden rounded-md p-8 lg:h-[558px]"
+                className="relative h-[420px] overflow-hidden rounded-md lg:h-[558px]"
               >
                 <Image
-                  src={product.image}
+                  src={isActive ? product.expandedImage : product.image}
                   alt={product.alt}
                   fill
                   className={`object-cover ${product.position}`}
                   sizes="(min-width: 768px) 62vw, 100vw"
                 />
-                <h3 className="relative text-3xl font-bold text-primary-950 lg:text-4xl">
+                <h3 className="absolute left-10 top-10 z-10 text-2xl font-bold uppercase leading-8 text-primary-950">
                   {product.title}
                 </h3>
                 <div
                   aria-hidden={!isActive}
-                  className={`relative flex flex-col items-center gap-6 ${
+                  className={`absolute bottom-12 left-[47%] right-12 top-[106px] z-10 flex flex-col ${
                     isActive ? "" : "pointer-events-none"
                   }`}
                 >
-                  <div
-                    className={`w-full rounded-2xl bg-primary-950/50 p-6 backdrop-blur-[2px] ${contentIn(
-                      isActive,
-                      "delay-[350ms]",
-                    )}`}
-                  >
+                  <div className={contentIn(isActive, "delay-[350ms]")}>
                     {product.features.map((feature) => (
                       <p
                         key={feature.lead}
-                        className="mt-3 text-lg text-white first:mt-0 lg:text-xl"
+                        className={`mt-6 border-b pb-6 text-base leading-6 first:mt-0 last:border-b-0 lg:text-xl lg:leading-7 ${
+                          usesLightArtwork
+                            ? "border-primary-950/25 text-primary-950"
+                            : "border-white/30 text-white"
+                        }`}
                       >
                         <strong className="font-bold">{feature.lead}</strong>
                         <br />
@@ -124,7 +127,7 @@ export function Products() {
                   </div>
                   <Link
                     href={product.href}
-                    className={`rounded-full bg-accent px-8 py-2.5 text-xl font-medium text-white hover:bg-primary-400 ${contentIn(
+                    className={`mt-auto self-center rounded-full bg-accent px-8 py-2.5 text-xl font-medium text-white hover:bg-primary-400 ${contentIn(
                       isActive,
                       "delay-[450ms]",
                     )}`}

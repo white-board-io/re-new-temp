@@ -8,9 +8,27 @@ const SLIDE_COUNT = 3;
 const SLIDE_DURATION_MS = 8100;
 
 const plants = [
-  { name: "Jaipur", src: "/images/state-jaipur.svg", width: 135, height: 111, offset: "" },
-  { name: "Dholera", src: "/images/state-dholera.svg", width: 99, height: 144, offset: "mt-14" },
-  { name: "Vizag", src: "/images/state-vizag.svg", width: 158, height: 122, offset: "mt-4" },
+  {
+    name: "Jaipur",
+    src: "/images/state-jaipur.svg",
+    width: 135,
+    height: 111,
+    offset: "",
+  },
+  {
+    name: "Dholera",
+    src: "/images/state-dholera.svg",
+    width: 99,
+    height: 144,
+    offset: "mt-14",
+  },
+  {
+    name: "Vizag",
+    src: "/images/state-vizag.svg",
+    width: 158,
+    height: 122,
+    offset: "mt-4",
+  },
 ];
 
 function EnquireButton({ className = "" }: { className?: string }) {
@@ -41,7 +59,9 @@ export function Hero() {
 
   const contentClass = (i: number) =>
     `transition delay-150 duration-700 ease-out motion-reduce:transition-none ${
-      activeSlide === i ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+      activeSlide === i
+        ? "translate-y-0 opacity-100"
+        : "translate-y-8 opacity-0"
     }`;
 
   return (
@@ -58,8 +78,7 @@ export function Hero() {
       {/* Slide 1 */}
       <div className={slideClass(0)} aria-hidden={activeSlide !== 0}>
         <video
-          src="/videos/hero1.mp4"
-          poster="/images/hero-poster.webp"
+          src="/videos/ReNew Banner1.webm"
           autoPlay
           muted
           loop
@@ -71,8 +90,8 @@ export function Hero() {
           className={`relative flex h-full flex-col items-center justify-center px-4 pb-24 pt-10 text-center sm:px-6 xl:justify-start xl:pt-[130px] ${contentClass(0)}`}
         >
           <h1 className="max-w-6xl text-4xl font-bold leading-[0.95] tracking-hero text-white sm:text-5xl lg:text-5xl xl:max-w-[1240px] xl:text-[54px] xl:leading-[50px]">
-           Switch to clean energy with ReNew Solar Panels, engineered for lasting performance.
-           
+            Switch to clean energy with ReNew Solar Panels, engineered for
+            lasting performance.
           </h1>
           <p className="mt-8 text-lg leading-snug text-white sm:text-xl">
             When you put solar on your roof, the manufacturer matters.
@@ -83,55 +102,51 @@ export function Hero() {
 
       {/* Slide 2 — the company behind India's clean energy transition */}
       <div className={slideClass(1)} aria-hidden={activeSlide !== 1}>
-        <Image
-          src="/images/hero-slide2-bg.webp"
-          alt=""
-          fill
-          className="object-cover"
-          sizes="100vw"
+        <video
+          src="/videos/ReNew banner2.webm"
+          autoPlay
+          muted
+          loop
+          playsInline
+          aria-hidden
+          className="absolute inset-0 size-full object-cover"
         />
         <div
-          className={`relative mx-auto grid h-full max-w-content items-center gap-10 px-4 pb-24 pt-10 sm:px-6 lg:grid-cols-[24rem_1fr] lg:gap-16 ${contentClass(1)}`}
+          className={`relative flex h-full items-start px-5 pb-28 pt-28 sm:px-[9.25vw] sm:pt-[17.5vh] lg:pt-[148px] xl:pt-[160px] ${contentClass(1)}`}
         >
-          <div>
-            <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl">
-             The company behind the world&apos;s clean energy transition. Now making the panels too.
+          <div className="max-w-[760px] text-white">
+            <h2 className="text-[32px] font-bold leading-[1.12] tracking-[0.02em] sm:text-[40px] lg:text-[44px]">
+              <span className="lg:block">
+                The company behind the world&apos;s
+              </span>{" "}
+              <span className="lg:block">clean energy transition.</span>{" "}
+              <span className="lg:block">Now making the solar panels too.</span>
             </h2>
-            <p className="mt-8 max-w-xs text-lg leading-7 text-white/90 sm:text-xl">
+            <p className="mt-8 text-[20px] leading-[1.55] tracking-[0.025em] text-white sm:text-[22px] lg:mt-10 lg:text-[24px]">
               20 GW portfolio
               <br />
               18.6M+ tonnes of CO₂ avoided
               <br />
-              End-to-end decarbonisation solutions.
+              End-to-end decarbonisation solutions
             </p>
-            <EnquireButton className="mt-10 inline-block" />
+            <a
+              href="https://www.renew.com/"
+              className="mt-10 inline-flex min-h-11 min-w-[204px] items-center justify-center rounded-full bg-accent px-10 text-[20px] font-medium text-white transition-colors hover:bg-primary-400 lg:mt-14"
+            >
+              Visit ReNew
+            </a>
           </div>
-          <Image
-            src="/images/world-map.webp"
-            alt="World map showing ReNew's global reach"
-            width={1486}
-            height={982}
-            className="mx-auto hidden w-full max-w-3xl lg:block"
-          />
         </div>
       </div>
 
       {/* Slide 3 — net zero */}
       <div className={slideClass(2)} aria-hidden={activeSlide !== 2}>
-        <div className="absolute inset-0 bg-primary-700" />
         <Image
-          src="/images/sunburst.svg"
+          src="/images/ReNew Banner3.webp"
           alt=""
-          width={608}
-          height={314}
-          className="absolute -left-[204px] top-1/2 w-[608px] -translate-y-1/2 -rotate-90"
-        />
-        <Image
-          src="/images/sunburst.svg"
-          alt=""
-          width={608}
-          height={314}
-          className="absolute -right-[204px] top-1/2 w-[608px] -translate-y-1/2 rotate-90"
+          fill
+          className="object-cover"
+          sizes="100vw"
         />
         <div
           className={`relative flex h-full flex-col items-center justify-center px-4 pb-20 pt-6 text-center sm:px-6 ${contentClass(2)}`}
@@ -154,7 +169,7 @@ export function Hero() {
             <span aria-hidden className="mx-3 opacity-60">
               |
             </span>
-           30-year power warranty
+            30-year power warranty
           </p>
           <div className="mt-8 flex items-start justify-center gap-10 sm:gap-16">
             {plants.map((plant) => (
@@ -192,7 +207,7 @@ export function Hero() {
             onClick={() => selectSlide(i)}
             className="flex h-8 w-[88px] items-center"
           >
-            <span className="h-2 w-full overflow-hidden rounded-[1px] bg-white">
+            <span className="h-2 w-full overflow-hidden rounded-lg bg-white">
               {activeSlide === i && (
                 <span
                   aria-hidden

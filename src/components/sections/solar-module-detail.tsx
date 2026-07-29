@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { Building2, Factory, House } from "lucide-react";
 
 const gallery = [
   {
@@ -52,17 +51,17 @@ const applications = [
   {
     line1: "Utility-scale solar",
     line2: "power plants",
-    icon: Factory,
+    icon: "/images/facrory.svg",
   },
   {
     line1: "High capacity commercial",
     line2: "and industrial installations",
-    icon: Building2,
+    icon: "/images/building.svg",
   },
   {
     line1: "High power requirement",
     line2: "residential units",
-    icon: House,
+    icon: "/images/house.svg",
   },
 ];
 
@@ -326,12 +325,11 @@ export function SolarModuleDetail() {
         <div className="mx-auto max-w-content px-4 pb-24 text-center sm:px-6 lg:pb-32">
           <h2 className="text-3xl font-medium text-primary-700">Ideal Applications</h2>
           <div className="mt-16 grid gap-14 md:grid-cols-3 md:gap-8">
-            {applications.map((application) => {
-              const Icon = application.icon;
-              return (
+             {applications.map((application) =>
+                (
                 <div key={application.line1} className="flex flex-col items-center">
-                  <span className="flex size-28 items-center justify-center rounded-full bg-primary-700 text-primary-400 sm:size-32">
-                    <Icon aria-hidden className="size-16 stroke-[1.7] sm:size-[72px]" />
+                  <span className="flex size-28 items-center justify-center rounded-full bg-primary-700 sm:size-32">
+                    <Image src={application.icon} alt="" width={64} height={64} aria-hidden />
                   </span>
                   <p className="mt-10 max-w-sm text-2xl leading-8 text-[#143b58]">
                     {application.line1}
@@ -339,8 +337,8 @@ export function SolarModuleDetail() {
                     {application.line2}
                   </p>
                 </div>
-              );
-            })}
+                )
+            )}
           </div>
         </div>
 

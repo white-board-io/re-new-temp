@@ -113,11 +113,7 @@ export function Products() {
                     {product.features.map((feature) => (
                       <p
                         key={feature.lead}
-                        className={`mt-6 border-b pb-6 text-base leading-6 first:mt-0 last:border-b-0 lg:text-xl lg:leading-7 ${
-                          usesLightArtwork
-                            ? "border-primary-950/25 text-primary-950"
-                            : "border-white/30 text-white"
-                        }`}
+                        className={`mt-6 border-b border-white/30 pb-6 text-base leading-6 text-white first:mt-0 last:border-b-0 lg:text-xl lg:leading-7`}
                       >
                         <strong className="font-bold">{feature.lead}</strong>
                         <br />
@@ -127,7 +123,7 @@ export function Products() {
                   </div>
                   <Link
                     href={product.href}
-                    className={`mt-auto self-center rounded-full bg-accent px-8 py-2.5 text-xl font-medium text-white hover:bg-primary-400 ${contentIn(
+                    className={`mt-auto self-start rounded-full bg-accent px-8 py-2.5 text-xl font-medium text-white hover:bg-primary-400 ${contentIn(
                       isActive,
                       "delay-[450ms]",
                     )}`}

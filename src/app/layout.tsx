@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Lato } from "next/font/google";
+import { ContactModal } from "@/components/contact-modal";
 import { EnquireFab } from "@/components/sections/enquire-fab";
 import "./globals.css";
 
@@ -25,6 +26,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         {children}
         <EnquireFab />
+        <ContactModal />
       </body>
     </html>
   );

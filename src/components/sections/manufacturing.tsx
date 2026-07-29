@@ -97,7 +97,7 @@ export function Manufacturing() {
                 onMouseEnter={() => setActive(index)}
                 onMouseLeave={() => setActive(null)}
                 onFocus={() => setActive(index)}
-                className={`relative h-[550px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white ${
+                className={`relative h-[500px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white ${
                   isActive ? "z-10" : "z-0"
                 }`}
               >
@@ -121,11 +121,11 @@ export function Manufacturing() {
                         alt={plant.alt}
                         width={plant.image.width}
                         height={plant.image.height}
-                        className={`mx-auto max-h-[390px] w-full object-contain ${plant.imageClassName}`}
+                        className={`mx-auto max-h-[280px] w-full object-contain ${plant.imageClassName}`}
                         sizes="(min-width: 768px) 33vw, 100vw"
                       />
                       <div className="absolute left-1/2 top-[55%] flex h-[48%] w-[96%] -translate-x-1/2 -translate-y-1/2 items-center justify-center">
-                        <h3 className="flex flex-col items-center justify-center text-center text-2xl font-bold leading-8">
+                        <h3 className="flex flex-col items-center justify-center text-center text-xl font-bold leading-8">
                           {plant.title.map((line) => (
                             <span key={line} className="block">
                               {line}
@@ -141,7 +141,7 @@ export function Manufacturing() {
 
                   <div
                     aria-hidden={!isActive}
-                    className={`absolute inset-0 flex flex-col items-center justify-center p-10 text-center transition-[opacity,translate] duration-500 ${
+                    className={`absolute inset-y-0 inset-x-16 flex flex-col items-center justify-center p-6 text-center transition-[opacity,translate] duration-500 ${
                       isActive
                         ? "translate-y-0 opacity-100 delay-200"
                         : "pointer-events-none translate-y-4 opacity-0"
@@ -154,7 +154,7 @@ export function Manufacturing() {
                         </span>
                       ))}
                     </h3>
-                    <p className="mt-10 max-w-[420px] text-2xl leading-8">
+                    <p className="mt-10 max-w-[420px] text-lg leading-8">
                       {plant.details}
                     </p>
                   </div>

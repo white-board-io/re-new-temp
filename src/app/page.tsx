@@ -36,8 +36,8 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />
       <Header />
-      <PriceListTab />
-      <main className="pt-[120px] lg:pt-[136px] xl:pt-[138px]">
+      <PriceListTab activeSectionId="products" />
+      <main className="pt-[88px] lg:pt-[136px] xl:pt-[138px]">
         {/* First fold: hero + stats share the viewport below the fixed header. */}
         <div className="lg:grid lg:h-[calc(100svh-136px)] lg:min-h-[760px] lg:grid-rows-[minmax(0,1fr)_auto] xl:h-[942px] xl:grid-rows-[742px_200px]">
           <Hero />

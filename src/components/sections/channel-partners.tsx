@@ -138,12 +138,6 @@ export function ChannelPartners() {
         <div className="flex flex-wrap justify-center gap-10 pb-24 pt-16">
           <a
             href="#contact"
-            className="rounded-full bg-primary-950 px-8 py-3 text-lg font-bold text-white transition hover:bg-primary-900"
-          >
-            Submit a Requirement
-          </a>
-          <a
-            href="#contact"
             className="rounded-full border border-primary-950 px-8 py-3 text-lg font-bold text-primary-950 transition hover:bg-primary-50"
           >
             Become a Channel Partner

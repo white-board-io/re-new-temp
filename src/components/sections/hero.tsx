@@ -42,9 +42,12 @@ function EnquireButton({ className = "" }: { className?: string }) {
   );
 }
 
+function SlideFilm() {
+  return <div aria-hidden className="absolute inset-0 bg-black/35" />;
+}
+
 export function Hero() {
   const [activeSlide, setActiveSlide] = useState(0);
-  const [hovered, setHovered] = useState(false);
 
   const selectSlide = (i: number) => setActiveSlide(i);
 
@@ -67,8 +70,6 @@ export function Hero() {
   return (
     <section
       aria-roledescription="carousel"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
       className="relative min-h-[640px] overflow-hidden bg-primary-900 lg:min-h-[560px]"
       style={{
         clipPath:
@@ -86,6 +87,7 @@ export function Hero() {
           aria-hidden
           className="absolute inset-0 size-full object-cover object-[center_60%]"
         />
+        <SlideFilm />
         <div
           className={`relative flex h-full flex-col items-center justify-center px-4 pb-24 pt-10 text-center sm:px-6 xl:justify-start xl:pt-[130px] ${contentClass(0)}`}
         >
@@ -111,6 +113,7 @@ export function Hero() {
           aria-hidden
           className="absolute inset-0 size-full object-cover"
         />
+        <SlideFilm />
         <div
           className={`relative flex h-full items-start px-5 pb-28 pt-28 sm:px-[9.25vw] sm:pt-[17.5vh] lg:pt-[148px] xl:pt-[160px] ${contentClass(1)}`}
         >
@@ -148,6 +151,7 @@ export function Hero() {
           className="object-cover"
           sizes="100vw"
         />
+        <SlideFilm />
         <div
           className={`relative flex h-full flex-col items-center justify-center px-4 pb-20 pt-6 text-center sm:px-6 ${contentClass(2)}`}
         >
@@ -214,8 +218,6 @@ export function Hero() {
                   className="hero-progress-fill block h-full w-full bg-primary-400"
                   style={{
                     animationDuration: `${SLIDE_DURATION_MS}ms`,
-                    animationPlayState:
-                      hovered && activeSlide !== 0 ? "paused" : "running",
                   }}
                   onAnimationEnd={() =>
                     setActiveSlide((slide) => (slide + 1) % SLIDE_COUNT)

@@ -15,7 +15,11 @@ export const metadata: Metadata = {
 export default function DownloadsPage() {
   return (
     <>
-      <Header sectionPrefix="/" contactHref="#contact" savingsHref="/#savings-calculator" />
+      <Header
+        sectionPrefix="/"
+        contactHref="#contact"
+        savingsHref="/#savings-calculator"
+      />
       <main className="pt-[88px] lg:pt-[136px] xl:pt-[138px]">
         <section className="relative flex h-[260px] items-center overflow-hidden sm:h-[310px] lg:h-[330px]">
           <Image

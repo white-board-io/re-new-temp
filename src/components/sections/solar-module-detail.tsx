@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const gallery = [
   {
@@ -65,11 +65,82 @@ const applications = [
   },
 ];
 
-const moduleTabs = [
-  "G12R TOPCon Bifacial",
-  "M10R TOPCon",
-  "M10R PERC",
+type ModuleRange = {
+  id: "g12r-topcon-bifacial" | "m10r-topcon" | "m10r-perc";
+  label: string;
+  title: string;
+  range: string;
+  efficiency: string;
+  cellType: string;
+  bifacialityFactor: string;
+  powerWarranty: string;
+  productWarranty: string;
+  firstYearDegradation: string;
+  annualPowerAttenuation: string;
+  dimensions: string;
+  weight: string;
+  almmApproved: string;
+};
+
+const moduleRanges: ModuleRange[] = [
+  {
+    id: "g12r-topcon-bifacial",
+    label: "G12R TOPCon Bifacial",
+    title: "G12R TOPCon Bifacial Module",
+    range: "605 to 640 Wp",
+    efficiency: "Up to 23.69%",
+    cellType: "N-type TOPCon, 132 half-cut G12R cells",
+    bifacialityFactor: "Up to 80%",
+    powerWarranty: "30 years",
+    productWarranty: "12 years",
+    firstYearDegradation: "1%",
+    annualPowerAttenuation: "0.40%",
+    dimensions: "2382 x 1134 x 30 mm",
+    weight: "33.5 kg",
+    almmApproved: "Yes",
+  },
+  {
+    id: "m10r-topcon",
+    label: "M10R TOPCon",
+    title: "M10R TOPCon Module",
+    range: "Up to 610 Wp",
+    efficiency: "Up to 23.61%",
+    cellType: "N-type TOPCon, half-cut M10R cells",
+    bifacialityFactor: "Up to 80%",
+    powerWarranty: "30 years",
+    productWarranty: "12 years",
+    firstYearDegradation: "1%",
+    annualPowerAttenuation: "0.40%",
+    dimensions: "M10R module format",
+    weight: "M10R module format",
+    almmApproved: "Yes",
+  },
+  {
+    id: "m10r-perc",
+    label: "M10R PERC",
+    title: "M10R PERC Module",
+    range: "Up to 560 Wp",
+    efficiency: "Up to 21.68%",
+    cellType: "P-type Mono PERC, half-cut M10R cells",
+    bifacialityFactor: "Bifacial module option",
+    powerWarranty: "30 years",
+    productWarranty: "12 years",
+    firstYearDegradation: "1%",
+    annualPowerAttenuation: "0.55%",
+    dimensions: "M10R module format",
+    weight: "M10R module format",
+    almmApproved: "Yes",
+  },
 ];
+
+const moduleIds = new Set<ModuleRange["id"]>(
+  moduleRanges.map((moduleRange) => moduleRange.id),
+);
+
+function getModuleIdFromHash(): ModuleRange["id"] | null {
+  const hash = window.location.hash.replace("#", "");
+  return moduleIds.has(hash as ModuleRange["id"]) ? (hash as ModuleRange["id"]) : null;
+}
 
 function FeatureIcon() {
   return (
@@ -96,14 +167,38 @@ function FeatureIcon() {
 export function SolarModuleDetail() {
   const [selectedImage, setSelectedImage] = useState(1);
   const [activeFeature, setActiveFeature] = useState(1);
-  const [activeModule, setActiveModule] = useState(0);
-  const activeModuleLabel = moduleTabs[activeModule];
+  const [activeModuleId, setActiveModuleId] =
+    useState<ModuleRange["id"]>("g12r-topcon-bifacial");
+  const activeModule =
+    moduleRanges.find((moduleRange) => moduleRange.id === activeModuleId) ??
+    moduleRanges[0];
+
+  const selectModule = (moduleId: ModuleRange["id"]) => {
+    setActiveModuleId(moduleId);
+    window.history.replaceState(null, "", `#${moduleId}`);
+  };
+
+  useEffect(() => {
+    const syncModuleFromHash = () => {
+      const moduleId = getModuleIdFromHash();
+      if (moduleId) {
+        setActiveModuleId(moduleId);
+      }
+    };
+
+    syncModuleFromHash();
+    window.addEventListener("hashchange", syncModuleFromHash);
+
+    return () => {
+      window.removeEventListener("hashchange", syncModuleFromHash);
+    };
+  }, []);
 
   return (
     <>
       <section className="relative flex min-h-[460px] items-start justify-center overflow-hidden px-4 pb-20 pt-20 text-center sm:min-h-[560px] sm:px-6 lg:min-h-[704px] lg:pt-[114px]">
         <Image
-          src="/images/solar-module-hero.webp"
+          src="/images/solarmodule.webp"
           alt="A large solar farm across green hills at sunrise"
           fill
           priority
@@ -125,36 +220,44 @@ export function SolarModuleDetail() {
       </section>
 
       <section id="module-range" className="relative bg-white">
-        <div className="sticky top-[104px] z-30 border-b border-neutral-100 bg-neutral-50 shadow-[0_2px_8px_rgba(0,0,0,0.04)] lg:top-[133px] xl:top-[138px]">
+        <div className="sticky top-[120px] z-30 border-b border-neutral-200 bg-neutral-50 shadow-sm lg:top-[136px]">
           <div
             role="tablist"
             aria-label="Solar module range"
-            className="mx-auto flex max-w-content overflow-x-auto px-4 sm:px-6 md:grid md:grid-cols-3 xl:max-w-[1532px] xl:grid-cols-[repeat(3,426.6667px)]"
+            className="mx-auto grid max-w-content grid-cols-3 px-2 sm:px-6"
           >
-            {moduleTabs.map((label, index) => {
-              const active = activeModule === index;
+            {moduleRanges.map((moduleRange) => {
+              const active = activeModuleId === moduleRange.id;
 
               return (
                 <button
-                  key={label}
+                  key={moduleRange.id}
                   type="button"
                   role="tab"
                   aria-selected={active}
-                  onClick={() => setActiveModule(index)}
-                  className={`min-w-[280px] shrink-0 border-b-[14px] px-4 py-7 text-left text-lg font-normal transition-colors sm:text-xl md:min-w-0 md:text-center lg:pb-6 lg:pt-9 lg:text-2xl ${
-                    active
-                      ? "border-primary-400 text-primary-700"
-                      : "border-transparent text-neutral-500 hover:border-primary-200 hover:text-primary-700"
+                  aria-controls="module-panel"
+                  onClick={() => selectModule(moduleRange.id)}
+                  className={`relative flex min-h-20 items-center justify-center px-1 text-center text-xs font-bold leading-tight transition-colors sm:min-h-28 sm:px-2 sm:text-lg lg:text-2xl ${
+                    active ? "text-primary-700" : "text-neutral-400 hover:text-primary-700"
                   }`}
                 >
-                  {label}
+                  <span>{moduleRange.label}</span>
+                  <span
+                    className={`absolute inset-x-0 bottom-0 h-3 origin-left bg-primary-400 transition-transform ${
+                      active ? "scale-x-100" : "scale-x-0"
+                    }`}
+                  />
                 </button>
               );
             })}
           </div>
         </div>
 
-        <div className="mx-auto grid max-w-content gap-14 px-4 py-20 sm:px-6 lg:grid-cols-[1.08fr_1fr] lg:gap-24 lg:py-28">
+        <div
+          id="module-panel"
+          role="tabpanel"
+          className="mx-auto grid max-w-content gap-14 px-4 py-20 sm:px-6 lg:grid-cols-[1.08fr_1fr] lg:gap-24 lg:py-28"
+        >
           <div>
             <div className="relative mx-auto h-[430px] max-w-[660px] sm:h-[560px] lg:h-[640px]">
               <Image
@@ -186,61 +289,63 @@ export function SolarModuleDetail() {
           </div>
 
           <div className="pt-4 text-primary-950 lg:pt-10">
-            <h2 className="text-3xl font-bold sm:text-4xl">{activeModuleLabel} Module</h2>
+            <h2 className="text-3xl font-bold sm:text-4xl">{activeModule.title}</h2>
             <p className="mt-4 text-2xl font-bold text-primary-700">Right. Reliable. Ready.</p>
 
             <dl className="mt-16 text-lg sm:text-xl">
               <div className="grid grid-cols-2 gap-8 border-t border-neutral-200 py-8">
                 <div>
                   <dt>Range</dt>
-                  <dd className="mt-2 text-neutral-500">605 to 640 Wp</dd>
+                  <dd className="mt-2 text-neutral-500">{activeModule.range}</dd>
                 </div>
                 <div>
                   <dt>Efficiency</dt>
-                  <dd className="mt-2 text-neutral-500">Up to 23.69%</dd>
+                  <dd className="mt-2 text-neutral-500">{activeModule.efficiency}</dd>
                 </div>
               </div>
               <div className="border-t border-neutral-200 py-8">
                 <dt>Cell type</dt>
-                <dd className="mt-2 text-neutral-500">N-type TOPCon, 132 half-cut G12R cells</dd>
+                <dd className="mt-2 text-neutral-500">{activeModule.cellType}</dd>
               </div>
               <div className="grid gap-6 border-t border-neutral-200 py-8 sm:grid-cols-3">
                 <div>
                   <dt>Bifaciality factor</dt>
-                  <dd className="mt-2 text-neutral-500">Up to 80%</dd>
+                  <dd className="mt-2 text-neutral-500">{activeModule.bifacialityFactor}</dd>
                 </div>
                 <div>
                   <dt>Power warranty</dt>
-                  <dd className="mt-2 text-neutral-500">30 years</dd>
+                  <dd className="mt-2 text-neutral-500">{activeModule.powerWarranty}</dd>
                 </div>
                 <div>
                   <dt>Product warranty</dt>
-                  <dd className="mt-2 text-neutral-500">12 years</dd>
+                  <dd className="mt-2 text-neutral-500">{activeModule.productWarranty}</dd>
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-8 border-t border-neutral-200 py-8">
                 <div>
                   <dt>First year degradation</dt>
-                  <dd className="mt-2 text-neutral-500">1%</dd>
+                  <dd className="mt-2 text-neutral-500">{activeModule.firstYearDegradation}</dd>
                 </div>
                 <div>
                   <dt>Annual power attenuation</dt>
-                  <dd className="mt-2 text-neutral-500">0.40%</dd>
+                  <dd className="mt-2 text-neutral-500">
+                    {activeModule.annualPowerAttenuation}
+                  </dd>
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-8 border-t border-neutral-200 py-8">
                 <div>
                   <dt>Dimensions</dt>
-                  <dd className="mt-2 text-neutral-500">2382 × 1134 × 30 mm</dd>
+                  <dd className="mt-2 text-neutral-500">{activeModule.dimensions}</dd>
                 </div>
                 <div>
                   <dt>Weight</dt>
-                  <dd className="mt-2 text-neutral-500">33.5 kg</dd>
+                  <dd className="mt-2 text-neutral-500">{activeModule.weight}</dd>
                 </div>
               </div>
               <div className="border-y border-neutral-200 py-8">
                 <dt>ALMM approved</dt>
-                <dd className="mt-2 text-neutral-500">Yes</dd>
+                <dd className="mt-2 text-neutral-500">{activeModule.almmApproved}</dd>
               </div>
             </dl>
 

@@ -127,7 +127,7 @@ export function SolarCellDetail() {
     <>
       <section className="relative flex min-h-[460px] items-start justify-center overflow-hidden px-4 pb-20 pt-20 text-center sm:min-h-[560px] sm:px-6 lg:min-h-[704px] lg:pt-[114px]">
         <Image
-          src="/images/solar-cell-hero.webp"
+          src="/images/solarcell.webp"
           alt="Solar panels across a desert landscape"
           fill
           priority

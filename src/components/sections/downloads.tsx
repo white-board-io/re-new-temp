@@ -6,7 +6,7 @@ const downloadGroups = [
       "G12R TOPCon Bifacial Module",
       "M10R TOPCon",
       "M10R PERC",
-      "M10R PERC Cell P-Type"
+      "M10R PERC Cell P-Type",
     ],
   },
   {
@@ -29,7 +29,7 @@ const downloadGroups = [
       "UL 61730 Certificate",
       "BIS Certificate - Jaipur",
       "BIS Certificate - Dholera",
-      "Certificate of Accreditation"
+      "Certificate of Accreditation",
     ],
   },
 ];
@@ -54,11 +54,18 @@ function DownloadIcon() {
 
 export function Downloads() {
   return (
-    <section aria-label="Downloadable resources" className="bg-white py-20 sm:py-24 lg:py-28">
+    <section
+      aria-label="Downloadable resources"
+      className="bg-white py-20 sm:py-24 lg:py-28"
+    >
       <div className="mx-auto max-w-content px-4 sm:px-6">
         <div className="space-y-20 lg:space-y-24">
           {downloadGroups.map((group) => (
-            <section key={group.id} id={group.id} aria-labelledby={`${group.id}-title`}>
+            <section
+              key={group.id}
+              id={group.id}
+              aria-labelledby={`${group.id}-title`}
+            >
               <h2
                 id={`${group.id}-title`}
                 className="text-lg font-normal uppercase tracking-[0.02em] text-primary-700 sm:text-xl"

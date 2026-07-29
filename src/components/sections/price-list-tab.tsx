@@ -74,7 +74,7 @@ export function PriceListTab({
     <aside
       aria-label="Price List 2026"
       className={[
-        "design-scale-fixed-center fixed right-0 top-1/2 z-40 origin-right overflow-hidden rounded-l-2xl border border-primary-600/60 bg-[#007337] text-white shadow-lg transition-[width] duration-300 ease-out",
+        "design-scale-fixed-center fixed right-0 top-1/2 z-40 hidden origin-right overflow-hidden rounded-l-2xl border border-primary-600/60 bg-[#007337] text-white shadow-lg transition-[width] duration-300 ease-out xl:block",
         isOpen ? "h-[310px] w-[473px]" : "h-[310px] w-[65px]",
       ].join(" ")}
     >

@@ -23,9 +23,9 @@ const navItems: NavItem[] = [
     label: "Manufacturing",
     href: "#manufacturing",
     children: [
-      { label: "Jaipur, Rajasthan", href: "#manufacturing" },
-      { label: "Dholera, Gujarat", href: "#manufacturing" },
-      { label: "Visakhapatnam, Andhra Pradesh", href: "#manufacturing" },
+      { label: "Jaipur, Rajasthan", href: "/manufacturing#jaipur" },
+      { label: "Dholera, Gujarat", href: "/manufacturing#dholera" },
+      { label: "Visakhapatnam, Andhra Pradesh", href: "/manufacturing#vizag" },
     ],
   },
   { label: "Channel Partners", href: "#channel-partners" },

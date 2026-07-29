@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { CalendarDays, Factory, MapPin, Play, Sun } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type Plant = {
   id: "jaipur" | "dholera" | "vizag";
@@ -156,6 +156,13 @@ const plants: Plant[] = [
   },
 ];
 
+const plantIds = new Set<Plant["id"]>(plants.map((plant) => plant.id));
+
+function getPlantIdFromHash(): Plant["id"] | null {
+  const hash = window.location.hash.replace("#", "");
+  return plantIds.has(hash as Plant["id"]) ? (hash as Plant["id"]) : null;
+}
+
 function StatIcon({ icon }: { icon: Plant["stats"][number]["icon"] }) {
   const className = "size-16 stroke-[1.4]";
   if (icon === "capacity") return <Sun aria-hidden className={className} />;
@@ -168,16 +175,37 @@ export function ManufacturingDetail() {
   const [activeId, setActiveId] = useState<Plant["id"]>("jaipur");
   const activePlant = plants.find((plant) => plant.id === activeId) ?? plants[0];
 
+  const selectPlant = (plantId: Plant["id"]) => {
+    setActiveId(plantId);
+    window.history.replaceState(null, "", `#${plantId}`);
+  };
+
+  useEffect(() => {
+    const syncPlantFromHash = () => {
+      const plantId = getPlantIdFromHash();
+      if (plantId) {
+        setActiveId(plantId);
+      }
+    };
+
+    syncPlantFromHash();
+    window.addEventListener("hashchange", syncPlantFromHash);
+
+    return () => {
+      window.removeEventListener("hashchange", syncPlantFromHash);
+    };
+  }, []);
+
   return (
     <>
       <section className="relative isolate flex min-h-[620px] items-center justify-center overflow-hidden text-white lg:min-h-[660px]">
-        <Image
-          src="/images/manufacturing-hero.png"
-          alt="Automated solar panel manufacturing facility"
-          fill
-          priority
-          sizes="100vw"
-          className="-z-20 object-cover object-center"
+        <video
+          src="/videos/Manufacturing.webm"
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
         />
         <div className="absolute inset-0 -z-10 bg-primary-950/70" />
         <div className="mx-auto -translate-y-20 max-w-content px-4 py-20 text-center sm:px-6 lg:-translate-y-24">
@@ -210,7 +238,7 @@ export function ManufacturingDetail() {
                 role="tab"
                 aria-selected={active}
                 aria-controls="plant-panel"
-                onClick={() => setActiveId(plant.id)}
+                onClick={() => selectPlant(plant.id)}
                 className={`relative flex min-h-20 items-center justify-center gap-3 px-1 text-xs font-bold transition-colors sm:min-h-28 sm:px-2 sm:text-lg lg:text-2xl ${
                   active ? "text-primary-700" : "text-neutral-400 hover:text-primary-700"
                 }`}

@@ -6,7 +6,7 @@ export function OurProjects() {
     <section id="our-projects" className="overflow-hidden bg-white pb-section">
       <div className="relative h-[330px] sm:h-[420px] lg:h-[500px]">
         <Image
-          src="/images/projects-seasons-hd.webp"
+          src="/images/projects.webp"
           alt="Solar installations operating through forest, storm, desert, and snow conditions"
           fill
           className="object-cover"
@@ -15,7 +15,7 @@ export function OurProjects() {
         />
       </div>
 
-      <div className="relative mx-auto -mt-14 max-w-content px-4 sm:-mt-24 sm:px-6 lg:-mt-28">
+      <div className="relative mx-auto -mt-14 max-w-content px-4 sm:-mt-24 sm:px-6 lg:-mt-40">
         <div className="relative overflow-hidden rounded-md bg-primary-700 px-7 py-12 text-white sm:px-12 lg:px-20 lg:py-14 xl:mx-[22px]">
           <Image
             src="/images/sunburst.svg"

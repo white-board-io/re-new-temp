@@ -1,7 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, type ComponentType } from "react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Cpu,
+  Gauge,
+  ShieldCheck,
+  Sparkles,
+  type LucideProps,
+} from "lucide-react";
 
 const gallery = [
   {
@@ -26,95 +35,90 @@ const gallery = [
   },
 ];
 
-const features = [
+const featureCards = [
   {
-    title: "Advanced technologies",
+    title: (
+      <>
+        High Conversion
+        <br />
+        Efficiency
+      </>
+    ),
     description:
-      "Precision manufacturing and proven PERC technology deliver dependable conversion efficiency.",
+      "Advanced PERC (Passivated Emitter and Rear Cell) technology enhances light absorption and boosts overall cell efficiency.",
+    icon: Cpu,
   },
   {
-    title: "Heavy snow, hail, wind-load resistant",
+    title: (
+      <>
+        M10R Rectangular
+        <br />
+        Format
+      </>
+    ),
     description:
-      "Enhanced mechanical load up to 5400 Pascals of snow load and up to 2400 Pascals of wind load.",
+      "Optimised cell geometry increases module packing density and raises power output in high-power module designs.",
+    icon: ShieldCheck,
   },
   {
-    title: "Reliable modules with longer lifespan",
+    title: (
+      <>
+        Strong
+        <br />
+        Reliability
+      </>
+    ),
     description:
-      "Strict cell grading and automated inspection support consistent output across the module lifetime.",
+      "Enhanced resistance to micro-cracks, PID, and LeTID ensures long-term durability and consistent performance.",
+    icon: Gauge,
   },
   {
-    title: "Reliable modules with longer lifespan",
+    title: (
+      <>
+        Uniform
+        <br />
+        Appearance
+      </>
+    ),
     description:
-      "Quality controls at every stage help maintain performance in demanding operating conditions.",
+      "High-precision cell processing provides consistent colour and aesthetic uniformity for premium module quality.",
+    icon: Sparkles,
   },
 ];
 
 const carouselImages = [
   {
-    src: "/images/solar-module-rooftop.webp",
-    alt: "Solar panels installed across residential rooftops",
+    src: "/images/figma-jaipur-cleanroom.jpg",
+    alt: "ReNew cleanroom team holding solar cells",
   },
   {
-    src: "/images/project-1000mwp.webp",
-    alt: "Large ReNew utility-scale solar installation",
+    src: "/images/figma-jaipur-cell-inspection.jpg",
+    alt: "Solar cell inspection inside a ReNew manufacturing facility",
   },
   {
-    src: "/images/project-80mwp.webp",
-    alt: "ReNew solar project in operation",
+    src: "/images/figma-jaipur-automation.jpg",
+    alt: "Automated solar cell manufacturing line",
   },
   {
-    src: "/images/project-40mwp.webp",
-    alt: "ReNew solar panels at a project site",
+    src: "/images/figma-jaipur-manufacturing-line.png",
+    alt: "Solar cell manufacturing equipment",
   },
   {
-    src: "/images/partner-video-field.webp",
-    alt: "Solar panels extending across an open field",
+    src: "/images/figma-jaipur-aerial.jpg",
+    alt: "Aerial view of a ReNew manufacturing facility",
   },
 ];
 
-function FeatureIcon() {
+function CardIcon({ icon: Icon }: { icon: ComponentType<LucideProps> }) {
   return (
-    <span aria-hidden className="relative mt-1 block h-9 w-11 shrink-0 text-primary-700">
-      <svg viewBox="0 0 44 36" fill="none" className="size-full">
-        <path
-          d="M27 13.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17Zm0 4.25a4.25 4.25 0 1 1 0 8.5 4.25 4.25 0 0 1 0-8.5Z"
-          fill="currentColor"
-        />
-        <path
-          d="m27 9 1.2 4.7h-2.4L27 9Zm0 26-1.2-4.7h2.4L27 35Zm13-13-4.7 1.2v-2.4L40 22ZM14 22l4.7-1.2v2.4L14 22Zm22.2-9.2-2.5 4-1.7-1.7 4.2-2.3Zm-18.4 18.4 2.5-4 1.7 1.7-4.2 2.3Zm18.4 0L32 28.9l1.7-1.7 2.5 4Zm-18.4-18.4 4.2 2.3-1.7 1.7-2.5-4Z"
-          fill="currentColor"
-        />
-        <path
-          d="M9.5 1a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13Zm0 3.25a3.25 3.25 0 1 1 0 6.5 3.25 3.25 0 0 1 0-6.5Z"
-          fill="#8dc63f"
-        />
-        <path
-          d="M8.5 0h2l.5 3H8L8.5 0Zm0 15h2l.5-3H8l.5 3ZM2 6.5v2l3 .5V6l-3 .5Zm15 0v2l-3 .5V6l3 .5Z"
-          fill="#8dc63f"
-        />
-      </svg>
+    <span aria-hidden className="flex h-20 items-center justify-center text-primary-700">
+      <Icon className="size-16" strokeWidth={1.6} />
     </span>
-  );
-}
-
-function Arrow({ direction }: { direction: "left" | "right" }) {
-  return (
-    <svg
-      aria-hidden
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.7"
-      className={`size-7 ${direction === "right" ? "rotate-180" : ""}`}
-    >
-      <path d="m14.5 5-7 7 7 7" />
-    </svg>
   );
 }
 
 export function SolarCellDetail() {
   const [selectedImage, setSelectedImage] = useState(1);
-  const [activeFeature, setActiveFeature] = useState(1);
   const [activeSlide, setActiveSlide] = useState(0);
 
   const moveSlide = (step: number) => {
@@ -150,15 +154,16 @@ export function SolarCellDetail() {
       </section>
 
       <section id="cell-range" className="relative bg-white">
-        <div className="sticky top-[104px] z-30 border-b border-neutral-100 bg-neutral-50 shadow-[0_2px_8px_rgba(0,0,0,0.04)] lg:top-[133px] xl:top-[138px]">
-          <div className="mx-auto grid max-w-content px-4 sm:px-6 md:grid-cols-3 xl:max-w-[1532px] xl:grid-cols-[repeat(3,426.6667px)]">
-            <div className="border-b-[14px] border-primary-400 px-4 py-7 text-left text-lg font-normal text-primary-700 sm:text-xl md:text-center lg:pb-6 lg:pt-9 lg:text-2xl">
+        <div className="sticky top-[88px] z-30 bg-neutral-100 shadow-[0_2px_12px_rgba(0,0,0,0.08)] lg:top-[136px] xl:top-[138px]">
+          <div className="mx-auto grid max-w-content px-4 sm:px-6 md:grid-cols-3 xl:px-0">
+            <div className="relative flex min-h-20 items-center justify-center text-center text-sm font-normal text-primary-700 sm:min-h-[108px] sm:text-xl lg:text-2xl">
               M10R PERC Cell P-Type
+              <span className="absolute inset-x-0 bottom-0 h-3.5 bg-primary-400" />
             </div>
           </div>
         </div>
 
-        <div className="mx-auto grid max-w-content gap-14 px-4 py-20 sm:px-6 lg:grid-cols-[1.08fr_1fr] lg:gap-24 lg:py-28">
+        <div className="mx-auto grid max-w-content gap-14 px-4 py-20 sm:px-6 lg:grid-cols-[1.08fr_1fr] lg:gap-24 lg:py-28 xl:px-0">
           <div>
             <div className="relative mx-auto h-[430px] max-w-[660px] sm:h-[560px] lg:h-[640px]">
               <Image
@@ -245,63 +250,29 @@ export function SolarCellDetail() {
           </div>
         </div>
 
-        <div className="mx-auto grid max-w-content gap-16 px-4 pb-24 pt-12 sm:px-6 lg:grid-cols-2 lg:pb-32">
-          <div>
-            <p className="text-xl font-bold uppercase text-primary-700">
-              What goes into every ReNew solar panel
-            </p>
-            <div className="mt-20 space-y-8">
-              {features.map((feature, index) => {
-                const active = activeFeature === index;
-                return (
-                  <button
-                    key={`${feature.title}-${index}`}
-                    type="button"
-                    onMouseEnter={() => setActiveFeature(index)}
-                    onFocus={() => setActiveFeature(index)}
-                    onClick={() => setActiveFeature(index)}
-                    aria-expanded={active}
-                    className="flex w-full gap-6 text-left"
-                  >
-                    <FeatureIcon />
-                    <span>
-                      <span className="block text-2xl font-bold text-[#143b58] sm:text-3xl">
-                        {feature.title}
-                      </span>
-                      <span
-                        className={`mt-3 block max-w-xl text-lg leading-7 text-[#143b58] transition ${
-                          active ? "opacity-100" : "h-0 overflow-hidden opacity-0"
-                        }`}
-                      >
-                        {feature.description}
-                      </span>
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          <div>
-            <p className="text-xl font-bold uppercase text-primary-700">
-              Performance you can count on
-            </p>
-            <div className="product-chart-reveal relative mt-14 aspect-[420/278] w-full overflow-hidden">
-              <Image
-                src="/images/solar-cell-output-chart.webp"
-                alt="Thirty-year power warranty chart ending at 84.95 percent in year 30"
-                fill
-                sizes="(min-width: 1024px) 45vw, 100vw"
-                className="object-contain"
-              />
-            </div>
+        <div className="mx-auto max-w-content px-4 pb-36 pt-8 sm:px-6 lg:pt-7 xl:px-0">
+          <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
+            {featureCards.map((feature) => (
+              <article
+                key={feature.description}
+                className="flex min-h-[445px] flex-col items-center justify-start rounded-md bg-surface-tint px-10 pb-12 pt-16 text-center text-[#143b58]"
+              >
+                <CardIcon icon={feature.icon} />
+                <h2 className="mt-10 text-xl font-bold leading-6">{feature.title}</h2>
+                <p className="mt-10 text-lg leading-7">{feature.description}</p>
+              </article>
+            ))}
           </div>
         </div>
 
-        <div className="bg-primary-700 pb-28 pt-1 sm:pb-32">
-          <div className="mx-auto max-w-[1532px] px-4 sm:px-6 xl:px-0">
+        <div className="relative pb-24 pt-1 sm:pb-32">
+          <div
+            aria-hidden
+            className="absolute inset-x-0 bottom-0 top-[141px] bg-primary-700 sm:top-[181px] lg:top-[338px]"
+          />
+          <div className="relative mx-auto max-w-[1532px] px-4 sm:px-6 xl:px-0">
             <div className="relative">
-              <div className="relative aspect-[1532/445] min-h-[220px] w-full overflow-hidden rounded-md sm:min-h-[280px] lg:min-h-0">
+              <div className="relative aspect-[1532/676] min-h-[280px] w-full overflow-hidden rounded-md bg-primary-950 sm:min-h-[360px] lg:min-h-0">
                 <Image
                   key={carouselImages[activeSlide].src}
                   src={carouselImages[activeSlide].src}
@@ -311,15 +282,15 @@ export function SolarCellDetail() {
                   className="object-cover transition-opacity duration-500"
                 />
 
-                <div className="absolute inset-x-0 bottom-7 flex justify-center gap-3">
+                <div className="absolute inset-x-0 bottom-10 flex justify-center gap-5">
                   {carouselImages.map((image, index) => (
                     <button
                       key={image.src}
                       type="button"
-                      aria-label={`Show installation image ${index + 1}`}
+                      aria-label={`Show manufacturing image ${index + 1}`}
                       aria-pressed={activeSlide === index}
                       onClick={() => setActiveSlide(index)}
-                      className={`size-3 rounded-full border-2 border-white transition ${
+                      className={`h-2.5 w-14 rounded-full transition ${
                         activeSlide === index ? "bg-primary-400" : "bg-white"
                       }`}
                     />
@@ -329,36 +300,19 @@ export function SolarCellDetail() {
 
               <button
                 type="button"
-                aria-label="Previous installation image"
+                aria-label="Previous manufacturing image"
                 onClick={() => moveSlide(-1)}
-                className="absolute left-4 top-1/2 flex size-14 -translate-y-1/2 items-center justify-center bg-white/90 text-primary-950 transition hover:bg-white sm:left-6 lg:-left-24"
+                className="absolute left-4 top-1/2 flex size-14 -translate-y-1/2 items-center justify-center rounded-md bg-white/90 text-primary-950 transition hover:bg-white sm:left-6 lg:-left-24"
               >
-                <Arrow direction="left" />
+                <ChevronLeft aria-hidden className="size-8" strokeWidth={1.7} />
               </button>
               <button
                 type="button"
-                aria-label="Next installation image"
+                aria-label="Next manufacturing image"
                 onClick={() => moveSlide(1)}
-                className="absolute right-4 top-1/2 flex size-14 -translate-y-1/2 items-center justify-center bg-white/90 text-primary-950 transition hover:bg-white sm:right-6 lg:-right-24"
+                className="absolute right-4 top-1/2 flex size-14 -translate-y-1/2 items-center justify-center rounded-md bg-white/90 text-primary-950 transition hover:bg-white sm:right-6 lg:-right-24"
               >
-                <Arrow direction="right" />
-              </button>
-            </div>
-
-            <div className="mt-16 flex flex-wrap justify-center gap-8 lg:mt-44">
-              <a
-                href="#contact"
-                className="rounded-full bg-primary-400 px-12 py-4 text-xl font-bold text-white transition hover:bg-primary-500"
-              >
-                Enquire Now
-              </a>
-              <button
-                type="button"
-                disabled
-                title="Datasheet coming soon"
-                className="rounded-full bg-primary-950 px-12 py-4 text-xl font-bold text-white disabled:cursor-not-allowed disabled:opacity-100"
-              >
-                Download Datasheet
+                <ChevronRight aria-hidden className="size-8" strokeWidth={1.7} />
               </button>
             </div>
           </div>

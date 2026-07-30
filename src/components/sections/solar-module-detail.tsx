@@ -1,7 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ComponentType } from "react";
+import {
+  Cpu,
+  Factory,
+  Gauge,
+  House,
+  Play,
+  ShieldCheck,
+  ThermometerSun,
+  Warehouse,
+  type LucideProps,
+} from "lucide-react";
 
 const gallery = [
   {
@@ -30,20 +41,23 @@ const features = [
   {
     title: "Advanced TOPCon technology",
     description: "N-type TOPCon cells deliver high efficiency and dependable output.",
+    icon: Cpu,
   },
   {
     title: "Tough modules for harsh weather",
-    description:
-      "Tested to withstand extended wind load (2400 Pa) and snow load (5400 Pa)",
+    description: "Tested to withstand extended wind load (2400 Pa) and snow load (5400 Pa)",
+    icon: ThermometerSun,
   },
   {
     title: "High performance tolerance",
     description:
       "Excellent low light performance on cloudy or rainy days and a low temperature coefficient for stable performance in hot climates.",
+    icon: Gauge,
   },
   {
     title: "Robust performance",
     description: "1% first-year degradation with excellent PID resistance performance.",
+    icon: ShieldCheck,
   },
 ];
 
@@ -51,17 +65,17 @@ const applications = [
   {
     line1: "Utility-scale solar",
     line2: "power plants",
-    icon: "/images/facrory.svg",
+    icon: Warehouse,
   },
   {
-    line1: "High capacity commercial",
-    line2: "and industrial installations",
-    icon: "/images/building.svg",
+    line1: "High capacity commercial and",
+    line2: "industrial installations",
+    icon: Factory,
   },
   {
     line1: "High power requirement",
     line2: "residential units",
-    icon: "/images/house.svg",
+    icon: House,
   },
 ];
 
@@ -142,24 +156,13 @@ function getModuleIdFromHash(): ModuleRange["id"] | null {
   return moduleIds.has(hash as ModuleRange["id"]) ? (hash as ModuleRange["id"]) : null;
 }
 
-function FeatureIcon() {
+function FeatureIcon({ icon: Icon }: { icon: ComponentType<LucideProps> }) {
   return (
-    <span aria-hidden className="relative mt-1 block h-9 w-11 shrink-0 text-primary-700">
-      <svg viewBox="0 0 44 36" fill="none" className="size-full">
-        <path
-          d="M27 13.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17Zm0 4.25a4.25 4.25 0 1 1 0 8.5 4.25 4.25 0 0 1 0-8.5Z"
-          fill="currentColor"
-        />
-        <path
-          d="m27 9 1.2 4.7h-2.4L27 9Zm0 26-1.2-4.7h2.4L27 35Zm13-13-4.7 1.2v-2.4L40 22ZM14 22l4.7-1.2v2.4L14 22Zm22.2-9.2-2.5 4-1.7-1.7 4.2-2.3Zm-18.4 18.4 2.5-4 1.7 1.7-4.2 2.3Zm18.4 0L32 28.9l1.7-1.7 2.5 4Zm-18.4-18.4 4.2 2.3-1.7 1.7-2.5-4Z"
-          fill="currentColor"
-        />
-        <path
-          d="M9.5 1a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13Zm0 3.25a3.25 3.25 0 1 1 0 6.5 3.25 3.25 0 0 1 0-6.5Z"
-          fill="#8dc63f"
-        />
-        <path d="M8.5 0h2l.5 3H8L8.5 0Zm0 15h2l.5-3H8l.5 3ZM2 6.5v2l3 .5V6l-3 .5Zm15 0v2l-3 .5V6l3 .5Z" fill="#8dc63f" />
-      </svg>
+    <span
+      aria-hidden
+      className="mt-1 flex size-11 shrink-0 items-center justify-center text-primary-700"
+    >
+      <Icon className="size-10" strokeWidth={1.7} />
     </span>
   );
 }
@@ -220,270 +223,276 @@ export function SolarModuleDetail() {
       </section>
 
       <section id="module-range" className="relative bg-white">
-        <div className="sticky top-[120px] z-30 border-b border-neutral-200 bg-neutral-50 shadow-sm lg:top-[136px]">
-          <div
-            role="tablist"
-            aria-label="Solar module range"
-            className="mx-auto grid max-w-content grid-cols-3 px-2 sm:px-6"
-          >
-            {moduleRanges.map((moduleRange) => {
-              const active = activeModuleId === moduleRange.id;
-
-              return (
-                <button
-                  key={moduleRange.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={active}
-                  aria-controls="module-panel"
-                  onClick={() => selectModule(moduleRange.id)}
-                  className={`relative flex min-h-20 items-center justify-center px-1 text-center text-xs font-bold leading-tight transition-colors sm:min-h-28 sm:px-2 sm:text-lg lg:text-2xl ${
-                    active ? "text-primary-700" : "text-neutral-400 hover:text-primary-700"
-                  }`}
-                >
-                  <span>{moduleRange.label}</span>
-                  <span
-                    className={`absolute inset-x-0 bottom-0 h-3 origin-left bg-primary-400 transition-transform ${
-                      active ? "scale-x-100" : "scale-x-0"
-                    }`}
-                  />
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
+      <div className="sticky top-[88px] z-30 bg-neutral-100 shadow-[0_2px_12px_rgba(0,0,0,0.08)] lg:top-[136px] xl:top-[138px]">
         <div
-          id="module-panel"
-          role="tabpanel"
-          className="mx-auto grid max-w-content gap-14 px-4 py-20 sm:px-6 lg:grid-cols-[1.08fr_1fr] lg:gap-24 lg:py-28"
+          role="tablist"
+          aria-label="Solar module range"
+          className="mx-auto grid max-w-content grid-cols-3 px-4 sm:px-6 xl:px-0"
         >
-          <div>
-            <div className="relative mx-auto h-[430px] max-w-[660px] sm:h-[560px] lg:h-[640px]">
-              <Image
-                src={gallery[selectedImage].src}
-                alt={gallery[selectedImage].alt}
-                fill
-                sizes="(min-width: 1024px) 46vw, 90vw"
-                className="object-contain"
-              />
-            </div>
-            <div className="mt-8 grid grid-cols-5 gap-2 sm:flex sm:justify-center sm:gap-7">
-              {gallery.map((image, index) => (
-                <button
-                  key={`${image.src}-${index}`}
-                  type="button"
-                  aria-label={`Show module view ${index + 1}`}
-                  aria-pressed={selectedImage === index}
-                  onClick={() => setSelectedImage(index)}
-                  className={`relative aspect-square w-full min-w-0 overflow-hidden rounded-lg border bg-white p-1 transition sm:size-24 sm:w-24 ${
-                    selectedImage === index
-                      ? "border-primary-400 bg-neutral-100"
-                      : "border-neutral-200 hover:border-primary-300"
-                  }`}
-                >
-                  <Image src={image.src} alt="" fill sizes="96px" className="object-contain p-2" />
-                </button>
-              ))}
-            </div>
-          </div>
+          {moduleRanges.map((moduleRange) => {
+            const active = activeModuleId === moduleRange.id;
 
-          <div className="pt-4 text-primary-950 lg:pt-10">
-            <h2 className="text-3xl font-bold sm:text-4xl">{activeModule.title}</h2>
-            <p className="mt-4 text-2xl font-bold text-primary-700">Right. Reliable. Ready.</p>
-
-            <dl className="mt-16 text-lg sm:text-xl">
-              <div className="grid grid-cols-2 gap-8 border-t border-neutral-200 py-8">
-                <div>
-                  <dt>Range</dt>
-                  <dd className="mt-2 text-neutral-500">{activeModule.range}</dd>
-                </div>
-                <div>
-                  <dt>Efficiency</dt>
-                  <dd className="mt-2 text-neutral-500">{activeModule.efficiency}</dd>
-                </div>
-              </div>
-              <div className="border-t border-neutral-200 py-8">
-                <dt>Cell type</dt>
-                <dd className="mt-2 text-neutral-500">{activeModule.cellType}</dd>
-              </div>
-              <div className="grid gap-6 border-t border-neutral-200 py-8 sm:grid-cols-3">
-                <div>
-                  <dt>Bifaciality factor</dt>
-                  <dd className="mt-2 text-neutral-500">{activeModule.bifacialityFactor}</dd>
-                </div>
-                <div>
-                  <dt>Power warranty</dt>
-                  <dd className="mt-2 text-neutral-500">{activeModule.powerWarranty}</dd>
-                </div>
-                <div>
-                  <dt>Product warranty</dt>
-                  <dd className="mt-2 text-neutral-500">{activeModule.productWarranty}</dd>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-8 border-t border-neutral-200 py-8">
-                <div>
-                  <dt>First year degradation</dt>
-                  <dd className="mt-2 text-neutral-500">{activeModule.firstYearDegradation}</dd>
-                </div>
-                <div>
-                  <dt>Annual power attenuation</dt>
-                  <dd className="mt-2 text-neutral-500">
-                    {activeModule.annualPowerAttenuation}
-                  </dd>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-8 border-t border-neutral-200 py-8">
-                <div>
-                  <dt>Dimensions</dt>
-                  <dd className="mt-2 text-neutral-500">{activeModule.dimensions}</dd>
-                </div>
-                <div>
-                  <dt>Weight</dt>
-                  <dd className="mt-2 text-neutral-500">{activeModule.weight}</dd>
-                </div>
-              </div>
-              <div className="border-y border-neutral-200 py-8">
-                <dt>ALMM approved</dt>
-                <dd className="mt-2 text-neutral-500">{activeModule.almmApproved}</dd>
-              </div>
-            </dl>
-
-            <div className="mt-16 flex flex-wrap gap-6">
-              <a
-                href="#contact"
-                className="rounded-full bg-primary-400 px-12 py-4 text-xl font-bold text-white transition hover:bg-primary-500"
-              >
-                Enquire Now
-              </a>
+            return (
               <button
+                key={moduleRange.id}
                 type="button"
-                disabled
-                title="Datasheet coming soon"
-                className="rounded-full bg-primary-950 px-12 py-4 text-xl font-bold text-white disabled:cursor-not-allowed disabled:opacity-100"
+                role="tab"
+                aria-selected={active}
+                aria-controls="module-panel"
+                onClick={() => selectModule(moduleRange.id)}
+                className={`relative flex min-h-20 items-center justify-center px-2 text-center text-sm font-normal leading-tight transition-colors sm:min-h-[108px] sm:text-xl lg:text-2xl ${
+                  active ? "text-primary-700" : "text-neutral-400 hover:text-primary-700"
+                }`}
               >
-                Download Datasheet
+                <span>{moduleRange.label}</span>
+                <span
+                  className={`absolute inset-x-0 bottom-0 h-3.5 origin-left bg-primary-400 transition-transform ${
+                    active ? "scale-x-100" : "scale-x-0"
+                  }`}
+                />
               </button>
-            </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div
+        id="module-panel"
+        role="tabpanel"
+        className="mx-auto grid max-w-content gap-14 px-4 py-20 sm:px-6 lg:grid-cols-[1.08fr_1fr] lg:gap-24 lg:py-28 xl:px-0"
+      >
+        <div>
+          <div className="relative mx-auto h-[430px] max-w-[660px] sm:h-[560px] lg:h-[640px]">
+            <Image
+              src={gallery[selectedImage].src}
+              alt={gallery[selectedImage].alt}
+              fill
+              sizes="(min-width: 1024px) 46vw, 90vw"
+              className="object-contain"
+            />
+          </div>
+          <div className="mt-8 grid grid-cols-5 gap-2 sm:flex sm:justify-center sm:gap-7">
+            {gallery.map((image, index) => (
+              <button
+                key={`${image.src}-${index}`}
+                type="button"
+                aria-label={`Show module view ${index + 1}`}
+                aria-pressed={selectedImage === index}
+                onClick={() => setSelectedImage(index)}
+                className={`relative aspect-square w-full min-w-0 overflow-hidden rounded-lg border bg-white p-1 transition sm:size-24 sm:w-24 ${
+                  selectedImage === index
+                    ? "border-primary-400 bg-neutral-100"
+                    : "border-neutral-200 hover:border-primary-300"
+                }`}
+              >
+                <Image src={image.src} alt="" fill sizes="96px" className="object-contain p-2" />
+              </button>
+            ))}
           </div>
         </div>
 
-        <div className="mx-auto grid max-w-content gap-16 px-4 pb-24 pt-12 sm:px-6 lg:grid-cols-2 lg:pb-32">
-          <div>
-            <p className="text-xl font-bold uppercase text-primary-700">
-              What goes into every ReNew solar panel
-            </p>
-            <div className="mt-20 space-y-8">
-              {features.map((feature, index) => {
-                const active = activeFeature === index;
-                return (
-                  <button
-                    key={feature.title}
-                    type="button"
-                    onMouseEnter={() => setActiveFeature(index)}
-                    onFocus={() => setActiveFeature(index)}
-                    onClick={() => setActiveFeature(index)}
-                    aria-expanded={active}
-                    className="flex w-full gap-6 text-left"
-                  >
-                    <FeatureIcon />
-                    <span className="min-w-0 flex-1">
-                      <span className="block text-2xl font-bold text-[#143b58] sm:text-3xl">
-                        {feature.title}
-                      </span>
-                      <span
-                        className={`grid max-w-xl transition-[grid-template-rows,opacity] duration-500 ease-out motion-reduce:transition-none ${
-                          active
-                            ? "grid-rows-[1fr] opacity-100"
-                            : "grid-rows-[0fr] opacity-0"
-                        }`}
-                      >
-                        <span className="min-h-0 overflow-hidden">
-                          <span className="block pt-3 text-lg leading-7 text-[#143b58]">
-                            {feature.description}
-                          </span>
-                        </span>
-                      </span>
-                    </span>
-                  </button>
-                );
-              })}
+        <div className="pt-4 text-primary-950 lg:pt-10">
+          <h2 className="text-3xl font-bold sm:text-4xl">{activeModule.title}</h2>
+          <p className="mt-4 text-2xl font-bold text-primary-700">Right. Reliable. Ready.</p>
+
+          <dl className="mt-16 text-lg sm:text-xl">
+            <div className="grid grid-cols-2 gap-8 border-t border-neutral-200 py-8">
+              <div>
+                <dt>Range</dt>
+                <dd className="mt-2 text-neutral-500">{activeModule.range}</dd>
+              </div>
+              <div>
+                <dt>Efficiency</dt>
+                <dd className="mt-2 text-neutral-500">{activeModule.efficiency}</dd>
+              </div>
             </div>
-          </div>
-
-          <div>
-            <p className="text-xl font-bold uppercase text-primary-700">
-              Performance you can count on
-            </p>
-            <div className="product-chart-reveal relative mt-14 aspect-[433/257] w-full overflow-hidden">
-              <Image
-                src="/images/solar-module-output-chart.webp"
-                alt="Power output chart showing 99 percent in year one and 87.4 percent in year 30"
-                fill
-                sizes="(min-width: 1024px) 45vw, 100vw"
-                className="object-contain"
-              />
+            <div className="border-t border-neutral-200 py-8">
+              <dt>Cell type</dt>
+              <dd className="mt-2 text-neutral-500">{activeModule.cellType}</dd>
             </div>
-          </div>
-        </div>
+            <div className="grid gap-6 border-t border-neutral-200 py-8 sm:grid-cols-3">
+              <div>
+                <dt>Bifaciality factor</dt>
+                <dd className="mt-2 text-neutral-500">{activeModule.bifacialityFactor}</dd>
+              </div>
+              <div>
+                <dt>Power warranty</dt>
+                <dd className="mt-2 text-neutral-500">{activeModule.powerWarranty}</dd>
+              </div>
+              <div>
+                <dt>Product warranty</dt>
+                <dd className="mt-2 text-neutral-500">{activeModule.productWarranty}</dd>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-8 border-t border-neutral-200 py-8">
+              <div>
+                <dt>First year degradation</dt>
+                <dd className="mt-2 text-neutral-500">{activeModule.firstYearDegradation}</dd>
+              </div>
+              <div>
+                <dt>Annual power attenuation</dt>
+                <dd className="mt-2 text-neutral-500">
+                  {activeModule.annualPowerAttenuation}
+                </dd>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-8 border-t border-neutral-200 py-8">
+              <div>
+                <dt>Dimensions</dt>
+                <dd className="mt-2 text-neutral-500">{activeModule.dimensions}</dd>
+              </div>
+              <div>
+                <dt>Weight</dt>
+                <dd className="mt-2 text-neutral-500">{activeModule.weight}</dd>
+              </div>
+            </div>
+            <div className="border-y border-neutral-200 py-8">
+              <dt>ALMM approved</dt>
+              <dd className="mt-2 text-neutral-500">{activeModule.almmApproved}</dd>
+            </div>
+          </dl>
 
-        <div className="mx-auto max-w-content px-4 pb-24 text-center sm:px-6 lg:pb-32">
-          <h2 className="text-3xl font-medium text-primary-700">Ideal Applications</h2>
-          <div className="mt-16 grid gap-14 md:grid-cols-3 md:gap-8">
-             {applications.map((application) =>
-                (
-                <div key={application.line1} className="flex flex-col items-center">
-                  <span className="flex size-28 items-center justify-center rounded-full bg-primary-700 sm:size-32">
-                    <Image src={application.icon} alt="" width={64} height={64} aria-hidden />
-                  </span>
-                  <p className="mt-10 max-w-sm text-2xl leading-8 text-[#143b58]">
-                    {application.line1}
-                    <br />
-                    {application.line2}
-                  </p>
-                </div>
-                )
-            )}
-          </div>
-        </div>
-
-        <div className="bg-primary-700 pb-32">
-          <div className="mx-auto max-w-[1532px] px-4 sm:px-6 xl:px-0">
+          <div className="mt-16 flex flex-wrap gap-6">
+            <a
+              href="#contact"
+              className="rounded-full bg-primary-400 px-12 py-4 text-xl font-bold text-white transition hover:bg-primary-500"
+            >
+              Enquire Now
+            </a>
             <button
               type="button"
-              aria-label="Play rooftop solar installation video"
-              className="group relative block aspect-[1532/445] min-h-[220px] w-full overflow-hidden rounded-md sm:min-h-[280px] lg:min-h-0"
+              disabled
+              title="Datasheet coming soon"
+              className="rounded-full bg-primary-950 px-12 py-4 text-xl font-bold text-white disabled:cursor-not-allowed disabled:opacity-100"
             >
-              <Image
-                src="/images/solar-module-rooftop.webp"
-                alt="Solar panels installed on a residential rooftop"
-                fill
-                sizes="(min-width: 1536px) 1532px, 100vw"
-                className="object-cover transition duration-500 group-hover:scale-[1.02]"
-              />
-              <span className="absolute left-1/2 top-1/2 flex size-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[6px] border-white sm:size-48">
-                <span className="ml-3 block h-0 w-0 border-y-[28px] border-l-[44px] border-y-transparent border-l-white sm:border-y-[44px] sm:border-l-[66px]" />
-              </span>
+              Download Datasheet
             </button>
-            <div className="mt-16 flex flex-wrap justify-center gap-8 lg:mt-44">
-              <a
-                href="#contact"
-                className="rounded-full bg-primary-400 px-12 py-4 text-xl font-bold text-white transition hover:bg-primary-500"
-              >
-                Enquire Now
-              </a>
-              <button
-                type="button"
-                disabled
-                title="Datasheet coming soon"
-                className="rounded-full bg-primary-950 px-12 py-4 text-xl font-bold text-white disabled:cursor-not-allowed disabled:opacity-100"
-              >
-                Download Datasheet
-              </button>
-            </div>
           </div>
         </div>
-      </section>
+      </div>
+
+      <div
+        className="mx-auto grid max-w-content gap-16 px-4 pb-44 pt-0 sm:px-6 lg:grid-cols-[0.98fr_1fr] lg:gap-24 lg:pb-64 xl:px-0"
+      >
+        <div className="space-y-12 pt-0 sm:space-y-14">
+          {features.map((feature, index) => {
+            const active = activeFeature === index;
+            return (
+              <button
+                key={feature.title}
+                type="button"
+                onMouseEnter={() => setActiveFeature(index)}
+                onFocus={() => setActiveFeature(index)}
+                onClick={() => setActiveFeature(index)}
+                aria-expanded={active}
+                className="flex w-full gap-7 text-left"
+              >
+                <FeatureIcon icon={feature.icon} />
+                <span className="min-w-0 flex-1">
+                  <span className="block text-2xl font-bold leading-tight text-[#143b58] sm:text-3xl">
+                    {feature.title}
+                  </span>
+                  <span
+                    className={`grid max-w-xl transition-[grid-template-rows,opacity] duration-500 ease-out motion-reduce:transition-none ${
+                      active ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                    }`}
+                  >
+                    <span className="min-h-0 overflow-hidden">
+                      <span className="block pt-4 text-lg leading-7 text-[#143b58] sm:text-xl sm:leading-8">
+                        {feature.description}
+                      </span>
+                    </span>
+                  </span>
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="flex items-start justify-center pt-2 lg:pt-8">
+          <div className="product-chart-reveal relative aspect-[433/257] w-full max-w-[560px] overflow-hidden">
+            <Image
+              src="/images/solar-module-output-chart.webp"
+              alt="Power output chart showing 99 percent in year one and 87.4 percent in year 30"
+              fill
+              sizes="(min-width: 1024px) 560px, 100vw"
+              className="object-contain"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-content px-4 pb-36 text-center sm:px-6 xl:px-0">
+        <div className="grid gap-14 md:grid-cols-3 md:gap-8">
+          {applications.map((application) => (
+            <div key={application.line1} className="flex flex-col items-center">
+              <span className="flex size-28 items-center justify-center rounded-full bg-primary-700 sm:size-32">
+                <application.icon
+                  aria-hidden
+                  className="size-16 text-white"
+                  strokeWidth={1.8}
+                />
+              </span>
+              <p className="mt-10 max-w-sm text-2xl font-bold leading-8 text-[#143b58]">
+                {application.line1}
+                <br />
+                {application.line2}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="relative pb-32">
+        <div
+          aria-hidden
+          className="absolute inset-x-0 bottom-0 top-[150px] bg-primary-700 sm:top-[180px] lg:top-[280px]"
+        />
+        <div className="relative mx-auto max-w-[1532px] px-4 sm:px-6 xl:px-0">
+          <button
+            type="button"
+            aria-label="Play utility-scale solar installation video"
+            className="group relative block aspect-[1532/740] min-h-[300px] w-full overflow-hidden rounded-md bg-primary-950 sm:min-h-[360px] lg:min-h-0"
+          >
+            <Image
+              src="/images/solar-module-video.svg"
+              alt="Solar panels extending across a utility-scale project site"
+              fill
+              sizes="(min-width: 1536px) 1532px, 100vw"
+              className="object-cover object-[center_35%] transition duration-500 group-hover:scale-[1.02]"
+            />
+            <span className="absolute left-1/2 top-1/2 flex size-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[6px] border-white sm:size-48">
+              <Play aria-hidden className="ml-2 size-14 fill-white text-white sm:size-20" />
+            </span>
+          </button>
+
+          <div className="relative mt-16 flex flex-wrap justify-center gap-8 lg:mt-44">
+            <Image
+              src="/images/sunburst.svg"
+              alt=""
+              width={520}
+              height={520}
+              aria-hidden
+              className="pointer-events-none absolute -bottom-28 right-0 hidden w-[520px] opacity-40 lg:block"
+            />
+            <a
+              href="#contact"
+              className="relative rounded-full bg-primary-400 px-12 py-4 text-xl font-bold text-white transition hover:bg-primary-500"
+            >
+              Enquire Now
+            </a>
+            <button
+              type="button"
+              disabled
+              title="Datasheet coming soon"
+              className="relative rounded-full bg-primary-950 px-12 py-4 text-xl font-bold text-white disabled:cursor-not-allowed disabled:opacity-100"
+            >
+              Download Datasheet
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
     </>
   );
 }

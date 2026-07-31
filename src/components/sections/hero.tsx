@@ -70,11 +70,7 @@ export function Hero() {
   return (
     <section
       aria-roledescription="carousel"
-      className="relative min-h-[640px] overflow-hidden bg-primary-900 lg:min-h-[560px]"
-      style={{
-        clipPath:
-          "polygon(0 0, 100% 0, 100% calc(100% - 56px), calc(100% - 56px) 100%, 56px 100%, 0 calc(100% - 56px))",
-      }}
+      className="relative min-h-[640px] overflow-hidden bg-primary-900 lg:min-h-[560px] lg:[clip-path:polygon(0_0,100%_0,100%_calc(100%-56px),calc(100%-56px)_100%,56px_100%,0_calc(100%-56px))]"
     >
       {/* Slide 1 */}
       <div className={slideClass(0)} aria-hidden={activeSlide !== 0}>

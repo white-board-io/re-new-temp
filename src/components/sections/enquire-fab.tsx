@@ -57,11 +57,11 @@ export function EnquireFab() {
     // The wrapper spans the whole artwork, so it takes no pointer events — only
     // the dome is clickable. Hovering the dome still puts :hover on the wrapper,
     // which is what drives the sunburst's group-hover.
-    <div className="design-scale-fixed-bottom group pointer-events-none fixed bottom-0 right-2 z-40 h-[95px] w-[183px] origin-bottom-right scale-[0.72] sm:right-4 sm:scale-100 lg:right-16">
+    <div className="design-scale-fixed-bottom group pointer-events-none fixed bottom-0 right-2 z-40 h-[76px] w-[146px] origin-bottom-right scale-[0.72] sm:right-4 sm:scale-100 lg:right-16">
       <Sunburst />
       <ContactModalTrigger
-        aria-label="Enquire now"
-        className="pointer-events-auto absolute bottom-0 left-1/2 block h-[55px] w-[105px] -translate-x-1/2 rounded-t-full bg-primary-700 pt-4 text-center text-xs font-black uppercase leading-[14px] text-primary-400 transition-colors hover:bg-primary-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400"
+        ariaLabel="Enquire now"
+        className="pointer-events-auto absolute bottom-0 left-1/2 block h-[44px] w-[84px] -translate-x-1/2 rounded-t-full bg-primary-700 pt-3 text-center text-[10px] font-black uppercase leading-3 text-primary-400 transition-colors hover:bg-primary-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400"
       >
         Enquire
       </ContactModalTrigger>

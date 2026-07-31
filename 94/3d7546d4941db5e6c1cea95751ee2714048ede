@@ -1,0 +1,23 @@
+src/components/sections/hero.tsx
+  s_4ba429846cd9b1::t_1805ec00d6b34a 23,30,70-72,76,121,124,131,140,159,161,166,181,189,197,203
+src/components/sections/stats-bar.tsx
+  s_4ba429846cd9b1::t_e6a0d39c5e296b 57-58,80
+src/app/page.tsx
+  s_4ba429846cd9b1::t_fb02f1527eeb52 40-43
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.11",
+  "base_commit_sha": "943d7546d4941db5e6c1cea95751ee2714048ede",
+  "prompts": {},
+  "sessions": {
+    "s_4ba429846cd9b1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1644d1a8-59e2-4eec-a5b3-e570d526076b",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Arun Selva Kumar <arun@joinassembly.com>"
+    }
+  }
+}

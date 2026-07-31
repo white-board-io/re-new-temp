@@ -20,14 +20,14 @@ const plants = [
     src: "/images/state-dholera.svg",
     width: 99,
     height: 144,
-    offset: "mt-14",
+    offset: "mt-4 hero-full:mt-14",
   },
   {
     name: "Vizag",
     src: "/images/state-vizag.svg",
     width: 158,
     height: 122,
-    offset: "mt-4",
+    offset: "mt-2 hero-full:mt-4",
   },
 ];
 
@@ -67,10 +67,13 @@ export function Hero() {
         : "translate-y-8 opacity-0"
     }`;
 
+  // From md up, the first-fold grid owns the height: the hero drops its own
+  // floor and absorbs whatever the viewport leaves after the stats bar. Slide
+  // content is therefore centred rather than pinned, so it rides the squeeze.
   return (
     <section
       aria-roledescription="carousel"
-      className="relative min-h-[640px] overflow-hidden bg-primary-900 lg:min-h-[560px] lg:[clip-path:polygon(0_0,100%_0,100%_calc(100%-56px),calc(100%-56px)_100%,56px_100%,0_calc(100%-56px))]"
+      className="relative min-h-[640px] overflow-hidden bg-primary-900 md:min-h-0 lg:[clip-path:polygon(0_0,100%_0,100%_calc(100%-56px),calc(100%-56px)_100%,56px_100%,0_calc(100%-56px))]"
     >
       {/* Slide 1 */}
       <div className={slideClass(0)} aria-hidden={activeSlide !== 0}>
@@ -111,17 +114,17 @@ export function Hero() {
         />
         <SlideFilm />
         <div
-          className={`relative flex h-full items-start px-5 pb-28 pt-28 sm:px-[9.25vw] sm:pt-[17.5vh] lg:pt-[148px] xl:pt-[160px] ${contentClass(1)}`}
+          className={`relative flex h-full items-start px-5 pb-28 pt-28 sm:px-[9.25vw] sm:pt-[17.5vh] md:items-center md:pb-20 md:pt-10 hero-full:py-10 ${contentClass(1)}`}
         >
           <div className="max-w-[760px] text-white">
-            <h2 className="text-[32px] font-bold leading-[1.12] tracking-[0.02em] sm:text-[40px] lg:text-[44px]">
+            <h2 className="text-[32px] font-bold leading-[1.12] tracking-[0.02em] sm:text-[40px] hero-full:text-[44px]">
               <span className="lg:block">
                 The company behind the world&apos;s
               </span>{" "}
               <span className="lg:block">clean energy transition.</span>{" "}
               <span className="lg:block">Now making the solar panels too.</span>
             </h2>
-            <p className="mt-8 text-[20px] leading-[1.55] tracking-[0.025em] text-white sm:text-[22px] lg:mt-10 lg:text-[24px]">
+            <p className="mt-8 text-[20px] leading-[1.55] tracking-[0.025em] text-white sm:text-[22px] hero-full:mt-10 hero-full:text-[24px]">
               20 GW portfolio
               <br />
               18.6M+ tonnes of CO₂ avoided
@@ -130,7 +133,7 @@ export function Hero() {
             </p>
             <a
               href="https://www.renew.com/"
-              className="mt-10 inline-flex min-h-11 min-w-[204px] items-center justify-center rounded-full bg-accent px-10 text-[20px] font-medium text-white transition-colors hover:bg-primary-400 lg:mt-14"
+              className="mt-10 inline-flex min-h-11 min-w-[204px] items-center justify-center rounded-full bg-accent px-10 text-[20px] font-medium text-white transition-colors hover:bg-primary-400 hero-full:mt-14"
             >
               Visit ReNew
             </a>
@@ -149,14 +152,14 @@ export function Hero() {
         />
         <SlideFilm />
         <div
-          className={`relative flex h-full flex-col items-center justify-center px-4 pb-20 pt-6 text-center sm:px-6 ${contentClass(2)}`}
+          className={`relative flex h-full flex-col items-center justify-center px-4 pb-24 pt-4 text-center sm:px-6 hero-full:pt-6 ${contentClass(2)}`}
         >
-          <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+          <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl hero-full:text-5xl">
             Net zero does not wait.
             <br />
             Neither do we.
           </h2>
-          <p className="mt-5 text-lg text-white sm:text-2xl">
+          <p className="mt-4 text-lg text-white sm:text-xl hero-full:mt-5 hero-full:text-2xl">
             6.4 GW of capacity{" "}
             <span aria-hidden className="mx-3 opacity-60">
               |
@@ -171,7 +174,7 @@ export function Hero() {
             </span>
             30-year power warranty
           </p>
-          <div className="mt-8 flex items-start justify-center gap-10 sm:gap-16">
+          <div className="mt-6 flex items-start justify-center gap-10 sm:gap-16 hero-full:mt-8">
             {plants.map((plant) => (
               <figure key={plant.name} className={plant.offset}>
                 <Image
@@ -179,7 +182,7 @@ export function Hero() {
                   alt=""
                   width={plant.width}
                   height={plant.height}
-                  className="mx-auto h-16 w-auto sm:h-20 lg:h-24"
+                  className="mx-auto h-16 w-auto sm:h-20 hero-full:h-24"
                 />
                 <figcaption className="mt-2 text-lg font-bold text-white">
                   {plant.name}
@@ -187,13 +190,13 @@ export function Hero() {
               </figure>
             ))}
           </div>
-          <EnquireButton className="mt-8" />
+          <EnquireButton className="mt-6 hero-full:mt-8" />
         </div>
       </div>
 
       {/* Shared slide progress */}
       <div
-        className="absolute inset-x-0 bottom-14 flex items-center justify-center gap-4"
+        className="absolute inset-x-0 bottom-6 flex items-center justify-center gap-4 hero-full:bottom-14"
         role="tablist"
         aria-label="Hero slides"
       >

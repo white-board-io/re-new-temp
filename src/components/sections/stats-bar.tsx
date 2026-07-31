@@ -54,8 +54,8 @@ const stats = [
 
 export function StatsBar() {
   return (
-    <section className="bg-white py-16 lg:py-12 xl:flex xl:min-h-[200px] xl:items-center xl:py-0">
-      <dl className="mx-auto grid max-w-[1508px] grid-cols-1 gap-x-12 gap-y-10 px-4 sm:grid-cols-2 sm:px-6 lg:[grid-template-columns:repeat(4,minmax(4px,auto))] xl:w-[1508px] xl:grid-cols-[398px_417px_377px_316px] xl:gap-x-0 xl:px-0">
+    <section className="bg-white py-16 md:py-12 lg:py-6 xl:flex xl:min-h-[200px] xl:items-center xl:py-0">
+      <dl className="mx-auto grid max-w-[1508px] grid-cols-1 gap-x-12 gap-y-10 px-4 sm:grid-cols-2 sm:px-6 lg:gap-x-6 lg:[grid-template-columns:repeat(4,minmax(4px,auto))] xl:w-[1508px] xl:grid-cols-[398px_417px_377px_316px] xl:gap-x-0 xl:px-0">
         {stats.map((stat) => (
           <div
             key={stat.label}
@@ -77,7 +77,7 @@ export function StatsBar() {
                 <CountUp value={stat.value} />
               </dd>
               <dt
-                className={`mt-3 text-[18px] font-medium leading-[26px] text-neutral-500 ${stat.labelMargin} ${stat.labelWidth}`}
+                className={`mt-3 text-[18px] font-medium leading-[26px] text-neutral-500 lg:text-[16px] lg:leading-[22px] xl:text-[18px] xl:leading-[26px] ${stat.labelMargin} ${stat.labelWidth}`}
               >
                 {stat.label}
               </dt>

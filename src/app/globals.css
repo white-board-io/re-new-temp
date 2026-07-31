@@ -67,6 +67,17 @@
   --tracking-hero: 0.03em;
 }
 
+/*
+ * The hero at its full Figma scale (54px headline, 96px state maps, 56px dot
+ * inset) needs roughly 637 design px of band, i.e. a fold of ~837 — which
+ * works out to 100svh >= 975 * --design-scale, and since that scale is
+ * 100vw/1920, to a viewport no wider than ~1.97x its height. Squatter windows
+ * than that fall back to the compact scale. (Tailwind flattens a comma'd
+ * media list here, so this stays a single condition; the cost is that an
+ * ultrawide gets the compact scale in a band that could take the full one.)
+ */
+@custom-variant hero-full (@media (min-width: 1280px) and (max-aspect-ratio: 197/100));
+
 @media (min-width: 1280px) {
   :root {
     /*
@@ -97,6 +108,61 @@
   .design-scale-fixed-bottom {
     transform: scale(var(--design-scale));
     transform-origin: right bottom;
+  }
+}
+
+/*
+ * First fold — the Hero and the Stats Bar share the viewport below the fixed
+ * header, so the infographics are on screen before the user scrolls and the
+ * next section starts exactly at the fold with nothing peeking above it.
+ *
+ * height = clamp(floor, available, max), so the fold tracks the viewport:
+ *
+ *   --fold-available  fills the viewport exactly. The Stats Bar keeps its own
+ *                     height and the Hero takes the slack, growing or cropping;
+ *                     its full-bleed footage reads fine at any band height.
+ *   --fold-max        stops the growth. Past this the Hero would be a wall of
+ *                     video around fixed-size content, so on a 4K panel or a
+ *                     portrait monitor we hold this height and let the next
+ *                     section show — the "does not apply" case.
+ *   --fold-floor      stops the squeeze. Below this the Hero would be too short
+ *                     to be legible, so we let the Stats Bar sit a little under
+ *                     the fold instead — a small overflow beats a crushed hero.
+ */
+.first-fold {
+  --fold-header: 88px; /* matches main's pt-[88px] below lg */
+  --fold-floor: 700px;
+  --fold-max: 1300px;
+  --fold-available: calc(100svh - var(--fold-header));
+}
+
+@media (min-width: 768px) {
+  .first-fold {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+    height: clamp(var(--fold-floor), var(--fold-available), var(--fold-max));
+  }
+}
+
+@media (min-width: 1024px) {
+  .first-fold {
+    --fold-header: 138px;
+    --fold-floor: 620px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .first-fold {
+    /* Figma canvas is hero 742 + stats 200; growth is allowed past it. */
+    --fold-floor: 700px;
+    --fold-max: 1550px;
+    /*
+     * `main` is zoomed by --design-scale, so a raw 100svh here would be
+     * measured in real pixels and then scaled again. Divide the scale back
+     * out to land on the same coordinate system as the 1920px design canvas.
+     */
+    --fold-available: calc(100svh / var(--design-scale) - 138px);
+    grid-template-rows: minmax(0, 1fr) 200px;
   }
 }
 

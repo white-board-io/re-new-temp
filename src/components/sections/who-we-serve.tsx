@@ -46,14 +46,14 @@ export function WhoWeServe() {
           className="w-full animate-sunburst motion-reduce:animate-none"
         />
       </div>
-      <div className="relative mx-auto max-w-content px-4 sm:px-6">
+      <div className="relative mx-auto max-w-content px-4 text-center sm:px-6 md:text-left">
         <p className="text-2xl font-bold uppercase leading-8 text-primary-700">
           Who We Serve
         </p>
         <h2 className="mt-6 text-4xl font-bold text-primary-950 sm:text-[54px] sm:leading-[58px]">
           Solar for <span className="text-primary-400">Every Life</span>
         </h2>
-        <ul className="mt-6 flex flex-wrap gap-x-8 gap-y-2 text-lg text-neutral-500">
+        <ul className="mt-6 flex flex-wrap justify-center gap-x-8 gap-y-2 text-lg text-neutral-500 md:justify-start">
           <li className="flex items-center gap-2">
             <Image
               src="/images/icon-factory.svg"
@@ -75,7 +75,7 @@ export function WhoWeServe() {
         </ul>
 
         <div
-          className="mt-16 grid items-center gap-6 md:grid-cols-3 lg:mt-24 lg:gap-[90px]"
+          className="mt-10 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 md:mt-16 md:grid md:grid-cols-3 md:overflow-visible md:pb-0 lg:mt-24 lg:gap-[90px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           onMouseLeave={() => setActive(null)}
           onBlur={(event) => {
             if (!event.currentTarget.contains(event.relatedTarget)) {
@@ -90,15 +90,16 @@ export function WhoWeServe() {
               <article
                 key={card.title.join(" ")}
                 tabIndex={0}
+                onClick={() => setActive(index)}
                 onMouseEnter={() => setActive(index)}
                 onMouseLeave={() => setActive(null)}
                 onFocus={() => setActive(index)}
-                className={`relative h-[460px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-700 ${
+                className={`relative h-[420px] w-[88%] shrink-0 snap-start focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-700 md:h-[460px] md:w-auto md:shrink ${
                   isActive ? "z-10" : "z-0"
                 }`}
               >
                 <div
-                  className={`absolute inset-0 origin-center overflow-hidden rounded-md transition-[scale,box-shadow] motion-reduce:transition-none ${GROW} ${
+                  className={`absolute inset-0 origin-center overflow-hidden rounded-2xl transition-[scale,box-shadow] motion-reduce:transition-none md:rounded-md ${GROW} ${
                     isActive
                       ? "shadow-[0_8px_18px_rgba(0,0,0,0.18)] md:scale-[1.14]"
                       : "scale-100"
@@ -116,16 +117,16 @@ export function WhoWeServe() {
                   <div
                     className={`absolute inset-0 transition-colors duration-500 ${
                       isActive
-                        ? "bg-primary-700/85"
-                        : "bg-gradient-to-t from-primary-950/85 via-primary-950/10 to-transparent"
+                        ? "bg-gradient-to-t from-primary-950/85 via-primary-950/35 to-transparent md:bg-primary-700/85"
+                        : "bg-gradient-to-t from-primary-950/85 via-primary-950/35 to-transparent md:via-primary-950/10"
                     }`}
                   />
 
                   <h3
-                    className={`absolute bottom-16 left-8 z-10 max-w-56 text-2xl font-bold leading-tight text-white transition-[opacity,translate] duration-300 ${
+                    className={`absolute bottom-5 left-5 z-10 max-w-48 text-xl font-bold leading-tight text-white transition-[opacity,translate] duration-300 md:bottom-16 md:left-8 md:max-w-56 md:text-2xl ${
                       isActive
                         ? "translate-y-2 opacity-0"
-                        : "translate-y-0 opacity-100 delay-200"
+                        : "translate-y-2 opacity-0 md:translate-y-0 md:opacity-100 md:delay-200"
                     }`}
                   >
                     {card.title.map((line) => (
@@ -136,11 +137,10 @@ export function WhoWeServe() {
                   </h3>
 
                   <div
-                    aria-hidden={!isActive}
-                    className={`absolute inset-x-12 top-20 z-10 text-center text-4xl font-bold leading-tight text-white transition-[opacity,translate] duration-500 ${
+                    className={`absolute inset-x-8 top-12 z-10 text-center text-3xl font-bold leading-tight text-white transition-[opacity,translate] duration-500 md:inset-x-12 md:top-20 md:text-4xl ${
                       isActive
                         ? "translate-y-0 opacity-100 delay-150"
-                        : "pointer-events-none translate-y-3 opacity-0"
+                        : "translate-y-0 opacity-100 md:pointer-events-none md:translate-y-3 md:opacity-0"
                     }`}
                   >
                     {card.title.map((line) => (
@@ -151,19 +151,18 @@ export function WhoWeServe() {
                   </div>
 
                   <div
-                    aria-hidden={!isActive}
-                    className={`absolute inset-x-12 bottom-10 top-[180px] z-10 flex flex-col items-center text-center text-white transition-[opacity,translate] duration-500 ${
+                    className={`absolute inset-x-8 bottom-8 top-[140px] z-10 flex flex-col items-center text-center text-white transition-[opacity,translate] duration-500 md:inset-x-12 md:bottom-10 md:top-[180px] ${
                       isActive
                         ? "translate-y-0 opacity-100 delay-200"
-                        : "pointer-events-none translate-y-4 opacity-0"
+                        : "translate-y-0 opacity-100 md:pointer-events-none md:translate-y-4 md:opacity-0"
                     }`}
                   >
-                    <p className="mx-auto max-w-[430px] text-lg leading-7">
+                    <p className="mx-auto max-w-[430px] text-base leading-6 md:text-lg md:leading-7">
                       {card.description}
                     </p>
                     <a
                       href="#contact"
-                      className="mt-auto rounded-full bg-white px-8 py-2.5 text-base font-bold text-primary-950 hover:bg-primary-50"
+                      className="mt-auto rounded-full bg-white px-7 py-2.5 text-sm font-bold text-primary-950 hover:bg-primary-50 md:px-8 md:text-base"
                     >
                       Get in Touch
                     </a>

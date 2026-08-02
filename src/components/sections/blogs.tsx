@@ -37,11 +37,11 @@ export function Blogs() {
           </p>
         </header>
 
-        <div className="mt-14 grid gap-7 lg:grid-cols-3">
+        <div className="mt-14 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 md:grid md:gap-7 md:overflow-visible md:pb-0 lg:grid-cols-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {posts.map((post) => (
             <article
               key={post.title}
-              className="flex min-h-full flex-col overflow-hidden rounded-md bg-neutral-100"
+              className="flex min-h-full w-[88%] shrink-0 snap-start flex-col overflow-hidden rounded-2xl bg-neutral-100 md:w-auto md:shrink md:rounded-md"
             >
               <Image
                 src={post.image}

@@ -34,16 +34,13 @@ const products = [
   },
 ];
 
-// Same clock as the Who We Serve cards: the width trade reads as one motion.
-const GROW = "duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]";
-
 // Expanded content exits fast and together, then re-enters with a gentle rise
 // once the card is most of the way open.
 const contentIn = (isActive: boolean, delay: string) =>
-  `transition-[opacity,transform,background-color] ease-out ${
+  `md:transition-[opacity,transform,background-color] md:ease-out ${
     isActive
-      ? `translate-y-0 opacity-100 duration-500 ${delay}`
-      : "translate-y-2 opacity-0 duration-200"
+      ? `md:translate-y-0 md:opacity-100 md:duration-500 ${delay}`
+      : "md:translate-y-2 md:opacity-0 md:duration-200"
   }`;
 
 export function Products() {
@@ -79,13 +76,12 @@ export function Products() {
         </div>
 
         <div
-          className={`mt-12 grid gap-6 pb-24 transition-[grid-template-columns] md:mt-56 md:grid-cols-[var(--product-cols)] md:gap-12 ${GROW}`}
+          className="mt-12 grid gap-6 pb-24 md:mt-56 md:grid-cols-[var(--product-cols)] md:gap-12 md:transition-[grid-template-columns] md:duration-700 md:ease-[cubic-bezier(0.4,0,0.2,1)]"
           style={{ "--product-cols": columns } as React.CSSProperties}
           onMouseLeave={() => setActive(DEFAULT_PRODUCT)}
         >
           {products.map((product, i) => {
             const isActive = i === active;
-            const usesLightArtwork = i === 1;
             return (
               <article
                 key={product.title}
@@ -94,26 +90,33 @@ export function Products() {
                 className="relative h-[420px] overflow-hidden rounded-md lg:h-[558px]"
               >
                 <Image
+                  src={product.expandedImage}
+                  alt={product.alt}
+                  fill
+                  className={`object-cover md:hidden ${product.position}`}
+                  sizes="100vw"
+                />
+                <Image
                   src={isActive ? product.expandedImage : product.image}
                   alt={product.alt}
                   fill
-                  className={`object-cover ${product.position}`}
-                  sizes="(min-width: 768px) 62vw, 100vw"
+                  className={`hidden object-cover md:block ${product.position}`}
+                  sizes="(min-width: 768px) 62vw, 50vw"
                 />
-                <h3 className="absolute left-10 top-10 z-10 text-2xl font-bold uppercase leading-8 text-primary-950">
+                <div className="absolute inset-0 bg-primary-950/55 md:hidden" />
+                <h3 className="absolute left-1/2 top-8 z-10 -translate-x-1/2 text-center text-2xl font-bold uppercase leading-8 text-white md:left-10 md:top-10 md:translate-x-0 md:text-left md:text-primary-950">
                   {product.title}
                 </h3>
                 <div
-                  aria-hidden={!isActive}
-                  className={`absolute bottom-12 left-[47%] right-12 top-[106px] z-10 flex flex-col ${
-                    isActive ? "" : "pointer-events-none"
+                  className={`absolute inset-x-8 bottom-8 top-[104px] z-10 flex flex-col items-center text-center md:bottom-12 md:left-[47%] md:right-12 md:top-[106px] md:items-stretch md:text-left ${
+                    isActive ? "" : "md:pointer-events-none"
                   }`}
                 >
-                  <div className={contentIn(isActive, "delay-[350ms]")}>
+                  <div className={contentIn(isActive, "md:delay-[350ms]")}>
                     {product.features.map((feature) => (
                       <p
                         key={feature.lead}
-                        className={`mt-6 border-b border-white/30 pb-6 text-base leading-6 text-white first:mt-0 last:border-b-0 lg:text-xl lg:leading-7`}
+                        className="mt-3 border-b border-white/30 pb-3 text-sm leading-5 text-white first:mt-0 last:border-b-0 md:mt-6 md:pb-6 md:text-base md:leading-6 lg:text-xl lg:leading-7"
                       >
                         <strong className="font-bold">{feature.lead}</strong>
                         <br />
@@ -123,9 +126,9 @@ export function Products() {
                   </div>
                   <Link
                     href={product.href}
-                    className={`mt-auto self-start rounded-full bg-accent px-8 py-2.5 text-xl font-medium text-white hover:bg-primary-400 ${contentIn(
+                    className={`mt-auto self-center rounded-full bg-accent px-7 py-2.5 text-base font-medium text-white hover:bg-primary-400 md:self-start md:px-8 md:text-xl ${contentIn(
                       isActive,
-                      "delay-[450ms]",
+                      "md:delay-[450ms]",
                     )}`}
                   >
                     Know More

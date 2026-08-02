@@ -22,7 +22,7 @@ const certifications = [
 
 function LogoRun({ hidden = false }: { hidden?: boolean }) {
   return (
-    <div aria-hidden={hidden} className="flex shrink-0 items-center gap-14 pr-14 lg:gap-20 lg:pr-20">
+    <div aria-hidden={hidden} className="flex shrink-0 items-center gap-6 pr-6 lg:gap-20 lg:pr-20">
       {certifications.map((certification) => (
         <div
           key={certification.src}

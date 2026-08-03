@@ -31,8 +31,9 @@ const plants = [
     imageClassName: "max-w-[500px]",
     alt: "Aerial view of the Visakhapatnam, Andhra Pradesh plant within the outline of Andhra Pradesh state",
     caption: "6.5 GW wafer and ingot manufacturing facility",
-    mobileSummary: "6.5 GW wafer and ingot manufacturing facility.",
+    mobileSummary: "6.5 GW wafer and ingot manufacturing facility",
     details: "6.5 GW wafer and ingot manufacturing facility",
+    status: "(In pipeline)",
   },
 ];
 
@@ -138,8 +139,9 @@ export function Manufacturing() {
                       </div>
                     </div>
                     <figcaption className="mx-auto max-w-[240px] text-center text-lg font-bold leading-6 md:mt-6 md:max-w-md md:text-2xl md:leading-8">
-                      <span className="md:hidden">{plant.mobileSummary}</span>
-                      <span className="hidden md:inline">{plant.caption}</span>
+                      <span className="block md:hidden">{plant.mobileSummary}</span>
+                      <span className="hidden md:block">{plant.caption}</span>
+                      {plant.status ? <span className="block">{plant.status}</span> : null}
                     </figcaption>
                   </figure>
 
@@ -160,6 +162,7 @@ export function Manufacturing() {
                     </h3>
                     <p className="mt-10 max-w-[420px] text-lg leading-8">
                       {plant.details}
+                      {plant.status ? <span className="block">{plant.status}</span> : null}
                     </p>
                   </div>
                 </div>

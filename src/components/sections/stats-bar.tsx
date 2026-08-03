@@ -17,7 +17,7 @@ const stats = [
   {
     value: "3 Plants",
     label: "Jaipur, Dholera & Vizag",
-    icon: "/images/stat-plants.png",
+    icon: "/images/stat-plants.svg",
     iconWidth: 90,
     iconHeight: 87,
     iconOffset: "xl:mt-[3px]",

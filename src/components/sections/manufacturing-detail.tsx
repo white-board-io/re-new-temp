@@ -30,7 +30,7 @@ const plants: Plant[] = [
     id: "jaipur",
     name: "Jaipur, Rajasthan",
     shortName: "Jaipur,\nRajasthan",
-    map: "/images/state-jaipur.svg",
+    map: "/images/manufacturing-detail.png",
     mapLabelClassName: "text-2xl sm:text-[32px]",
     eyebrow: "4 GW under one roof.",
     headline: "India's largest\nsingle-location module\nmanufacturing facility.",
@@ -100,7 +100,7 @@ const plants: Plant[] = [
     id: "dholera",
     name: "Dholera, Gujarat",
     shortName: "Dholera,\nGujarat",
-    map: "/images/state-dholera.svg",
+    map: "/images/manufacturing-detail.png",
     mapLabelClassName: "text-2xl sm:text-[32px]",
     eyebrow: "Built for the next generation.",
     headline: "Advanced TOPCon cell and module manufacturing at scale.",
@@ -169,7 +169,7 @@ const plants: Plant[] = [
     id: "vizag",
     name: "Visakhapatnam, Andhra Pradesh",
     shortName: "Visakhapatnam,\nAndhra Pradesh",
-    map: "/images/state-vizag.svg",
+    map: "/images/manufacturing-detail.png",
     mapLabelClassName: "text-xl sm:text-[26px]",
     eyebrow: "6.5 GW at the source.",
     headline: "A wafer and ingot facility strengthening India's solar value chain.",
@@ -371,7 +371,7 @@ export function ManufacturingDetail() {
                   active ? "text-primary-700" : "text-neutral-400 hover:text-primary-700"
                 }`}
               >
-                <Image
+                {/* <Image
                   src={plant.map}
                   alt=""
                   width={52}
@@ -384,7 +384,7 @@ export function ManufacturingDetail() {
                     : plant.id === "dholera"
                       ? "Dholera"
                       : "Visakhapatnam"}
-                </span>
+                </span> */}
                 <span className="hidden sm:inline">{plant.name}</span>
                 <span
                   className={`absolute inset-x-0 bottom-0 h-3 origin-left bg-primary-400 transition-transform ${
@@ -399,9 +399,9 @@ export function ManufacturingDetail() {
 
       <div id="plant-panel" role="tabpanel" className="bg-white">
         <section className="mx-auto max-w-[1580px] px-4 py-20 sm:px-6 lg:py-24">
-          <div className="mx-auto grid max-w-[1350px] items-center gap-14 pb-20 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8 lg:pb-[150px]">
-            <div className="max-w-[680px]">
-              <p className="max-w-[400px] text-4xl font-bold uppercase leading-[1.08] text-primary-700 sm:text-[56px] sm:leading-[1.05]">
+          <div className="grid w-full items-start gap-14 pb-20 lg:grid-cols-2 lg:gap-12 lg:pb-[150px]">
+            <div className="w-full max-w-none">
+              <p className="max-w-[400px] text-4xl font-extrabold uppercase leading-[1.08] tracking-[0.03em] text-primary-700 sm:text-[60px] sm:leading-[64px]">
                 {activePlant.eyebrow}
               </p>
               <h2
@@ -410,19 +410,19 @@ export function ManufacturingDetail() {
                 {activePlant.headline}
               </h2>
             </div>
-            <div className="relative mx-auto flex aspect-[1.16/1] w-full max-w-[540px] items-center justify-center">
+            <div className="relative mx-auto flex aspect-[741/378] w-full max-w-none items-start justify-center overflow-hidden lg:mx-0">
               <Image
                 src={activePlant.map}
                 alt={`Outline map for ${activePlant.name}`}
-                width={520}
-                height={440}
-                className="h-full w-full object-contain"
+                width={741}
+                height={378}
+                className="h-full w-full object-cover"
               />
-              <p
+              {/* <p
                 className={`pointer-events-none absolute inset-0 flex items-center justify-center whitespace-pre-line px-10 text-center font-bold leading-tight text-white ${activePlant.mapLabelClassName}`}
               >
                 {activePlant.shortName}
-              </p>
+              </p> */}
             </div>
           </div>
 

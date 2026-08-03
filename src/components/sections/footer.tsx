@@ -88,11 +88,11 @@ function YouTubeLogo({ className }: IconProps) {
 }
 
 const socials = [
-  { label: "LinkedIn", href: "https://www.linkedin.com/company/renew-", Icon: LinkedInLogo },
-  { label: "Instagram", href: "https://www.instagram.com/renew_official", Icon: InstagramLogo },
-  { label: "Facebook", href: "https://www.facebook.com/renewofficial", Icon: FacebookLogo },
-  { label: "X", href: "https://x.com/ReNew_Official", Icon: XLogo },
-  { label: "YouTube", href: "https://www.youtube.com/@ReNewOfficial", Icon: YouTubeLogo },
+  { label: "LinkedIn", Icon: LinkedInLogo },
+  { label: "Instagram", Icon: InstagramLogo },
+  { label: "Facebook", Icon: FacebookLogo },
+  { label: "X", Icon: XLogo },
+  { label: "YouTube", Icon: YouTubeLogo },
 ];
 
 export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) {
@@ -115,17 +115,15 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
               India&apos;s net-zero future.
             </p>
             <ul className="mt-14 flex max-w-xs items-center justify-between gap-2 sm:mt-20 sm:justify-start sm:gap-4 xl:mt-[88px] xl:max-w-none xl:gap-[52px]">
-              {socials.map(({ label, href, Icon }) => (
+              {socials.map(({ label, Icon }) => (
                 <li key={label}>
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <span
+                    role="img"
                     aria-label={label}
-                    className="flex size-11 items-center justify-center rounded-full bg-primary-700 text-primary-400 transition hover:bg-primary-800 sm:size-12 xl:size-[60px]"
+                    className="flex size-11 items-center justify-center rounded-full bg-primary-700 text-primary-400 sm:size-12 xl:size-[60px]"
                   >
                     <Icon className="size-5 xl:size-6" />
-                  </a>
+                  </span>
                 </li>
               ))}
             </ul>

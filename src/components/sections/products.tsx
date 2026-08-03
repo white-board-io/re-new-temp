@@ -28,8 +28,8 @@ const products = [
     alt: "A ReNew solar cell standing in a misty field at sunrise",
     href: "/products/solar-cell",
     features: [
-      { lead: "TOPCon & Mono PERC cells", rest: "with conversion efficiency of up to 25.2%" },
-      { lead: "6.4 lakh cells produced daily", rest: "across three world-class plants" },
+      { lead: "Mono PERC cells", rest: "with up to 23.7% conversion efficiency." },
+      { lead: "TOPCon cells", rest: "with industry-leading efficiency of up to 25.2%." },
     ],
   },
 ];

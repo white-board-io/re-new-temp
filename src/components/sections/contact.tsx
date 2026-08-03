@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronDown, Mail, Phone } from "lucide-react";
 
 const REQUIREMENT_TYPES = [
@@ -10,6 +10,8 @@ const REQUIREMENT_TYPES = [
   "Channel Partnership",
   "Other",
 ];
+
+const ROTATING_CONTACT_WORDS = ["Home", "Project", "Business"];
 
 function Field({
   name,
@@ -44,14 +46,32 @@ function Field({
 
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [wordIndex, setWordIndex] = useState(0);
+  const rotatingWord = ROTATING_CONTACT_WORDS[wordIndex];
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setWordIndex((current) => (current + 1) % ROTATING_CONTACT_WORDS.length);
+    }, 2200);
+
+    return () => window.clearInterval(interval);
+  }, []);
 
   return (
     <section id="contact" className="bg-primary-700 py-section text-white">
       <div className="mx-auto grid max-w-content gap-14 px-4 sm:px-6 lg:grid-cols-2 lg:gap-24 xl:grid-cols-[560px_545px] xl:gap-[323px]">
         <div className="min-w-0">
-          <h2 className="max-w-lg text-4xl font-bold sm:text-[54px] sm:leading-[62px]">
-            Power your next <span className="text-accent">project</span> with ReNew Solar
-            Panels.
+          <h2
+            aria-label="Power your next Home, Project, or Business with ReNew Solar Panels."
+            className="max-w-lg text-4xl font-bold sm:text-[54px] sm:leading-[62px]"
+          >
+            Power your next{" "}
+            <span aria-hidden className="inline-block align-baseline text-accent">
+              <span key={rotatingWord} className="contact-rotating-word inline-block">
+                {rotatingWord}
+              </span>
+            </span>{" "}
+            with ReNew Solar Panels.
           </h2>
           <p className="mt-8 max-w-md text-2xl leading-9 text-white/90">
             Tell us what you need and our team will get back to you within 24 hours.

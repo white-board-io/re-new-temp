@@ -229,6 +229,22 @@ body {
   animation: product-chart-reveal 1.6s 250ms ease-out both;
 }
 
+@keyframes contact-word-in {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+  }
+
+  to {
+    opacity: 1;
+    clip-path: inset(0);
+  }
+}
+
+.contact-rotating-word {
+  animation: contact-word-in 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 @supports (animation-timeline: view()) {
   .product-chart-reveal {
     animation-delay: 0s;
@@ -245,6 +261,10 @@ body {
   }
 
   .product-chart-reveal {
+    animation: none;
+  }
+
+  .contact-rotating-word {
     animation: none;
   }
 }

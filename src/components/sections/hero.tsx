@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { ContactModalTrigger } from "@/components/contact-modal";
 
 const SLIDE_COUNT = 3;
 // Every slide stays visible for the full length of hero.mp4 (8.03s, rounded).
@@ -155,12 +156,11 @@ export function Hero() {
             <br />
             Three World-Class Plants
           </p>
-          <a
-            href="#contact"
+          <ContactModalTrigger
             className="mt-10 inline-flex min-h-[45px] min-w-[204px] items-center justify-center rounded-full bg-primary-400 px-8 text-xl font-medium text-white transition-colors hover:bg-accent xl:mt-[62px]"
           >
             Enquire Now
-          </a>
+          </ContactModalTrigger>
         </div>
       </div>
 

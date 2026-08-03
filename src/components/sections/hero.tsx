@@ -10,12 +10,11 @@ const SLIDE_DURATION_MS = 8100;
 
 function EnquireButton({ className = "" }: { className?: string }) {
   return (
-    <a
-      href="#contact"
+    <ContactModalTrigger
       className={`rounded-full bg-accent px-11 py-2.5 text-xl font-medium text-white transition-colors hover:bg-primary-400 ${className}`}
     >
       Enquire Now
-    </a>
+    </ContactModalTrigger>
   );
 }
 

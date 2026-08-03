@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Plant = {
   id: "jaipur" | "dholera" | "vizag";
@@ -75,8 +75,8 @@ const plants: Plant[] = [
       },
       {
         label: "Output",
-        value: "23,000 / day",
-        details: "Approximately 23,000 modules manufactured per day.",
+        value: "17,000/day",
+        details: "Approximately 17,000 modules manufactured per day.",
         icon: "output",
       },
       {
@@ -257,19 +257,24 @@ function StatIcon({ icon }: { icon: Plant["stats"][number]["icon"] }) {
       alt=""
       width={132}
       height={132}
-      className="size-[132px] object-contain"
+      className="size-20 object-contain sm:size-[132px]"
     />
   );
 }
 
 export function ManufacturingDetail() {
+  const statsTrackRef = useRef<HTMLDivElement>(null);
   const [activeId, setActiveId] = useState<Plant["id"]>("jaipur");
   const [galleryIndex, setGalleryIndex] = useState(0);
+  const [statsPage, setStatsPage] = useState(0);
+  const [statsPageCount, setStatsPageCount] = useState(1);
   const activePlant = plants.find((plant) => plant.id === activeId) ?? plants[0];
 
   const selectPlant = (plantId: Plant["id"]) => {
     setActiveId(plantId);
     setGalleryIndex(0);
+    setStatsPage(0);
+    statsTrackRef.current?.scrollTo({ left: 0 });
     window.history.replaceState(null, "", `#${plantId}`);
   };
 
@@ -279,6 +284,8 @@ export function ManufacturingDetail() {
       if (plantId) {
         setActiveId(plantId);
         setGalleryIndex(0);
+        setStatsPage(0);
+        statsTrackRef.current?.scrollTo({ left: 0 });
       }
     };
 
@@ -289,6 +296,33 @@ export function ManufacturingDetail() {
       window.removeEventListener("hashchange", syncPlantFromHash);
     };
   }, []);
+
+  useEffect(() => {
+    const track = statsTrackRef.current;
+    if (!track) return;
+
+    const update = () => {
+      const pages = Math.max(1, Math.ceil(track.scrollWidth / track.clientWidth));
+      setStatsPageCount(pages);
+      setStatsPage(Math.min(pages - 1, Math.round(track.scrollLeft / track.clientWidth)));
+    };
+
+    update();
+    track.addEventListener("scroll", update, { passive: true });
+    const observer = new ResizeObserver(update);
+    observer.observe(track);
+
+    return () => {
+      track.removeEventListener("scroll", update);
+      observer.disconnect();
+    };
+  }, [activeId]);
+
+  const scrollToStatsPage = (target: number) => {
+    const track = statsTrackRef.current;
+    if (!track) return;
+    track.scrollTo({ left: target * track.clientWidth, behavior: "smooth" });
+  };
 
   return (
     <>
@@ -317,7 +351,7 @@ export function ManufacturingDetail() {
         </div>
       </section>
 
-      <div className="sticky top-[120px] z-30 border-b border-neutral-200 bg-neutral-50 shadow-sm lg:top-[136px]">
+      <div className="sticky top-[88px] z-30 border-b border-neutral-200 bg-neutral-50 shadow-sm lg:top-[136px]">
         <div
           role="tablist"
           aria-label="Manufacturing plants"
@@ -392,47 +426,40 @@ export function ManufacturingDetail() {
             </div>
           </div>
 
-          <div className="grid gap-7 sm:grid-cols-2 xl:grid-cols-4 xl:gap-[72px]">
+          <div
+            ref={statsTrackRef}
+            className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 [scrollbar-width:none] sm:grid sm:grid-cols-2 sm:gap-7 sm:overflow-visible sm:pb-0 xl:grid-cols-4 xl:gap-[72px] [&::-webkit-scrollbar]:hidden"
+          >
             {activePlant.stats.map((stat) => (
               <article
                 key={stat.label}
                 tabIndex={0}
                 aria-label={`${stat.label}: ${stat.value}. ${stat.details}`}
-                className="group h-[344px] rounded-md perspective-[1200px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-700"
-            >
-              <div className="grid h-full transition-transform duration-700 transform-3d group-hover:rotate-y-180 group-focus-within:rotate-y-180 motion-reduce:transition-none">
-                <div
-                  className={`flex h-full flex-col items-center justify-center rounded-md px-7 py-10 text-center text-white [grid-area:1/1] backface-hidden ${
-                    stat.icon === "output" ? "bg-primary-950" : "bg-primary-700"
-                  }`}
-                >
-                    {stat.icon === "output" && activePlant.id === "jaipur" ? (
-                      <div className="text-center">
-                        <p className="text-[30px] font-normal leading-tight">Approximately</p>
-                        <p className="mt-3 text-[54px] font-bold leading-none">23,000</p>
-                        <p className="mt-4 text-[30px] font-normal leading-[1.3]">
-                          modules
-                          <br />
-                          per day
-                        </p>
-                      </div>
-                    ) : stat.icon === "output" ? (
-                      <p className="max-w-[250px] text-2xl font-bold leading-snug">
-                        {stat.details}
-                      </p>
-                    ) : (
-                      <>
-                        <StatIcon icon={stat.icon} />
-                        <h3 className="mt-10 text-2xl font-bold uppercase tracking-wide">
-                          {stat.label}
-                        </h3>
-                      </>
-                    )}
+                className="group h-[344px] w-[88%] shrink-0 snap-start rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-700 sm:w-auto sm:perspective-[1200px]"
+              >
+                <div className="flex h-full flex-col items-center justify-center rounded-md bg-primary-700 px-6 py-7 text-center text-white sm:hidden">
+                  <StatIcon icon={stat.icon} />
+                  <h3 className="mt-5 text-lg font-bold uppercase tracking-wide">
+                    {stat.label}
+                  </h3>
+                  <p className="mt-3 text-4xl font-bold leading-none">
+                    {stat.value}
+                  </p>
+                  <p className="mt-5 max-w-[250px] text-base font-bold leading-snug">
+                    {stat.details}
+                  </p>
+                </div>
+
+                <div className="hidden h-full transition-transform duration-700 transform-3d group-hover:rotate-y-180 group-focus-within:rotate-y-180 motion-reduce:transition-none sm:grid">
+                  <div className="flex h-full flex-col items-center justify-center rounded-md bg-primary-700 px-7 py-10 text-center text-white [grid-area:1/1] backface-hidden">
+                    <StatIcon icon={stat.icon} />
+                    <h3 className="mt-10 text-2xl font-bold uppercase tracking-wide">
+                      {stat.label}
+                    </h3>
                   </div>
 
-                <div className="flex h-full rotate-y-180 flex-col items-center justify-center rounded-md bg-primary-950 px-7 py-10 text-center text-white [grid-area:1/1] backface-hidden">
-                    <StatIcon icon={stat.icon} />
-                    <p className="mt-7 text-2xl font-bold leading-snug">{stat.details}</p>
+                  <div className="flex h-full rotate-y-180 flex-col items-center justify-center rounded-md bg-primary-950 px-7 py-10 text-center text-white [grid-area:1/1] backface-hidden">
+                    <p className="text-2xl font-bold leading-snug">{stat.details}</p>
                     <h3 className="mt-5 text-xl font-bold uppercase tracking-wide">
                       {stat.label}
                     </h3>
@@ -442,8 +469,46 @@ export function ManufacturingDetail() {
             ))}
           </div>
 
-          <figure className="relative mt-[180px]">
-            <div className="relative aspect-[2.11/1] min-h-72 overflow-hidden rounded-md">
+          <div className="mt-6 flex items-center justify-between sm:hidden">
+            <div className="flex gap-3" role="tablist" aria-label="Manufacturing stats">
+              {Array.from({ length: statsPageCount }, (_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  role="tab"
+                  aria-selected={statsPage === i}
+                  aria-label={`Stat ${i + 1}`}
+                  onClick={() => scrollToStatsPage(i)}
+                  className={`size-2.5 rounded-full transition ${
+                    statsPage === i ? "bg-neutral-500" : "bg-neutral-300"
+                  }`}
+                />
+              ))}
+            </div>
+            <div className="flex gap-4">
+              <button
+                type="button"
+                aria-label="Previous manufacturing stat"
+                disabled={statsPage === 0}
+                onClick={() => scrollToStatsPage(statsPage - 1)}
+                className="flex size-12 items-center justify-center rounded-lg bg-neutral-200 text-neutral-600 transition enabled:hover:bg-neutral-300 disabled:opacity-40"
+              >
+                <ChevronLeft aria-hidden className="size-5" />
+              </button>
+              <button
+                type="button"
+                aria-label="Next manufacturing stat"
+                disabled={statsPage >= statsPageCount - 1}
+                onClick={() => scrollToStatsPage(statsPage + 1)}
+                className="flex size-12 items-center justify-center rounded-lg bg-neutral-200 text-neutral-600 transition enabled:hover:bg-neutral-300 disabled:opacity-40"
+              >
+                <ChevronRight aria-hidden className="size-5" />
+              </button>
+            </div>
+          </div>
+
+          <figure className="relative mt-16 sm:mt-[180px]">
+            <div className="relative aspect-video overflow-hidden rounded-md sm:aspect-[2.11/1] sm:min-h-72">
               <Image
                 src={activePlant.gallery[galleryIndex].src}
                 alt={activePlant.gallery[galleryIndex].alt}
@@ -458,9 +523,9 @@ export function ManufacturingDetail() {
                   setGalleryIndex(Math.max(0, galleryIndex - 1))
                 }
                 disabled={galleryIndex === 0}
-                className="absolute left-3 top-1/2 flex size-12 -translate-y-1/2 items-center justify-center rounded-sm bg-primary-50/90 text-primary-700 transition-colors hover:bg-white disabled:text-neutral-300 xl:-left-[88px] xl:bg-neutral-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700"
+                className="absolute left-3 top-1/2 flex size-10 -translate-y-1/2 items-center justify-center rounded-sm bg-primary-50/90 text-primary-700 transition-colors hover:bg-white disabled:text-neutral-300 sm:size-12 xl:-left-[88px] xl:bg-neutral-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700"
               >
-                <ChevronLeft aria-hidden className="size-8" />
+                <ChevronLeft aria-hidden className="size-6 sm:size-8" />
               </button>
               <button
                 type="button"
@@ -469,16 +534,16 @@ export function ManufacturingDetail() {
                   setGalleryIndex(Math.min(activePlant.gallery.length - 1, galleryIndex + 1))
                 }
                 disabled={galleryIndex === activePlant.gallery.length - 1}
-                className="absolute right-3 top-1/2 flex size-12 -translate-y-1/2 items-center justify-center rounded-sm bg-primary-50/90 text-primary-700 transition-colors hover:bg-white disabled:text-neutral-300 xl:-right-[88px] xl:bg-primary-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700"
+                className="absolute right-3 top-1/2 flex size-10 -translate-y-1/2 items-center justify-center rounded-sm bg-primary-50/90 text-primary-700 transition-colors hover:bg-white disabled:text-neutral-300 sm:size-12 xl:-right-[88px] xl:bg-primary-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700"
               >
-                <ChevronRight aria-hidden className="size-8" />
+                <ChevronRight aria-hidden className="size-6 sm:size-8" />
               </button>
-              <div className="absolute inset-x-0 bottom-8 flex justify-center gap-6">
+              <div className="absolute inset-x-0 bottom-4 flex justify-center gap-2 sm:bottom-8 sm:gap-6">
                 {activePlant.gallery.map((image, index) => (
                   <span
                     key={image.src}
                     aria-hidden
-                    className={`h-[8px] w-[44px] rounded-full ${
+                    className={`h-1.5 w-8 rounded-full sm:h-[8px] sm:w-[44px] ${
                       index === galleryIndex ? "bg-primary-400" : "bg-white"
                     }`}
                   />

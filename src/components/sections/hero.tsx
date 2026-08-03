@@ -143,11 +143,13 @@ export function Hero() {
         <div
           className={`relative flex h-full flex-col items-start justify-center px-5 pb-24 pt-10 text-left sm:px-6 xl:justify-start xl:px-[181px] xl:pt-[148px] ${contentClass(2)}`}
         >
-          <h2 className="max-w-[661px] text-[40px] font-bold leading-[1.05] tracking-hero text-white sm:text-[56px] xl:text-[80px] xl:leading-[80px]">
+          {/* "Net zero does not wait." holds one line from xl up. It needs
+              876px at the design's 80px, which only clears the sunburst past
+              ~1640px, so the size grows with the viewport and tops out there. */}
+          <h2 className="max-w-[661px] text-[40px] font-bold leading-[1.05] tracking-hero text-white sm:text-[56px] xl:max-w-none xl:text-[min(80px,calc(6vw-18px))] xl:leading-[1]">
             <span className="xl:block">
-              Net <span className="text-primary-400">zero</span> does
+              Net <span className="text-primary-400">zero</span> does not wait.
             </span>{" "}
-            <span className="xl:block">not wait.</span>{" "}
             <span className="xl:block">Neither do we.</span>
           </h2>
           <p className="mt-6 text-lg font-medium leading-[1.4] tracking-hero text-white sm:text-xl xl:mt-[34px] xl:text-2xl xl:leading-10">

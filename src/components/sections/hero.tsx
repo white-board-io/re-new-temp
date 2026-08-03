@@ -7,30 +7,6 @@ const SLIDE_COUNT = 3;
 // Every slide stays visible for the full length of hero.mp4 (8.03s, rounded).
 const SLIDE_DURATION_MS = 8100;
 
-const plants = [
-  {
-    name: "Jaipur",
-    src: "/images/state-jaipur.svg",
-    width: 135,
-    height: 111,
-    offset: "",
-  },
-  {
-    name: "Dholera",
-    src: "/images/state-dholera.svg",
-    width: 99,
-    height: 144,
-    offset: "mt-4 hero-full:mt-14",
-  },
-  {
-    name: "Vizag",
-    src: "/images/state-vizag.svg",
-    width: 158,
-    height: 122,
-    offset: "mt-2 hero-full:mt-4",
-  },
-];
-
 function EnquireButton({ className = "" }: { className?: string }) {
   return (
     <a
@@ -141,56 +117,50 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Slide 3 — net zero */}
+      {/* Slide 3 — net zero. The panel art is already near-black, so this slide
+          skips the film and lets the sunburst read at full strength. */}
       <div className={slideClass(2)} aria-hidden={activeSlide !== 2}>
         <Image
-          src="/images/ReNew Banner3.webp"
+          src="/images/banner_3.png"
           alt=""
           fill
           className="object-cover"
           sizes="100vw"
         />
-        <SlideFilm />
+        {/* Sunburst ring. At xl it takes its design placement: two thirds
+            across, overhanging the top edge by a fifth of its own diameter.
+            Narrower than that the headline claims the full width, so the ring
+            retreats into the top-right corner rather than crossing the copy. */}
+        <div className="pointer-events-none absolute right-[-18%] top-0 w-[min(80vw,420px)] -translate-y-[55%] sm:-translate-y-[68%] xl:left-[66.8%] xl:right-auto xl:w-[45vw] xl:-translate-y-[20.3%]">
+          <Image
+            src="/images/sunburst_full.svg"
+            alt=""
+            width={702}
+            height={701}
+            className="w-full animate-sunburst motion-reduce:animate-none"
+          />
+        </div>
         <div
-          className={`relative flex h-full flex-col items-center justify-center px-4 pb-24 pt-4 text-center sm:px-6 hero-full:pt-6 ${contentClass(2)}`}
+          className={`relative flex h-full flex-col items-start justify-center px-5 pb-24 pt-10 text-left sm:px-6 xl:justify-start xl:px-[181px] xl:pt-[148px] ${contentClass(2)}`}
         >
-          <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl hero-full:text-5xl">
-            Net zero does not wait.
-            <br />
-            Neither do we.
+          <h2 className="max-w-[661px] text-[40px] font-bold leading-[1.05] tracking-hero text-white sm:text-[56px] xl:text-[80px] xl:leading-[80px]">
+            <span className="xl:block">
+              Net <span className="text-primary-400">zero</span> does
+            </span>{" "}
+            <span className="xl:block">not wait.</span>{" "}
+            <span className="xl:block">Neither do we.</span>
           </h2>
-          <p className="mt-4 text-lg text-white sm:text-xl hero-full:mt-5 hero-full:text-2xl">
-            6.4 GW of capacity{" "}
-            <span aria-hidden className="mx-3 opacity-60">
-              |
-            </span>
-            3 plants{" "}
-            <span aria-hidden className="mx-3 opacity-60">
-              |
-            </span>
-            23,000 modules a day
-            <span aria-hidden className="mx-3 opacity-60">
-              |
-            </span>
-            30-year power warranty
+          <p className="mt-6 text-lg font-medium leading-[1.4] tracking-hero text-white sm:text-xl xl:mt-[34px] xl:text-2xl xl:leading-10">
+            6.5 GW Integrated Module Capacity
+            <br />
+            Three World-Class Plants
           </p>
-          <div className="mt-6 flex items-start justify-center gap-10 sm:gap-16 hero-full:mt-8">
-            {plants.map((plant) => (
-              <figure key={plant.name} className={plant.offset}>
-                <Image
-                  src={plant.src}
-                  alt=""
-                  width={plant.width}
-                  height={plant.height}
-                  className="mx-auto h-16 w-auto sm:h-20 hero-full:h-24"
-                />
-                <figcaption className="mt-2 text-lg font-bold text-white">
-                  {plant.name}
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-          <EnquireButton className="mt-6 hero-full:mt-8" />
+          <a
+            href="#contact"
+            className="mt-10 inline-flex min-h-[45px] min-w-[204px] items-center justify-center rounded-full bg-primary-400 px-8 text-xl font-medium text-white transition-colors hover:bg-accent xl:mt-[62px]"
+          >
+            Enquire Now
+          </a>
         </div>
       </div>
 

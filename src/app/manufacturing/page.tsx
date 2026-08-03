@@ -16,7 +16,7 @@ export default function ManufacturingPage() {
   return (
     <>
       <Header sectionPrefix="/" savingsHref="/#savings-calculator" />
-      <main className="pt-[88px] lg:pt-[136px] xl:pt-[138px]">
+      <main className="pt-[88px] lg:pt-[138px]">
         <ManufacturingDetail />
         <WhyRenew />
         <Contact />

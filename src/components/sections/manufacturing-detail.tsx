@@ -351,7 +351,7 @@ export function ManufacturingDetail() {
         </div>
       </section>
 
-      <div className="sticky top-[88px] z-30 border-b border-neutral-200 bg-neutral-50 shadow-sm lg:top-[136px]">
+      <div className="sticky top-[88px] z-30 border-b border-neutral-200 bg-neutral-50 shadow-sm lg:top-[138px]">
         <div
           role="tablist"
           aria-label="Manufacturing plants"

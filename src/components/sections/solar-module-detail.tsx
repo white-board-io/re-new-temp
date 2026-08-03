@@ -160,7 +160,7 @@ function FeatureIcon({ icon: Icon }: { icon: ComponentType<LucideProps> }) {
   return (
     <span
       aria-hidden
-      className="mt-1 flex size-11 shrink-0 items-center justify-center text-primary-700"
+      className="flex size-11 shrink-0 items-center justify-center text-primary-700 lg:mt-1"
     >
       <Icon className="size-10" strokeWidth={1.7} />
     </span>
@@ -291,12 +291,12 @@ export function SolarModuleDetail() {
           </div>
         </div>
 
-        <div className="pt-4 text-primary-950 lg:pt-10">
+        <div className="pt-4 text-center text-primary-950 lg:pt-10 lg:text-left">
           <h2 className="text-3xl font-bold sm:text-4xl">{activeModule.title}</h2>
           <p className="mt-4 text-2xl font-bold text-primary-700">Right. Reliable. Ready.</p>
 
-          <dl className="mt-16 text-lg sm:text-xl">
-            <div className="grid grid-cols-2 gap-8 border-t border-neutral-200 py-8">
+          <dl className="mt-12 text-left text-lg sm:mt-16 sm:text-xl">
+            <div className="grid gap-6 border-t border-neutral-200 py-8 sm:grid-cols-2 sm:gap-8">
               <div>
                 <dt>Range</dt>
                 <dd className="mt-2 text-neutral-500">{activeModule.range}</dd>
@@ -324,7 +324,7 @@ export function SolarModuleDetail() {
                 <dd className="mt-2 text-neutral-500">{activeModule.productWarranty}</dd>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-8 border-t border-neutral-200 py-8">
+            <div className="grid gap-6 border-t border-neutral-200 py-8 sm:grid-cols-2 sm:gap-8">
               <div>
                 <dt>First year degradation</dt>
                 <dd className="mt-2 text-neutral-500">{activeModule.firstYearDegradation}</dd>
@@ -336,7 +336,7 @@ export function SolarModuleDetail() {
                 </dd>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-8 border-t border-neutral-200 py-8">
+            <div className="grid gap-6 border-t border-neutral-200 py-8 sm:grid-cols-2 sm:gap-8">
               <div>
                 <dt>Dimensions</dt>
                 <dd className="mt-2 text-neutral-500">{activeModule.dimensions}</dd>
@@ -352,7 +352,7 @@ export function SolarModuleDetail() {
             </div>
           </dl>
 
-          <div className="mt-16 flex flex-wrap gap-6">
+          <div className="mt-16 flex flex-wrap justify-center gap-6 lg:justify-start">
             <a
               href="#contact"
               className="rounded-full bg-primary-400 px-12 py-4 text-xl font-bold text-white transition hover:bg-primary-500"
@@ -385,7 +385,7 @@ export function SolarModuleDetail() {
                 onFocus={() => setActiveFeature(index)}
                 onClick={() => setActiveFeature(index)}
                 aria-expanded={active}
-                className="flex w-full gap-7 text-left"
+                className="flex w-full flex-col items-center gap-4 text-center lg:flex-row lg:items-start lg:gap-7 lg:text-left"
               >
                 <FeatureIcon icon={feature.icon} />
                 <span className="min-w-0 flex-1">
@@ -393,7 +393,7 @@ export function SolarModuleDetail() {
                     {feature.title}
                   </span>
                   <span
-                    className={`grid max-w-xl transition-[grid-template-rows,opacity] duration-500 ease-out motion-reduce:transition-none ${
+                    className={`mx-auto grid max-w-xl transition-[grid-template-rows,opacity] duration-500 ease-out motion-reduce:transition-none lg:mx-0 ${
                       active ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
                     }`}
                   >
@@ -423,17 +423,17 @@ export function SolarModuleDetail() {
       </div>
 
       <div className="mx-auto max-w-content px-4 pb-36 text-center sm:px-6 xl:px-0">
-        <div className="grid gap-14 md:grid-cols-3 md:gap-8">
+        <div className="grid grid-cols-3 gap-3 sm:gap-14 md:gap-8">
           {applications.map((application) => (
             <div key={application.line1} className="flex flex-col items-center">
-              <span className="flex size-28 items-center justify-center rounded-full bg-primary-700 sm:size-32">
+              <span className="flex size-16 items-center justify-center rounded-full bg-primary-700 sm:size-32">
                 <application.icon
                   aria-hidden
-                  className="size-16 text-white"
+                  className="size-8 text-white sm:size-16"
                   strokeWidth={1.8}
                 />
               </span>
-              <p className="mt-10 max-w-sm text-2xl font-bold leading-8 text-[#143b58]">
+              <p className="mt-4 max-w-sm text-[11px] font-bold leading-4 text-[#143b58] sm:mt-10 sm:text-2xl sm:leading-8">
                 {application.line1}
                 <br />
                 {application.line2}

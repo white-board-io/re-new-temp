@@ -194,13 +194,13 @@ export function SolarCellDetail() {
             </div>
           </div>
 
-          <div className="pt-4 text-primary-950 lg:pt-10">
+          <div className="pt-4 text-center text-primary-950 lg:pt-10 lg:text-left">
             <h2 className="text-3xl font-bold sm:text-4xl">
               M10R PERC Cell <span className="text-primary-400">P-Type</span>
             </h2>
             <p className="mt-4 text-2xl font-bold text-primary-700">Right. Reliable. Ready.</p>
 
-            <dl className="mt-16 text-lg sm:text-xl">
+            <dl className="mt-12 text-left text-lg sm:mt-16 sm:text-xl">
               <div className="border-t border-neutral-200 py-8">
                 <dt>Type</dt>
                 <dd className="mt-2 text-neutral-500">
@@ -231,7 +231,7 @@ export function SolarCellDetail() {
               </div>
             </dl>
 
-            <div className="mt-16 flex flex-wrap gap-6">
+            <div className="mt-16 flex flex-wrap justify-center gap-6 lg:justify-start">
               <a
                 href="#contact"
                 className="rounded-full bg-primary-400 px-12 py-4 text-xl font-bold text-white transition hover:bg-primary-500"

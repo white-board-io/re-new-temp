@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { ContactModalTrigger } from "@/components/contact-modal";
 
 const cards = [
   {
@@ -160,12 +161,11 @@ export function WhoWeServe() {
                     <p className="mx-auto max-w-[430px] text-base leading-6 md:text-lg md:leading-7">
                       {card.description}
                     </p>
-                    <a
-                      href="#contact"
+                    <ContactModalTrigger
                       className="mt-auto rounded-full bg-white px-7 py-2.5 text-sm font-bold text-primary-950 hover:bg-primary-50 md:px-8 md:text-base"
                     >
                       Get in Touch
-                    </a>
+                    </ContactModalTrigger>
                   </div>
                 </div>
               </article>

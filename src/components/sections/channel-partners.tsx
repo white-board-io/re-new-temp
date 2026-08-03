@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
+import { ContactModalTrigger } from "@/components/contact-modal";
 
 // TODO(batch-3-followup): real video URLs from the user; play buttons are
 // visual-only until then. The mock shows 5 carousel pages of partner videos —
@@ -136,12 +137,11 @@ export function ChannelPartners() {
         </div>
 
         <div className="flex flex-wrap justify-center gap-10 pb-24 pt-16">
-          <a
-            href="#contact"
+          <ContactModalTrigger
             className="rounded-full border border-primary-950 px-8 py-3 text-lg font-bold text-primary-950 transition hover:bg-primary-50"
           >
             Become a Channel Partner
-          </a>
+          </ContactModalTrigger>
         </div>
       </div>
     </section>

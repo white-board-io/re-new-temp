@@ -1,0 +1,23 @@
+bun.lock
+  s_8e37c864e5c2db::t_fa3f3b41bcbbc8 12,195-196,199-202,237-254,267-268,397-398,411-432,443-444,481-482,519-520,593-594,601-602,803-810,815-816,889-890,925-928
+package.json
+  s_8e37c864e5c2db::t_a29e2b58ce43e8 15-16
+src/app/globals.css
+  s_8e37c864e5c2db::t_d216f98ef20922 240-243,245-246,250-251,255-256,281
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.11",
+  "base_commit_sha": "edad049cf494d95c1d430a92cf7774dab4ee907d",
+  "prompts": {},
+  "sessions": {
+    "s_8e37c864e5c2db": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "748ead06-5d6e-47a7-97be-346801730be8",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Arun Selva Kumar <arun@joinassembly.com>"
+    }
+  }
+}

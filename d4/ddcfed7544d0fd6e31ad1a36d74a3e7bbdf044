@@ -1,0 +1,19 @@
+src/components/sections/enquire-fab.tsx
+  s_dbc007b82f3b65::t_74e31233e9e079 13-14,36-64
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.11",
+  "base_commit_sha": "d4ddcfed7544d0fd6e31ad1a36d74a3e7bbdf044",
+  "prompts": {},
+  "sessions": {
+    "s_dbc007b82f3b65": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "af762097-6ca0-49f3-9ed4-6ca088d86396",
+        "model": "unknown"
+      },
+      "human_author": "Arun Selva Kumar <arun@joinassembly.com>"
+    }
+  }
+}

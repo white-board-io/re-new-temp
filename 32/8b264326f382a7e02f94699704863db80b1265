@@ -1,0 +1,65 @@
+src/app/globals.css
+  s_0753aff2b6738e::t_063fd204ea46f6 275-382,384-391
+src/components/sections/blogs.tsx
+  s_60d72c0fb5d514::t_d5bee727a82638 2,31,39,41-45,76
+src/components/sections/manufacturing-detail.tsx
+  s_60d72c0fb5d514::t_b34bcdd71ef878 6,340,352,403-406,431,433-448,450,453-458,461-474,476-479,519,562,564-567,571,582,590,592,602
+src/components/sections/manufacturing.tsx
+  s_60d72c0fb5d514::t_a5edb2a3dcb4eb 7,61-64,87,89-92,178,180,187
+src/components/sections/press-releases.tsx
+  s_60d72c0fb5d514::t_1a7de26d679955 2,35,44,46-50,84
+src/components/sections/solar-cell-detail.tsx
+  s_60d72c0fb5d514::t_d0421bcaf3de7b 5,143,154,167-170,255,258,269,278,321
+src/components/sections/solar-module-detail.tsx
+  s_60d72c0fb5d514::t_b8689cd9f6dc29 6,214,224,261-262,375,377-378,419,422,439
+src/components/sections/who-we-serve.tsx
+  s_60d72c0fb5d514::t_fd9c3b986c60aa 6,52-79,81-84,179
+src/app/downloads/page.tsx
+  s_60d72c0fb5d514::t_49c891389b84d5 8,35,39
+src/components/reveal.tsx
+  s_60d72c0fb5d514::t_b92b12f80ac125 1-95
+src/components/sections/channel-partners.tsx
+  s_60d72c0fb5d514::t_2aa1d1ae5b3b3b 7,64,71,75-99,101-104,106,142,144,150
+src/components/sections/contact.tsx
+  s_60d72c0fb5d514::t_855b604c303e7e 5,63-67,159
+src/components/sections/downloads.tsx
+  s_60d72c0fb5d514::t_4ba9f006ee5305 1-2,71-83,103
+src/components/sections/footer.tsx
+  s_60d72c0fb5d514::t_6a49ac4e288d8b 3,103-106,243
+src/components/sections/our-projects.tsx
+  s_60d72c0fb5d514::t_bb7345478252a8 3,20,70
+src/components/sections/products.tsx
+  s_60d72c0fb5d514::t_a93a794fc5e1de 6,71,77,79-81,143
+src/components/sections/project-showcase.tsx
+  s_60d72c0fb5d514::t_1732b208a00393 5,154-156,179
+src/components/sections/savings-calculator.tsx
+  s_60d72c0fb5d514::t_a234d49de2f886 6,94-97,110,112,355
+src/components/sections/stats-bar.tsx
+  s_60d72c0fb5d514::t_ed32876714cceb 3,59-65,94
+src/components/sections/why-renew.tsx
+  s_60d72c0fb5d514::t_c54c2cbfe70a59 2,48,55-62,65
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.11",
+  "base_commit_sha": "328b264326f382a7e02f94699704863db80b1265",
+  "prompts": {},
+  "sessions": {
+    "s_0753aff2b6738e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c4e92e9b-6322-4fb5-afcc-9fe7f735f294",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Arun Selva Kumar <arun@joinassembly.com>"
+    },
+    "s_60d72c0fb5d514": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8fd9da51-d7d4-488e-b29b-bf70dee6ec6e",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Arun Selva Kumar <arun@joinassembly.com>"
+    }
+  }
+}

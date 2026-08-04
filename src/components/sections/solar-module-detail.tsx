@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState, type ComponentType } from "react";
+import { PowerOutputChart } from "@/components/power-output-chart";
 import {
   Cpu,
   Factory,
@@ -410,15 +411,7 @@ export function SolarModuleDetail() {
         </div>
 
         <div className="flex items-start justify-center pt-2 lg:pt-8">
-          <div className="product-chart-reveal relative aspect-[433/257] w-full max-w-[560px] overflow-hidden">
-            <Image
-              src="/images/solar-module-output-chart.webp"
-              alt="Power output chart showing 99 percent in year one and 87.4 percent in year 30"
-              fill
-              sizes="(min-width: 1024px) 560px, 100vw"
-              className="object-contain"
-            />
-          </div>
+          <PowerOutputChart className="max-w-[560px]" replayKey={activeModuleId} />
         </div>
       </div>
 

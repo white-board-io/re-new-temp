@@ -237,18 +237,23 @@ body {
   transform-origin: left;
 }
 
-@keyframes product-chart-reveal {
+/* The power-output curve sweeps in from the chart library (see
+   power-output-chart.tsx); its two endpoint callouts mount once the sweep has
+   passed under them and fade up on the spot. */
+@keyframes product-chart-annotation-in {
   from {
-    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+    transform: translateY(4px);
   }
 
   to {
-    clip-path: inset(0);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.product-chart-reveal {
-  animation: product-chart-reveal 1.6s 250ms ease-out both;
+.product-chart-annotation {
+  animation: product-chart-annotation-in 420ms ease-out both;
 }
 
 @keyframes contact-word-in {
@@ -267,22 +272,13 @@ body {
   animation: contact-word-in 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-@supports (animation-timeline: view()) {
-  .product-chart-reveal {
-    animation-delay: 0s;
-    animation-duration: auto;
-    animation-timeline: view();
-    animation-range: entry 10% cover 45%;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .hero-progress-fill {
     animation: none;
     transform: scaleX(1);
   }
 
-  .product-chart-reveal {
+  .product-chart-annotation {
     animation: none;
   }
 

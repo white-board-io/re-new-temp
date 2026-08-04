@@ -45,13 +45,35 @@
     }
   }
 
-  /* Decorative sunburst ring (who-we-serve, manufacturing). Only the bottom
-     half is visible; the slow spin reads as a drift, not a spinner. */
+  /* Decorative sunburst ring (who-we-serve, manufacturing, our-projects). Only
+     one half is visible; the slow spin reads as a drift, not a spinner. */
   --animate-sunburst: sunburst 120s linear infinite;
 
   @keyframes sunburst {
     to {
       transform: rotate(360deg);
+    }
+  }
+
+  /* Enquire FAB rays (enquire-fab.tsx). Each ring rests dim and slightly
+     contracted, then swells bright, so a band of light travels outward from the
+     dome. The per-ring delay has to be a big fraction of the duration or the
+     rings pulse in unison, which is invisible -- there is no still reference to
+     read the change against. Rings set their own resting --ray-dim; the outer
+     ones rest fainter, which fades the burst into the background. Scaling is
+     about the arc centre, set as transform-origin on each ring. */
+  --animate-enquire-ray: enquire-ray 2.8s ease-in-out infinite;
+
+  @keyframes enquire-ray {
+    0%,
+    100% {
+      opacity: var(--ray-dim, 0.45);
+      transform: scale(0.97);
+    }
+
+    45% {
+      opacity: 1;
+      transform: scale(1.03);
     }
   }
 

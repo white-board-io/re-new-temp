@@ -17,19 +17,41 @@ export function OurProjects() {
 
       <div className="relative mx-auto max-w-content px-4 md:-mt-24 sm:px-6 lg:-mt-40">
         <div className="relative -mx-4 overflow-hidden bg-primary-700 px-7 py-12 text-center text-white sm:-mx-6 md:mx-0 md:rounded-md md:text-left lg:px-20 lg:py-14 xl:mx-[22px]">
-          <Image
-            src="/images/sunburst.svg"
-            alt=""
-            width={608}
-            height={314}
-            className="pointer-events-none absolute -bottom-24 right-10 hidden w-[560px] opacity-10 lg:block"
-          />
+          {/* Two sunbursts, each a full circle centred on one of the card's
+              horizontal edges so the card's own overflow-hidden clips it to the
+              half the design shows: the larger one hangs off the top edge, the
+              smaller one rises from the bottom edge behind Know More. Sizes and
+              horizontal offsets are percentages of the card width, measured off
+              Figma's 1383px-wide card. (Don't trust the y in Figma's frame
+              metadata here — both burst frames carry a flip, so it reports the
+              top burst a full frame-height too low.) Figma draws them static;
+              the slow counter-spin matches who-we-serve and manufacturing. The
+              light #8DC63F asset at 20% is the exact colour sampled from the
+              design — the dark variant is for light backgrounds. */}
+          <div className="pointer-events-none absolute right-[5.4%] top-0 w-[21.4%] -translate-y-1/2 opacity-20">
+            <Image
+              src="/images/sunburst_full.svg"
+              alt=""
+              width={702}
+              height={701}
+              className="w-full animate-sunburst motion-reduce:animate-none"
+            />
+          </div>
+          <div className="pointer-events-none absolute bottom-0 right-[27.4%] w-[17.9%] translate-y-1/2 opacity-20">
+            <Image
+              src="/images/sunburst_full.svg"
+              alt=""
+              width={702}
+              height={701}
+              className="w-full animate-sunburst [animation-direction:reverse] motion-reduce:animate-none"
+            />
+          </div>
           <div className="relative grid items-end justify-items-center gap-10 lg:grid-cols-[1fr_auto] lg:justify-items-stretch">
             <div>
               <p className="text-xl font-bold uppercase leading-8 text-primary-300">
                 Projects
               </p>
-              <h2 className="mt-7 text-4xl font-bold leading-tight sm:text-[54px] sm:leading-[62px]">
+              <h2 className="mt-7 text-4xl font-bold leading-tight sm:text-[54px] sm:leading-15.5">
                 Solar solutions across every scale.
               </h2>
               <p className="mt-7 max-w-xl text-xl leading-8 text-white/95">

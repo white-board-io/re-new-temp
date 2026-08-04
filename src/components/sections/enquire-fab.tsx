@@ -10,6 +10,8 @@
 // Note this is NOT public/images/sunburst.svg — that one is an irregular spray
 // used behind the hero, and does not tile onto this grid.
 
+import type { CSSProperties } from "react";
+
 import { ContactModalTrigger } from "@/components/contact-modal";
 
 const ARC_CENTER = { x: 91.5, y: 91.5 };
@@ -31,23 +33,35 @@ function Sunburst() {
       aria-hidden
       className="absolute inset-0 size-full origin-bottom fill-primary-400 transition-transform duration-500 ease-out group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
     >
-      {ARC_RINGS.map(({ radius, size }) =>
-        ARC_SPOKES.map((deg) => {
-          const rad = (deg * Math.PI) / 180;
-          const x = ARC_CENTER.x + radius * Math.cos(rad);
-          const y = ARC_CENTER.y - radius * Math.sin(rad);
-          return (
-            <rect
-              key={`${radius}-${deg}`}
-              x={x - size / 2}
-              y={y - size / 2}
-              width={size}
-              height={size}
-              transform={`rotate(${-deg} ${x} ${y})`}
-            />
-          );
-        }),
-      )}
+      {ARC_RINGS.map(({ radius, size }, ring) => (
+        <g
+          key={radius}
+          className="animate-enquire-ray motion-reduce:animate-none"
+          style={
+            {
+              animationDelay: `${ring * 0.34}s`,
+              transformOrigin: `${ARC_CENTER.x}px ${ARC_CENTER.y}px`,
+              "--ray-dim": 0.6 - ring * 0.07,
+            } as CSSProperties
+          }
+        >
+          {ARC_SPOKES.map((deg) => {
+            const rad = (deg * Math.PI) / 180;
+            const x = ARC_CENTER.x + radius * Math.cos(rad);
+            const y = ARC_CENTER.y - radius * Math.sin(rad);
+            return (
+              <rect
+                key={deg}
+                x={x - size / 2}
+                y={y - size / 2}
+                width={size}
+                height={size}
+                transform={`rotate(${-deg} ${x} ${y})`}
+              />
+            );
+          })}
+        </g>
+      ))}
     </svg>
   );
 }

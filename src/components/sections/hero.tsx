@@ -64,13 +64,13 @@ export function Hero() {
         />
         <SlideFilm />
         <div
-          className={`relative flex h-full flex-col items-start justify-center px-5 pb-24 pt-10 text-left sm:px-6 xl:px-[181px] xl:justify-start xl:pt-[130px] ${contentClass(0)}`}
+          className={`relative flex h-full flex-col items-start justify-center px-5 py-16 text-left sm:px-6 xl:px-[181px] hero-full:py-24 ${contentClass(0)}`}
         >
-          <h1 className="max-w-6xl text-4xl font-bold leading-[0.95] tracking-hero text-white sm:text-5xl lg:text-5xl xl:max-w-[880px] xl:text-[54px] xl:leading-[50px]">
+          <h1 className="max-w-6xl text-4xl font-bold leading-[1.12] tracking-hero text-white sm:text-5xl lg:text-5xl xl:max-w-[880px] xl:text-[54px]">
             Switch to clean energy with ReNew Solar Panels, engineered for
             lasting performance.
           </h1>
-          <p className="mt-8 text-lg leading-snug text-white sm:text-xl">
+          <p className="mt-8 text-lg leading-relaxed text-white sm:text-xl">
             When you put solar on your roof, the manufacturer matters.
           </p>
           <EnquireButton className="mt-16" />
@@ -141,18 +141,19 @@ export function Hero() {
           />
         </div>
         <div
-          className={`relative flex h-full flex-col items-start justify-center px-5 pb-24 pt-10 text-left sm:px-6 xl:justify-start xl:px-[181px] xl:pt-[148px] ${contentClass(2)}`}
+          className={`relative flex h-full flex-col items-start justify-center px-5 py-16 text-left sm:px-6 xl:px-[181px] hero-full:py-24 ${contentClass(2)}`}
         >
-          {/* "Net zero does not wait." holds one line from xl up. It needs
-              876px at the design's 80px, which only clears the sunburst past
-              ~1640px, so the size grows with the viewport and tops out there. */}
-          <h2 className="max-w-[661px] text-[40px] font-bold leading-[1.05] tracking-hero text-white sm:text-[56px] xl:max-w-none xl:text-[min(80px,calc(6vw-18px))] xl:leading-[1]">
+          {/* Shares slide 1's headline scale so the carousel keeps one type
+              size as it cycles. "Net zero does not wait." holds one line from
+              xl up: it needs ~590px at 54px, and the sunburst starts 1101px
+              into the copy column, so no viewport-based clamp is required. */}
+          <h2 className="max-w-[661px] text-4xl font-bold leading-[1.12] tracking-hero text-white sm:text-5xl xl:max-w-none xl:text-[54px]">
             <span className="xl:block">
               Net <span className="text-primary-400">zero</span> does not wait.
             </span>{" "}
             <span className="xl:block">Neither do we.</span>
           </h2>
-          <p className="mt-6 text-lg font-medium leading-[1.4] tracking-hero text-white sm:text-xl xl:mt-[34px] xl:text-2xl xl:leading-10">
+          <p className="mt-6 text-lg font-medium leading-relaxed tracking-hero text-white sm:text-xl xl:mt-[34px] xl:text-2xl xl:leading-10">
             6.5 GW Integrated Module Capacity
             <br />
             Three World-Class Plants

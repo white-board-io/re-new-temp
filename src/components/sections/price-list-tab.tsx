@@ -73,7 +73,10 @@ export function PriceListTab({
             width={582}
             height={582}
             aria-hidden
-            className="size-[25px] object-contain"
+            className={[
+              "size-[25px] object-contain transition-transform duration-300 ease-out",
+              isOpen ? "rotate-180" : "",
+            ].join(" ")}
           />
         </button>
 

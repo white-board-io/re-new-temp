@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Reveal } from "@/components/reveal";
 
 const certifications = [
   {
@@ -44,18 +45,24 @@ function LogoRun({ hidden = false }: { hidden?: boolean }) {
 export function WhyRenew() {
   return (
     <section id="why-renew" className="overflow-hidden bg-white py-section">
-      <div className="mx-auto max-w-content px-4 text-center sm:px-6">
+      <Reveal className="mx-auto max-w-content px-4 text-center sm:px-6">
         <p className="text-2xl font-bold uppercase leading-8 text-primary-700">
           Why ReNew Solar Panels
         </p>
         <h2 className="mt-8 text-4xl font-bold text-primary-950 sm:text-[54px] sm:leading-[62px]">
           Built for India&apos;s sun. Backed for 30 years.
         </h2>
-      </div>
-      <div className="mt-16 flex w-max animate-marquee-slow motion-reduce:animate-none">
+      </Reveal>
+      {/* The marquee only fades: it is already mid-travel by the time it is on
+          screen, and a rise on top of that reads as a wobble. */}
+      <Reveal
+        delay={150}
+        style={{ "--reveal-shift": "0px" } as React.CSSProperties}
+        className="mt-16 flex w-max animate-marquee-slow motion-reduce:animate-none"
+      >
         <LogoRun />
         <LogoRun hidden />
-      </div>
+      </Reveal>
     </section>
   );
 }

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { Reveal } from "@/components/reveal";
 
 const DEFAULT_PRODUCT = 0;
 
@@ -67,15 +68,17 @@ export function Products() {
       </div>
 
       <div className="mx-auto max-w-content px-4 sm:px-6">
-        <div className="text-center">
+        <Reveal className="text-center">
           <p className="text-2xl font-bold uppercase leading-8 text-primary-700">Products</p>
           <h2 className="mx-auto mt-8 max-w-4xl text-4xl font-bold text-primary-950 sm:text-[54px] sm:leading-[62px]">
             The <span className="text-primary-700">right panel</span> for your home, your
             business, your project.
           </h2>
-        </div>
+        </Reveal>
 
-        <div
+        <Reveal
+          stagger
+          delay={150}
           className="mt-12 grid gap-6 pb-24 md:mt-56 md:grid-cols-[var(--product-cols)] md:gap-12 md:transition-[grid-template-columns] md:duration-700 md:ease-[cubic-bezier(0.4,0,0.2,1)]"
           style={{ "--product-cols": columns } as React.CSSProperties}
           onMouseLeave={() => setActive(DEFAULT_PRODUCT)}
@@ -137,7 +140,7 @@ export function Products() {
               </article>
             );
           })}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

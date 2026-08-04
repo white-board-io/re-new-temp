@@ -5,6 +5,7 @@ import { Contact } from "@/components/sections/contact";
 import { Downloads } from "@/components/sections/downloads";
 import { Footer } from "@/components/sections/footer";
 import { Header } from "@/components/sections/header";
+import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
   title: "Downloads — ReNew Solar Panels",
@@ -31,11 +32,11 @@ export default function DownloadsPage() {
             className="object-cover object-[center_70%]"
           />
           <div className="absolute inset-0 bg-black/25" aria-hidden />
-          <div className="relative mx-auto w-full max-w-content px-4 sm:px-6">
+          <Reveal className="relative mx-auto w-full max-w-content px-4 sm:px-6">
             <h1 className="text-4xl font-normal text-white sm:text-5xl lg:text-[54px]">
               Downloads
             </h1>
-          </div>
+          </Reveal>
         </section>
         <Downloads />
         <Contact />

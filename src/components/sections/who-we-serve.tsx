@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { ContactModalTrigger } from "@/components/contact-modal";
+import { Reveal } from "@/components/reveal";
 
 const cards = [
   {
@@ -48,35 +49,39 @@ export function WhoWeServe() {
         />
       </div>
       <div className="relative mx-auto max-w-content px-4 text-center sm:px-6 md:text-left">
-        <p className="text-2xl font-bold uppercase leading-8 text-primary-700">
-          Who We Serve
-        </p>
-        <h2 className="mt-6 text-4xl font-bold text-primary-950 sm:text-[54px] sm:leading-[58px]">
-          Solar for <span className="text-primary-400">Every Life</span>
-        </h2>
-        <ul className="mt-6 flex flex-wrap justify-center gap-x-8 gap-y-2 text-lg text-neutral-500 md:justify-start">
-          <li className="flex items-center gap-2">
-            <Image
-              src="/images/icon-factory.svg"
-              alt=""
-              width={26}
-              height={26}
-            />
-            Manufactured by us
-          </li>
-          <li className="flex items-center gap-2">
-            <Image
-              src="/images/icon-handshake.svg"
-              alt=""
-              width={26}
-              height={26}
-            />
-            Installed by our certified partner network
-          </li>
-        </ul>
+        <Reveal>
+          <p className="text-2xl font-bold uppercase leading-8 text-primary-700">
+            Who We Serve
+          </p>
+          <h2 className="mt-6 text-4xl font-bold text-primary-950 sm:text-[54px] sm:leading-[58px]">
+            Solar for <span className="text-primary-400">Every Life</span>
+          </h2>
+          <ul className="mt-6 flex flex-wrap justify-center gap-x-8 gap-y-2 text-lg text-neutral-500 md:justify-start">
+            <li className="flex items-center gap-2">
+              <Image
+                src="/images/icon-factory.svg"
+                alt=""
+                width={26}
+                height={26}
+              />
+              Manufactured by us
+            </li>
+            <li className="flex items-center gap-2">
+              <Image
+                src="/images/icon-handshake.svg"
+                alt=""
+                width={26}
+                height={26}
+              />
+              Installed by our certified partner network
+            </li>
+          </ul>
+        </Reveal>
 
-        <div
-          className="mt-10 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 md:mt-16 md:grid md:grid-cols-3 md:overflow-visible md:pb-0 lg:mt-24 lg:gap-[90px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        <Reveal
+          stagger
+          delay={150}
+          className="reveal-track mt-10 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 md:mt-16 md:grid md:grid-cols-3 md:overflow-visible md:pb-0 lg:mt-24 lg:gap-[90px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           onMouseLeave={() => setActive(null)}
           onBlur={(event) => {
             if (!event.currentTarget.contains(event.relatedTarget)) {
@@ -171,7 +176,7 @@ export function WhoWeServe() {
               </article>
             );
           })}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

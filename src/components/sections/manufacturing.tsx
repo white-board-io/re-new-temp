@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { CountUp } from "@/components/count-up";
+import { Reveal } from "@/components/reveal";
 
 const plants = [
   {
@@ -57,7 +58,10 @@ export function Manufacturing() {
         />
       </div>
       <div className="relative mx-auto max-w-content px-4 sm:px-6">
-        <div className="flex flex-col gap-6 text-center md:gap-10 md:text-left lg:flex-row lg:items-end lg:justify-between">
+        <Reveal
+          stagger
+          className="flex flex-col gap-6 text-center md:gap-10 md:text-left lg:flex-row lg:items-end lg:justify-between"
+        >
           <div>
             <p className="text-2xl font-bold uppercase leading-8">Manufacturing</p>
             <h2 className="mt-4 text-4xl font-bold sm:text-[54px] sm:leading-[62px] md:mt-6">
@@ -80,10 +84,12 @@ export function Manufacturing() {
               of cells and modules dispatched till June 2026.
             </span>
           </p>
-        </div>
+        </Reveal>
 
-        <div
-          className="mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 md:mt-16 md:grid md:grid-cols-3 md:gap-12 md:overflow-visible md:pb-0 lg:gap-[90px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        <Reveal
+          stagger
+          delay={150}
+          className="reveal-track mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 md:mt-16 md:grid md:grid-cols-3 md:gap-12 md:overflow-visible md:pb-0 lg:gap-[90px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           onMouseLeave={() => setActive(null)}
           onBlur={(event) => {
             if (!event.currentTarget.contains(event.relatedTarget)) {
@@ -169,16 +175,16 @@ export function Manufacturing() {
               </article>
             );
           })}
-        </div>
+        </Reveal>
 
-        <div className="mb-8 -mt-8 flex justify-center md:hidden">
+        <Reveal className="mb-8 -mt-8 flex justify-center md:hidden">
           <Link
             href="/manufacturing"
             className="inline-flex min-w-36 items-center justify-center rounded-full bg-accent px-8 py-3 text-base font-bold text-white hover:bg-primary-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
           >
             Know More
           </Link>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

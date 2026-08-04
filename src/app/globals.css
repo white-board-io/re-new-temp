@@ -272,7 +272,123 @@ body {
   animation: contact-word-in 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/*
+ * Scroll reveals (see components/reveal.tsx). Content rests slightly low and
+ * transparent, then settles once the observer marks it .reveal-in.
+ *
+ * The three numbers below are tuned together, and the curve matters most. An
+ * ease-out quint (0.22, 1, 0.36, 1 — the curve the rotating contact word uses)
+ * spends three quarters of its travel in the first quarter of its runtime, so
+ * however long you set the duration the motion still reads as a blink. This is
+ * an ease-out cubic instead: the same soft landing, but the movement stays
+ * legible across the whole duration. Distance is then what gives the eye
+ * something to follow, so the shift is larger than the curve alone would need
+ * — still short enough that nothing appears to fly in.
+ *
+ * The hidden half is scoped to `scripting: enabled` so both failure modes are
+ * safe. With JS off nothing ever adds .reveal-in, and a browser that doesn't
+ * know the query skips the block entirely — either way the page renders
+ * plainly visible instead of blank. Print gets the full content for the same
+ * reason.
+ *
+ * Motion uses the `translate` property rather than `transform` so it composes
+ * with a target's own transform/scale. It does still override Tailwind's
+ * translate-* utilities (these rules are unlayered, so they beat the utility
+ * layer) — don't put .reveal on an element that positions itself that way.
+ */
+@media (scripting: enabled) {
+  .reveal,
+  .reveal-children > * {
+    --reveal-ease: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+    opacity: 0;
+    translate: 0 var(--reveal-shift, 24px);
+    transition:
+      opacity var(--reveal-duration, 950ms) var(--reveal-ease)
+        var(--reveal-delay, 0ms),
+      translate var(--reveal-duration, 950ms) var(--reveal-ease)
+        var(--reveal-delay, 0ms);
+    /* Dropped again on settle — a will-change left on a finished element
+       holds a compositor layer open for nothing. */
+    will-change: opacity, translate;
+  }
+
+  .reveal {
+    --reveal-delay: var(--reveal-lead, 0ms);
+  }
+
+  /*
+   * Staggered groups: each child follows the one before it. --reveal-lead
+   * (the `delay` prop) shifts the whole run, --reveal-step sets the gap.
+   * --reveal-index is reset here so a nested group starts its own count
+   * rather than inheriting the parent child's.
+   */
+  .reveal-children > * {
+    --reveal-index: 0;
+    --reveal-delay: calc(
+      var(--reveal-lead, 0ms) + var(--reveal-step, 130ms) * var(--reveal-index)
+    );
+  }
+
+  .reveal-children > *:nth-child(2) {
+    --reveal-index: 1;
+  }
+
+  .reveal-children > *:nth-child(3) {
+    --reveal-index: 2;
+  }
+
+  .reveal-children > *:nth-child(4) {
+    --reveal-index: 3;
+  }
+
+  .reveal-children > *:nth-child(5) {
+    --reveal-index: 4;
+  }
+
+  /* Clamp the run. At a 130ms step the sixth child is already most of a second
+     behind the first, and anything past that would still be waiting its turn
+     after the reader has scrolled by — the long download lists are the case
+     this protects. The tail moves together instead. */
+  .reveal-children > *:nth-child(n + 6) {
+    --reveal-index: 5;
+  }
+
+  /*
+   * Horizontal snap carousels (.reveal-track). Below md these tracks scroll on
+   * the x axis, which makes the browser treat y as scrollable too — so a card
+   * sitting 24px low adds a stray strip of vertical scroll inside the track,
+   * enough for it to swallow a vertical swipe on touch. Their bottom padding
+   * is only 16px, so the shift cannot simply be tucked into it.
+   *
+   * Dropping the rise here costs nothing: at this width one card fills the
+   * viewport and its staggered siblings are off-screen anyway. The track fades
+   * in place and takes its rise back from md, where the tracks become grids
+   * with visible overflow.
+   */
+  @media (width < 48rem) {
+    .reveal-children.reveal-track > * {
+      --reveal-shift: 0px;
+    }
+  }
+
+  .reveal.reveal-in,
+  .reveal-children.reveal-in > * {
+    opacity: 1;
+    translate: none;
+    will-change: auto;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-children > * {
+    opacity: 1;
+    translate: none;
+    transition: none;
+    will-change: auto;
+  }
+
   .hero-progress-fill {
     animation: none;
     transform: scaleX(1);

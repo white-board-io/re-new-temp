@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { ContactModalTrigger } from "@/components/contact-modal";
+import { Reveal } from "@/components/reveal";
 
 // TODO(batch-3-followup): real video URLs from the user; play buttons are
 // visual-only until then. The mock shows 5 carousel pages of partner videos —
@@ -60,45 +61,49 @@ export function ChannelPartners() {
           className="object-cover opacity-10 saturate-50"
           sizes="100vw"
         />
-        <div className="relative mx-auto max-w-content px-4 sm:px-6">
+        <Reveal className="relative mx-auto max-w-content px-4 sm:px-6">
           <p className="text-2xl font-bold uppercase leading-8 text-primary-400">
             Channel Partners
           </p>
           <h2 className="mt-6 text-4xl font-bold text-white sm:text-[54px] sm:leading-[62px]">
             Why our Channel Partners Trust Us
           </h2>
-        </div>
+        </Reveal>
       </div>
 
       <div className="mx-auto -mt-52 max-w-[1652px] px-4 sm:px-6 xl:px-0">
-        <div
-          ref={trackRef}
-          className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 xl:gap-[45px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        >
-          {videos.map((video) => (
-            <button
-              key={video.src}
-              type="button"
-              aria-label={video.alt}
-              className={`group relative aspect-video w-[88%] shrink-0 snap-start overflow-hidden rounded-2xl md:w-[calc(50%-12px)] xl:aspect-auto xl:rounded-[6px] ${video.desktopSize}`}
-            >
-              <Image
-                src={video.src}
-                alt=""
-                fill
-                className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-                sizes="(min-width: 768px) 50vw, 88vw"
-              />
-              <span className="absolute inset-0 flex items-center justify-center">
-                <span className="flex h-14 w-20 items-center justify-center rounded-2xl bg-[#f00] transition group-hover:scale-105">
-                  <Play aria-hidden className="size-7 fill-white text-white" />
+        {/* Wrapper rather than the track itself — the track owns trackRef for
+            the pager, and Reveal keeps its own ref. */}
+        <Reveal>
+          <div
+            ref={trackRef}
+            className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 xl:gap-[45px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            {videos.map((video) => (
+              <button
+                key={video.src}
+                type="button"
+                aria-label={video.alt}
+                className={`group relative aspect-video w-[88%] shrink-0 snap-start overflow-hidden rounded-2xl md:w-[calc(50%-12px)] xl:aspect-auto xl:rounded-[6px] ${video.desktopSize}`}
+              >
+                <Image
+                  src={video.src}
+                  alt=""
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                  sizes="(min-width: 768px) 50vw, 88vw"
+                />
+                <span className="absolute inset-0 flex items-center justify-center">
+                  <span className="flex h-14 w-20 items-center justify-center rounded-2xl bg-[#f00] transition group-hover:scale-105">
+                    <Play aria-hidden className="size-7 fill-white text-white" />
+                  </span>
                 </span>
-              </span>
-            </button>
-          ))}
-        </div>
+              </button>
+            ))}
+          </div>
+        </Reveal>
 
-        <div className="mt-6 flex items-center justify-between">
+        <Reveal delay={120} className="mt-6 flex items-center justify-between">
           <div className="flex gap-3" role="tablist" aria-label="Video pages">
             {Array.from({ length: pageCount }, (_, i) => (
               <button
@@ -134,15 +139,15 @@ export function ChannelPartners() {
               <ChevronRight aria-hidden className="size-5" />
             </button>
           </div>
-        </div>
+        </Reveal>
 
-        <div className="flex flex-wrap justify-center gap-10 pb-24 pt-16">
+        <Reveal className="flex flex-wrap justify-center gap-10 pb-24 pt-16">
           <ContactModalTrigger
             className="rounded-full border border-primary-950 px-8 py-3 text-lg font-bold text-primary-950 transition hover:bg-primary-50"
           >
             Become a Channel Partner
           </ContactModalTrigger>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

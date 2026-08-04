@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { Reveal } from "@/components/reveal";
 
 type Plant = {
   id: "jaipur" | "dholera" | "vizag";
@@ -336,7 +337,7 @@ export function ManufacturingDetail() {
           className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
         />
         <div className="absolute inset-0 -z-10 bg-primary-950/70" />
-        <div className="mx-auto max-w-content px-4 py-20 text-center sm:px-6">
+        <Reveal className="mx-auto max-w-content px-4 py-20 text-center sm:px-6">
           <h1 className="text-4xl font-light leading-tight tracking-wide sm:text-[42px] lg:text-[46px]">
             Driving solar innovation through
             <strong className="mt-2 block font-bold text-primary-400">
@@ -348,7 +349,7 @@ export function ManufacturingDetail() {
             <br />
             Built to power India&apos;s net zero future.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       <div className="sticky top-[88px] z-30 border-b border-neutral-200 bg-neutral-50 shadow-sm lg:top-[138px]">
@@ -399,7 +400,10 @@ export function ManufacturingDetail() {
 
       <div id="plant-panel" role="tabpanel" className="bg-white">
         <section className="mx-auto max-w-[1580px] px-4 py-20 sm:px-6 lg:py-24">
-          <div className="grid w-full items-start gap-14 pb-20 lg:grid-cols-2 lg:gap-12 lg:pb-[150px]">
+          <Reveal
+            stagger
+            className="grid w-full items-start gap-14 pb-20 lg:grid-cols-2 lg:gap-12 lg:pb-[150px]"
+          >
             <div className="w-full max-w-none">
               <p className="max-w-[400px] text-4xl font-extrabold uppercase leading-[1.08] tracking-[0.03em] text-primary-700 sm:text-[60px] sm:leading-[64px]">
                 {activePlant.eyebrow}
@@ -424,50 +428,55 @@ export function ManufacturingDetail() {
                 {activePlant.shortName}
               </p> */}
             </div>
-          </div>
+          </Reveal>
 
-          <div
-            ref={statsTrackRef}
-            className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 [scrollbar-width:none] sm:grid sm:grid-cols-2 sm:gap-7 sm:overflow-visible sm:pb-0 xl:grid-cols-4 xl:gap-[72px] [&::-webkit-scrollbar]:hidden"
-          >
-            {activePlant.stats.map((stat) => (
-              <article
-                key={stat.label}
-                tabIndex={0}
-                aria-label={`${stat.label}: ${stat.value}. ${stat.details}`}
-                className="group h-[344px] w-[88%] shrink-0 snap-start rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-700 sm:w-auto sm:perspective-[1200px]"
-              >
-                <div className="flex h-full flex-col items-center justify-center rounded-md bg-primary-700 px-6 py-7 text-center text-white sm:hidden">
-                  <StatIcon icon={stat.icon} />
-                  <h3 className="mt-5 text-lg font-bold uppercase tracking-wide">
-                    {stat.label}
-                  </h3>
-                  <p className="mt-3 text-4xl font-bold leading-none">
-                    {stat.value}
-                  </p>
-                  <p className="mt-5 max-w-[250px] text-base font-bold leading-snug">
-                    {stat.details}
-                  </p>
-                </div>
-
-                <div className="hidden h-full transition-transform duration-700 transform-3d group-hover:rotate-y-180 group-focus-within:rotate-y-180 motion-reduce:transition-none sm:grid">
-                  <div className="flex h-full flex-col items-center justify-center rounded-md bg-primary-700 px-7 py-10 text-center text-white [grid-area:1/1] backface-hidden">
+          {/* Wrapper, not the track itself: the track owns statsTrackRef, and
+              its cards carry a 3D flip that a per-card reveal would sit on
+              top of. The row arrives as one block instead. */}
+          <Reveal>
+            <div
+              ref={statsTrackRef}
+              className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 [scrollbar-width:none] sm:grid sm:grid-cols-2 sm:gap-7 sm:overflow-visible sm:pb-0 xl:grid-cols-4 xl:gap-[72px] [&::-webkit-scrollbar]:hidden"
+            >
+              {activePlant.stats.map((stat) => (
+                <article
+                  key={stat.label}
+                  tabIndex={0}
+                  aria-label={`${stat.label}: ${stat.value}. ${stat.details}`}
+                  className="group h-[344px] w-[88%] shrink-0 snap-start rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-700 sm:w-auto sm:perspective-[1200px]"
+                >
+                  <div className="flex h-full flex-col items-center justify-center rounded-md bg-primary-700 px-6 py-7 text-center text-white sm:hidden">
                     <StatIcon icon={stat.icon} />
-                    <h3 className="mt-10 text-2xl font-bold uppercase tracking-wide">
+                    <h3 className="mt-5 text-lg font-bold uppercase tracking-wide">
                       {stat.label}
                     </h3>
+                    <p className="mt-3 text-4xl font-bold leading-none">
+                      {stat.value}
+                    </p>
+                    <p className="mt-5 max-w-[250px] text-base font-bold leading-snug">
+                      {stat.details}
+                    </p>
                   </div>
 
-                  <div className="flex h-full rotate-y-180 flex-col items-center justify-center rounded-md bg-primary-950 px-7 py-10 text-center text-white [grid-area:1/1] backface-hidden">
-                    <p className="text-2xl font-bold leading-snug">{stat.details}</p>
-                    <h3 className="mt-5 text-xl font-bold uppercase tracking-wide">
-                      {stat.label}
-                    </h3>
+                  <div className="hidden h-full transition-transform duration-700 transform-3d group-hover:rotate-y-180 group-focus-within:rotate-y-180 motion-reduce:transition-none sm:grid">
+                    <div className="flex h-full flex-col items-center justify-center rounded-md bg-primary-700 px-7 py-10 text-center text-white [grid-area:1/1] backface-hidden">
+                      <StatIcon icon={stat.icon} />
+                      <h3 className="mt-10 text-2xl font-bold uppercase tracking-wide">
+                        {stat.label}
+                      </h3>
+                    </div>
+
+                    <div className="flex h-full rotate-y-180 flex-col items-center justify-center rounded-md bg-primary-950 px-7 py-10 text-center text-white [grid-area:1/1] backface-hidden">
+                      <p className="text-2xl font-bold leading-snug">{stat.details}</p>
+                      <h3 className="mt-5 text-xl font-bold uppercase tracking-wide">
+                        {stat.label}
+                      </h3>
+                    </div>
                   </div>
-                </div>
-              </article>
-            ))}
-          </div>
+                </article>
+              ))}
+            </div>
+          </Reveal>
 
           <div className="mt-6 flex items-center justify-between sm:hidden">
             <div className="flex gap-3" role="tablist" aria-label="Manufacturing stats">
@@ -507,7 +516,7 @@ export function ManufacturingDetail() {
             </div>
           </div>
 
-          <figure className="relative mt-16 sm:mt-[180px]">
+          <Reveal as="figure" className="relative mt-16 sm:mt-[180px]">
             <div className="relative aspect-video overflow-hidden rounded-md sm:aspect-[2.11/1] sm:min-h-72">
               <Image
                 src={activePlant.gallery[galleryIndex].src}
@@ -550,13 +559,16 @@ export function ManufacturingDetail() {
                 ))}
               </div>
             </div>
-          </figure>
+          </Reveal>
 
-          <div className="mt-20 space-y-10 text-xl font-light leading-9 text-neutral-500 sm:text-[26px] sm:leading-[1.55]">
+          <Reveal
+            stagger
+            className="mt-20 space-y-10 text-xl font-light leading-9 text-neutral-500 sm:text-[26px] sm:leading-[1.55]"
+          >
             {activePlant.paragraphs.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
-          </div>
+          </Reveal>
         </section>
 
         <section className="relative overflow-hidden bg-surface-tint py-24 lg:py-32">
@@ -567,7 +579,7 @@ export function ManufacturingDetail() {
             height={300}
             className="pointer-events-none absolute -right-10 -top-16 w-96 opacity-70 lg:w-[560px]"
           />
-          <div className="relative mx-auto max-w-6xl px-4 text-center sm:px-6">
+          <Reveal className="relative mx-auto max-w-6xl px-4 text-center sm:px-6">
             <p className="text-xl font-bold uppercase text-primary-700">Sustainability Credentials</p>
             <h2 className="mt-12 text-4xl font-bold leading-tight text-primary-950 sm:text-[50px]">
               {activePlant.sustainabilityTitle}
@@ -575,9 +587,9 @@ export function ManufacturingDetail() {
             <p className="mx-auto mt-12 max-w-5xl text-xl font-light leading-9 text-neutral-500 sm:text-2xl sm:leading-10">
               {activePlant.sustainabilityBody}
             </p>
-          </div>
+          </Reveal>
 
-          <div className="relative mx-auto mt-20 max-w-[1580px] px-4 sm:px-6">
+          <Reveal className="relative mx-auto mt-20 max-w-[1580px] px-4 sm:px-6">
             <div className="relative aspect-[16/7] overflow-hidden rounded-md">
               <Image
                 src={activePlant.sustainabilityImage.src}
@@ -587,7 +599,7 @@ export function ManufacturingDetail() {
                 className="object-cover"
               />
             </div>
-          </div>
+          </Reveal>
         </section>
 
         <div className="overflow-hidden bg-accent py-5 text-white">

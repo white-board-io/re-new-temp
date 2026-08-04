@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState, type ComponentType } from "react";
 import { PowerOutputChart } from "@/components/power-output-chart";
+import { Reveal } from "@/components/reveal";
 import {
   Cpu,
   Factory,
@@ -210,7 +211,7 @@ export function SolarModuleDetail() {
           className="object-cover object-top"
         />
         <div className="absolute inset-0 bg-white/15" />
-        <div className="relative max-w-5xl text-primary-950">
+        <Reveal className="relative max-w-5xl text-primary-950">
           <h1 className="text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-[60px] lg:leading-[64px] lg:tracking-hero">
             Engineered for performance.
             <br />
@@ -220,7 +221,7 @@ export function SolarModuleDetail() {
             Three module offerings built for homes, businesses, and large-scale utility
             projects across India.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       <section id="module-range" className="relative bg-white">
@@ -257,7 +258,8 @@ export function SolarModuleDetail() {
         </div>
       </div>
 
-      <div
+      <Reveal
+        stagger
         id="module-panel"
         role="tabpanel"
         className="mx-auto grid max-w-content gap-14 px-4 py-20 sm:px-6 lg:grid-cols-[1.08fr_1fr] lg:gap-24 lg:py-28 xl:px-0"
@@ -370,9 +372,10 @@ export function SolarModuleDetail() {
             </button>
           </div>
         </div>
-      </div>
+      </Reveal>
 
-      <div
+      <Reveal
+        stagger
         className="mx-auto grid max-w-content gap-16 px-4 pb-44 pt-0 sm:px-6 lg:grid-cols-[0.98fr_1fr] lg:gap-24 lg:pb-64 xl:px-0"
       >
         <div className="space-y-12 pt-0 sm:space-y-14">
@@ -413,10 +416,10 @@ export function SolarModuleDetail() {
         <div className="flex items-start justify-center pt-2 lg:pt-8">
           <PowerOutputChart className="max-w-[560px]" replayKey={activeModuleId} />
         </div>
-      </div>
+      </Reveal>
 
       <div className="mx-auto max-w-content px-4 pb-36 text-center sm:px-6 xl:px-0">
-        <div className="grid grid-cols-3 gap-3 sm:gap-14 md:gap-8">
+        <Reveal stagger className="grid grid-cols-3 gap-3 sm:gap-14 md:gap-8">
           {applications.map((application) => (
             <div key={application.line1} className="flex flex-col items-center">
               <span className="flex size-16 items-center justify-center rounded-full bg-primary-700 sm:size-32">
@@ -433,7 +436,7 @@ export function SolarModuleDetail() {
               </p>
             </div>
           ))}
-        </div>
+        </Reveal>
       </div>
 
       <div className="relative pb-32">

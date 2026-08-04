@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Reveal } from "@/components/reveal";
 
 const posts = [
   {
@@ -27,7 +28,7 @@ export function Blogs() {
   return (
     <section id="blogs" className="bg-white py-section">
       <div className="mx-auto max-w-content px-4 sm:px-6">
-        <header className="text-center">
+        <Reveal as="header" className="text-center">
           <h2 className="text-4xl font-bold text-primary-950 sm:text-[54px] sm:leading-[62px]">
             Blogs
           </h2>
@@ -35,9 +36,13 @@ export function Blogs() {
             Discover updates, ideas, and breakthroughs from ReNew&apos;s solar panel
             business.
           </p>
-        </header>
+        </Reveal>
 
-        <div className="mt-14 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 md:grid md:gap-7 md:overflow-visible md:pb-0 lg:grid-cols-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <Reveal
+          stagger
+          delay={120}
+          className="reveal-track mt-14 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 md:grid md:gap-7 md:overflow-visible md:pb-0 lg:grid-cols-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
           {posts.map((post) => (
             <article
               key={post.title}
@@ -68,7 +73,7 @@ export function Blogs() {
               </div>
             </article>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

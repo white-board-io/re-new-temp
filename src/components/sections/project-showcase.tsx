@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { Reveal } from "@/components/reveal";
 
 const PROJECT_SLIDES = [
   {
@@ -150,7 +151,9 @@ export function ProjectShowcase() {
             })}
           </div>
 
-          <div className="max-w-2xl pl-0 text-white md:pl-24 lg:pl-20">
+          {/* One fade as the showcase arrives. Slide-to-slide changes are the
+              scroll track's job, so this settles once and stays put. */}
+          <Reveal className="max-w-2xl pl-0 text-white md:pl-24 lg:pl-20">
             <p className="text-5xl font-bold leading-none text-accent sm:text-[64px]">
               {PROJECT_SLIDES[activeSlide].capacity}
             </p>
@@ -173,7 +176,7 @@ export function ProjectShowcase() {
                 <dd>{PROJECT_SLIDES[activeSlide].location}</dd>
               </div>
             </dl>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

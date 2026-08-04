@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Reveal } from "@/components/reveal";
 
 const navItems = [
   { label: "Who We Serve", href: "#who-we-serve" },
@@ -99,7 +100,10 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
   return (
     <footer className="bg-primary-950 pt-24 text-white">
       <div className="mx-auto max-w-[1650px] px-4 sm:px-6 xl:px-0">
-        <div className="grid gap-14 lg:grid-cols-[1fr_1.4fr] xl:grid-cols-[620px_1fr] xl:gap-[140px]">
+        <Reveal
+          stagger
+          className="grid gap-14 lg:grid-cols-[1fr_1.4fr] xl:grid-cols-[620px_1fr] xl:gap-[140px]"
+        >
           <div>
             <Image
               src="/images/logo-white.svg"
@@ -236,7 +240,7 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
               </div>
             </div>
           </nav>
-        </div>
+        </Reveal>
       </div>
       <div className="mt-20 h-16 border-t border-white" aria-hidden />
     </footer>

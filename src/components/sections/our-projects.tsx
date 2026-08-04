@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Reveal } from "@/components/reveal";
 
 export function OurProjects() {
   return (
@@ -16,7 +17,7 @@ export function OurProjects() {
       </div>
 
       <div className="relative mx-auto max-w-content px-4 md:-mt-24 sm:px-6 lg:-mt-40">
-        <div className="relative -mx-4 overflow-hidden bg-primary-700 px-7 py-12 text-center text-white sm:-mx-6 md:mx-0 md:rounded-md md:text-left lg:px-20 lg:py-14 xl:mx-[22px]">
+        <Reveal className="relative -mx-4 overflow-hidden bg-primary-700 px-7 py-12 text-center text-white sm:-mx-6 md:mx-0 md:rounded-md md:text-left lg:px-20 lg:py-14 xl:mx-[22px]">
           {/* Two sunbursts, each a full circle centred on one of the card's
               horizontal edges so the card's own overflow-hidden clips it to the
               half the design shows: the larger one hangs off the top edge, the
@@ -66,7 +67,7 @@ export function OurProjects() {
               Know More
             </Link>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

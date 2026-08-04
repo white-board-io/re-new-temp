@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { IndianRupee, Leaf, Zap } from "lucide-react";
 import { calculateSolar } from "@/lib/solar";
+import { Reveal } from "@/components/reveal";
 
 const STATE_TARIFFS: Record<string, number> = {
   "Andaman and Nicobar Islands": 6.5,
@@ -90,7 +91,10 @@ export function SavingsCalculator() {
   return (
     <section id="savings-calculator" className="bg-white py-section">
       <div className="mx-auto max-w-content px-4 sm:px-6">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <Reveal
+          stagger
+          className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between"
+        >
           <div>
             <p className="text-2xl font-bold uppercase leading-8 text-primary-700">
               Solar Calculator
@@ -103,9 +107,9 @@ export function SavingsCalculator() {
             Enter your monthly electricity bill and see your estimated annual savings with
             ReNew Solar Panels
           </p>
-        </div>
+        </Reveal>
 
-        <div className="mt-14 grid gap-8 lg:grid-cols-[1fr_1.34fr]">
+        <Reveal stagger delay={150} className="mt-14 grid gap-8 lg:grid-cols-[1fr_1.34fr]">
           <form
             className="min-w-0 rounded-2xl border border-neutral-200 bg-white p-5 min-[360px]:p-8 lg:flex lg:flex-col lg:justify-between"
             onSubmit={(e) => e.preventDefault()}
@@ -348,7 +352,7 @@ export function SavingsCalculator() {
               </div>
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

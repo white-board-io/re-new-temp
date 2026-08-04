@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { CountUp } from "@/components/count-up";
+import { Reveal } from "@/components/reveal";
 
 const stats = [
   {
@@ -55,7 +56,13 @@ const stats = [
 export function StatsBar() {
   return (
     <section className="bg-white py-16 md:py-12 lg:py-6 xl:flex xl:min-h-[200px] xl:items-center xl:py-0">
-      <dl className="mx-auto grid max-w-[1508px] grid-cols-1 gap-x-12 gap-y-10 px-4 sm:grid-cols-2 sm:px-6 lg:gap-x-6 lg:[grid-template-columns:repeat(4,minmax(4px,auto))] xl:w-[1508px] xl:grid-cols-[398px_417px_377px_316px] xl:gap-x-0 xl:px-0">
+      {/* Stats sit in the first fold, so this run plays on load rather than on
+          scroll — it hands off to each figure's own CountUp. */}
+      <Reveal
+        as="dl"
+        stagger
+        className="mx-auto grid max-w-[1508px] grid-cols-1 gap-x-12 gap-y-10 px-4 sm:grid-cols-2 sm:px-6 lg:gap-x-6 lg:[grid-template-columns:repeat(4,minmax(4px,auto))] xl:w-[1508px] xl:grid-cols-[398px_417px_377px_316px] xl:gap-x-0 xl:px-0"
+      >
         {stats.map((stat) => (
           <div
             key={stat.label}
@@ -84,7 +91,7 @@ export function StatsBar() {
             </div>
           </div>
         ))}
-      </dl>
+      </Reveal>
     </section>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ChevronDown, Mail, Phone } from "lucide-react";
+import { Reveal } from "@/components/reveal";
 
 const REQUIREMENT_TYPES = [
   "Residential Rooftop",
@@ -59,7 +60,11 @@ export function Contact() {
 
   return (
     <section id="contact" className="bg-primary-700 py-section text-white">
-      <div className="mx-auto grid max-w-content gap-14 px-4 sm:px-6 lg:grid-cols-2 lg:gap-24 xl:grid-cols-[560px_545px] xl:gap-[323px]">
+      {/* Copy column, then the form a beat later. */}
+      <Reveal
+        stagger
+        className="mx-auto grid max-w-content gap-14 px-4 sm:px-6 lg:grid-cols-2 lg:gap-24 xl:grid-cols-[560px_545px] xl:gap-[323px]"
+      >
         <div className="min-w-0">
           <h2
             aria-label="Power your next Home, Project, or Business with ReNew Solar Panels."
@@ -151,7 +156,7 @@ export function Contact() {
             </button>
           </div>
         </form>
-      </div>
+      </Reveal>
     </section>
   );
 }

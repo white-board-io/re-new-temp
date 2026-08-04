@@ -1,3 +1,5 @@
+import { Reveal } from "@/components/reveal";
+
 const downloadGroups = [
   {
     id: "product-datasheets",
@@ -66,13 +68,20 @@ export function Downloads() {
               id={group.id}
               aria-labelledby={`${group.id}-title`}
             >
-              <h2
-                id={`${group.id}-title`}
-                className="text-lg font-normal uppercase tracking-[0.02em] text-primary-700 sm:text-xl"
+              <Reveal>
+                <h2
+                  id={`${group.id}-title`}
+                  className="text-lg font-normal uppercase tracking-[0.02em] text-primary-700 sm:text-xl"
+                >
+                  {group.title}
+                </h2>
+              </Reveal>
+              <Reveal
+                as="ul"
+                stagger
+                delay={100}
+                className="mt-9 border-t border-neutral-200 sm:mt-12"
               >
-                {group.title}
-              </h2>
-              <ul className="mt-9 border-t border-neutral-200 sm:mt-12">
                 {group.items.map((item) => (
                   <li
                     key={item}
@@ -91,7 +100,7 @@ export function Downloads() {
                     </button>
                   </li>
                 ))}
-              </ul>
+              </Reveal>
             </section>
           ))}
         </div>

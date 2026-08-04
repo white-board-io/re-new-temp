@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, type ComponentType } from "react";
+import { Reveal } from "@/components/reveal";
 import {
   ChevronLeft,
   ChevronRight,
@@ -139,7 +140,7 @@ export function SolarCellDetail() {
           className="object-cover object-[center_25%]"
         />
         <div className="absolute inset-0 bg-white/10" />
-        <div className="relative max-w-5xl text-primary-950">
+        <Reveal className="relative max-w-5xl text-primary-950">
           <h1 className="text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-[60px] lg:leading-[64px] lg:tracking-hero">
             The cell at the heart of every
             <br />
@@ -150,7 +151,7 @@ export function SolarCellDetail() {
             <br className="hidden sm:block" />
             Built for precision. Graded for performance.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       <section id="cell-range" className="relative bg-white">
@@ -163,7 +164,10 @@ export function SolarCellDetail() {
           </div>
         </div>
 
-        <div className="mx-auto grid max-w-content gap-14 px-4 py-20 sm:px-6 lg:grid-cols-[1.08fr_1fr] lg:gap-24 lg:py-28 xl:px-0">
+        <Reveal
+          stagger
+          className="mx-auto grid max-w-content gap-14 px-4 py-20 sm:px-6 lg:grid-cols-[1.08fr_1fr] lg:gap-24 lg:py-28 xl:px-0"
+        >
           <div>
             <div className="relative mx-auto h-[430px] max-w-[660px] sm:h-[560px] lg:h-[640px]">
               <Image
@@ -248,10 +252,10 @@ export function SolarCellDetail() {
               </button>
             </div>
           </div>
-        </div>
+        </Reveal>
 
         <div className="mx-auto max-w-content px-4 pb-36 pt-8 sm:px-6 lg:pt-7 xl:px-0">
-          <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
+          <Reveal stagger className="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
             {featureCards.map((feature) => (
               <article
                 key={feature.description}
@@ -262,7 +266,7 @@ export function SolarCellDetail() {
                 <p className="mt-10 text-lg leading-7">{feature.description}</p>
               </article>
             ))}
-          </div>
+          </Reveal>
         </div>
 
         <div className="relative pb-24 pt-1 sm:pb-32">
@@ -271,7 +275,7 @@ export function SolarCellDetail() {
             className="absolute inset-x-0 bottom-0 top-[141px] bg-primary-700 sm:top-[181px] lg:top-[338px]"
           />
           <div className="relative mx-auto max-w-[1532px] px-4 sm:px-6 xl:px-0">
-            <div className="relative">
+            <Reveal className="relative">
               <div className="relative aspect-[1532/676] min-h-[280px] w-full overflow-hidden rounded-md bg-primary-950 sm:min-h-[360px] lg:min-h-0">
                 <Image
                   key={carouselImages[activeSlide].src}
@@ -314,7 +318,7 @@ export function SolarCellDetail() {
               >
                 <ChevronRight aria-hidden className="size-8" strokeWidth={1.7} />
               </button>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>

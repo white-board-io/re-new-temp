@@ -258,7 +258,7 @@ function StatIcon({ icon }: { icon: Plant["stats"][number]["icon"] }) {
       alt=""
       width={132}
       height={132}
-      className="size-20 object-contain sm:size-[132px]"
+      className="size-14 object-contain sm:size-[132px]"
     />
   );
 }
@@ -386,6 +386,13 @@ export function ManufacturingDetail() {
                       ? "Dholera"
                       : "Visakhapatnam"}
                 </span> */}
+                <span className="sm:hidden">
+                  {plant.id === "jaipur"
+                    ? "Jaipur"
+                    : plant.id === "dholera"
+                      ? "Dholera"
+                      : "Visakhapatnam"}
+                </span>
                 <span className="hidden sm:inline">{plant.name}</span>
                 <span
                   className={`absolute inset-x-0 bottom-0 h-3 origin-left bg-primary-400 transition-transform ${

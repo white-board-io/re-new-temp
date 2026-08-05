@@ -26,7 +26,7 @@ const posts = [
 
 export function Blogs() {
   return (
-    <section id="blogs" className="bg-white py-section">
+    <section id="blogs" className="bg-white pb-section md:py-section">
       <div className="mx-auto max-w-content px-4 sm:px-6">
         <Reveal as="header" className="text-center">
           <h2 className="text-4xl font-bold text-primary-950 sm:text-[54px] sm:leading-[62px]">

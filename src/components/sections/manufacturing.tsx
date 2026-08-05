@@ -14,6 +14,7 @@ const plants = [
     alt: "Aerial view of the Jaipur, Rajasthan plant within the outline of Rajasthan state",
     caption: "4 GW module manufacturing capacity under a single roof.",
     mobileSummary: "4 GW module capacity under one roof.",
+    mobileDetails: "4 GW module manufacturing capacity under a single roof.",
     details: "4 GW module manufacturing capacity under a single roof.",
   },
   {
@@ -23,6 +24,8 @@ const plants = [
     alt: "Aerial view of the Dholera, Gujarat plant within the outline of Gujarat state",
     caption: "2.4 GW module manufacturing capacity across 55 acres.",
     mobileSummary: "2.4 GW capacity across 55 acres, with 4 GW TOPCon in development.",
+    mobileDetails:
+      "2.4 GW module manufacturing capacity across 55 acres in Gujarat's Special Investment Region, with a 4 GW TOPCon facility under development. Equipped with AI-driven defect diagnostics and automated material movement systems.",
     details:
       "(including a 4 GW TOPCon facility under development) and 2.4 GW module manufacturing capacity, spread across 55 acres in Gujarat's Special Investment Region. Equipped with AI-driven defect diagnostics and automated material movement systems.",
   },
@@ -33,6 +36,7 @@ const plants = [
     alt: "Aerial view of the Visakhapatnam, Andhra Pradesh plant within the outline of Andhra Pradesh state",
     caption: "6.5 GW wafer and ingot manufacturing facility",
     mobileSummary: "6.5 GW wafer and ingot manufacturing facility",
+    mobileDetails: "6.5 GW wafer and ingot manufacturing facility",
     details: "6.5 GW wafer and ingot manufacturing facility",
     status: "(In pipeline)",
   },
@@ -107,19 +111,45 @@ export function Manufacturing() {
                 onMouseEnter={() => setActive(index)}
                 onMouseLeave={() => setActive(null)}
                 onFocus={() => setActive(index)}
-                className={`relative h-[420px] w-[88%] shrink-0 snap-start focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:h-[500px] md:w-auto md:shrink ${
+                className={`relative h-[360px] w-[78%] shrink-0 snap-start focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:h-[500px] md:w-auto md:shrink ${
                   isActive ? "z-10" : "z-0"
                 }`}
               >
                 <div
-                  className={`absolute inset-0 origin-center overflow-hidden rounded-2xl md:rounded-md md:transition-[scale,background-color,box-shadow] motion-reduce:transition-none ${GROW} ${
+                  className={`absolute inset-0 origin-center overflow-hidden rounded-2xl max-md:bg-primary-900 max-md:shadow-[0_8px_18px_rgba(0,0,0,0.18)] max-md:ring-1 max-md:ring-white/10 md:rounded-md md:transition-[scale,background-color,box-shadow] motion-reduce:transition-none ${GROW} ${
                     isActive
                       ? "md:bg-black/25 md:shadow-[0_8px_18px_rgba(0,0,0,0.2)] md:scale-[1.13]"
                       : "md:scale-100"
                   }`}
                 >
+                  <div className="absolute inset-0 md:hidden">
+                    <Image
+                      src={plant.image.src}
+                      alt={plant.alt}
+                      width={plant.image.width}
+                      height={plant.image.height}
+                      className={`absolute left-1/2 top-1/2 max-h-[235px] w-full -translate-x-1/2 -translate-y-1/2 object-contain opacity-85 ${plant.imageClassName}`}
+                      sizes="88vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary-950/95 via-primary-950/70 to-primary-950/35" />
+                  </div>
+
+                  <div className="absolute inset-x-5 bottom-5 top-9 z-10 flex flex-col items-center text-center text-white md:hidden">
+                    <h3 className="text-[29px] font-bold leading-[1.12]">
+                      {plant.title.map((line) => (
+                        <span key={line} className="block">
+                          {line}
+                        </span>
+                      ))}
+                    </h3>
+                    <p className="mt-10 text-md font-bold leading-5">
+                      {plant.mobileDetails}
+                      {plant.status ? <span className="mt-3 block">{plant.status}</span> : null}
+                    </p>
+                  </div>
+
                   <figure
-                    className={`absolute inset-0 flex flex-col items-center justify-start gap-4 px-7 pb-7 pt-5 md:justify-center md:gap-0 md:p-8 md:transition-[opacity,scale] md:duration-500 ${
+                    className={`absolute inset-0 hidden flex-col items-center justify-start gap-4 px-7 pb-7 pt-5 md:flex md:justify-center md:gap-0 md:p-8 md:transition-[opacity,scale] md:duration-500 ${
                       isActive
                         ? "md:pointer-events-none md:scale-95 md:opacity-0"
                         : "md:scale-100 md:opacity-100 md:delay-200"
@@ -177,7 +207,7 @@ export function Manufacturing() {
           })}
         </Reveal>
 
-        <Reveal className="mb-8 -mt-8 flex justify-center md:hidden">
+        <Reveal className="mb-8 mt-4 flex justify-center md:hidden">
           <Link
             href="/manufacturing"
             className="inline-flex min-w-36 items-center justify-center rounded-full bg-accent px-8 py-3 text-base font-bold text-white hover:bg-primary-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"

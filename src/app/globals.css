@@ -133,6 +133,39 @@
   }
 }
 
+.price-list-tab {
+  --price-list-scale: min(0.64, calc((100vw - 24px) / 473px), calc((100svh - 120px) / 310px));
+  transform: translateY(-50%) scale(var(--price-list-scale));
+  transform-origin: right center;
+}
+
+@media (min-width: 640px) {
+  .price-list-tab {
+    --price-list-scale: 0.7;
+  }
+}
+
+@media (min-width: 768px) {
+  .price-list-tab {
+    --price-list-scale: 0.74;
+  }
+}
+
+@media (min-width: 1024px) {
+  .price-list-tab {
+    --price-list-scale: 0.84;
+  }
+}
+
+@media (min-width: 1280px) {
+  .price-list-tab {
+    --price-list-scale: var(--design-scale);
+    right: 0;
+    transform: translateY(-50%) scale(var(--price-list-scale));
+    transform-origin: right center;
+  }
+}
+
 /*
  * First fold — the Hero and the Stats Bar share the viewport below the fixed
  * header, so the infographics are on screen before the user scrolls and the

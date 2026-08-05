@@ -52,7 +52,7 @@ export function Products() {
     .join(" ");
 
   return (
-    <section id="products" className="relative overflow-hidden pt-20">
+    <section id="products" className="relative overflow-hidden md:pt-20">
       {/* End the section artwork at the midpoint of the product cards:
           half the card height + the grid's 6rem bottom padding. */}
       <div className="pointer-events-none absolute inset-x-0 bottom-[306px] top-0 -z-10 hidden overflow-hidden md:block lg:bottom-[375px]">
@@ -93,7 +93,7 @@ export function Products() {
                 className="relative h-[420px] overflow-hidden rounded-md lg:h-[558px]"
               >
                 <Image
-                  src={product.expandedImage}
+                  src={product.image}
                   alt={product.alt}
                   fill
                   className={`object-cover md:hidden ${product.position}`}
@@ -129,7 +129,7 @@ export function Products() {
                   </div>
                   <Link
                     href={product.href}
-                    className={`mt-auto self-center rounded-full bg-accent px-7 py-2.5 text-base font-medium text-white hover:bg-primary-400 md:self-start md:px-8 md:text-xl ${contentIn(
+                    className={`mb-8 mt-auto self-center rounded-full bg-accent px-7 py-2.5 text-base font-medium text-white hover:bg-primary-400 md:mb-0 md:self-start md:px-8 md:text-xl ${contentIn(
                       isActive,
                       "md:delay-[450ms]",
                     )}`}

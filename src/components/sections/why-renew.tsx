@@ -44,7 +44,7 @@ function LogoRun({ hidden = false }: { hidden?: boolean }) {
 
 export function WhyRenew() {
   return (
-    <section id="why-renew" className="overflow-hidden bg-white py-section">
+    <section id="why-renew" className="overflow-hidden bg-white pb-section md:py-section">
       <Reveal className="mx-auto max-w-content px-4 text-center sm:px-6">
         <p className="text-2xl font-bold uppercase leading-8 text-primary-700">
           Why ReNew Solar Panels

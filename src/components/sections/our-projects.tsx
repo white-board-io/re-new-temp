@@ -5,12 +5,12 @@ import { Reveal } from "@/components/reveal";
 export function OurProjects() {
   return (
     <section id="our-projects" className="overflow-hidden bg-white pb-section">
-      <div className="relative aspect-[3840/990] md:aspect-auto md:h-[420px] lg:h-[500px]">
+      <div className="relative aspect-[2/1] md:aspect-auto md:h-[420px] lg:h-[500px]">
         <Image
           src="/images/projects.webp"
           alt="Solar installations operating through forest, storm, desert, and snow conditions"
           fill
-          className="object-contain md:object-cover"
+          className="object-cover"
           sizes="100vw"
           quality={90}
         />

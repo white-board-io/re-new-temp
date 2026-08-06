@@ -158,7 +158,7 @@ export function SolarCellDetail() {
         <div className="sticky top-[88px] z-30 bg-neutral-100 shadow-[0_2px_12px_rgba(0,0,0,0.08)] lg:top-[136px] xl:top-[138px]">
           <div className="mx-auto grid max-w-content px-4 sm:px-6 md:grid-cols-3 xl:px-0">
             <div className="relative flex min-h-20 items-center justify-center text-center text-sm font-normal text-primary-700 sm:min-h-[108px] sm:text-xl lg:text-2xl">
-              M10R PERC Cell P-Type
+              M10R P-Type PERC Bifacial
               <span className="absolute inset-x-0 bottom-0 h-3.5 bg-primary-400" />
             </div>
           </div>
@@ -200,7 +200,7 @@ export function SolarCellDetail() {
 
           <div className="pt-4 text-center text-primary-950 lg:pt-10 lg:text-left">
             <h2 className="text-3xl font-bold sm:text-4xl">
-              M10R PERC Cell <span className="text-primary-400">P-Type</span>
+              M10R P-Type PERC <span className="text-primary-400">Bifacial</span>
             </h2>
             <p className="mt-4 text-2xl font-bold text-primary-700">Right. Reliable. Ready.</p>
 
@@ -208,7 +208,7 @@ export function SolarCellDetail() {
               <div className="border-t border-neutral-200 py-8">
                 <dt>Type</dt>
                 <dd className="mt-2 text-neutral-500">
-                  High conversion efficiency bifacial PERC cell
+                  M10R P-Type PERC Bifacial
                 </dd>
               </div>
               <div className="border-t border-neutral-200 py-8">

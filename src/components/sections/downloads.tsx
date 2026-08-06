@@ -8,7 +8,7 @@ const downloadGroups = [
       "G12R TOPCon Bifacial Module",
       "M10R TOPCon",
       "M10R PERC",
-      "M10R PERC Cell P-Type",
+      "M10R P-Type PERC Bifacial",
     ],
   },
   {

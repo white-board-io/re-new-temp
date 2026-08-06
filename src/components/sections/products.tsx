@@ -38,18 +38,14 @@ const products = [
     image: "/images/solarcell-s.webp",
     expandedImage: "/images/Solarcell-e.webp",
     position: "object-center",
+    contentPosition: "top-32 md:top-[130px]",
     alt: "A ReNew solar cell standing in a misty field at sunrise",
     href: "/products/solar-cell",
     features: [
       {
-        lead: "TOPCon & Mono PERC cells",
+        lead: "M10R P-Type PERC Bifacial",
         href: "/products/solar-cell",
-        rest: "with conversion efficiency of up to 25.2%",
-      },
-      {
-        lead: "6.4 lakh cells produced daily",
-        href: "/products/solar-cell",
-        rest: "across three world-class plants",
+        rest: "",
       },
     ],
   },
@@ -105,6 +101,7 @@ export function Products() {
         >
           {products.map((product, i) => {
             const isActive = i === active;
+            const contentPosition = product.contentPosition ?? "top-[104px] md:top-[106px]";
             return (
               <article
                 key={product.title}
@@ -131,7 +128,7 @@ export function Products() {
                   {product.title}
                 </h3>
                 <div
-                  className={`absolute inset-x-8 bottom-8 top-[104px] z-10 flex flex-col items-center text-center md:bottom-12 md:left-[47%] md:right-12 md:top-[106px] md:items-stretch md:text-left ${
+                  className={`absolute inset-x-8 bottom-8 ${contentPosition} z-10 flex flex-col items-center text-center md:bottom-12 md:left-[47%] md:right-12 md:items-stretch md:text-left ${
                     isActive ? "" : "md:pointer-events-none"
                   }`}
                 >
@@ -145,8 +142,12 @@ export function Products() {
                         <strong className="font-bold underline-offset-4 group-hover:underline">
                           {feature.lead}
                         </strong>
-                        <br />
-                        {feature.rest}
+                        {feature.rest ? (
+                          <>
+                            <br />
+                            {feature.rest}
+                          </>
+                        ) : null}
                       </Link>
                     ))}
                   </div>

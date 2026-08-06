@@ -21,6 +21,8 @@ const plants = [
     title: ["Dholera,", "Gujarat"],
     image: { src: "/images/_Dholera.webp", width: 478, height: 688 },
     imageClassName: "max-w-[332px]",
+    detailContainerClassName: "inset-x-6 xl:inset-x-10",
+    detailTextClassName: "max-w-[280px]",
     alt: "Aerial view of the Dholera, Gujarat plant within the outline of Gujarat state",
     caption: "2.4 GW module manufacturing capacity across 55 acres.",
     mobileSummary: "2.4 GW capacity across 55 acres, with 4 GW TOPCon in development.",
@@ -103,6 +105,9 @@ export function Manufacturing() {
         >
           {plants.map((plant, index) => {
             const isActive = active === index;
+            const detailContainerClassName =
+              plant.detailContainerClassName ?? "inset-x-8 xl:inset-x-16";
+            const detailTextClassName = plant.detailTextClassName ?? "max-w-[420px]";
 
             return (
               <article
@@ -183,7 +188,7 @@ export function Manufacturing() {
 
                   <div
                     aria-hidden={!isActive}
-                    className={`absolute inset-y-0 inset-x-8 hidden flex-col items-center justify-center p-5 text-center transition-[opacity,translate] duration-500 md:flex xl:inset-x-16 xl:p-6 ${
+                    className={`absolute inset-y-0 ${detailContainerClassName} hidden flex-col items-center justify-center p-5 text-center transition-[opacity,translate] duration-500 md:flex xl:p-6 ${
                       isActive
                         ? "translate-y-0 opacity-100 delay-200"
                         : "pointer-events-none translate-y-4 opacity-0"
@@ -196,7 +201,7 @@ export function Manufacturing() {
                         </span>
                       ))}
                     </h3>
-                    <p className="mt-8 max-w-[420px] text-base leading-6 xl:mt-10 xl:text-lg xl:leading-8">
+                    <p className={`mt-8 ${detailTextClassName} text-base leading-6 xl:mt-10 xl:text-lg xl:leading-8`}>
                       {plant.details}
                       {plant.status ? <span className="block">{plant.status}</span> : null}
                     </p>

@@ -118,12 +118,12 @@ export function ContactModal() {
         className="relative h-[min(649px,calc(100dvh-40px))] w-full max-w-[568px] overflow-hidden bg-[#11663A] text-white shadow-2xl"
       >
         <Image
-          src="/images/sunburst_full-dark.svg"
+          src="/images/sunburst_full.svg"
           alt=""
           width={702}
           height={701}
           aria-hidden
-          className="pointer-events-none absolute left-1/2 top-1/2 h-[620px] w-[621px] -translate-x-1/2 -translate-y-[47%] opacity-95"
+          className="pointer-events-none absolute left-1/2 top-1/2 h-[560px] w-[561px] -translate-x-1/2 -translate-y-1/2 opacity-20"
         />
 
         <button

@@ -242,7 +242,7 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
           </nav>
         </Reveal>
       </div>
-      <div className="mt-20 h-16 border-t border-white" aria-hidden />
+      <div className="mt-20 h-16 border-t border-primary-700" aria-hidden />
     </footer>
   );
 }

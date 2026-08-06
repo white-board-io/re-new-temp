@@ -109,6 +109,8 @@ export function Hero() {
             </p>
             <a
               href="https://www.renew.com/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-10 inline-flex min-h-11 min-w-[204px] items-center justify-center rounded-full bg-accent px-10 text-[20px] font-medium text-white transition-colors hover:bg-primary-400 hero-full:mt-14"
             >
               Visit ReNew

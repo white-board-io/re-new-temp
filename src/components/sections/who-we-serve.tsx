@@ -11,21 +11,21 @@ const cards = [
     image: "/images/For-your-home.webp",
     position: "object-[48%_50%]",
     description:
-      "Cut your electricity bills for decades with panels engineered for Indian rooftops - from the manufacturer powering the country's clean energy transition.",
+      "Lower your electricity bill from day one. ReNew Solar Panels are designed for Indian weather — high efficiency, low maintenance, and backed by a 30-year power warranty.",
   },
   {
     title: ["For your", "Business"],
     image: "/images/For-your-business.webp",
     position: "object-center",
     description:
-      "When your energy costs are high, and your timelines are tight, you need a manufacturer you can count on - consistent availability, committed supply, and panels that perform.",
+      "When your energy costs are high, and your timelines are tight, you need a manufacturer you can count on — consistent availability, committed supply, and panels that perform.",
   },
   {
     title: ["For large-scale", "Projects"],
     image: "/images/For-large-scale-projects.webp",
     position: "object-center",
     description:
-      "From utility-scale farms to industrial parks, get committed gigawatt-scale supply and consistent quality, delivered on your project's schedule.",
+      "19.4 GW of integrated solar manufacturing capacity. PAN India reach. On-time delivery. When your project demands scale, we have the infrastructure to match it — backed by India's leading renewable energy company.",
   },
 ];
 
@@ -37,7 +37,7 @@ export function WhoWeServe() {
   return (
     <section
       id="who-we-serve"
-      className="relative overflow-hidden bg-gradient-to-b from-surface-tint to-white pb-section pt-section lg:pt-40"
+      className="relative overflow-hidden bg-gradient-to-b from-surface-tint to-white pb-section pt-section md:pt-[calc(var(--spacing-section)*2)]"
     >
       <div className="pointer-events-none absolute right-[18%] top-0 w-[clamp(200px,42vw,608px)] -translate-y-1/2">
         <Image
@@ -81,7 +81,7 @@ export function WhoWeServe() {
         <Reveal
           stagger
           delay={150}
-          className="reveal-track mt-10 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 md:mt-16 md:grid md:grid-cols-3 md:overflow-visible md:pb-0 lg:mt-24 lg:gap-[90px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="reveal-track mt-10 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 md:mt-16 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0 lg:mt-24 lg:gap-12 xl:gap-[90px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           onMouseLeave={() => setActive(null)}
           onBlur={(event) => {
             if (!event.currentTarget.contains(event.relatedTarget)) {
@@ -105,9 +105,9 @@ export function WhoWeServe() {
                 }`}
               >
                 <div
-                  className={`absolute inset-0 origin-center overflow-hidden rounded-2xl transition-[scale,box-shadow] motion-reduce:transition-none md:rounded-md ${GROW} ${
+                  className={`absolute inset-0 origin-center overflow-hidden rounded-[6px] transition-[scale,box-shadow] motion-reduce:transition-none ${GROW} ${
                     isActive
-                      ? "shadow-[0_8px_18px_rgba(0,0,0,0.18)] md:scale-[1.14]"
+                      ? "shadow-[0_8px_18px_rgba(0,0,0,0.18)] md:scale-[1.04] xl:scale-[1.14]"
                       : "scale-100"
                   }`}
                 >
@@ -143,7 +143,7 @@ export function WhoWeServe() {
                   </h3>
 
                   <div
-                    className={`absolute inset-x-8 top-12 z-10 text-center text-3xl font-bold leading-tight text-white transition-[opacity,translate] duration-500 md:inset-x-12 md:top-20 md:text-4xl ${
+                    className={`absolute inset-x-8 top-9 z-10 text-center text-3xl font-bold leading-tight text-white transition-[opacity,translate] duration-500 md:top-16 md:text-3xl xl:inset-x-12 xl:text-4xl ${
                       isActive
                         ? "translate-y-0 opacity-100 delay-150"
                         : "translate-y-0 opacity-100 md:pointer-events-none md:translate-y-3 md:opacity-0"
@@ -157,13 +157,13 @@ export function WhoWeServe() {
                   </div>
 
                   <div
-                    className={`absolute inset-x-8 bottom-8 top-[140px] z-10 flex flex-col items-center text-center text-white transition-[opacity,translate] duration-500 md:inset-x-12 md:bottom-10 md:top-[180px] ${
+                    className={`absolute inset-x-8 bottom-8 top-[124px] z-10 flex flex-col items-center text-center text-white transition-[opacity,translate] duration-500 md:bottom-10 md:top-[152px] xl:inset-x-12 xl:top-[164px] ${
                       isActive
                         ? "translate-y-0 opacity-100 delay-200"
                         : "translate-y-0 opacity-100 md:pointer-events-none md:translate-y-4 md:opacity-0"
                     }`}
                   >
-                    <p className="mx-auto max-w-[430px] text-base leading-6 md:text-lg md:leading-7">
+                    <p className="mx-auto max-w-[430px] text-sm leading-5 lg:text-base lg:leading-6 xl:text-lg xl:leading-7">
                       {card.description}
                     </p>
                     <ContactModalTrigger

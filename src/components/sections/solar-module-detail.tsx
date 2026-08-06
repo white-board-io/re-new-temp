@@ -39,30 +39,6 @@ const gallery = [
   },
 ];
 
-const features = [
-  {
-    title: "Advanced TOPCon technology",
-    description: "N-type TOPCon cells deliver high efficiency and dependable output.",
-    icon: Cpu,
-  },
-  {
-    title: "Tough modules for harsh weather",
-    description: "Tested to withstand extended wind load (2400 Pa) and snow load (5400 Pa)",
-    icon: ThermometerSun,
-  },
-  {
-    title: "High performance tolerance",
-    description:
-      "Excellent low light performance on cloudy or rainy days and a low temperature coefficient for stable performance in hot climates.",
-    icon: Gauge,
-  },
-  {
-    title: "Robust performance",
-    description: "1% first-year degradation with excellent PID resistance performance.",
-    icon: ShieldCheck,
-  },
-];
-
 const applications = [
   {
     line1: "Utility-scale solar",
@@ -81,8 +57,94 @@ const applications = [
   },
 ];
 
+type ModuleId = "g12r-topcon-bifacial" | "m10r-topcon" | "m10r-perc";
+
+type ModuleFeature = {
+  title: string;
+  description: string;
+  icon: ComponentType<LucideProps>;
+};
+
+const featuresByModule: Record<ModuleId, ModuleFeature[]> = {
+  "g12r-topcon-bifacial": [
+    {
+      title: "Advanced TOPCon Technology",
+      description:
+        "16 busbars to minimise micro-crack impacts. Half cut. G12R cell. Smart soldering. Zero LID.",
+      icon: Cpu,
+    },
+    {
+      title: "Tough Modules for Harsh Weather",
+      description:
+        "Tested to withstand wind load of 2400 Pa and snow load of 5400 Pa.",
+      icon: ThermometerSun,
+    },
+    {
+      title: "Robust Performance",
+      description: "1% first year degradation. Excellent PID resistance performance.",
+      icon: ShieldCheck,
+    },
+    {
+      title: "High Performance Tolerance",
+      description:
+        "Excellent low-light performance on cloudy or rainy days. Low temperature coefficient for stable performance in hot climates.",
+      icon: Gauge,
+    },
+  ],
+  "m10r-topcon": [
+    {
+      title: "Advanced TOPCon Technology",
+      description:
+        "16 busbars to minimise micro-crack impacts. Half cut. M10 cell. Smart soldering. Zero LID.",
+      icon: Cpu,
+    },
+    {
+      title: "Tough Modules for Harsh Weather",
+      description:
+        "Tested to withstand wind load of 2400 Pa and snow load of 5400 Pa.",
+      icon: ThermometerSun,
+    },
+    {
+      title: "Robust Performance",
+      description: "1% first year degradation. Excellent PID resistance performance.",
+      icon: ShieldCheck,
+    },
+    {
+      title: "High Performance Tolerance",
+      description:
+        "Excellent low-light performance on cloudy or rainy days. Low temperature coefficient for stable performance in hot climates.",
+      icon: Gauge,
+    },
+  ],
+  "m10r-perc": [
+    {
+      title: "Advanced Technologies",
+      description: "Multi-bus bar. PERC. Ga Doped. Half cut. M10 cell. Smart soldering.",
+      icon: Cpu,
+    },
+    {
+      title: "Heavy Snow, Hail and Wind-Load Resistant",
+      description:
+        "Enhanced mechanical load up to 5400 Pascals snow load and 2400 Pascals wind load.",
+      icon: ThermometerSun,
+    },
+    {
+      title: "Reliable Modules with Longer Lifespan",
+      description:
+        "Hotspot resistant. Micro-cracking resistant. 0.45% linear degradation over 30 years.",
+      icon: ShieldCheck,
+    },
+    {
+      title: "Excellent Low Light Performance",
+      description:
+        "More power output in weak light conditions including early morning, sunset and cloudy days. Suitable for large-scale utility and ground-mount projects.",
+      icon: Gauge,
+    },
+  ],
+};
+
 type ModuleRange = {
-  id: "g12r-topcon-bifacial" | "m10r-topcon" | "m10r-perc";
+  id: ModuleId;
   label: string;
   title: string;
   range: string;
@@ -177,6 +239,7 @@ export function SolarModuleDetail() {
   const activeModule =
     moduleRanges.find((moduleRange) => moduleRange.id === activeModuleId) ??
     moduleRanges[0];
+  const activeModuleFeatures = featuresByModule[activeModuleId];
 
   const selectModule = (moduleId: ModuleRange["id"]) => {
     setActiveModuleId(moduleId);
@@ -378,26 +441,26 @@ export function SolarModuleDetail() {
         stagger
         className="mx-auto grid max-w-content gap-16 px-4 pb-44 pt-0 sm:px-6 lg:grid-cols-[0.98fr_1fr] lg:gap-24 lg:pb-64 xl:px-0"
       >
-        <div className="space-y-12 pt-0 sm:space-y-14">
-          {features.map((feature, index) => {
+        <div className="space-y-10 pt-0 sm:space-y-12">
+          {activeModuleFeatures.map((feature, index) => {
             const active = activeFeature === index;
             return (
               <button
-                key={feature.title}
+                key={`${activeModuleId}-${feature.title}`}
                 type="button"
                 onMouseEnter={() => setActiveFeature(index)}
                 onFocus={() => setActiveFeature(index)}
                 onClick={() => setActiveFeature(index)}
                 aria-expanded={active}
-                className="flex w-full flex-col items-center gap-4 text-center lg:flex-row lg:items-start lg:gap-7 lg:text-left"
+                className="grid w-full gap-4 text-center lg:grid-cols-[44px_minmax(0,520px)] lg:items-start lg:gap-7 lg:text-left"
               >
                 <FeatureIcon icon={feature.icon} />
-                <span className="min-w-0 flex-1">
+                <span className="mx-auto w-full max-w-[520px] lg:mx-0">
                   <span className="block text-2xl font-bold leading-tight text-[#143b58] sm:text-3xl">
                     {feature.title}
                   </span>
                   <span
-                    className={`mx-auto grid max-w-xl transition-[grid-template-rows,opacity] duration-500 ease-out motion-reduce:transition-none lg:mx-0 ${
+                    className={`mx-auto grid transition-[grid-template-rows,opacity] duration-500 ease-out motion-reduce:transition-none lg:mx-0 ${
                       active ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
                     }`}
                   >

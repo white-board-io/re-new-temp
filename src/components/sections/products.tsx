@@ -16,9 +16,21 @@ const products = [
     alt: "Two ReNew solar modules standing in a grassy valley at sunrise",
     href: "/products/solar-module",
     features: [
-      { lead: "G12R TOPCon Bifacial", rest: "Range up to 640 Wp | Efficiency up to 23.69%" },
-      { lead: "M10R TOPCon", rest: "Range up to 610Wp | Efficiency up to 23.61%" },
-      { lead: "M10R PERC", rest: "Range up to 560Wp | Efficiency up to 21.68%" },
+      {
+        lead: "G12R TOPCon Bifacial",
+        href: "/products/solar-module#g12r-topcon-bifacial",
+        rest: "Range up to 640 Wp | Efficiency up to 23.69%",
+      },
+      {
+        lead: "M10R TOPCon",
+        href: "/products/solar-module#m10r-topcon",
+        rest: "Range up to 610Wp | Efficiency up to 23.61%",
+      },
+      {
+        lead: "M10R PERC",
+        href: "/products/solar-module#m10r-perc",
+        rest: "Range up to 560Wp | Efficiency up to 21.68%",
+      },
     ],
   },
   {
@@ -29,8 +41,16 @@ const products = [
     alt: "A ReNew solar cell standing in a misty field at sunrise",
     href: "/products/solar-cell",
     features: [
-      { lead: "Mono PERC cells", rest: "with up to 23.7% conversion efficiency." },
-      { lead: "TOPCon cells", rest: "with industry-leading efficiency of up to 25.2%." },
+      {
+        lead: "TOPCon & Mono PERC cells",
+        href: "/products/solar-cell",
+        rest: "with conversion efficiency of up to 25.2%",
+      },
+      {
+        lead: "6.4 lakh cells produced daily",
+        href: "/products/solar-cell",
+        rest: "across three world-class plants",
+      },
     ],
   },
 ];
@@ -52,10 +72,10 @@ export function Products() {
     .join(" ");
 
   return (
-    <section id="products" className="relative overflow-hidden md:pt-20">
+    <section id="products" className="relative overflow-hidden md:pt-section">
       {/* End the section artwork at the midpoint of the product cards:
-          half the card height + the grid's 6rem bottom padding. */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-[306px] top-0 -z-10 hidden overflow-hidden md:block lg:bottom-[375px]">
+          half the card height + the grid's bottom section spacing. */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-[402px] top-0 -z-10 hidden overflow-hidden md:block lg:bottom-[471px]">
         <Image
           src="/images/products-bg1.png"
           alt=""
@@ -79,7 +99,7 @@ export function Products() {
         <Reveal
           stagger
           delay={150}
-          className="mt-12 grid gap-6 pb-24 md:mt-56 md:grid-cols-[var(--product-cols)] md:gap-12 md:transition-[grid-template-columns] md:duration-700 md:ease-[cubic-bezier(0.4,0,0.2,1)]"
+          className="mt-12 grid gap-6 pb-24 md:mt-56 md:grid-cols-[var(--product-cols)] md:gap-12 md:pb-[calc(var(--spacing-section)*2)] md:transition-[grid-template-columns] md:duration-700 md:ease-[cubic-bezier(0.4,0,0.2,1)]"
           style={{ "--product-cols": columns } as React.CSSProperties}
           onMouseLeave={() => setActive(DEFAULT_PRODUCT)}
         >
@@ -117,14 +137,17 @@ export function Products() {
                 >
                   <div className={contentIn(isActive, "md:delay-[350ms]")}>
                     {product.features.map((feature) => (
-                      <p
+                      <Link
                         key={feature.lead}
-                        className="mt-3 border-b border-white/30 pb-3 text-sm leading-5 text-white first:mt-0 last:border-b-0 md:mt-6 md:pb-6 md:text-base md:leading-6 lg:text-xl lg:leading-7"
+                        href={feature.href}
+                        className="group mt-3 block rounded-sm border-b border-white/30 pb-3 text-sm leading-5 text-white transition hover:text-white/90 first:mt-0 last:border-b-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:mt-6 md:pb-6 md:text-base md:leading-6 lg:text-xl lg:leading-7"
                       >
-                        <strong className="font-bold">{feature.lead}</strong>
+                        <strong className="font-bold underline-offset-4 group-hover:underline">
+                          {feature.lead}
+                        </strong>
                         <br />
                         {feature.rest}
-                      </p>
+                      </Link>
                     ))}
                   </div>
                   <Link

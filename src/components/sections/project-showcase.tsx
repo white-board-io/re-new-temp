@@ -47,9 +47,11 @@ export function ProjectShowcase() {
 
     const getStickyMetrics = () => {
       const wide = window.matchMedia("(min-width: 1024px)").matches;
-      const stickyTop = wide ? 136 : 120;
+      const scaledDesktop = window.matchMedia("(min-width: 1280px)").matches;
+      const designScale = scaledDesktop ? Math.min(1, window.innerWidth / 1920) : 1;
+      const stickyTop = scaledDesktop ? 138 : wide ? 136 : 120;
       const minHeight = wide ? 640 : 560;
-      const stickyHeight = Math.max(window.innerHeight - stickyTop, minHeight);
+      const stickyHeight = Math.max(window.innerHeight / designScale - stickyTop, minHeight);
 
       return { stickyTop, stickyHeight };
     };
@@ -94,7 +96,7 @@ export function ProjectShowcase() {
       style={{ height: trackHeight }}
       aria-label="Featured ReNew solar projects"
     >
-      <div className="sticky top-[120px] h-[calc(100svh-120px)] min-h-[560px] overflow-hidden lg:top-[136px] lg:h-[calc(100svh-136px)] lg:min-h-[640px]">
+      <div className="sticky top-[120px] h-[calc(100svh-120px)] min-h-[560px] overflow-hidden lg:top-[136px] lg:h-[calc(100svh-136px)] lg:min-h-[640px] xl:top-[138px] xl:h-[calc(100svh/var(--design-scale)-138px)]">
         <div className="absolute inset-0">
           {PROJECT_SLIDES.map((slide, index) => (
             <Image

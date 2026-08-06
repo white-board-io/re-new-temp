@@ -124,7 +124,7 @@ export function ChannelPartners() {
               type="button"
               aria-label="Previous videos"
               disabled={page === 0}
-              onClick={() => scrollToPage(page - 1)}
+              onClick={() => scrollToPage(page - 1)}  
               className="flex size-12 items-center justify-center rounded-lg bg-neutral-200 text-neutral-600 transition enabled:hover:bg-neutral-300 disabled:opacity-40"
             >
               <ChevronLeft aria-hidden className="size-5" />
@@ -141,7 +141,7 @@ export function ChannelPartners() {
           </div>
         </Reveal>
 
-        <Reveal className="flex flex-wrap justify-center gap-10 pb-24 pt-16">
+        <Reveal className="flex flex-wrap justify-center gap-10 pb-24 pt-16 md:pb-[calc(var(--spacing-section)*2)] lg:-mt-2 lg:pt-0">
           <ContactModalTrigger
             className="rounded-full border border-primary-950 px-8 py-3 text-lg font-bold text-primary-950 transition hover:bg-primary-50"
           >

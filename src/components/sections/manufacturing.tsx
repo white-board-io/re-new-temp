@@ -50,7 +50,7 @@ export function Manufacturing() {
   return (
     <section
       id="manufacturing"
-      className="relative overflow-hidden bg-primary-950 py-16 text-white md:py-section"
+      className="relative overflow-hidden bg-primary-950 py-16 text-white md:pb-section md:pt-[calc(var(--spacing-section)*2)]"
     >
       <div className="pointer-events-none absolute right-[18%] top-0 w-[clamp(200px,42vw,608px)] -translate-y-1/2">
         <Image
@@ -93,7 +93,7 @@ export function Manufacturing() {
         <Reveal
           stagger
           delay={150}
-          className="reveal-track mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 md:mt-16 md:grid md:grid-cols-3 md:gap-12 md:overflow-visible md:pb-0 lg:gap-[90px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="reveal-track mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 md:mt-16 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0 lg:gap-12 xl:gap-[90px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           onMouseLeave={() => setActive(null)}
           onBlur={(event) => {
             if (!event.currentTarget.contains(event.relatedTarget)) {
@@ -118,7 +118,7 @@ export function Manufacturing() {
                 <div
                   className={`absolute inset-0 origin-center overflow-hidden rounded-2xl max-md:bg-primary-900 max-md:shadow-[0_8px_18px_rgba(0,0,0,0.18)] max-md:ring-1 max-md:ring-white/10 md:rounded-md md:transition-[scale,background-color,box-shadow] motion-reduce:transition-none ${GROW} ${
                     isActive
-                      ? "md:bg-black/25 md:shadow-[0_8px_18px_rgba(0,0,0,0.2)] md:scale-[1.13]"
+                      ? "md:bg-black/25 md:shadow-[0_8px_18px_rgba(0,0,0,0.2)] md:scale-[1.04] xl:scale-[1.13]"
                       : "md:scale-100"
                   }`}
                 >
@@ -149,19 +149,19 @@ export function Manufacturing() {
                   </div>
 
                   <figure
-                    className={`absolute inset-0 hidden flex-col items-center justify-start gap-4 px-7 pb-7 pt-5 md:flex md:justify-center md:gap-0 md:p-8 md:transition-[opacity,scale] md:duration-500 ${
+                    className={`absolute inset-0 hidden flex-col items-center justify-start gap-4 px-7 pb-7 pt-5 md:flex md:justify-center md:gap-0 md:p-6 md:transition-[opacity,scale] md:duration-500 xl:p-8 ${
                       isActive
                         ? "md:pointer-events-none md:scale-95 md:opacity-0"
                         : "md:scale-100 md:opacity-100 md:delay-200"
                     }`}
                   >
-                    <div className="relative flex min-h-[220px] w-full items-center justify-center md:min-h-[390px]">
+                    <div className="relative flex min-h-[220px] w-full items-center justify-center md:min-h-[320px] xl:min-h-[390px]">
                       <Image
                         src={plant.image.src}
                         alt={plant.alt}
                         width={plant.image.width}
                         height={plant.image.height}
-                        className={`mx-auto max-h-[190px] w-full object-contain md:max-h-[280px] ${plant.imageClassName}`}
+                        className={`mx-auto max-h-[190px] w-full object-contain md:max-h-[220px] xl:max-h-[280px] ${plant.imageClassName}`}
                         sizes="(min-width: 768px) 33vw, 100vw"
                       />
                       <div className="absolute left-1/2 top-[55%] flex h-[48%] w-[96%] -translate-x-1/2 -translate-y-1/2 items-center justify-center">
@@ -174,7 +174,7 @@ export function Manufacturing() {
                         </h3>
                       </div>
                     </div>
-                    <figcaption className="mx-auto max-w-[240px] text-center text-lg font-bold leading-6 md:mt-6 md:max-w-md md:text-2xl md:leading-8">
+                    <figcaption className="mx-auto max-w-[240px] text-center text-lg font-bold leading-6 md:mt-4 md:max-w-md md:text-xl md:leading-7 xl:mt-6 xl:text-2xl xl:leading-8">
                       <span className="block md:hidden">{plant.mobileSummary}</span>
                       <span className="hidden md:block">{plant.caption}</span>
                       {plant.status ? <span className="block">{plant.status}</span> : null}
@@ -183,20 +183,20 @@ export function Manufacturing() {
 
                   <div
                     aria-hidden={!isActive}
-                    className={`absolute inset-y-0 inset-x-16 hidden flex-col items-center justify-center p-6 text-center transition-[opacity,translate] duration-500 md:flex ${
+                    className={`absolute inset-y-0 inset-x-8 hidden flex-col items-center justify-center p-5 text-center transition-[opacity,translate] duration-500 md:flex xl:inset-x-16 xl:p-6 ${
                       isActive
                         ? "translate-y-0 opacity-100 delay-200"
                         : "pointer-events-none translate-y-4 opacity-0"
                     }`}
                   >
-                    <h3 className="text-2xl font-bold leading-8">
+                    <h3 className="text-xl font-bold leading-7 xl:text-2xl xl:leading-8">
                       {plant.title.map((line) => (
                         <span key={line} className="block">
                           {line}
                         </span>
                       ))}
                     </h3>
-                    <p className="mt-10 max-w-[420px] text-lg leading-8">
+                    <p className="mt-8 max-w-[420px] text-base leading-6 xl:mt-10 xl:text-lg xl:leading-8">
                       {plant.details}
                       {plant.status ? <span className="block">{plant.status}</span> : null}
                     </p>

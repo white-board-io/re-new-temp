@@ -65,25 +65,26 @@ const plants: Plant[] = [
       {
         label: "Capacity",
         value: "4 GW",
-        details: "4 GW module manufacturing capacity under one roof.",
+        details: "4 GW module manufacturing",
         icon: "capacity",
       },
       {
         label: "Area",
-        value: "48 acres",
-        details: "A 48-acre integrated manufacturing campus in Jaipur, Rajasthan.",
+        value: "22 acres",
+        details: "22 acres",
         icon: "area",
       },
       {
-        label: "Output",
+        label: "Daily output",
         value: "17,000/day",
         details: "Approximately 17,000 modules manufactured per day.",
         icon: "output",
       },
       {
         label: "Commissioned",
-        value: "2021",
-        details: "Commissioned in 2021 for high-volume module production.",
+        value: "August 2023",
+        details:
+          "August 2023, under the Government of India's PLI scheme for High Efficiency Solar PV Modules",
         icon: "date",
       },
     ],
@@ -133,27 +134,27 @@ const plants: Plant[] = [
     },
     stats: [
       {
-        label: "Cell capacity",
+        label: "Module capacity",
         value: "2.4 GW",
-        details: "2.4 GW of advanced solar cell manufacturing capacity.",
+        details: "2.4 GW",
         icon: "capacity",
+      },
+      {
+        label: "Cell capacity",
+        value: "2.5 GW",
+        details: "2.5 GW",
+        icon: "output",
       },
       {
         label: "Area",
         value: "55 acres",
-        details: "A 55-acre facility in Gujarat's Special Investment Region.",
+        details: "55 acres",
         icon: "area",
       },
       {
-        label: "Under development",
-        value: "4 GW TOPCon",
-        details: "A 4 GW next-generation TOPCon facility under development.",
-        icon: "output",
-      },
-      {
         label: "Location",
-        value: "Dholera SIR",
-        details: "Strategically located in Dholera Special Investment Region.",
+        value: "Dholera",
+        details: "Gujarat Special Investment Region (GIDC), Dholera",
         icon: "date",
       },
     ],
@@ -204,25 +205,19 @@ const plants: Plant[] = [
       {
         label: "Capacity",
         value: "6.5 GW",
-        details: "6.5 GW of planned wafer and ingot manufacturing capacity.",
+        details: "6.5 GW wafer and ingot manufacturing",
         icon: "capacity",
       },
       {
-        label: "Focus",
-        value: "Wafer & ingot",
-        details: "Upstream wafer and ingot production for domestic solar manufacturing.",
+        label: "Status",
+        value: "Upcoming",
+        details: "Upcoming",
         icon: "area",
-      },
-      {
-        label: "Supply chain",
-        value: "Vertically integrated",
-        details: "Greater quality control across an integrated solar value chain.",
-        icon: "output",
       },
       {
         label: "Location",
         value: "Visakhapatnam",
-        details: "Located in Andhra Pradesh's major industrial and port corridor.",
+        details: "Visakhapatnam, Andhra Pradesh",
         icon: "date",
       },
     ],
@@ -270,6 +265,10 @@ export function ManufacturingDetail() {
   const [statsPage, setStatsPage] = useState(0);
   const [statsPageCount, setStatsPageCount] = useState(1);
   const activePlant = plants.find((plant) => plant.id === activeId) ?? plants[0];
+  const statsGridClass =
+    activePlant.stats.length === 3
+      ? "sm:grid-cols-3 xl:mx-auto xl:max-w-[1120px] xl:gap-[72px]"
+      : "sm:grid-cols-2 xl:grid-cols-4 xl:gap-[72px]";
 
   const selectPlant = (plantId: Plant["id"]) => {
     setActiveId(plantId);
@@ -443,7 +442,7 @@ export function ManufacturingDetail() {
           <Reveal>
             <div
               ref={statsTrackRef}
-              className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 [scrollbar-width:none] sm:grid sm:grid-cols-2 sm:gap-7 sm:overflow-visible sm:pb-0 xl:grid-cols-4 xl:gap-[72px] [&::-webkit-scrollbar]:hidden"
+              className={`flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 [scrollbar-width:none] sm:grid sm:gap-7 sm:overflow-visible sm:pb-0 [&::-webkit-scrollbar]:hidden ${statsGridClass}`}
             >
               {activePlant.stats.map((stat) => (
                 <article

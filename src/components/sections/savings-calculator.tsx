@@ -89,7 +89,7 @@ export function SavingsCalculator() {
   const numericUsage = Number(usage) || 0;
 
   return (
-    <section id="savings-calculator" className="bg-white py-section">
+    <section id="savings-calculator" className="bg-white py-section lg:py-[calc(var(--spacing-section)*2)]">
       <div className="mx-auto max-w-content px-4 sm:px-6">
         <Reveal
           stagger

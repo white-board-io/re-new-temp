@@ -7,7 +7,25 @@ import { Reveal } from "@/components/reveal";
 
 const DEFAULT_PRODUCT = 0;
 
-const products = [
+interface ProductFeature {
+  lead: string;
+  href: string;
+  rest: string;
+  details?: string[];
+}
+
+interface Product {
+  title: string;
+  image: string;
+  expandedImage: string;
+  position: string;
+  contentPosition?: string;
+  alt: string;
+  href: string;
+  features: ProductFeature[];
+}
+
+const products: Product[] = [
   {
     title: "Solar Module",
     image: "/images/Solarmodule-s.webp",
@@ -153,7 +171,7 @@ export function Products() {
                           </>
                         ) : null}
                         {feature.details ? (
-                          <span className="mt-3 block border-t border-white/40 pt-3 font-light">
+                          <span className="mt-3 block border-t border-white/40 pt-3 font-normal">
                             {feature.details.map((detail) => (
                               <span key={detail} className="block">
                                 {detail}

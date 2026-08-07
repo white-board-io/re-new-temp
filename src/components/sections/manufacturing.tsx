@@ -52,7 +52,7 @@ export function Manufacturing() {
   return (
     <section
       id="manufacturing"
-      className="relative overflow-hidden bg-primary-950 py-16 text-white md:pb-section md:pt-[calc(var(--spacing-section)*2)]"
+      className="relative overflow-hidden bg-primary-950 py-16 text-white md:pb-[calc(var(--spacing-section)*1.75)] md:pt-[calc(var(--spacing-section)*2)]"
     >
       <div className="pointer-events-none absolute right-[18%] top-0 w-[clamp(200px,42vw,608px)] -translate-y-1/2">
         <Image

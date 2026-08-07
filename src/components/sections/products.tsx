@@ -46,6 +46,10 @@ const products = [
         lead: "M10R P-Type PERC Bifacial",
         href: "/products/solar-cell",
         rest: "",
+        details: [
+          "High conversion efficiency bifacial PERC cell",
+          "High efficiency bifacial PERC",
+        ],
       },
     ],
   },
@@ -147,6 +151,15 @@ export function Products() {
                             <br />
                             {feature.rest}
                           </>
+                        ) : null}
+                        {feature.details ? (
+                          <span className="mt-3 block border-t border-white/40 pt-3 font-light">
+                            {feature.details.map((detail) => (
+                              <span key={detail} className="block">
+                                {detail}
+                              </span>
+                            ))}
+                          </span>
                         ) : null}
                       </Link>
                     ))}

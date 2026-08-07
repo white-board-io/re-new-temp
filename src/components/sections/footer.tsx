@@ -242,7 +242,7 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
           </nav>
         </Reveal>
       </div>
-      <div className="mt-20 h-16 bg-[linear-gradient(to_right,transparent,var(--color-primary-400)_25%,var(--color-primary-700)_50%,var(--color-primary-400)_75%,transparent)] bg-[length:100%_1px] bg-top bg-no-repeat" aria-hidden />
+      <div className="mt-20 h-16 bg-[linear-gradient(to_right,transparent,rgb(141_198_63_/_0.55)_25%,rgb(141_198_63_/_0.85)_50%,rgb(0_107_56_/_0.35)_68%,rgb(141_198_63_/_0.16)_74%,transparent_82%,transparent)] bg-[length:100%_1px] bg-top bg-no-repeat" aria-hidden />
     </footer>
   );
 }

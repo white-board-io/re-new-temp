@@ -79,7 +79,7 @@ export function Header({
           </a>
         </div>
       </div>
-      <div className="relative border-t border-neutral-100 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04)] after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-4 after:bg-[linear-gradient(to_bottom,rgb(0_107_56_/_0.16),rgb(0_107_56_/_0.06)_40%,transparent)] after:content-[''] lg:h-[138px] lg:border-t-0 xl:h-[min(138px,7.1875vw)] xl:shadow-none">
+      <div className="relative border-t border-neutral-100 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04)] after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-4 after:bg-[linear-gradient(to_bottom,rgb(0_0_0_/_0.08),rgb(0_0_0_/_0.03)_45%,transparent)] after:content-[''] lg:h-[138px] lg:border-t-0 xl:h-[min(138px,7.1875vw)] xl:shadow-none">
         <div className="relative mx-auto flex max-w-content items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:pointer-events-none lg:z-20 lg:h-full lg:py-0 lg:pt-8 xl:max-w-none xl:px-0 xl:pt-0">
           <Link
             href="/"

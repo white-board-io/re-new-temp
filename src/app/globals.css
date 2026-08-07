@@ -442,14 +442,26 @@ section[id] {
   scroll-margin-top: 8.5rem;
 }
 
+section[id].download-anchor {
+  scroll-margin-top: 12rem;
+}
+
 @media (min-width: 1024px) {
   section[id] {
     scroll-margin-top: 9.5rem;
+  }
+
+  section[id].download-anchor {
+    scroll-margin-top: 13.5rem;
   }
 }
 
 @media (min-width: 1280px) {
   section[id] {
     scroll-margin-top: 138px;
+  }
+
+  section[id].download-anchor {
+    scroll-margin-top: 210px;
   }
 }

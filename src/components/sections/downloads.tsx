@@ -66,6 +66,7 @@ export function Downloads() {
             <section
               key={group.id}
               id={group.id}
+              className="download-anchor"
               aria-labelledby={`${group.id}-title`}
             >
               <Reveal>

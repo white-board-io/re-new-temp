@@ -3,14 +3,7 @@
 import { useEffect, useState } from "react";
 import { ChevronDown, Mail, Phone } from "lucide-react";
 import { Reveal } from "@/components/reveal";
-
-const REQUIREMENT_TYPES = [
-  "Residential Rooftop",
-  "Commercial & Industrial",
-  "Utility-scale Project",
-  "Channel Partnership",
-  "Other",
-];
+import { REQUIREMENT_TYPES } from "@/components/contact-modal";
 
 const ROTATING_CONTACT_WORDS = ["Home", "Project", "Business"];
 
@@ -18,10 +11,12 @@ function Field({
   name,
   label,
   type = "text",
+  optional = false,
 }: {
   name: string;
   label: string;
   type?: string;
+  optional?: boolean;
 }) {
   return (
     <div className="relative">
@@ -29,17 +24,23 @@ function Field({
         id={`contact-${name}`}
         name={name}
         type={type}
-        required
+        required={!optional}
         placeholder=" "
         aria-label={label}
         className="peer w-full rounded-lg bg-white px-6 py-6 text-lg text-primary-950 focus:outline-none focus:ring-2 focus:ring-primary-400"
       />
+      {/* Optional fields say so outright — a missing asterisk on its own is too
+          easy to read past when every neighbouring field carries one. */}
       <label
         htmlFor={`contact-${name}`}
         className="pointer-events-none absolute left-6 top-1/2 -translate-y-1/2 text-lg text-neutral-500 peer-focus:hidden peer-[:not(:placeholder-shown)]:hidden"
       >
         {label}
-        <span className="text-red-500">*</span>
+        {optional ? (
+          <span className="text-neutral-400"> (optional)</span>
+        ) : (
+          <span className="text-red-500">*</span>
+        )}
       </label>
     </div>
   );
@@ -109,7 +110,7 @@ export function Contact() {
           className="min-w-0 flex flex-col gap-5"
         >
           <Field name="name" label="Name" />
-          <Field name="company" label="Company" />
+          <Field name="company" label="Company" optional />
           <Field name="phone" label="Phone" type="tel" />
           <Field name="state" label="State" />
           <div className="relative">

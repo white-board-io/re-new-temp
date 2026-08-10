@@ -100,6 +100,14 @@
  */
 @custom-variant hero-full (@media (min-width: 1280px) and (max-aspect-ratio: 197/100));
 
+/*
+ * Short viewports — a landscape phone, or a small desktop window. Used by the
+ * Enquire modal (contact-modal.tsx) to drop its header down to the title alone;
+ * at 390px of height the full header leaves the form scrolling one field at a
+ * time, and the form is what the reader opened the dialog for.
+ */
+@custom-variant viewport-short (@media (max-height: 640px));
+
 @media (min-width: 1280px) {
   :root {
     /*
@@ -306,6 +314,84 @@ body {
 }
 
 /*
+ * Enquire modal (components/contact-modal.tsx).
+ *
+ * The scrim fades and the card rises into it — enough travel to read as an
+ * arrival, short enough that it never delays the form.
+ */
+@keyframes contact-modal-scrim-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes contact-modal-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.contact-modal-scrim {
+  animation: contact-modal-scrim-in 200ms ease-out both;
+}
+
+.contact-modal-card {
+  animation: contact-modal-card-in 340ms cubic-bezier(0.215, 0.61, 0.355, 1) both;
+}
+
+/*
+ * Modal fields are a filled box with a floating label: the caption shrinks into
+ * the top of the box on focus, or once the field holds a value, instead of
+ * vanishing the way the page's placeholder-as-label fields do. Five stacked
+ * values with every caption gone is unreadable, and the modal has no room for
+ * labels sitting above each box.
+ *
+ * The "has a value" test has to differ by control. Inputs use
+ * :not(:placeholder-shown) — :valid would drop the label back down over a
+ * half-typed email address. A select never matches :placeholder-shown at all
+ * (so that rule would read it as permanently filled), but it is required with
+ * an empty first option, which makes :valid exactly the right test there.
+ *
+ * Focus is carried by the box's own border and ring, so the label keeps one
+ * colour in both states rather than competing for the same signal.
+ */
+.contact-modal-label {
+  pointer-events: none;
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  translate: 0 -50%;
+  font-size: 15px;
+  color: var(--color-neutral-500, #737373);
+  transition:
+    top 150ms ease,
+    translate 150ms ease,
+    font-size 150ms ease,
+    letter-spacing 150ms ease;
+}
+
+.contact-modal-field:focus ~ .contact-modal-label,
+input.contact-modal-field:not(:placeholder-shown) ~ .contact-modal-label,
+select.contact-modal-field:valid ~ .contact-modal-label {
+  top: 10px;
+  translate: 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/*
  * Scroll reveals (see components/reveal.tsx). Content rests slightly low and
  * transparent, then settles once the observer marks it .reveal-in.
  *
@@ -433,6 +519,15 @@ body {
 
   .contact-rotating-word {
     animation: none;
+  }
+
+  .contact-modal-scrim,
+  .contact-modal-card {
+    animation: none;
+  }
+
+  .contact-modal-label {
+    transition: none;
   }
 }
 

@@ -397,7 +397,7 @@ export function SolarModuleDetail() {
                     {feature.title}
                   </span>
                   <span
-                    className={`mx-auto grid max-w-xl transition-[grid-template-rows,opacity] duration-500 ease-out motion-reduce:transition-none lg:mx-0 ${
+                    className={`mx-auto grid max-w-xl transition-[grid-template-rows,opacity] duration-500 ease-out lg:mx-0 ${
                       active ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
                     }`}
                   >

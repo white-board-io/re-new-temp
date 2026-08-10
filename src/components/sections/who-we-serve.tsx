@@ -45,7 +45,7 @@ export function WhoWeServe() {
           alt=""
           width={702}
           height={701}
-          className="w-full animate-sunburst motion-reduce:animate-none"
+          className="w-full animate-sunburst"
         />
       </div>
       <div className="relative mx-auto max-w-content px-4 text-center sm:px-6 md:text-left">
@@ -105,7 +105,7 @@ export function WhoWeServe() {
                 }`}
               >
                 <div
-                  className={`absolute inset-0 origin-center overflow-hidden rounded-2xl transition-[scale,box-shadow] motion-reduce:transition-none md:rounded-md ${GROW} ${
+                  className={`absolute inset-0 origin-center overflow-hidden rounded-2xl transition-[scale,box-shadow] md:rounded-md ${GROW} ${
                     isActive
                       ? "shadow-[0_8px_18px_rgba(0,0,0,0.18)] md:scale-[1.14]"
                       : "scale-100"
@@ -115,7 +115,7 @@ export function WhoWeServe() {
                     src={card.image}
                     alt={`${card.title.join(" ")}: solar installation`}
                     fill
-                    className={`object-cover transition-transform duration-700 motion-reduce:transition-none ${card.position} ${
+                    className={`object-cover transition-transform duration-700 ${card.position} ${
                       isActive ? "scale-105" : "scale-100"
                     }`}
                     sizes="(min-width: 768px) 38vw, 100vw"

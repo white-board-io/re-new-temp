@@ -11,7 +11,6 @@ export function CountUp({ value, duration = 1400 }: { value: string; duration?: 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (!/\d/.test(value)) return;
 
     let frame: number;

@@ -57,12 +57,10 @@ const annotation = (value: number) => ({
   className: "product-chart-annotation",
 });
 
-/* "waiting" until the chart scrolls into view, then either the sweep
-   ("drawing" → "drawn") or, under reduced motion, straight to "instant". */
-type Phase = "waiting" | "drawing" | "drawn" | "instant";
-
-const prefersReducedMotion = () =>
-  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+/* "waiting" until the chart scrolls into view, then the sweep:
+   "drawing" → "drawn". The curve always sweeps; see the note in globals.css
+   on why reduced motion no longer short-circuits it. */
+type Phase = "waiting" | "drawing" | "drawn";
 
 function ChartTooltip({
   active,
@@ -104,20 +102,20 @@ export function PowerOutputChart({
     // for its scroll cue should keep waiting.
     if (phase !== "waiting") {
       setRun((previous) => previous + 1);
-      setPhase(prefersReducedMotion() ? "instant" : "drawing");
+      setPhase("drawing");
     }
   }
 
   const started = phase !== "waiting";
   const animate = phase === "drawing";
-  const drawn = phase === "drawn" || phase === "instant";
+  const drawn = phase === "drawn";
 
   // Draw once, when the chart is a third of the way into view.
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    const reveal = () => setPhase(prefersReducedMotion() ? "instant" : "drawing");
+    const reveal = () => setPhase("drawing");
 
     if (typeof IntersectionObserver === "undefined") {
       const timer = window.setTimeout(reveal, 0);

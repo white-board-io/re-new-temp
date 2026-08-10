@@ -28,7 +28,7 @@ export function Ticker() {
       {/* animate-marquee shifts by -50%, so the strip must be two identical
           halves; 3 runs per half keeps each half wider than any viewport so no
           blank gap trails the items. */}
-      <div className="flex w-max animate-marquee motion-reduce:animate-none">
+      <div className="flex w-max animate-marquee">
         {Array.from({ length: 6 }, (_, i) => (
           <TickerRun key={i} hidden={i > 0} />
         ))}

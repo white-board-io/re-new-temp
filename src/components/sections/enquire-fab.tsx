@@ -31,12 +31,12 @@ function Sunburst() {
     <svg
       viewBox="0 0 183 95"
       aria-hidden
-      className="absolute inset-0 size-full origin-bottom fill-primary-400 transition-transform duration-500 ease-out group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+      className="absolute inset-0 size-full origin-bottom fill-primary-400 transition-transform duration-500 ease-out group-hover:scale-105"
     >
       {ARC_RINGS.map(({ radius, size }, ring) => (
         <g
           key={radius}
-          className="animate-enquire-ray motion-reduce:animate-none"
+          className="animate-enquire-ray"
           style={
             {
               animationDelay: `${ring * 0.34}s`,

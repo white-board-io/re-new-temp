@@ -30,14 +30,14 @@ export function Hero() {
   // Slides crossfade while settling from a slight zoom; their content rises
   // into place a beat later for a staggered entrance.
   const slideClass = (i: number) =>
-    `absolute inset-0 transition duration-700 ease-out motion-reduce:transition-none ${
+    `absolute inset-0 transition duration-700 ease-out ${
       activeSlide === i
         ? "scale-100 opacity-100"
         : "pointer-events-none scale-[1.04] opacity-0"
     }`;
 
   const contentClass = (i: number) =>
-    `transition delay-150 duration-700 ease-out motion-reduce:transition-none ${
+    `transition delay-150 duration-700 ease-out ${
       activeSlide === i
         ? "translate-y-0 opacity-100"
         : "translate-y-8 opacity-0"
@@ -137,7 +137,7 @@ export function Hero() {
             alt=""
             width={702}
             height={701}
-            className="w-full animate-sunburst motion-reduce:animate-none"
+            className="w-full animate-sunburst"
           />
         </div>
         <div

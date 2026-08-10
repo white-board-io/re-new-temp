@@ -35,7 +35,7 @@ export function OurProjects() {
               alt=""
               width={702}
               height={701}
-              className="w-full animate-sunburst motion-reduce:animate-none"
+              className="w-full animate-sunburst"
             />
           </div>
           <div className="pointer-events-none absolute bottom-0 right-[27.4%] w-[17.9%] translate-y-1/2 opacity-20">
@@ -44,7 +44,7 @@ export function OurProjects() {
               alt=""
               width={702}
               height={701}
-              className="w-full animate-sunburst [animation-direction:reverse] motion-reduce:animate-none"
+              className="w-full animate-sunburst [animation-direction:reverse]"
             />
           </div>
           <div className="relative grid items-end justify-items-center gap-10 lg:grid-cols-[1fr_auto] lg:justify-items-stretch">

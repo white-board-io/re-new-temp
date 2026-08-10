@@ -380,28 +380,22 @@ body {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .reveal,
-  .reveal-children > * {
-    opacity: 1;
-    translate: none;
-    transition: none;
-    will-change: auto;
-  }
-
-  .hero-progress-fill {
-    animation: none;
-    transform: scaleX(1);
-  }
-
-  .product-chart-annotation {
-    animation: none;
-  }
-
-  .contact-rotating-word {
-    animation: none;
-  }
-}
+/*
+ * Motion is deliberately NOT gated on prefers-reduced-motion.
+ *
+ * The reduced-motion opt-out this file used to carry was removed on purpose:
+ * Windows reports `reduce` for reasons that have nothing to do with motion
+ * sensitivity — "Adjust for best performance" in Performance Options and any
+ * RDP/VM session both set it — which silently flattened the whole site for a
+ * large share of Windows visitors. The call was to always animate rather than
+ * let a performance tweak strip the design.
+ *
+ * The cost is real and accepted: visitors who set reduce because motion makes
+ * them ill get the full treatment anyway. If that is ever revisited, the fix
+ * is a reduce block that drops `translate` but keeps the opacity fade — the
+ * vestibular trigger is movement, not a cross-fade — plus restoring the
+ * matching early-returns in reveal.tsx, count-up.tsx and power-output-chart.tsx.
+ */
 
 /* Nav anchor targets must clear the fixed header (contact strip + nav bar,
    ~123px mobile / ~139px from lg where the logo grows to 72px) */

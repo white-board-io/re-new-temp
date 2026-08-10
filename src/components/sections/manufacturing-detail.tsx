@@ -458,7 +458,7 @@ export function ManufacturingDetail() {
                     </p>
                   </div>
 
-                  <div className="hidden h-full transition-transform duration-700 transform-3d group-hover:rotate-y-180 group-focus-within:rotate-y-180 motion-reduce:transition-none sm:grid">
+                  <div className="hidden h-full transition-transform duration-700 transform-3d group-hover:rotate-y-180 group-focus-within:rotate-y-180 sm:grid">
                     <div className="flex h-full flex-col items-center justify-center rounded-md bg-primary-700 px-7 py-10 text-center text-white [grid-area:1/1] backface-hidden">
                       <StatIcon icon={stat.icon} />
                       <h3 className="mt-10 text-2xl font-bold uppercase tracking-wide">
@@ -603,7 +603,7 @@ export function ManufacturingDetail() {
         </section>
 
         <div className="overflow-hidden bg-accent py-5 text-white">
-          <div className="flex w-max animate-marquee items-center gap-10 whitespace-nowrap text-lg font-bold motion-reduce:animate-none sm:text-xl">
+          <div className="flex w-max animate-marquee items-center gap-10 whitespace-nowrap text-lg font-bold sm:text-xl">
             {[0, 1].map((run) => (
               <div key={run} aria-hidden={run === 1} className="flex shrink-0 items-center gap-10 pr-10">
                 {[

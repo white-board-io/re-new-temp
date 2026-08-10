@@ -68,10 +68,6 @@ export function Reveal({
     const el = ref.current;
     if (!el) return;
 
-    // Nothing to observe when the CSS is not going to hide anything anyway:
-    // the reduced-motion and no-scripting cases both leave content visible.
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
     const observer = getObserver();
     observer.observe(el);
 

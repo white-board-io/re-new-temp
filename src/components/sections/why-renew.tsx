@@ -58,7 +58,7 @@ export function WhyRenew() {
       <Reveal
         delay={150}
         style={{ "--reveal-shift": "0px" } as React.CSSProperties}
-        className="mt-16 flex w-max animate-marquee-slow motion-reduce:animate-none"
+        className="mt-16 flex w-max animate-marquee-slow"
       >
         <LogoRun />
         <LogoRun hidden />

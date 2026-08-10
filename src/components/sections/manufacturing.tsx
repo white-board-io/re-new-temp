@@ -54,7 +54,7 @@ export function Manufacturing() {
           alt=""
           width={702}
           height={701}
-          className="w-full animate-sunburst motion-reduce:animate-none"
+          className="w-full animate-sunburst"
         />
       </div>
       <div className="relative mx-auto max-w-content px-4 sm:px-6">
@@ -112,7 +112,7 @@ export function Manufacturing() {
                 }`}
               >
                 <div
-                  className={`absolute inset-0 origin-center overflow-hidden rounded-2xl md:rounded-md md:transition-[scale,background-color,box-shadow] motion-reduce:transition-none ${GROW} ${
+                  className={`absolute inset-0 origin-center overflow-hidden rounded-2xl md:rounded-md md:transition-[scale,background-color,box-shadow] ${GROW} ${
                     isActive
                       ? "md:bg-black/25 md:shadow-[0_8px_18px_rgba(0,0,0,0.2)] md:scale-[1.13]"
                       : "md:scale-100"

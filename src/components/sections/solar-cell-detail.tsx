@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, type ComponentType } from "react";
+import { ContactModalTrigger } from "@/components/contact-modal";
 import { Reveal } from "@/components/reveal";
 import {
   ChevronLeft,
@@ -236,12 +237,11 @@ export function SolarCellDetail() {
             </dl>
 
             <div className="mt-16 flex flex-wrap justify-center gap-6 lg:justify-start">
-              <a
-                href="#contact"
+              <ContactModalTrigger
                 className="rounded-full bg-primary-400 px-12 py-4 text-xl font-bold text-white transition hover:bg-primary-500"
               >
                 Enquire Now
-              </a>
+              </ContactModalTrigger>
               <button
                 type="button"
                 disabled

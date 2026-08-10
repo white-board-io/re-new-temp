@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState, type ComponentType } from "react";
+import { ContactModalTrigger } from "@/components/contact-modal";
 import { PowerOutputChart } from "@/components/power-output-chart";
 import { Reveal } from "@/components/reveal";
 import {
@@ -419,12 +420,11 @@ export function SolarModuleDetail() {
           </dl>
 
           <div className="mt-16 flex flex-wrap justify-center gap-6 lg:justify-start">
-            <a
-              href="#contact"
+            <ContactModalTrigger
               className="rounded-full bg-primary-400 px-12 py-4 text-xl font-bold text-white transition hover:bg-primary-500"
             >
               Enquire Now
-            </a>
+            </ContactModalTrigger>
             <button
               type="button"
               disabled
@@ -534,12 +534,11 @@ export function SolarModuleDetail() {
               aria-hidden
               className="pointer-events-none absolute -bottom-28 right-0 hidden w-[520px] opacity-40 lg:block"
             />
-            <a
-              href="#contact"
+            <ContactModalTrigger
               className="relative rounded-full bg-primary-400 px-12 py-4 text-xl font-bold text-white transition hover:bg-primary-500"
             >
               Enquire Now
-            </a>
+            </ContactModalTrigger>
             <button
               type="button"
               disabled

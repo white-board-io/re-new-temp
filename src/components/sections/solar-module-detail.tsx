@@ -505,8 +505,18 @@ export function SolarModuleDetail() {
       <div className="relative pb-32">
         <div
           aria-hidden
-          className="absolute inset-x-0 bottom-0 top-[150px] bg-primary-700 sm:top-[180px] lg:top-[280px]"
-        />
+          className="absolute inset-x-0 bottom-0 top-[150px] overflow-hidden bg-primary-700 sm:top-[180px] lg:top-[280px]"
+        >
+          <div className="pointer-events-none absolute bottom-0 right-[8%] hidden w-[clamp(320px,34vw,520px)] translate-y-1/2 opacity-40 lg:block">
+            <Image
+              alt=""
+              width={702}
+              height={701}
+              src="/images/sunburst_full.svg"
+              className="w-full animate-sunburst motion-reduce:animate-none"
+            />
+          </div>
+        </div>
         <div className="relative mx-auto max-w-[1532px] px-4 sm:px-6 xl:px-0">
           <button
             type="button"
@@ -526,14 +536,6 @@ export function SolarModuleDetail() {
           </button>
 
           <div className="relative mt-16 flex flex-wrap justify-center gap-8 lg:mt-44">
-            <Image
-              src="/images/sunburst.svg"
-              alt=""
-              width={520}
-              height={520}
-              aria-hidden
-              className="pointer-events-none absolute -bottom-28 right-0 hidden w-[520px] opacity-40 lg:block"
-            />
             <ContactModalTrigger
               className="relative rounded-full bg-primary-400 px-12 py-4 text-xl font-bold text-white transition hover:bg-primary-500"
             >

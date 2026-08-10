@@ -1,0 +1,23 @@
+src/app/globals.css
+  s_7a35dc018c37ce::t_853b09a91b45c4 103-110,316-393,523-531
+src/components/contact-modal.tsx
+  s_7a35dc018c37ce::t_2183260445c10b 3,5,9-21,23-26,33,37-38,40,44-45,48,50,53-54,56,58-60,62-71,99-103,107-108,121-124,126-132,137-162,168-169,171,182,189,191,194-196,198-218,222-225,227,229-347
+src/components/sections/contact.tsx
+  s_7a35dc018c37ce::t_adf75ae8669433 6,14,19,27,32-33,39-43,113
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.11",
+  "base_commit_sha": "7f45d4e56a8026d27ed426468e6c4e7676d4a3ac",
+  "prompts": {},
+  "sessions": {
+    "s_7a35dc018c37ce": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "49a68388-bd51-4829-b68b-cb02045d7cae",
+        "model": "unknown"
+      },
+      "human_author": "Arun Selva Kumar <arun@joinassembly.com>"
+    }
+  }
+}

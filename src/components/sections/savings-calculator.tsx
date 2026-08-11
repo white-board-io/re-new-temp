@@ -103,7 +103,7 @@ export function SavingsCalculator() {
               How much could you <span className="text-primary-700">save</span> this year?
             </h2>
           </div>
-          <p className="max-w-sm text-xl leading-7 text-neutral-900 lg:text-right">
+          <p className="max-w-sm text-[23px] leading-7 text-neutral-900 lg:text-right">
             Enter your monthly electricity bill and see your estimated annual savings with
             ReNew Solar Panels
           </p>

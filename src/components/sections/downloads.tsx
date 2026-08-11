@@ -5,33 +5,78 @@ const downloadGroups = [
     id: "product-datasheets",
     title: "Product Datasheets",
     items: [
-      "G12R TOPCon Bifacial Module",
-      "M10R TOPCon",
-      "M10R PERC",
-      "M10R P-Type PERC Bifacial",
+      {
+        label: "G12R TOPCon Bifacial Module",
+        href: "/downloads/product-datasheets/g12r-topcon-bifacial-module.pdf",
+      },
+      {
+        label: "M10R TOPCon",
+        href: "/downloads/product-datasheets/m10r-topcon.pdf",
+      },
+      {
+        label: "M10R PERC",
+        href: "/downloads/product-datasheets/m10r-perc.pdf",
+      },
+      {
+        label: "M10R P-Type PERC Bifacial",
+        href: "/downloads/product-datasheets/m10r-p-type-perc-bifacial.pdf",
+      },
     ],
   },
   {
     id: "installation-warranty",
     title: "Installation and Warranty",
     items: [
-      "Installation Manual",
-      "Warranty Document",
-      "Government Schemes and Subsidies Guide",
+      {
+        label: "Installation Manual",
+        href: "/downloads/installation-warranty/installation-manual.pdf",
+      },
+      {
+        label: "Warranty Document",
+        href: "/downloads/installation-warranty/warranty-document.pdf",
+      },
+      {
+        label: "Government Schemes and Subsidies Guide",
+        href: "/downloads/installation-warranty/government-schemes-and-subsidies-guide.pdf",
+      },
     ],
   },
   {
     id: "certificates",
     title: "Certificates",
     items: [
-      "Ammonia Resistance Certificate",
-      "Salt Mist Resistance Certificate",
-      "Dust and Sand Test Certificate",
-      "IEC Certificate (Monofacial and Bifacial)",
-      "UL 61730 Certificate",
-      "BIS Certificate - Jaipur",
-      "BIS Certificate - Dholera",
-      "Certificate of Accreditation",
+      {
+        label: "Ammonia Resistance Certificate",
+        href: "/downloads/certificates/ammonia-resistance-certificate.pdf",
+      },
+      {
+        label: "Salt Mist Resistance Certificate",
+        href: "/downloads/certificates/salt-mist-resistance-certificate.pdf",
+      },
+      {
+        label: "Dust and Sand Test Certificate",
+        href: "/downloads/certificates/dust-and-sand-test-certificate.pdf",
+      },
+      {
+        label: "IEC Certificate (Monofacial and Bifacial)",
+        href: "/downloads/certificates/iec-certificate-monofacial-and-bifacial.pdf",
+      },
+      {
+        label: "UL 61730 Certificate",
+        href: "/downloads/certificates/ul-61730-certificate.pdf",
+      },
+      {
+        label: "BIS Certificate - Jaipur",
+        href: "/downloads/certificates/bis-certificate-jaipur.pdf",
+      },
+      {
+        label: "BIS Certificate - Dholera",
+        href: "/downloads/certificates/bis-certificate-dholera.pdf",
+      },
+      {
+        label: "Certificate of Accreditation",
+        href: "/downloads/certificates/certificate-of-accreditation.pdf",
+      },
     ],
   },
 ];
@@ -85,20 +130,20 @@ export function Downloads() {
               >
                 {group.items.map((item) => (
                   <li
-                    key={item}
+                    key={item.label}
                     className="group flex min-h-28 flex-col justify-center gap-5 border-b border-neutral-200 px-4 py-6 transition-colors hover:bg-surface-tint sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:px-9"
                   >
                     <p className="text-xl font-light leading-tight text-neutral-500 transition-colors group-hover:text-primary-700 sm:text-2xl lg:text-[30px]">
-                      {item}
+                      {item.label}
                     </p>
-                    <button
-                      type="button"
-                      title={`${item} will be available soon`}
+                    <a
+                      href={item.href}
+                      download
                       className="inline-flex w-full shrink-0 items-center justify-center gap-4 rounded-full bg-neutral-400 px-8 py-2.5 text-lg font-bold text-white transition-colors group-hover:bg-primary-700 sm:w-[245px]"
                     >
                       Download
                       <DownloadIcon />
-                    </button>
+                    </a>
                   </li>
                 ))}
               </Reveal>

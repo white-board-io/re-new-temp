@@ -230,10 +230,11 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
                 <ul className="mt-6 space-y-4">
                   <li>
                     <a
-                      href="#"
+                      href="/downloads/corporate-brochure/corporate-brochure.pdf"
+                      download
                       className="text-lg font-light leading-7 text-white/90 hover:text-primary-300"
                     >
-                      Corporate Brochure
+                      Corporate Broucher
                     </a>
                   </li>
                 </ul>

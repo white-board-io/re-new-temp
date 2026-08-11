@@ -17,29 +17,6 @@ import {
   type LucideProps,
 } from "lucide-react";
 
-const gallery = [
-  {
-    src: "/images/solar-module-front.webp",
-    alt: "Rear view of a ReNew G12R solar module",
-  },
-  {
-    src: "/images/solar-module-product.webp",
-    alt: "Front and rear views of ReNew G12R solar modules",
-  },
-  {
-    src: "/images/solar-module-landscape.webp",
-    alt: "Landscape view of a ReNew solar module",
-  },
-  {
-    src: "/images/solar-module-landscape-alt.webp",
-    alt: "Alternate landscape view of a ReNew solar module",
-  },
-  {
-    src: "/images/solar-module-pair.webp",
-    alt: "Paired front and rear ReNew solar modules",
-  },
-];
-
 const applications = [
   {
     line1: "Utility-scale solar",
@@ -159,6 +136,9 @@ type ModuleRange = {
   dimensions: string;
   weight: string;
   almmApproved: string;
+  imageSrc: string;
+  imageAlt: string;
+  datasheetHref: string;
 };
 
 const moduleRanges: ModuleRange[] = [
@@ -177,6 +157,9 @@ const moduleRanges: ModuleRange[] = [
     dimensions: "2382 x 1134 x 30 mm",
     weight: "33.5 kg",
     almmApproved: "Yes",
+    imageSrc: "/images/products/solar-module/g12r-topcon-132-cell-module.webp",
+    imageAlt: "G12R TOPCon 132 cell solar module",
+    datasheetHref: "/downloads/product-datasheets/g12r-topcon-bifacial-module.pdf",
   },
   {
     id: "m10r-topcon",
@@ -193,6 +176,9 @@ const moduleRanges: ModuleRange[] = [
     dimensions: "M10R module format",
     weight: "M10R module format",
     almmApproved: "Yes",
+    imageSrc: "/images/products/solar-module/m10r-topcon-144-cell-module.webp",
+    imageAlt: "M10R TOPCon 144 cell solar module",
+    datasheetHref: "/downloads/product-datasheets/m10r-topcon.pdf",
   },
   {
     id: "m10r-perc",
@@ -209,6 +195,9 @@ const moduleRanges: ModuleRange[] = [
     dimensions: "M10R module format",
     weight: "M10R module format",
     almmApproved: "Yes",
+    imageSrc: "/images/products/solar-module/m10-mono-perc.webp",
+    imageAlt: "M10 Mono PERC solar module",
+    datasheetHref: "/downloads/product-datasheets/m10r-perc.pdf",
   },
 ];
 
@@ -233,7 +222,6 @@ function FeatureIcon({ icon: Icon }: { icon: ComponentType<LucideProps> }) {
 }
 
 export function SolarModuleDetail() {
-  const [selectedImage, setSelectedImage] = useState(1);
   const [activeFeature, setActiveFeature] = useState(1);
   const [activeModuleId, setActiveModuleId] =
     useState<ModuleRange["id"]>("g12r-topcon-bifacial");
@@ -331,28 +319,34 @@ export function SolarModuleDetail() {
         <div>
           <div className="relative mx-auto h-[430px] max-w-[660px] sm:h-[560px] lg:h-[640px]">
             <Image
-              src={gallery[selectedImage].src}
-              alt={gallery[selectedImage].alt}
+              src={activeModule.imageSrc}
+              alt={activeModule.imageAlt}
               fill
               sizes="(min-width: 1024px) 46vw, 90vw"
               className="object-contain"
             />
           </div>
-          <div className="mt-8 grid grid-cols-5 gap-2 sm:flex sm:justify-center sm:gap-7">
-            {gallery.map((image, index) => (
+          <div className="mt-8 grid grid-cols-3 gap-2 sm:flex sm:justify-center sm:gap-7">
+            {moduleRanges.map((moduleRange) => (
               <button
-                key={`${image.src}-${index}`}
+                key={moduleRange.id}
                 type="button"
-                aria-label={`Show module view ${index + 1}`}
-                aria-pressed={selectedImage === index}
-                onClick={() => setSelectedImage(index)}
+                aria-label={`Show ${moduleRange.label}`}
+                aria-pressed={activeModuleId === moduleRange.id}
+                onClick={() => selectModule(moduleRange.id)}
                 className={`relative aspect-square w-full min-w-0 overflow-hidden rounded-lg border bg-white p-1 transition sm:size-24 sm:w-24 ${
-                  selectedImage === index
+                  activeModuleId === moduleRange.id
                     ? "border-primary-400 bg-neutral-100"
                     : "border-neutral-200 hover:border-primary-300"
                 }`}
               >
-                <Image src={image.src} alt="" fill sizes="96px" className="object-contain p-2" />
+                <Image
+                  src={moduleRange.imageSrc}
+                  alt=""
+                  fill
+                  sizes="96px"
+                  className="object-contain p-2"
+                />
               </button>
             ))}
           </div>
@@ -417,14 +411,13 @@ export function SolarModuleDetail() {
             >
               Enquire Now
             </ContactModalTrigger>
-            <button
-              type="button"
-              disabled
-              title="Datasheet coming soon"
-              className="rounded-full bg-primary-950 px-12 py-4 text-xl font-bold text-white disabled:cursor-not-allowed disabled:opacity-100"
+            <a
+              href={activeModule.datasheetHref}
+              download
+              className="rounded-full bg-primary-950 px-12 py-4 text-xl font-bold text-white transition hover:bg-primary-900"
             >
               Download Datasheet
-            </button>
+            </a>
           </div>
         </div>
       </Reveal>
@@ -533,14 +526,13 @@ export function SolarModuleDetail() {
             >
               Enquire Now
             </ContactModalTrigger>
-            <button
-              type="button"
-              disabled
-              title="Datasheet coming soon"
-              className="relative rounded-full bg-primary-950 px-12 py-4 text-xl font-bold text-white disabled:cursor-not-allowed disabled:opacity-100"
+            <a
+              href={activeModule.datasheetHref}
+              download
+              className="relative rounded-full bg-primary-950 px-12 py-4 text-xl font-bold text-white transition hover:bg-primary-900"
             >
               Download Datasheet
-            </button>
+            </a>
           </div>
         </div>
       </div>

@@ -353,6 +353,12 @@ export function SavingsCalculator() {
             </div>
           </div>
         </Reveal>
+
+        <p className="mt-6 text-sm leading-6 text-neutral-500">
+          <strong className="font-bold text-neutral-700">Disclaimer:</strong>{" "}
+          Calculations use an average electricity tariff. Actual rates may vary by state
+          and location; results are indicative only.
+        </p>
       </div>
     </section>
   );

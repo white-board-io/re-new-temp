@@ -20,7 +20,7 @@ export default function SolarCellPage() {
       <PriceListTab />
       <main className="pt-[88px] lg:pt-[136px] xl:pt-[138px]">
         <SolarCellDetail />
-        <WhyRenew />
+        <WhyRenew spaciousTop />
         <Contact />
       </main>
       <Footer sectionPrefix="/" />

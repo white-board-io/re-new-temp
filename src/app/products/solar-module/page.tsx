@@ -20,7 +20,7 @@ export default function SolarModulePage() {
       <PriceListTab />
       <main className="pt-[88px] lg:pt-[136px] xl:pt-[138px]">
         <SolarModuleDetail />
-        <WhyRenew />
+        <WhyRenew spaciousTop />
         <Contact />
       </main>
       <Footer sectionPrefix="/" />

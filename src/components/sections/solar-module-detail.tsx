@@ -225,9 +225,9 @@ function FeatureIcon({ icon: Icon }: { icon: ComponentType<LucideProps> }) {
   return (
     <span
       aria-hidden
-      className="flex size-11 shrink-0 items-center justify-center text-primary-700 lg:mt-1"
+      className="mx-auto flex size-14 shrink-0 items-center justify-center text-primary-700 lg:mx-0 lg:mt-1 lg:size-11"
     >
-      <Icon className="size-10" strokeWidth={1.7} />
+      <Icon className="size-12 lg:size-10" strokeWidth={1.7} />
     </span>
   );
 }
@@ -362,60 +362,52 @@ export function SolarModuleDetail() {
           <h2 className="text-3xl font-bold sm:text-4xl">{activeModule.title}</h2>
           <p className="mt-4 text-2xl font-bold text-primary-700">Right. Reliable. Ready.</p>
 
-          <dl className="mt-12 text-left text-lg sm:mt-16 sm:text-xl">
-            <div className="grid gap-6 border-t border-neutral-200 py-8 sm:grid-cols-2 sm:gap-8">
-              <div>
-                <dt>Range</dt>
-                <dd className="mt-2 text-neutral-500">{activeModule.range}</dd>
-              </div>
-              <div>
-                <dt>Efficiency</dt>
-                <dd className="mt-2 text-neutral-500">{activeModule.efficiency}</dd>
-              </div>
+          <dl className="mt-8 grid grid-cols-2 border-t border-neutral-200 text-left text-sm leading-5 sm:mt-16 sm:grid-cols-6 sm:text-xl sm:leading-normal">
+            <div className="col-span-1 border-b border-neutral-200 py-5 pr-2 sm:col-span-3 sm:py-8 sm:pr-4">
+              <dt>Range</dt>
+              <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.range}</dd>
             </div>
-            <div className="border-t border-neutral-200 py-8">
+            <div className="col-span-1 border-b border-neutral-200 py-5 pl-2 text-right sm:col-span-3 sm:py-8 sm:pl-4 sm:text-left">
+              <dt>Efficiency</dt>
+              <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.efficiency}</dd>
+            </div>
+            <div className="col-span-2 border-b border-neutral-200 py-5 sm:col-span-6 sm:py-8">
               <dt>Cell type</dt>
-              <dd className="mt-2 text-neutral-500">{activeModule.cellType}</dd>
+              <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.cellType}</dd>
             </div>
-            <div className="grid gap-6 border-t border-neutral-200 py-8 sm:grid-cols-3">
-              <div>
-                <dt>Bifaciality factor</dt>
-                <dd className="mt-2 text-neutral-500">{activeModule.bifacialityFactor}</dd>
-              </div>
-              <div>
-                <dt>Power warranty</dt>
-                <dd className="mt-2 text-neutral-500">{activeModule.powerWarranty}</dd>
-              </div>
-              <div>
-                <dt>Product warranty</dt>
-                <dd className="mt-2 text-neutral-500">{activeModule.productWarranty}</dd>
-              </div>
+            <div className="col-span-1 border-b border-neutral-200 py-5 pr-2 sm:col-span-2 sm:py-8 sm:pr-4">
+              <dt>Bifaciality factor</dt>
+              <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.bifacialityFactor}</dd>
             </div>
-            <div className="grid gap-6 border-t border-neutral-200 py-8 sm:grid-cols-2 sm:gap-8">
-              <div>
-                <dt>First year degradation</dt>
-                <dd className="mt-2 text-neutral-500">{activeModule.firstYearDegradation}</dd>
-              </div>
-              <div>
-                <dt>Annual power attenuation</dt>
-                <dd className="mt-2 text-neutral-500">
-                  {activeModule.annualPowerAttenuation}
-                </dd>
-              </div>
+            <div className="col-span-1 border-b border-neutral-200 py-5 pl-2 text-right sm:col-span-2 sm:px-2 sm:py-8 sm:text-left">
+              <dt>Power warranty</dt>
+              <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.powerWarranty}</dd>
             </div>
-            <div className="grid gap-6 border-t border-neutral-200 py-8 sm:grid-cols-2 sm:gap-8">
-              <div>
-                <dt>Dimensions</dt>
-                <dd className="mt-2 text-neutral-500">{activeModule.dimensions}</dd>
-              </div>
-              <div>
-                <dt>Weight</dt>
-                <dd className="mt-2 text-neutral-500">{activeModule.weight}</dd>
-              </div>
+            <div className="col-span-1 border-b border-neutral-200 py-5 pr-2 sm:col-span-2 sm:py-8 sm:pl-4 sm:pr-0">
+              <dt>Product warranty</dt>
+              <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.productWarranty}</dd>
             </div>
-            <div className="border-y border-neutral-200 py-8">
+            <div className="col-span-1 border-b border-neutral-200 py-5 pl-2 text-right sm:col-span-3 sm:py-8 sm:pl-0 sm:pr-4 sm:text-left">
+              <dt>First year degradation</dt>
+              <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.firstYearDegradation}</dd>
+            </div>
+            <div className="col-span-1 border-b border-neutral-200 py-5 pr-2 sm:col-span-3 sm:py-8 sm:pl-4 sm:pr-0">
+              <dt>Annual power attenuation</dt>
+              <dd className="mt-1 text-neutral-500 sm:mt-2">
+                {activeModule.annualPowerAttenuation}
+              </dd>
+            </div>
+            <div className="col-span-1 border-b border-neutral-200 py-5 pl-2 text-right sm:col-span-3 sm:py-8 sm:pl-0 sm:pr-4 sm:text-left">
+              <dt>Dimensions</dt>
+              <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.dimensions}</dd>
+            </div>
+            <div className="col-span-1 border-b border-neutral-200 py-5 pr-2 sm:col-span-3 sm:py-8 sm:pl-4 sm:pr-0">
+              <dt>Weight</dt>
+              <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.weight}</dd>
+            </div>
+            <div className="col-span-1 border-b border-neutral-200 py-5 pl-2 text-right sm:col-span-6 sm:py-8 sm:pl-0 sm:text-left">
               <dt>ALMM approved</dt>
-              <dd className="mt-2 text-neutral-500">{activeModule.almmApproved}</dd>
+              <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.almmApproved}</dd>
             </div>
           </dl>
 

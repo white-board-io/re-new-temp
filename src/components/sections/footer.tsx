@@ -140,11 +140,11 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
             <div>
               <a
                 href={`${sectionPrefix}${navItems[0].href}`}
-                className="text-lg hover:text-primary-300 xl:text-xl"
+                className="hidden text-lg hover:text-primary-300 sm:inline xl:text-xl"
               >
                 {navItems[0].label}
               </a>
-              <div className="mt-16 xl:mt-14">
+              <div className="sm:mt-16 xl:mt-14">
                 <h3 className="text-xl font-bold leading-8">
                   <Link href={linkColumns[0].headingHref!} className="hover:text-primary-300">
                     {linkColumns[0].heading}
@@ -168,11 +168,11 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
             <div>
               <a
                 href={`${sectionPrefix}${navItems[1].href}`}
-                className="text-lg hover:text-primary-300 xl:text-xl"
+                className="hidden text-lg hover:text-primary-300 sm:inline xl:text-xl"
               >
                 {navItems[1].label}
               </a>
-              <div className="mt-16 xl:mt-14">
+              <div className="sm:mt-16 xl:mt-14">
                 <h3 className="text-xl font-bold leading-8">{linkColumns[1].heading}</h3>
                 <ul className="mt-6 space-y-4">
                   {linkColumns[1].links.map((link) => (
@@ -192,11 +192,11 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
             <div>
               <a
                 href={`${sectionPrefix}${navItems[2].href}`}
-                className="text-lg hover:text-primary-300 xl:text-xl"
+                className="hidden text-lg hover:text-primary-300 sm:inline xl:text-xl"
               >
                 {navItems[2].label}
               </a>
-              <div className="mt-16 xl:mt-14">
+              <div className="sm:mt-16 xl:mt-14">
                 <h3 className="text-xl font-bold leading-8">Support Portals</h3>
                 <ul className="mt-6 space-y-6">
                   {portals.map((portal) => (
@@ -221,11 +221,11 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
             <div>
               <a
                 href={`${sectionPrefix}${navItems[3].href}`}
-                className="text-lg hover:text-primary-300 xl:text-xl"
+                className="hidden text-lg hover:text-primary-300 sm:inline xl:text-xl"
               >
                 {navItems[3].label}
               </a>
-              <div className="mt-16 xl:mt-14">
+              <div className="sm:mt-16 xl:mt-14">
                 <h3 className="text-xl font-bold leading-8">Corporate</h3>
                 <ul className="mt-6 space-y-4">
                   <li>

@@ -15,8 +15,8 @@ const navItems: NavItem[] = [
     label: "Products",
     href: "#products",
     children: [
-      { label: "Solar Module", href: "/products/solar-module" },
-      { label: "Solar Cell", href: "/products/solar-cell" },
+      { label: "Solar Modules", href: "/products/solar-module" },
+      { label: "Solar Cells", href: "/products/solar-cell" },
     ],
   },
   {

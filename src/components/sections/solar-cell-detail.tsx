@@ -16,24 +16,16 @@ import {
 
 const gallery = [
   {
-    src: "/images/solar-module-front.webp",
-    alt: "Rear view of a ReNew solar product",
+    src: "/images/products/solar-cell/m10r-p-type-bifacial-perc-1.webp",
+    alt: "M10R P-type bifacial PERC solar cell product view",
   },
   {
-    src: "/images/solar-module-product.webp",
-    alt: "Front and rear views of ReNew solar products",
+    src: "/images/products/solar-cell/m10r-p-type-bifacial-perc-2.webp",
+    alt: "M10R P-type bifacial PERC solar cell detail view",
   },
   {
-    src: "/images/solar-module-landscape.webp",
-    alt: "Landscape view of a ReNew solar product",
-  },
-  {
-    src: "/images/solar-module-landscape-alt.webp",
-    alt: "Alternate landscape view of a ReNew solar product",
-  },
-  {
-    src: "/images/solar-module-pair.webp",
-    alt: "Paired front and rear ReNew solar products",
+    src: "/images/products/solar-cell/m10r-p-type-bifacial-perc-3.webp",
+    alt: "M10R P-type bifacial PERC solar cell alternate product view",
   },
 ];
 
@@ -123,7 +115,7 @@ function CardIcon({ icon: Icon }: { icon: ComponentType<LucideProps> }) {
 }
 
 export function SolarCellDetail() {
-  const [selectedImage, setSelectedImage] = useState(1);
+  const [selectedImage, setSelectedImage] = useState(0);
   const [activeSlide, setActiveSlide] = useState(0);
 
   const moveSlide = (step: number) => {
@@ -148,7 +140,7 @@ export function SolarCellDetail() {
           <h1 className="text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-[60px] lg:leading-[64px] lg:tracking-hero">
             The cell at the heart of every
             <br />
-            ReNew Solar module.
+            ReNew Solar modules.
           </h1>
           <p className="mx-auto mt-8 max-w-3xl text-xl font-normal leading-8 lg:mt-7 lg:text-2xl">
             High-efficiency bifacial cells manufactured at our Dholera facility.{" "}
@@ -182,7 +174,7 @@ export function SolarCellDetail() {
                 className="object-contain"
               />
             </div>
-            <div className="mt-8 grid grid-cols-5 gap-2 sm:flex sm:justify-center sm:gap-7">
+            <div className="mt-8 grid grid-cols-3 gap-2 sm:flex sm:justify-center sm:gap-7">
               {gallery.map((image, index) => (
                 <button
                   key={`${image.src}-${index}`}

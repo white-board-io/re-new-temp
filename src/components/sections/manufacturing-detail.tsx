@@ -33,7 +33,7 @@ const plants: Plant[] = [
     id: "jaipur",
     name: "Jaipur, Rajasthan",
     shortName: "Jaipur,\nRajasthan",
-    map: "/images/manufacturing/jaipur-tab.webp",
+    map: "/images/manufacturing/dholera-tab.webp",
     mapAlt: "Jaipur manufacturing facility",
     mapLabelClassName: "text-2xl sm:text-[32px]",
     eyebrow: "4 GW under one roof.",
@@ -109,7 +109,7 @@ const plants: Plant[] = [
     id: "dholera",
     name: "Dholera, Gujarat",
     shortName: "Dholera,\nGujarat",
-    map: "/images/manufacturing/dholera-tab.webp",
+    map: "/images/manufacturing/jaipur-tab.webp",
     mapAlt: "Dholera cell and module manufacturing facility",
     mapLabelClassName: "text-2xl sm:text-[32px]",
     eyebrow: "Built for the next generation.",
@@ -277,6 +277,7 @@ export function ManufacturingDetail() {
   const [statsPage, setStatsPage] = useState(0);
   const [statsPageCount, setStatsPageCount] = useState(1);
   const activePlant = plants.find((plant) => plant.id === activeId) ?? plants[0];
+  const isVizag = activePlant.id === "vizag";
   const statsGridClass =
     activePlant.stats.length === 3
       ? "sm:grid-cols-3 xl:mx-auto xl:max-w-[1120px] xl:gap-[72px]"
@@ -418,32 +419,42 @@ export function ManufacturingDetail() {
         <section className="mx-auto max-w-[1580px] px-4 py-20 sm:px-6 lg:py-24">
           <Reveal
             stagger
-            className="grid w-full items-start gap-14 pb-20 lg:grid-cols-2 lg:gap-12 lg:pb-[150px]"
+            className={`grid w-full items-start gap-14 pb-20 lg:gap-12 lg:pb-[150px] ${
+              isVizag ? "justify-items-center" : "lg:grid-cols-2"
+            }`}
           >
-            <div className="w-full max-w-none">
-              <p className="max-w-[400px] text-4xl font-extrabold uppercase leading-[1.08] tracking-[0.03em] text-primary-700 sm:text-[60px] sm:leading-[64px]">
+            <div className={`w-full max-w-none ${isVizag ? "text-center" : ""}`}>
+              <p
+                className={`text-4xl font-extrabold uppercase leading-[1.08] tracking-[0.03em] text-primary-700 sm:text-[60px] sm:leading-[64px] ${
+                  isVizag ? "mx-auto max-w-[760px]" : "max-w-[400px]"
+                }`}
+              >
                 {activePlant.eyebrow}
               </p>
               <h2
-                className="mt-10 max-w-[650px] whitespace-pre-line text-4xl font-normal leading-tight tracking-[0.03em] text-primary-950 sm:text-[60px] sm:leading-[70px]"
+                className={`mt-10 whitespace-pre-line text-4xl font-normal leading-tight tracking-[0.03em] text-primary-950 sm:text-[60px] sm:leading-[70px] ${
+                  isVizag ? "mx-auto max-w-[980px]" : "max-w-[650px]"
+                }`}
               >
                 {activePlant.headline}
               </h2>
             </div>
-            <div className="relative mx-auto flex aspect-[741/378] w-full max-w-none items-start justify-center overflow-hidden lg:mx-0">
-              <Image
-                src={activePlant.map}
-                alt={activePlant.mapAlt}
-                width={741}
-                height={378}
-                className="h-full w-full object-cover"
-              />
-              {/* <p
-                className={`pointer-events-none absolute inset-0 flex items-center justify-center whitespace-pre-line px-10 text-center font-bold leading-tight text-white ${activePlant.mapLabelClassName}`}
-              >
-                {activePlant.shortName}
-              </p> */}
-            </div>
+            {!isVizag ? (
+              <div className="relative mx-auto flex aspect-[741/378] w-full max-w-none items-start justify-center overflow-hidden lg:mx-0">
+                <Image
+                  src={activePlant.map}
+                  alt={activePlant.mapAlt}
+                  width={741}
+                  height={378}
+                  className="h-full w-full object-cover"
+                />
+                {/* <p
+                  className={`pointer-events-none absolute inset-0 flex items-center justify-center whitespace-pre-line px-10 text-center font-bold leading-tight text-white ${activePlant.mapLabelClassName}`}
+                >
+                  {activePlant.shortName}
+                </p> */}
+              </div>
+            ) : null}
           </Reveal>
 
           {/* Wrapper, not the track itself: the track owns statsTrackRef, and

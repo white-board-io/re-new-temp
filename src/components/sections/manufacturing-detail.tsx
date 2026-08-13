@@ -115,7 +115,7 @@ const plants: Plant[] = [
     eyebrow: "Built for the next generation.",
     headline: "Advanced TOPCon cell and module manufacturing at scale.",
     video: {
-      src: "/videos/manufacturing/jaipur.webm",
+      src: "/videos/manufacturing/dholera.webm",
       title: "Dholera manufacturing facility video",
     },
     gallery: [

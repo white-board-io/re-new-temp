@@ -282,6 +282,7 @@ export function ManufacturingDetail() {
     activePlant.stats.length === 3
       ? "sm:grid-cols-3 xl:mx-auto xl:max-w-[1120px] xl:gap-[72px]"
       : "sm:grid-cols-2 xl:grid-cols-4 xl:gap-[72px]";
+  const showSustainabilityMedia = activePlant.id !== "vizag";
 
   const selectPlant = (plantId: Plant["id"]) => {
     setActiveId(plantId);
@@ -571,34 +572,36 @@ export function ManufacturingDetail() {
             </p>
           </Reveal>
 
-          <Reveal as="figure" className="relative mx-auto mt-20 max-w-[1580px] px-4 sm:px-6">
-            <div className="relative aspect-[16/7] overflow-hidden rounded-md">
+          {showSustainabilityMedia ? (
+            <Reveal as="figure" className="relative mx-auto mt-20 max-w-[1580px] px-4 sm:px-6">
+              <div className="relative aspect-[16/7] overflow-hidden rounded-md">
+                {activePlant.video ? (
+                  <video
+                    key={activePlant.id}
+                    src={activePlant.video.src}
+                    autoPlay
+                    controls
+                    loop
+                    muted
+                    preload="metadata"
+                    playsInline
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                ) : (
+                  <Image
+                    src={activePlant.sustainabilityImage.src}
+                    alt={activePlant.sustainabilityImage.alt}
+                    fill
+                    sizes="(min-width: 1532px) 1532px, 100vw"
+                    className="object-cover"
+                  />
+                )}
+              </div>
               {activePlant.video ? (
-                <video
-                  key={activePlant.id}
-                  src={activePlant.video.src}
-                  autoPlay
-                  controls
-                  loop
-                  muted
-                  preload="metadata"
-                  playsInline
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
-              ) : (
-                <Image
-                  src={activePlant.sustainabilityImage.src}
-                  alt={activePlant.sustainabilityImage.alt}
-                  fill
-                  sizes="(min-width: 1532px) 1532px, 100vw"
-                  className="object-cover"
-                />
-              )}
-            </div>
-            {activePlant.video ? (
-              <figcaption className="sr-only">{activePlant.video.title}</figcaption>
-            ) : null}
-          </Reveal>
+                <figcaption className="sr-only">{activePlant.video.title}</figcaption>
+              ) : null}
+            </Reveal>
+          ) : null}
         </section>
 
         <div className="overflow-hidden bg-accent py-5 text-white">

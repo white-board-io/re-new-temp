@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { IndianRupee, Leaf, Zap } from "lucide-react";
 import { calculateSolar } from "@/lib/solar";
+import { CustomDropdown } from "@/components/custom-dropdown";
 import { Reveal } from "@/components/reveal";
 
 const STATE_TARIFFS: Record<string, number> = {
@@ -150,16 +151,16 @@ export function SavingsCalculator() {
             <label htmlFor="calc-state" className="mt-8 block text-neutral-500">
               State / Union Territory
             </label>
-            <select
+            <CustomDropdown
               id="calc-state"
+              name="state"
               value={state}
-              onChange={(e) => changeState(e.target.value)}
-              className="mt-2 w-full appearance-none rounded-lg border border-neutral-300 bg-white px-4 py-3 text-primary-950 focus:border-primary-700 focus:outline-none"
-            >
-              {STATES.map((s) => (
-                <option key={s}>{s}</option>
-              ))}
-            </select>
+              onChange={changeState}
+              options={STATES}
+              className="mt-2"
+              buttonClassName="relative w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 pr-12 text-left text-primary-950 transition focus:border-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-700/10"
+              iconClassName="text-neutral-500"
+            />
             <p className="mt-2 text-sm text-neutral-500" aria-live="polite">
               + {locationStatus}
             </p>

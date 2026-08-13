@@ -10,7 +10,7 @@ import { WhyRenew } from "@/components/sections/why-renew";
 export const metadata: Metadata = {
   title: "Solar Cells — ReNew Solar Panels",
   description:
-    "Explore ReNew's high-efficiency M10R PERC bifacial solar cells, manufactured for precision and graded for dependable performance.",
+    "Explore ReNew's M10R PERC Cell P-Type, manufactured for precision and graded for dependable performance.",
 };
 
 export default function SolarCellPage() {

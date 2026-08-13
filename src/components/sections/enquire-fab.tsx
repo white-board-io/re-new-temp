@@ -75,7 +75,7 @@ export function EnquireFab() {
       <Sunburst />
       <ContactModalTrigger
         ariaLabel="Enquire now"
-        className="pointer-events-auto absolute bottom-0 left-1/2 block h-[44px] w-[84px] -translate-x-1/2 rounded-t-full bg-primary-700 pt-3 text-center text-[10px] font-black uppercase leading-3 text-primary-400 transition-colors hover:bg-primary-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400 lg:h-[55px] lg:w-[105px] lg:pt-4 lg:text-xs lg:leading-[14px]"
+        className="pointer-events-auto absolute bottom-0 left-1/2 block h-[44px] w-[84px] -translate-x-1/2 rounded-t-full bg-primary-700 pt-3 text-center text-[10px] font-black uppercase leading-3 text-white transition-colors hover:bg-primary-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400 lg:h-[55px] lg:w-[105px] lg:pt-4 lg:text-xs lg:leading-[14px]"
       >
         Enquire
       </ContactModalTrigger>

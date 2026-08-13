@@ -382,7 +382,9 @@ body {
 
 .contact-modal-field:focus ~ .contact-modal-label,
 input.contact-modal-field:not(:placeholder-shown) ~ .contact-modal-label,
-select.contact-modal-field:valid ~ .contact-modal-label {
+select.contact-modal-field:valid ~ .contact-modal-label,
+button.contact-modal-field[aria-expanded="true"] ~ .contact-modal-label,
+button.contact-modal-field[data-has-value="true"] ~ .contact-modal-label {
   top: 10px;
   translate: 0;
   font-size: 11px;

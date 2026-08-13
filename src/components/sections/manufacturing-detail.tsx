@@ -10,9 +10,11 @@ type Plant = {
   name: string;
   shortName: string;
   map: string;
+  mapAlt: string;
   mapLabelClassName: string;
   eyebrow: string;
   headline: string;
+  video?: { src: string; title: string };
   gallery: Array<{ src: string; alt: string }>;
   sustainabilityImage: { src: string; alt: string };
   stats: Array<{
@@ -31,10 +33,15 @@ const plants: Plant[] = [
     id: "jaipur",
     name: "Jaipur, Rajasthan",
     shortName: "Jaipur,\nRajasthan",
-    map: "/images/manufacturing-detail.png",
+    map: "/images/manufacturing/jaipur-tab.webp",
+    mapAlt: "Jaipur manufacturing facility",
     mapLabelClassName: "text-2xl sm:text-[32px]",
     eyebrow: "4 GW under one roof.",
     headline: "India's largest\nsingle-location module\nmanufacturing facility.",
+    video: {
+      src: "/videos/manufacturing/jaipur.webm",
+      title: "Jaipur manufacturing facility video",
+    },
     gallery: [
       {
         src: "/images/partner-video-factory.webp",
@@ -102,10 +109,15 @@ const plants: Plant[] = [
     id: "dholera",
     name: "Dholera, Gujarat",
     shortName: "Dholera,\nGujarat",
-    map: "/images/manufacturing-detail.png",
+    map: "/images/manufacturing/dholera-tab.webp",
+    mapAlt: "Dholera cell and module manufacturing facility",
     mapLabelClassName: "text-2xl sm:text-[32px]",
     eyebrow: "Built for the next generation.",
     headline: "Advanced TOPCon cell and module manufacturing at scale.",
+    video: {
+      src: "/videos/manufacturing/jaipur.webm",
+      title: "Dholera manufacturing facility video",
+    },
     gallery: [
       {
         src: "/images/manufacturing-hero.png",
@@ -172,6 +184,7 @@ const plants: Plant[] = [
     name: "Visakhapatnam, Andhra Pradesh",
     shortName: "Visakhapatnam,\nAndhra Pradesh",
     map: "/images/manufacturing-detail.png",
+    mapAlt: "Outline map for Visakhapatnam, Andhra Pradesh",
     mapLabelClassName: "text-xl sm:text-[26px]",
     eyebrow: "6.5 GW at the source.",
     headline: "A wafer and ingot facility strengthening India's solar value chain.",
@@ -261,7 +274,6 @@ function StatIcon({ icon }: { icon: Plant["stats"][number]["icon"] }) {
 export function ManufacturingDetail() {
   const statsTrackRef = useRef<HTMLDivElement>(null);
   const [activeId, setActiveId] = useState<Plant["id"]>("jaipur");
-  const [galleryIndex, setGalleryIndex] = useState(0);
   const [statsPage, setStatsPage] = useState(0);
   const [statsPageCount, setStatsPageCount] = useState(1);
   const activePlant = plants.find((plant) => plant.id === activeId) ?? plants[0];
@@ -272,7 +284,6 @@ export function ManufacturingDetail() {
 
   const selectPlant = (plantId: Plant["id"]) => {
     setActiveId(plantId);
-    setGalleryIndex(0);
     setStatsPage(0);
     statsTrackRef.current?.scrollTo({ left: 0 });
     window.history.replaceState(null, "", `#${plantId}`);
@@ -283,7 +294,6 @@ export function ManufacturingDetail() {
       const plantId = getPlantIdFromHash();
       if (plantId) {
         setActiveId(plantId);
-        setGalleryIndex(0);
         setStatsPage(0);
         statsTrackRef.current?.scrollTo({ left: 0 });
       }
@@ -423,7 +433,7 @@ export function ManufacturingDetail() {
             <div className="relative mx-auto flex aspect-[741/378] w-full max-w-none items-start justify-center overflow-hidden lg:mx-0">
               <Image
                 src={activePlant.map}
-                alt={`Outline map for ${activePlant.name}`}
+                alt={activePlant.mapAlt}
                 width={741}
                 height={378}
                 className="h-full w-full object-cover"
@@ -522,54 +532,9 @@ export function ManufacturingDetail() {
             </div>
           </div>
 
-          <Reveal as="figure" className="relative mt-16 sm:mt-[180px]">
-            <div className="relative aspect-video overflow-hidden rounded-md sm:aspect-[2.11/1] sm:min-h-72">
-              <Image
-                src={activePlant.gallery[galleryIndex].src}
-                alt={activePlant.gallery[galleryIndex].alt}
-                fill
-                sizes="(min-width: 1532px) 1532px, 100vw"
-                className="object-cover"
-              />
-              <button
-                type="button"
-                aria-label="Previous manufacturing image"
-                onClick={() =>
-                  setGalleryIndex(Math.max(0, galleryIndex - 1))
-                }
-                disabled={galleryIndex === 0}
-                className="absolute left-3 top-1/2 flex size-10 -translate-y-1/2 items-center justify-center rounded-sm bg-primary-50/90 text-primary-700 transition-colors hover:bg-white disabled:text-neutral-300 sm:size-12 xl:-left-[88px] xl:bg-neutral-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700"
-              >
-                <ChevronLeft aria-hidden className="size-6 sm:size-8" />
-              </button>
-              <button
-                type="button"
-                aria-label="Next manufacturing image"
-                onClick={() =>
-                  setGalleryIndex(Math.min(activePlant.gallery.length - 1, galleryIndex + 1))
-                }
-                disabled={galleryIndex === activePlant.gallery.length - 1}
-                className="absolute right-3 top-1/2 flex size-10 -translate-y-1/2 items-center justify-center rounded-sm bg-primary-50/90 text-primary-700 transition-colors hover:bg-white disabled:text-neutral-300 sm:size-12 xl:-right-[88px] xl:bg-primary-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700"
-              >
-                <ChevronRight aria-hidden className="size-6 sm:size-8" />
-              </button>
-              <div className="absolute inset-x-0 bottom-4 flex justify-center gap-2 sm:bottom-8 sm:gap-6">
-                {activePlant.gallery.map((image, index) => (
-                  <span
-                    key={image.src}
-                    aria-hidden
-                    className={`h-1.5 w-8 rounded-full sm:h-[8px] sm:w-[44px] ${
-                      index === galleryIndex ? "bg-primary-400" : "bg-white"
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
-          </Reveal>
-
           <Reveal
             stagger
-            className="mt-20 space-y-10 text-xl font-light leading-9 text-neutral-500 sm:text-[26px] sm:leading-[1.55]"
+            className="mt-16 space-y-10 text-xl font-light leading-9 text-neutral-500 sm:mt-[120px] sm:text-[26px] sm:leading-[1.55]"
           >
             {activePlant.paragraphs.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
@@ -595,16 +560,33 @@ export function ManufacturingDetail() {
             </p>
           </Reveal>
 
-          <Reveal className="relative mx-auto mt-20 max-w-[1580px] px-4 sm:px-6">
+          <Reveal as="figure" className="relative mx-auto mt-20 max-w-[1580px] px-4 sm:px-6">
             <div className="relative aspect-[16/7] overflow-hidden rounded-md">
-              <Image
-                src={activePlant.sustainabilityImage.src}
-                alt={activePlant.sustainabilityImage.alt}
-                fill
-                sizes="(min-width: 1532px) 1532px, 100vw"
-                className="object-cover"
-              />
+              {activePlant.video ? (
+                <video
+                  key={activePlant.id}
+                  src={activePlant.video.src}
+                  autoPlay
+                  controls
+                  loop
+                  muted
+                  preload="metadata"
+                  playsInline
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              ) : (
+                <Image
+                  src={activePlant.sustainabilityImage.src}
+                  alt={activePlant.sustainabilityImage.alt}
+                  fill
+                  sizes="(min-width: 1532px) 1532px, 100vw"
+                  className="object-cover"
+                />
+              )}
             </div>
+            {activePlant.video ? (
+              <figcaption className="sr-only">{activePlant.video.title}</figcaption>
+            ) : null}
           </Reveal>
         </section>
 

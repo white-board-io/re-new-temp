@@ -18,7 +18,7 @@ const downloadGroups = [
         href: "/downloads/product-datasheets/m10r-perc.pdf",
       },
       {
-        label: "M10R P-Type PERC Bifacial",
+        label: "M10R PERC Cell P-Type",
         href: "/downloads/product-datasheets/m10r-p-type-perc-bifacial.pdf",
       },
     ],

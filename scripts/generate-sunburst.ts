@@ -38,8 +38,3 @@ for (let ring = 0; ring < rings; ring++) {
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 340" fill="${COLOR}">${squares}</svg>`;
 await Bun.write("public/images/sunburst.svg", svg);
 console.log("wrote public/images/sunburst.svg");
-
-// Dark variant for the primary-950 Manufacturing section
-const dark = svg.replace(`fill="${COLOR}"`, 'fill="#2a5313"');
-await Bun.write("public/images/sunburst-dark.svg", dark);
-console.log("wrote public/images/sunburst-dark.svg");

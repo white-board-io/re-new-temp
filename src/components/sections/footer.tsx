@@ -72,14 +72,6 @@ function LinkedInLogo({ className }: IconProps) {
   );
 }
 
-function XLogo({ className }: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className={className}>
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-    </svg>
-  );
-}
-
 function YouTubeLogo({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className={className}>
@@ -89,11 +81,26 @@ function YouTubeLogo({ className }: IconProps) {
 }
 
 const socials = [
-  { label: "LinkedIn", Icon: LinkedInLogo },
-  { label: "Instagram", Icon: InstagramLogo },
-  { label: "Facebook", Icon: FacebookLogo },
-  { label: "X", Icon: XLogo },
-  { label: "YouTube", Icon: YouTubeLogo },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/renew-solar-panels/",
+    Icon: LinkedInLogo,
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/renewsolarpanels?igsh=cW0zNDRmbW9kemp3",
+    Icon: InstagramLogo,
+  },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/61591585425865/",
+    Icon: FacebookLogo,
+  },
+  {
+    label: "YouTube",
+    href: "https://youtube.com/@renewsolarpanels?si=6_wf2xVRPulDcb6C",
+    Icon: YouTubeLogo,
+  },
 ];
 
 export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) {
@@ -119,15 +126,17 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
               India&apos;s net-zero future.
             </p>
             <ul className="mt-14 flex max-w-xs items-center justify-between gap-2 sm:mt-20 sm:justify-start sm:gap-4 xl:mt-[88px] xl:max-w-none xl:gap-[52px]">
-              {socials.map(({ label, Icon }) => (
+              {socials.map(({ label, href, Icon }) => (
                 <li key={label}>
-                  <span
-                    role="img"
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label={label}
-                    className="flex size-11 items-center justify-center rounded-full bg-primary-700 text-primary-400 sm:size-12 xl:size-[60px]"
+                    className="flex size-11 items-center justify-center rounded-full bg-primary-700 text-primary-400 transition hover:bg-primary-800 hover:text-primary-300 sm:size-12 xl:size-[60px]"
                   >
                     <Icon className="size-5 xl:size-6" />
-                  </span>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -234,7 +243,7 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
                       download
                       className="text-lg font-light leading-7 text-white/90 hover:text-primary-300"
                     >
-                      Corporate Broucher
+                      Corporate Brochure
                     </a>
                   </li>
                 </ul>

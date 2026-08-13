@@ -32,9 +32,8 @@ export function Blogs() {
           <h2 className="text-4xl font-bold text-primary-950 sm:text-[54px] sm:leading-[62px]">
             Blogs
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-xl leading-8 text-neutral-500">
-            Discover updates, ideas, and breakthroughs from ReNew&apos;s solar panel
-            business.
+          <p className="mx-auto mt-6 max-w-3xl text-xl leading-8 text-neutral-500">
+            Discover updates, ideas, and breakthroughs from ReNew Solar Panels business.
           </p>
         </Reveal>
 

@@ -111,6 +111,9 @@ const carouselImages = [
   },
 ];
 
+const productName = "M10R PERC Cell P-Type";
+const datasheetHref = "/downloads/product-datasheets/m10r-p-type-perc-bifacial.pdf";
+
 function CardIcon({ icon: Icon }: { icon: ComponentType<LucideProps> }) {
   return (
     <span aria-hidden className="flex h-20 items-center justify-center text-primary-700">
@@ -155,11 +158,11 @@ export function SolarCellDetail() {
         </Reveal>
       </section>
 
-      <section id="cell-range" className="relative bg-white">
+      <section id="cell-range" className="relative scroll-mt-[88px] bg-white lg:scroll-mt-[136px] xl:scroll-mt-[138px]">
         <div className="sticky top-[88px] z-30 bg-neutral-100 shadow-[0_2px_12px_rgba(0,0,0,0.08)] lg:top-[136px] xl:top-[138px]">
           <div className="mx-auto grid max-w-content px-4 sm:px-6 md:grid-cols-3 xl:px-0">
             <div className="relative flex min-h-20 items-center justify-center text-center text-sm font-normal text-primary-700 sm:min-h-[108px] sm:text-xl lg:text-2xl">
-              M10R P-Type PERC Bifacial
+              {productName}
               <span className="absolute inset-x-0 bottom-0 h-3.5 bg-primary-400" />
             </div>
           </div>
@@ -201,37 +204,35 @@ export function SolarCellDetail() {
 
           <div className="pt-4 text-center text-primary-950 lg:pt-10 lg:text-left">
             <h2 className="text-3xl font-bold sm:text-4xl">
-              M10R P-Type PERC <span className="text-primary-400">Bifacial</span>
+              {productName}
             </h2>
             <p className="mt-4 text-2xl font-bold text-primary-700">Right. Reliable. Ready.</p>
 
-            <dl className="mt-12 text-left text-lg sm:mt-16 sm:text-xl">
+            <h3 className="mt-12 text-left text-2xl font-bold text-primary-950 sm:mt-16">
+              Product Specifications
+            </h3>
+
+            <dl className="mt-6 text-left text-lg sm:text-xl">
               <div className="border-t border-neutral-200 py-8">
                 <dt>Type</dt>
                 <dd className="mt-2 text-neutral-500">
-                  M10R P-Type PERC Bifacial
+                  High conversion efficiency bifacial PERC cell
                 </dd>
               </div>
               <div className="border-t border-neutral-200 py-8">
-                <dt>Cell grade</dt>
+                <dt>Cell Grade</dt>
                 <dd className="mt-2 text-neutral-500">High efficiency bifacial PERC</dd>
               </div>
               <div className="border-t border-neutral-200 py-8">
-                <dt>Testing standard</dt>
+                <dt>Testing Standard</dt>
                 <dd className="mt-2 text-neutral-500">
-                  <strong className="font-semibold text-primary-950">
-                    Standard Test Conditions
-                  </strong>
-                  <br />
-                  1000 W/m², AM 1.5G spectrum, 25 degrees C
+                  Standard Test Conditions — 1000 W/m², AM 1.5G spectrum, 25°C
                 </dd>
               </div>
               <div className="border-y border-neutral-200 py-8">
-                <dt>Quality inspection</dt>
+                <dt>Quality Inspection</dt>
                 <dd className="mt-2 text-neutral-500">
-                  Visual grading from 50 cm.
-                  <br />
-                  Colour and defect sorting by an inspection machine.
+                  Visual grading from 50 cm. Colour and defect sorting by an inspection machine.
                 </dd>
               </div>
             </dl>
@@ -242,14 +243,13 @@ export function SolarCellDetail() {
               >
                 Enquire Now
               </ContactModalTrigger>
-              <button
-                type="button"
-                disabled
-                title="Datasheet coming soon"
-                className="rounded-full bg-primary-950 px-12 py-4 text-xl font-bold text-white disabled:cursor-not-allowed disabled:opacity-100"
+              <a
+                href={datasheetHref}
+                download
+                className="rounded-full bg-primary-950 px-12 py-4 text-xl font-bold text-white transition hover:bg-primary-900"
               >
                 Download Datasheet
-              </button>
+              </a>
             </div>
           </div>
         </Reveal>

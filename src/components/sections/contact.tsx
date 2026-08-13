@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ChevronDown, Mail, Phone } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
+import { CustomDropdown } from "@/components/custom-dropdown";
 import { Reveal } from "@/components/reveal";
 import { REQUIREMENT_TYPES } from "@/components/contact-modal";
 
@@ -48,6 +49,7 @@ function Field({
 
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [requirement, setRequirement] = useState("");
   const [wordIndex, setWordIndex] = useState(0);
   const rotatingWord = ROTATING_CONTACT_WORDS[wordIndex];
 
@@ -114,34 +116,26 @@ export function Contact() {
           <Field name="phone" label="Phone" type="tel" />
           <Field name="state" label="State" />
           <div className="relative">
-            <select
+            <CustomDropdown
               id="contact-requirement"
               name="requirement"
+              value={requirement}
+              onChange={setRequirement}
+              options={REQUIREMENT_TYPES}
+              placeholder="Requirement type"
               required
-              defaultValue=""
-              aria-label="Requirement type"
-              className="peer w-full appearance-none rounded-lg bg-white px-6 py-6 pr-16 text-lg text-primary-950 focus:outline-none focus:ring-2 focus:ring-primary-400"
-            >
-              <option value="" disabled />
-              {REQUIREMENT_TYPES.map((t) => (
-                <option key={t} value={t} className="text-primary-950">
-                  {t}
-                </option>
-              ))}
-            </select>
-            {/* Floating placeholder — hidden once a value is selected (select becomes :valid) */}
-            <label
-              htmlFor="contact-requirement"
-              className="pointer-events-none absolute left-6 top-1/2 -translate-y-1/2 text-lg text-neutral-500 peer-valid:hidden"
-            >
-              Requirement type<span className="text-red-500">*</span>
-            </label>
-            <span
-              aria-hidden
-              className="pointer-events-none absolute inset-y-0 right-0 flex w-16 items-center justify-center rounded-r-lg bg-neutral-100 text-neutral-900"
-            >
-              <ChevronDown className="size-7" />
-            </span>
+              ariaLabel="Requirement type"
+              buttonClassName="relative w-full rounded-lg bg-white px-6 py-6 pr-16 text-left text-lg text-primary-950 focus:outline-none focus:ring-2 focus:ring-primary-400"
+              iconClassName="right-5 size-7 text-neutral-900"
+            />
+            {!requirement && (
+              <label
+                htmlFor="contact-requirement"
+                className="pointer-events-none absolute left-6 top-1/2 -translate-y-1/2 text-lg text-neutral-500"
+              >
+                Requirement type<span className="text-red-500">*</span>
+              </label>
+            )}
           </div>
           <div className="mt-2 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
             {submitted && (

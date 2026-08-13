@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
 import { ContactModalTrigger } from "@/components/contact-modal";
 import { Reveal } from "@/components/reveal";
 
@@ -33,77 +33,96 @@ const videos = [
   },
 ];
 
+type ChannelPartnerVideo = (typeof videos)[number];
+
 type VideoCardProps = {
-  video: (typeof videos)[number];
+  video: ChannelPartnerVideo;
+  onOpen: (video: ChannelPartnerVideo) => void;
 };
 
-function VideoCard({ video }: VideoCardProps) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [progress, setProgress] = useState(0);
-
-  const togglePlayback = async () => {
-    const media = videoRef.current;
-    if (!media) return;
-
-    if (media.paused) {
-      await media.play();
-      setIsPlaying(true);
-    } else {
-      media.pause();
-      setIsPlaying(false);
-    }
-  };
-
-  const syncProgress = () => {
-    const media = videoRef.current;
-    if (!media?.duration) return;
-    setProgress((media.currentTime / media.duration) * 100);
-  };
-
+function VideoCard({ video, onOpen }: VideoCardProps) {
   return (
-    <article
+    <button
+      type="button"
+      aria-label={`Open ${video.title} video`}
+      onClick={() => onOpen(video)}
       className={`group relative aspect-video w-[88%] shrink-0 snap-start overflow-hidden rounded-2xl bg-primary-950 md:w-[calc(50%-12px)] xl:aspect-auto xl:rounded-[6px] ${video.desktopSize}`}
     >
-      <video
-        ref={videoRef}
-        src={video.src}
-        poster={video.poster}
-        aria-label={video.title}
-        className="h-full w-full object-cover"
-        playsInline
-        preload="metadata"
-        onClick={togglePlayback}
-        onEnded={() => setIsPlaying(false)}
-        onTimeUpdate={syncProgress}
-        onLoadedMetadata={syncProgress}
+      <Image
+        src={video.poster}
+        alt={video.title}
+        fill
+        sizes="(min-width: 1280px) 803px, (min-width: 768px) 50vw, 88vw"
+        className="object-cover transition duration-500 group-hover:scale-[1.03]"
       />
-      <button
-        type="button"
-        aria-label={isPlaying ? `Pause ${video.title}` : `Play ${video.title}`}
-        onClick={togglePlayback}
-        className={`absolute left-1/2 top-1/2 flex size-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary-400 text-white shadow-[0_18px_45px_rgba(0,0,0,0.28)] transition duration-200 hover:scale-105 hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:size-24 ${
-          isPlaying ? "opacity-0 group-hover:opacity-100 group-focus-within:opacity-100" : "opacity-100"
-        }`}
-      >
-        {isPlaying ? (
-          <Pause aria-hidden className="size-9 fill-white sm:size-11" />
-        ) : (
-          <Play aria-hidden className="ml-1 size-9 fill-white sm:size-11" />
-        )}
-      </button>
-      <div
+      <span className="absolute inset-0 bg-primary-950/15 transition group-hover:bg-primary-950/25" />
+      <span
         aria-hidden
-        className="pointer-events-none absolute inset-x-5 bottom-5 opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100"
+        className="absolute left-1/2 top-1/2 flex size-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary-400 text-white shadow-[0_18px_45px_rgba(0,0,0,0.28)] transition duration-200 group-hover:scale-105 group-hover:bg-primary-500 sm:size-24"
       >
-        <div className="h-1.5 overflow-hidden rounded-full bg-white/35 shadow-[0_8px_24px_rgba(0,0,0,0.22)]">
-          <div
-            className="h-full rounded-full bg-primary-400 transition-[width]"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
+        <Play className="ml-1 size-9 fill-white sm:size-11" />
+      </span>
+    </button>
+  );
+}
+
+function VideoModal({
+  video,
+  onClose,
+}: {
+  video: ChannelPartnerVideo | null;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    if (!video) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onClose, video]);
+
+  if (!video) return null;
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={video.title}
+      className="fixed inset-0 z-[110] flex items-center justify-center bg-primary-950/80 p-4 backdrop-blur-sm sm:p-6"
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+    >
+      <div className="relative w-full max-w-6xl overflow-hidden rounded-2xl bg-primary-950 shadow-[0_30px_90px_rgba(0,0,0,0.45)]">
+        <button
+          type="button"
+          aria-label="Close video"
+          onClick={onClose}
+          className="absolute right-4 top-4 z-10 flex size-11 items-center justify-center rounded-full bg-white/90 text-primary-950 transition hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+        >
+          <X aria-hidden className="size-6" />
+        </button>
+        <video
+          key={video.src}
+          src={video.src}
+          poster={video.poster}
+          aria-label={video.title}
+          controls
+          autoPlay
+          playsInline
+          className="aspect-video w-full bg-primary-950 object-contain"
+        />
       </div>
-    </article>
+    </div>
   );
 }
 
@@ -111,6 +130,7 @@ export function ChannelPartners() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [page, setPage] = useState(0);
   const [pageCount, setPageCount] = useState(1);
+  const [activeVideo, setActiveVideo] = useState<ChannelPartnerVideo | null>(null);
 
   useEffect(() => {
     const track = trackRef.current;
@@ -165,7 +185,7 @@ export function ChannelPartners() {
             className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 xl:gap-[45px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
             {videos.map((video) => (
-              <VideoCard key={video.src} video={video} />
+              <VideoCard key={video.src} video={video} onOpen={setActiveVideo} />
             ))}
           </div>
         </Reveal>
@@ -216,6 +236,7 @@ export function ChannelPartners() {
           </ContactModalTrigger>
         </Reveal>
       </div>
+      <VideoModal video={activeVideo} onClose={() => setActiveVideo(null)} />
     </section>
   );
 }

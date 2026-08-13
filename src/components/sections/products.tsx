@@ -27,7 +27,7 @@ interface Product {
 
 const products: Product[] = [
   {
-    title: "Solar Module",
+    title: "Solar Modules",
     image: "/images/Solarmodule-s.webp",
     expandedImage: "/images/solarmodule-e.webp",
     position: "object-center",
@@ -52,7 +52,7 @@ const products: Product[] = [
     ],
   },
   {
-    title: "Solar Cell",
+    title: "Solar Cells",
     image: "/images/solarcell-s.webp",
     expandedImage: "/images/Solarcell-e.webp",
     position: "object-center",
@@ -61,8 +61,8 @@ const products: Product[] = [
     href: "/products/solar-cell",
     features: [
       {
-        lead: "M10R P-Type PERC Bifacial",
-        href: "/products/solar-cell",
+        lead: "M10R PERC Cell P-Type",
+        href: "/products/solar-cell#cell-range",
         rest: "",
         details: [
           "High conversion efficiency bifacial PERC cell",
@@ -161,7 +161,7 @@ export function Products() {
                         href={feature.href}
                         className="group mt-3 block rounded-sm border-b border-white/30 pb-3 text-sm leading-5 text-white transition hover:text-white/90 first:mt-0 last:border-b-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:mt-6 md:pb-6 md:text-base md:leading-6 lg:text-xl lg:leading-7"
                       >
-                        <strong className="font-bold underline-offset-4 group-hover:underline">
+                        <strong className="text-lg font-extrabold leading-6 underline-offset-4 group-hover:underline md:text-xl md:leading-7 lg:text-2xl lg:leading-8">
                           {feature.lead}
                         </strong>
                         {feature.rest ? (

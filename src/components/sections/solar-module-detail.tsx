@@ -10,7 +10,6 @@ import {
   Factory,
   Gauge,
   House,
-  Play,
   ShieldCheck,
   ThermometerSun,
   Warehouse,
@@ -135,7 +134,7 @@ type ModuleRange = {
   annualPowerAttenuation: string;
   dimensions: string;
   weight: string;
-  almmApproved: string;
+  almmApproved?: string;
   imageSrc: string;
   imageAlt: string;
   datasheetHref: string;
@@ -154,7 +153,7 @@ const moduleRanges: ModuleRange[] = [
     productWarranty: "12 years",
     firstYearDegradation: "1%",
     annualPowerAttenuation: "0.40%",
-    dimensions: "2382 x 1134 x 30 mm",
+    dimensions: "2382 × 1134 × 30 mm",
     weight: "33.5 kg",
     almmApproved: "Yes",
     imageSrc: "/images/products/solar-module/g12r-topcon-132-cell-module.webp",
@@ -165,17 +164,16 @@ const moduleRanges: ModuleRange[] = [
     id: "m10r-topcon",
     label: "M10R TOPCon",
     title: "M10R TOPCon Module",
-    range: "Up to 610 Wp",
-    efficiency: "Up to 23.61%",
-    cellType: "N-type TOPCon, half-cut M10R cells",
+    range: "570 to 590 Wp",
+    efficiency: "Up to 22.84%",
+    cellType: "Bifacial TOPCon, 144 half-cut M10 cells",
     bifacialityFactor: "Up to 80%",
     powerWarranty: "30 years",
     productWarranty: "12 years",
     firstYearDegradation: "1%",
     annualPowerAttenuation: "0.40%",
-    dimensions: "M10R module format",
-    weight: "M10R module format",
-    almmApproved: "Yes",
+    dimensions: "2278 × 1134 × 30 mm",
+    weight: "32.5 kg",
     imageSrc: "/images/products/solar-module/m10r-topcon-144-cell-module.webp",
     imageAlt: "M10R TOPCon 144 cell solar module",
     datasheetHref: "/downloads/product-datasheets/m10r-topcon.pdf",
@@ -184,16 +182,16 @@ const moduleRanges: ModuleRange[] = [
     id: "m10r-perc",
     label: "M10R PERC",
     title: "M10R PERC Module",
-    range: "Up to 560 Wp",
+    range: "530 to 560 Wp",
     efficiency: "Up to 21.68%",
-    cellType: "P-type Mono PERC, half-cut M10R cells",
-    bifacialityFactor: "Bifacial module option",
+    cellType: "Bifacial Mono PERC, 144 half-cut M10 cells",
+    bifacialityFactor: "Up to 70%",
     powerWarranty: "30 years",
     productWarranty: "12 years",
-    firstYearDegradation: "1%",
-    annualPowerAttenuation: "0.55%",
-    dimensions: "M10R module format",
-    weight: "M10R module format",
+    firstYearDegradation: "2%",
+    annualPowerAttenuation: "0.45%",
+    dimensions: "2278 × 1134 × 30 mm",
+    weight: "32.5 kg",
     almmApproved: "Yes",
     imageSrc: "/images/products/solar-module/m10-mono-perc.webp",
     imageAlt: "M10 Mono PERC solar module",
@@ -208,6 +206,15 @@ const moduleIds = new Set<ModuleRange["id"]>(
 function getModuleIdFromHash(): ModuleRange["id"] | null {
   const hash = window.location.hash.replace("#", "");
   return moduleIds.has(hash as ModuleRange["id"]) ? (hash as ModuleRange["id"]) : null;
+}
+
+function scrollModuleRangeIntoView() {
+  window.requestAnimationFrame(() => {
+    document.getElementById("module-range")?.scrollIntoView({
+      block: "start",
+      behavior: "auto",
+    });
+  });
 }
 
 function FeatureIcon({ icon: Icon }: { icon: ComponentType<LucideProps> }) {
@@ -240,6 +247,7 @@ export function SolarModuleDetail() {
       const moduleId = getModuleIdFromHash();
       if (moduleId) {
         setActiveModuleId(moduleId);
+        scrollModuleRangeIntoView();
       }
     };
 
@@ -276,48 +284,52 @@ export function SolarModuleDetail() {
         </Reveal>
       </section>
 
-      <section id="module-range" className="relative bg-white">
-      <div className="sticky top-[88px] z-30 bg-neutral-100 shadow-[0_2px_12px_rgba(0,0,0,0.08)] lg:top-[136px] xl:top-[138px]">
-        <div
-          role="tablist"
-          aria-label="Solar module range"
-          className="mx-auto grid max-w-content grid-cols-3 px-4 sm:px-6 xl:px-0"
-        >
-          {moduleRanges.map((moduleRange) => {
-            const active = activeModuleId === moduleRange.id;
-
-            return (
-              <button
-                key={moduleRange.id}
-                type="button"
-                role="tab"
-                aria-selected={active}
-                aria-controls="module-panel"
-                onClick={() => selectModule(moduleRange.id)}
-                className={`relative flex min-h-20 items-center justify-center px-2 text-center text-sm font-normal leading-tight transition-colors sm:min-h-[108px] sm:text-xl lg:text-2xl ${
-                  active ? "text-primary-700" : "text-neutral-400 hover:text-primary-700"
-                }`}
-              >
-                <span>{moduleRange.label}</span>
-                <span
-                  className={`absolute inset-x-0 bottom-0 h-3.5 origin-left bg-primary-400 transition-transform ${
-                    active ? "scale-x-100" : "scale-x-0"
-                  }`}
-                />
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      <Reveal
-        stagger
-        id="module-panel"
-        role="tabpanel"
-        className="mx-auto grid max-w-content gap-14 px-4 py-20 sm:px-6 lg:grid-cols-[1.08fr_1fr] lg:gap-24 lg:py-28 xl:px-0"
+      <section
+        id="module-range"
+        className="relative scroll-mt-[88px] bg-white lg:scroll-mt-[136px] xl:scroll-mt-[138px]"
       >
+        <div className="sticky top-[88px] z-30 bg-neutral-100 shadow-[0_2px_12px_rgba(0,0,0,0.08)] lg:top-[136px] xl:top-[138px]">
+          <div
+            role="tablist"
+            aria-label="Solar module range"
+            className="mx-auto grid max-w-content grid-cols-3 px-4 sm:px-6 xl:px-0"
+          >
+            {moduleRanges.map((moduleRange) => {
+              const active = activeModuleId === moduleRange.id;
+
+              return (
+                <button
+                  id={moduleRange.id}
+                  key={moduleRange.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={active}
+                  aria-controls="module-panel"
+                  onClick={() => selectModule(moduleRange.id)}
+                  className={`relative flex min-h-20 scroll-mt-[88px] items-center justify-center px-2 text-center text-sm font-normal leading-tight transition-colors sm:min-h-[108px] sm:text-xl lg:scroll-mt-[136px] lg:text-2xl xl:scroll-mt-[138px] ${
+                    active ? "text-primary-700" : "text-neutral-400 hover:text-primary-700"
+                  }`}
+                >
+                  <span>{moduleRange.label}</span>
+                  <span
+                    className={`absolute inset-x-0 bottom-0 h-3.5 origin-left bg-primary-400 transition-transform ${
+                      active ? "scale-x-100" : "scale-x-0"
+                    }`}
+                  />
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <Reveal
+          stagger
+          id="module-panel"
+          role="tabpanel"
+          className="mx-auto grid max-w-content gap-14 px-4 py-20 sm:px-6 lg:grid-cols-[1.08fr_1fr] lg:gap-24 lg:py-28 xl:px-0"
+        >
         <div>
-          <div className="relative mx-auto h-[430px] max-w-[660px] sm:h-[560px] lg:h-[640px]">
+          <div className="relative mx-auto mt-4 h-[470px] max-w-[740px] sm:mt-6 sm:h-[620px] lg:mt-8 lg:h-[700px]">
             <Image
               src={activeModule.imageSrc}
               alt={activeModule.imageAlt}
@@ -326,6 +338,7 @@ export function SolarModuleDetail() {
               className="object-contain"
             />
           </div>
+          {/*
           <div className="mt-8 grid grid-cols-3 gap-2 sm:flex sm:justify-center sm:gap-7">
             {moduleRanges.map((moduleRange) => (
               <button
@@ -350,6 +363,7 @@ export function SolarModuleDetail() {
               </button>
             ))}
           </div>
+          */}
         </div>
 
         <div className="pt-4 text-center text-primary-950 lg:pt-10 lg:text-left">
@@ -366,27 +380,27 @@ export function SolarModuleDetail() {
               <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.efficiency}</dd>
             </div>
             <div className="col-span-2 border-b border-neutral-200 py-5 sm:col-span-6 sm:py-8">
-              <dt>Cell type</dt>
+              <dt>Cell Type</dt>
               <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.cellType}</dd>
             </div>
             <div className="col-span-1 border-b border-neutral-200 py-5 pr-2 sm:col-span-2 sm:py-8 sm:pr-4">
-              <dt>Bifaciality factor</dt>
+              <dt>Bifaciality Factor</dt>
               <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.bifacialityFactor}</dd>
             </div>
             <div className="col-span-1 border-b border-neutral-200 py-5 pl-2 text-right sm:col-span-2 sm:px-2 sm:py-8 sm:text-left">
-              <dt>Power warranty</dt>
+              <dt>Power Warranty</dt>
               <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.powerWarranty}</dd>
             </div>
             <div className="col-span-1 border-b border-neutral-200 py-5 pr-2 sm:col-span-2 sm:py-8 sm:pl-4 sm:pr-0">
-              <dt>Product warranty</dt>
+              <dt>Product Warranty</dt>
               <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.productWarranty}</dd>
             </div>
             <div className="col-span-1 border-b border-neutral-200 py-5 pl-2 text-right sm:col-span-3 sm:py-8 sm:pl-0 sm:pr-4 sm:text-left">
-              <dt>First year degradation</dt>
+              <dt>First Year Degradation</dt>
               <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.firstYearDegradation}</dd>
             </div>
             <div className="col-span-1 border-b border-neutral-200 py-5 pr-2 sm:col-span-3 sm:py-8 sm:pl-4 sm:pr-0">
-              <dt>Annual power attenuation</dt>
+              <dt>Annual Power Attenuation</dt>
               <dd className="mt-1 text-neutral-500 sm:mt-2">
                 {activeModule.annualPowerAttenuation}
               </dd>
@@ -399,10 +413,12 @@ export function SolarModuleDetail() {
               <dt>Weight</dt>
               <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.weight}</dd>
             </div>
-            <div className="col-span-1 border-b border-neutral-200 py-5 pl-2 text-right sm:col-span-6 sm:py-8 sm:pl-0 sm:text-left">
-              <dt>ALMM approved</dt>
-              <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.almmApproved}</dd>
-            </div>
+            {activeModule.almmApproved ? (
+              <div className="col-span-1 border-b border-neutral-200 py-5 pl-2 text-right sm:col-span-6 sm:py-8 sm:pl-0 sm:text-left">
+                <dt>ALMM Approved</dt>
+                <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.almmApproved}</dd>
+              </div>
+            ) : null}
           </dl>
 
           <div className="mt-16 flex flex-wrap justify-center gap-6 lg:justify-start">
@@ -487,55 +503,6 @@ export function SolarModuleDetail() {
         </Reveal>
       </div>
 
-      <div className="relative pb-32">
-        <div
-          aria-hidden
-          className="absolute inset-x-0 bottom-0 top-[150px] overflow-hidden bg-primary-700 sm:top-[180px] lg:top-[280px]"
-        >
-          <div className="pointer-events-none absolute bottom-0 right-[8%] hidden w-[clamp(320px,34vw,520px)] translate-y-1/2 opacity-40 lg:block">
-            <Image
-              alt=""
-              width={702}
-              height={701}
-              src="/images/sunburst_full.svg"
-              className="w-full animate-sunburst motion-reduce:animate-none"
-            />
-          </div>
-        </div>
-        <div className="relative mx-auto max-w-[1532px] px-4 sm:px-6 xl:px-0">
-          <button
-            type="button"
-            aria-label="Play utility-scale solar installation video"
-            className="group relative block aspect-[1532/740] min-h-[300px] w-full overflow-hidden rounded-md bg-primary-950 sm:min-h-[360px] lg:min-h-0"
-          >
-            <Image
-              src="/images/solar-module-video.svg"
-              alt="Solar panels extending across a utility-scale project site"
-              fill
-              sizes="(min-width: 1536px) 1532px, 100vw"
-              className="object-cover object-[center_35%] transition duration-500 group-hover:scale-[1.02]"
-            />
-            <span className="absolute left-1/2 top-1/2 flex size-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[6px] border-white sm:size-48">
-              <Play aria-hidden className="ml-2 size-14 fill-white text-white sm:size-20" />
-            </span>
-          </button>
-
-          <div className="relative mt-16 flex flex-wrap justify-center gap-8 lg:mt-44">
-            <ContactModalTrigger
-              className="relative rounded-full bg-primary-400 px-12 py-4 text-xl font-bold text-white transition hover:bg-primary-500"
-            >
-              Enquire Now
-            </ContactModalTrigger>
-            <a
-              href={activeModule.datasheetHref}
-              download
-              className="relative rounded-full bg-primary-950 px-12 py-4 text-xl font-bold text-white transition hover:bg-primary-900"
-            >
-              Download Datasheet
-            </a>
-          </div>
-        </div>
-      </div>
     </section>
     </>
   );

@@ -2,7 +2,8 @@
 
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import Image from "next/image";
-import { ArrowRight, Check, ChevronDown, Mail, Phone, X } from "lucide-react";
+import { Check, Mail, Phone, X } from "lucide-react";
+import { CustomDropdown } from "@/components/custom-dropdown";
 
 const OPEN_CONTACT_MODAL_EVENT = "renew:open-contact-modal";
 
@@ -97,6 +98,7 @@ export function ContactModalTrigger({
 export function ContactModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [requirement, setRequirement] = useState("");
   const panelRef = useRef<HTMLElement>(null);
   const openerRef = useRef<HTMLElement | null>(null);
   const uid = useId();
@@ -106,6 +108,7 @@ export function ContactModal() {
     function handleOpen() {
       openerRef.current = document.activeElement as HTMLElement | null;
       setSubmitted(false);
+      setRequirement("");
       setIsOpen(true);
     }
 
@@ -193,12 +196,12 @@ export function ContactModal() {
         aria-modal="true"
         aria-labelledby={titleId}
         tabIndex={-1}
-        className="contact-modal-card relative flex max-h-[92dvh] w-full flex-col overflow-hidden rounded-t-[28px] bg-white shadow-[0_40px_90px_-30px_rgb(0_0_0/0.6)] outline-none sm:max-h-full sm:max-w-[540px] sm:rounded-3xl"
+        className="contact-modal-card relative flex max-h-[92dvh] w-full flex-col overflow-hidden rounded-t-[28px] bg-white shadow-[0_40px_90px_-30px_rgb(0_0_0/0.6)] outline-none sm:max-h-[92dvh] sm:max-w-[540px] sm:rounded-3xl"
       >
         {/* The header carries the card's own top radius: clipping a square
             corner against the white card below it leaves a pale fringe on the
             arc, which reads as a notch cut out of each top corner. */}
-        <header className="relative shrink-0 overflow-hidden rounded-t-[28px] bg-primary-700 px-6 pb-7 pt-7 text-white viewport-short:pb-5 viewport-short:pt-5 sm:rounded-t-3xl sm:px-9 sm:pb-8 sm:viewport-short:pb-5">
+        <header className="relative shrink-0 overflow-hidden rounded-t-[28px] bg-primary-700 px-6 pb-5 pt-5 text-white viewport-short:pb-4 viewport-short:pt-4 sm:rounded-t-3xl sm:px-8 sm:pb-6 sm:pt-6 sm:viewport-short:pb-4">
           {/*
             The sunburst is the same mark as the Enquire FAB this modal opens
             from, so it stays for continuity — but anchored off the top-right
@@ -233,15 +236,15 @@ export function ContactModal() {
             </p>
             <h2
               id={titleId}
-              className="mt-3 max-w-[16ch] text-[26px] font-bold leading-[1.2] viewport-short:mt-1.5 viewport-short:text-[22px] sm:text-[30px]"
+              className="mt-2 whitespace-nowrap pr-10 text-[24px] font-bold leading-[1.2] viewport-short:mt-1.5 viewport-short:text-[22px] sm:text-[30px]"
             >
               Tell us about your project
             </h2>
-            <p className="mt-2.5 max-w-[40ch] text-[14px] leading-6 text-white/75 viewport-short:hidden">
-              Share a few details and our team gets back to you within 24 hours.
+            <p className="mt-2 max-w-[44ch] text-[14px] leading-5 text-white/75 viewport-short:hidden">
+              Share a few details and our team will get back to you within 24 hours.
             </p>
 
-            <div className="mt-5 flex flex-wrap gap-2 viewport-short:hidden">
+            <div className="mt-4 flex flex-wrap gap-2 viewport-short:hidden">
               <a href="mailto:pv.marketing@renew.com" className={CONTACT_CHIP_CLASS}>
                 <Mail aria-hidden className="size-3.5 shrink-0 text-primary-300" />
                 <span className="min-w-0 break-all">pv.marketing@renew.com</span>
@@ -254,8 +257,7 @@ export function ContactModal() {
           </div>
         </header>
 
-        {/* Scrolls inside the card, so the header and the sheet edge stay put. */}
-        <div className="min-h-0 flex-1 overflow-y-auto px-6 pb-7 pt-6 sm:px-9 sm:pb-8">
+        <div className="min-h-0 flex-1 overflow-visible px-6 pb-6 pt-4 sm:px-8 sm:pb-7 sm:pt-5">
           {submitted ? (
             <div role="status" className="flex flex-col items-center py-8 text-center">
               <span className="flex size-14 items-center justify-center rounded-full bg-primary-100 text-primary-700">
@@ -283,7 +285,7 @@ export function ContactModal() {
                 event.preventDefault();
                 setSubmitted(true);
               }}
-              className="grid gap-4"
+              className="grid gap-3.5"
             >
               <ModalField id={`${uid}-name`} name="name" label="Name" autoComplete="name" />
               <ModalField
@@ -309,38 +311,28 @@ export function ContactModal() {
               />
 
               <div className="relative">
-                <select
+                <CustomDropdown
                   id={`${uid}-requirement`}
                   name="requirement"
+                  value={requirement}
+                  onChange={setRequirement}
+                  options={REQUIREMENT_TYPES}
+                  placeholder="Requirement type"
                   required
-                  defaultValue=""
-                  className={`${FIELD_CLASS} appearance-none pr-12`}
-                >
-                  <option value="" disabled />
-                  {REQUIREMENT_TYPES.map((type) => (
-                    <option key={type} value={type}>
-                      {type}
-                    </option>
-                  ))}
-                </select>
+                  buttonClassName={`${FIELD_CLASS} relative pr-12 text-left`}
+                  menuClassName="bottom-full mb-2 mt-0 border-0 py-1 shadow-[0_16px_36px_rgba(0,0,0,0.14)]"
+                  iconClassName="text-neutral-400"
+                />
                 <label htmlFor={`${uid}-requirement`} className="contact-modal-label">
                   Requirement type<span className="text-red-500">*</span>
                 </label>
-                <ChevronDown
-                  aria-hidden
-                  className="pointer-events-none absolute right-4 top-1/2 size-5 -translate-y-1/2 text-neutral-400"
-                />
               </div>
 
               <button
                 type="submit"
-                className="group mt-2 flex h-[52px] w-full items-center justify-center gap-2 rounded-full bg-primary-700 text-[15px] font-medium text-white transition-colors hover:bg-primary-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700"
+                className="mt-1 flex h-[50px] w-full items-center justify-center rounded-full bg-primary-700 text-[15px] font-medium text-white transition-colors hover:bg-primary-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700"
               >
-                Submit enquiry
-                <ArrowRight
-                  aria-hidden
-                  className="size-[18px] transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0"
-                />
+                Submit
               </button>
             </form>
           )}

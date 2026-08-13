@@ -5,7 +5,7 @@ import { useState } from "react";
 import { ContactModalTrigger } from "@/components/contact-modal";
 
 const SLIDE_COUNT = 3;
-// Every slide stays visible for the full length of hero.mp4 (8.03s, rounded).
+// Every slide stays visible for roughly one full background-video loop.
 const SLIDE_DURATION_MS = 8100;
 
 function EnquireButton({ className = "" }: { className?: string }) {

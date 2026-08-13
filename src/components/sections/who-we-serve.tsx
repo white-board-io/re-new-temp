@@ -100,14 +100,14 @@ export function WhoWeServe() {
                 onMouseEnter={() => setActive(index)}
                 onMouseLeave={() => setActive(null)}
                 onFocus={() => setActive(index)}
-                className={`relative h-[420px] w-[88%] shrink-0 snap-start focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-700 md:h-[460px] md:w-auto md:shrink ${
+                className={`relative h-[460px] w-[92%] shrink-0 snap-start focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-700 md:h-[510px] md:w-auto md:shrink lg:h-[540px] ${
                   isActive ? "z-10" : "z-0"
                 }`}
               >
                 <div
                   className={`absolute inset-0 origin-center overflow-hidden rounded-[6px] transition-[scale,box-shadow] motion-reduce:transition-none ${GROW} ${
                     isActive
-                      ? "shadow-[0_8px_18px_rgba(0,0,0,0.18)] md:scale-[1.04] xl:scale-[1.14]"
+                      ? "shadow-[0_10px_22px_rgba(0,0,0,0.2)] md:scale-[1.07] xl:scale-[1.18]"
                       : "scale-100"
                   }`}
                 >
@@ -129,7 +129,7 @@ export function WhoWeServe() {
                   />
 
                   <h3
-                    className={`absolute bottom-5 left-5 z-10 max-w-48 text-xl font-bold leading-tight text-white transition-[opacity,translate] duration-300 md:bottom-16 md:left-8 md:max-w-56 md:text-2xl ${
+                    className={`absolute bottom-5 left-5 z-10 max-w-48 text-2xl font-bold leading-tight text-white transition-[opacity,translate] duration-300 md:bottom-16 md:left-8 md:max-w-56 md:text-[28px] ${
                       isActive
                         ? "translate-y-2 opacity-0"
                         : "translate-y-2 opacity-0 md:translate-y-0 md:opacity-100 md:delay-200"
@@ -143,7 +143,7 @@ export function WhoWeServe() {
                   </h3>
 
                   <div
-                    className={`absolute inset-x-8 top-9 z-10 text-center text-3xl font-bold leading-tight text-white transition-[opacity,translate] duration-500 md:top-16 md:text-3xl xl:inset-x-12 xl:text-4xl ${
+                    className={`absolute inset-x-8 top-9 z-10 text-center text-[34px] font-bold leading-tight text-white transition-[opacity,translate] duration-500 md:top-16 md:text-[34px] xl:inset-x-12 xl:text-[42px] ${
                       isActive
                         ? "translate-y-0 opacity-100 delay-150"
                         : "translate-y-0 opacity-100 md:pointer-events-none md:translate-y-3 md:opacity-0"
@@ -157,7 +157,7 @@ export function WhoWeServe() {
                   </div>
 
                   <div
-                    className={`absolute inset-x-8 bottom-8 top-[124px] z-10 flex flex-col items-center text-center text-white transition-[opacity,translate] duration-500 md:bottom-10 md:top-[152px] xl:inset-x-12 xl:top-[164px] ${
+                    className={`absolute inset-x-8 bottom-8 top-[150px] z-10 flex flex-col items-center text-center text-white transition-[opacity,translate] duration-500 md:bottom-10 md:top-[190px] xl:inset-x-12 xl:top-[220px] ${
                       isActive
                         ? "translate-y-0 opacity-100 delay-200"
                         : "translate-y-0 opacity-100 md:pointer-events-none md:translate-y-4 md:opacity-0"

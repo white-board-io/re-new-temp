@@ -7,7 +7,7 @@ import { Reveal } from "@/components/reveal";
 const PROJECT_SLIDES = [
   {
     capacity: "1000 MWp",
-    module: "Bifacial 540 Wp TOPConPERC",
+    module: "Bifacial 540 Wp TOPCon",
     developer: "ReNew",
     offtaker: "Solar Energy Corporation of India",
     location: "Rajasthan",
@@ -27,11 +27,11 @@ const PROJECT_SLIDES = [
   },
   {
     capacity: "40 MWp",
-    module: "Bifacial 540 Wp Mono PERC",
+    module: "Monofacial 600 Wp Mono PERC",
     developer: "ReNew",
-    offtaker: "Solar Energy Corporation of India",
+    offtaker: "Amazon",
     location: "Rajasthan",
-    image: "/images/project-40mwp.webp",
+    image: "/images/project-40mwp-updated.webp",
     alt: "Aerial view of ReNew's 40 MWp project site in Rajasthan",
     objectPosition: "center 52%",
   },

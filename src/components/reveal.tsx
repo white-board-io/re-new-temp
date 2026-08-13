@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 
 /*
  * Scroll reveal. The motion itself lives in globals.css (.reveal /
@@ -12,13 +12,14 @@ import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
  * browser to one intersection bookkeeping list instead of forty.
  */
 let sharedObserver: IntersectionObserver | null = null;
+const revealCallbacks = new WeakMap<Element, () => void>();
 
 function getObserver() {
   sharedObserver ??= new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {
         if (!entry.isIntersecting) continue;
-        entry.target.classList.add("reveal-in");
+        revealCallbacks.get(entry.target)?.();
         // Reveal once. Re-hiding on scroll-back is the thing that makes these
         // read as an effect rather than as the page arriving.
         sharedObserver?.unobserve(entry.target);
@@ -63,6 +64,7 @@ export function Reveal({
   ...rest
 }: RevealProps) {
   const ref = useRef<HTMLElement>(null);
+  const [revealed, setRevealed] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -73,15 +75,21 @@ export function Reveal({
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const observer = getObserver();
+    revealCallbacks.set(el, () => setRevealed(true));
     observer.observe(el);
 
-    return () => observer.unobserve(el);
+    return () => {
+      revealCallbacks.delete(el);
+      observer.unobserve(el);
+    };
   }, []);
 
   return (
     <Tag
       ref={ref as React.Ref<never>}
-      className={`${stagger ? "reveal-children" : "reveal"} ${className}`.trim()}
+      className={`${stagger ? "reveal-children" : "reveal"} ${
+        revealed ? "reveal-in" : ""
+      } ${className}`.trim()}
       style={
         delay === undefined
           ? style

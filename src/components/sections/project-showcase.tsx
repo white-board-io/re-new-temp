@@ -37,23 +37,42 @@ const PROJECT_SLIDES = [
   },
 ];
 
+function getStickyMetrics() {
+  const wide = window.matchMedia("(min-width: 1024px)").matches;
+  const scaledDesktop = window.matchMedia("(min-width: 1280px)").matches;
+  const designScale = scaledDesktop ? Math.min(1, window.innerWidth / 1920) : 1;
+  const stickyTop = scaledDesktop ? 138 : wide ? 136 : 88;
+  const minHeight = wide ? 640 : 560;
+  const stickyHeight = Math.max(window.innerHeight / designScale - stickyTop, minHeight);
+
+  return { stickyTop, stickyHeight };
+}
+
 export function ProjectShowcase() {
   const trackRef = useRef<HTMLElement>(null);
   const [activeSlide, setActiveSlide] = useState(0);
+  const activeSlideRef = useRef(0);
+  const wheelLockRef = useRef(false);
   const [trackHeight, setTrackHeight] = useState("400svh");
 
   useEffect(() => {
+    activeSlideRef.current = activeSlide;
+  }, [activeSlide]);
+
+  useEffect(() => {
     let frame = 0;
+    let wheelLockTimer = 0;
 
-    const getStickyMetrics = () => {
-      const wide = window.matchMedia("(min-width: 1024px)").matches;
-      const scaledDesktop = window.matchMedia("(min-width: 1280px)").matches;
-      const designScale = scaledDesktop ? Math.min(1, window.innerWidth / 1920) : 1;
-      const stickyTop = scaledDesktop ? 138 : wide ? 136 : 88;
-      const minHeight = wide ? 640 : 560;
-      const stickyHeight = Math.max(window.innerHeight / designScale - stickyTop, minHeight);
+    const scrollToSlide = (slideIndex: number, behavior: ScrollBehavior = "smooth") => {
+      const track = trackRef.current;
+      if (!track) return;
 
-      return { stickyTop, stickyHeight };
+      const { stickyTop, stickyHeight } = getStickyMetrics();
+      const top = track.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: top - stickyTop + slideIndex * stickyHeight,
+        behavior,
+      });
     };
 
     const update = () => {
@@ -62,14 +81,47 @@ export function ProjectShowcase() {
 
       const { stickyTop, stickyHeight } = getStickyMetrics();
       setTrackHeight(`${stickyHeight * (PROJECT_SLIDES.length + 1)}px`);
+      if (wheelLockRef.current) return;
 
       const progress = Math.max(0, stickyTop - track.getBoundingClientRect().top);
       const nextSlide = Math.min(
         PROJECT_SLIDES.length - 1,
-        Math.max(0, Math.floor(progress / stickyHeight)),
+        Math.max(0, Math.round(progress / stickyHeight)),
       );
 
       setActiveSlide((current) => (current === nextSlide ? current : nextSlide));
+    };
+
+    const handleWheel = (event: WheelEvent) => {
+      const track = trackRef.current;
+      if (!track || Math.abs(event.deltaY) < 1) return;
+
+      const { stickyTop } = getStickyMetrics();
+      const rect = track.getBoundingClientRect();
+      const isStickyActive = rect.top <= stickyTop && rect.bottom > stickyTop;
+      if (!isStickyActive) return;
+
+      const direction = event.deltaY > 0 ? 1 : -1;
+      const currentSlide = activeSlideRef.current;
+      const nextSlide = currentSlide + direction;
+
+      if (nextSlide < 0 || nextSlide >= PROJECT_SLIDES.length) {
+        return;
+      }
+
+      event.preventDefault();
+      if (wheelLockRef.current) return;
+
+      wheelLockRef.current = true;
+      setActiveSlide(nextSlide);
+      activeSlideRef.current = nextSlide;
+      scrollToSlide(nextSlide);
+
+      window.clearTimeout(wheelLockTimer);
+      wheelLockTimer = window.setTimeout(() => {
+        wheelLockRef.current = false;
+        requestUpdate();
+      }, 900);
     };
 
     const requestUpdate = () => {
@@ -79,11 +131,14 @@ export function ProjectShowcase() {
 
     update();
     window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("wheel", handleWheel, { passive: false });
     window.addEventListener("resize", requestUpdate);
 
     return () => {
       cancelAnimationFrame(frame);
+      window.clearTimeout(wheelLockTimer);
       window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("wheel", handleWheel);
       window.removeEventListener("resize", requestUpdate);
     };
   }, []);
@@ -133,10 +188,7 @@ export function ProjectShowcase() {
                     const track = trackRef.current;
                     if (!track) return;
 
-                    const wide = window.matchMedia("(min-width: 1024px)").matches;
-                    const stickyTop = wide ? 136 : 88;
-                    const minHeight = wide ? 640 : 560;
-                    const stickyHeight = Math.max(window.innerHeight - stickyTop, minHeight);
+                    const { stickyTop, stickyHeight } = getStickyMetrics();
                     const top = track.getBoundingClientRect().top + window.scrollY;
                     window.scrollTo({
                       top: top - stickyTop + slideIndex * stickyHeight,

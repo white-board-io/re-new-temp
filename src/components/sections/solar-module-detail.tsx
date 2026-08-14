@@ -216,10 +216,18 @@ function getModuleIdFromHash(): ModuleRange["id"] | null {
   return moduleIds.has(hash as ModuleRange["id"]) ? (hash as ModuleRange["id"]) : null;
 }
 
-function scrollModuleRangeIntoView() {
+function scrollToTabContentStart(panelId: string, tabsId: string) {
   window.requestAnimationFrame(() => {
-    document.getElementById("module-range")?.scrollIntoView({
-      block: "start",
+    const panel = document.getElementById(panelId);
+    if (!panel) return;
+
+    const header = document.querySelector("header");
+    const tabs = document.getElementById(tabsId);
+    const headerBottom = header?.getBoundingClientRect().bottom ?? 0;
+    const tabsHeight = tabs?.getBoundingClientRect().height ?? 0;
+
+    window.scrollTo({
+      top: window.scrollY + panel.getBoundingClientRect().top - headerBottom - tabsHeight,
       behavior: "auto",
     });
   });
@@ -246,8 +254,10 @@ export function SolarModuleDetail() {
   const activeModuleFeatures = featuresByModule[activeModuleId];
 
   const selectModule = (moduleId: ModuleRange["id"]) => {
+    const isNewModule = moduleId !== activeModuleId;
     setActiveModuleId(moduleId);
     window.history.replaceState(null, "", `#${moduleId}`);
+    if (isNewModule) scrollToTabContentStart("module-panel", "module-tabs");
   };
 
   useEffect(() => {
@@ -255,7 +265,7 @@ export function SolarModuleDetail() {
       const moduleId = getModuleIdFromHash();
       if (moduleId) {
         setActiveModuleId(moduleId);
-        scrollModuleRangeIntoView();
+        scrollToTabContentStart("module-panel", "module-tabs");
       }
     };
 
@@ -296,7 +306,10 @@ export function SolarModuleDetail() {
         id="module-range"
         className="relative scroll-mt-[88px] bg-white lg:scroll-mt-[136px] xl:scroll-mt-[138px]"
       >
-        <div className="sticky top-[88px] z-30 bg-neutral-100 shadow-[0_2px_12px_rgba(0,0,0,0.08)] lg:top-[136px] xl:top-[138px]">
+        <div
+          id="module-tabs"
+          className="sticky top-[88px] z-30 bg-neutral-100 shadow-[0_2px_12px_rgba(0,0,0,0.08)] lg:top-[138px]"
+        >
           <div
             role="tablist"
             aria-label="Solar module range"
@@ -307,7 +320,6 @@ export function SolarModuleDetail() {
 
               return (
                 <button
-                  id={moduleRange.id}
                   key={moduleRange.id}
                   type="button"
                   role="tab"

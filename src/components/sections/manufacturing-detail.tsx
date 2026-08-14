@@ -252,6 +252,23 @@ function getPlantIdFromHash(): Plant["id"] | null {
   return plantIds.has(hash as Plant["id"]) ? (hash as Plant["id"]) : null;
 }
 
+function scrollToTabContentStart(panelId: string, tabsId: string) {
+  window.requestAnimationFrame(() => {
+    const panel = document.getElementById(panelId);
+    if (!panel) return;
+
+    const header = document.querySelector("header");
+    const tabs = document.getElementById(tabsId);
+    const headerBottom = header?.getBoundingClientRect().bottom ?? 0;
+    const tabsHeight = tabs?.getBoundingClientRect().height ?? 0;
+
+    window.scrollTo({
+      top: window.scrollY + panel.getBoundingClientRect().top - headerBottom - tabsHeight,
+      behavior: "auto",
+    });
+  });
+}
+
 function StatIcon({ icon }: { icon: Plant["stats"][number]["icon"] }) {
   const src =
     icon === "area"
@@ -285,10 +302,12 @@ export function ManufacturingDetail() {
   const showSustainabilityMedia = activePlant.id !== "vizag";
 
   const selectPlant = (plantId: Plant["id"]) => {
+    const isNewPlant = plantId !== activeId;
     setActiveId(plantId);
     setStatsPage(0);
     statsTrackRef.current?.scrollTo({ left: 0 });
     window.history.replaceState(null, "", `#${plantId}`);
+    if (isNewPlant) scrollToTabContentStart("plant-panel", "manufacturing-tabs");
   };
 
   useEffect(() => {
@@ -298,6 +317,7 @@ export function ManufacturingDetail() {
         setActiveId(plantId);
         setStatsPage(0);
         statsTrackRef.current?.scrollTo({ left: 0 });
+        scrollToTabContentStart("plant-panel", "manufacturing-tabs");
       }
     };
 
@@ -363,7 +383,10 @@ export function ManufacturingDetail() {
         </Reveal>
       </section>
 
-      <div className="sticky top-[88px] z-30 border-b border-neutral-200 bg-neutral-50 shadow-sm lg:top-[138px]">
+      <div
+        id="manufacturing-tabs"
+        className="sticky top-[88px] z-30 border-b border-neutral-200 bg-neutral-50 shadow-sm lg:top-[138px]"
+      >
         <div
           role="tablist"
           aria-label="Manufacturing plants"

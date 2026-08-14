@@ -96,7 +96,7 @@ export function ProjectShowcase() {
       style={{ height: trackHeight }}
       aria-label="Featured ReNew solar projects"
     >
-      <div className="sticky top-[88px] h-[calc(100svh-88px)] min-h-[560px] overflow-hidden lg:top-[136px] lg:h-[calc(100svh-136px)] lg:min-h-[640px] xl:top-[138px] xl:h-[calc(100svh/var(--design-scale)-138px)]">
+      <div className="sticky top-[88px] h-[calc(100dvh-88px)] min-h-[560px] overflow-hidden lg:top-[136px] lg:h-[calc(100svh-136px)] lg:min-h-[640px] xl:top-[138px] xl:h-[calc(100svh/var(--design-scale)-138px)]">
         <div className="absolute inset-0">
           {PROJECT_SLIDES.map((slide, index) => (
             <Image
@@ -119,7 +119,7 @@ export function ProjectShowcase() {
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.48)_0%,rgba(0,0,0,0.24)_38%,rgba(0,0,0,0.1)_100%)]" />
 
         <div className="relative mx-auto flex h-full max-w-content items-center px-4 sm:px-6">
-          <div className="absolute left-4 top-1/2 hidden -translate-y-1/2 flex-col gap-5 md:flex lg:-left-16 xl:-left-14">
+          <div className="absolute bottom-8 right-4 flex gap-3 md:left-4 md:right-auto md:top-1/2 md:bottom-auto md:-translate-y-1/2 md:flex-col md:gap-5 lg:-left-16 xl:-left-14">
             {PROJECT_SLIDES.map((slide, slideIndex) => {
               const isActive = slideIndex === activeSlide;
 

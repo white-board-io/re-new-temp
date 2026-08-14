@@ -28,7 +28,7 @@ function Field({
         required={!optional}
         placeholder=" "
         aria-label={label}
-        className="peer w-full rounded-lg bg-white px-6 py-6 text-lg text-primary-950 focus:outline-none focus:ring-2 focus:ring-primary-400"
+        className="peer w-full rounded-md bg-white px-6 py-6 text-lg text-primary-950 focus:outline-none focus:ring-2 focus:ring-primary-400"
       />
       {/* Optional fields say so outright — a missing asterisk on its own is too
           easy to read past when every neighbouring field carries one. */}
@@ -125,7 +125,7 @@ export function Contact() {
               placeholder="Requirement type"
               required
               ariaLabel="Requirement type"
-              buttonClassName="relative w-full rounded-lg bg-white px-6 py-6 pr-16 text-left text-lg text-primary-950 focus:outline-none focus:ring-2 focus:ring-primary-400"
+              buttonClassName="relative w-full rounded-md bg-white px-6 py-6 pr-16 text-left text-lg text-primary-950 focus:outline-none focus:ring-2 focus:ring-primary-400"
               iconClassName="right-5 size-7 text-neutral-900"
             />
             {!requirement && (
@@ -145,7 +145,7 @@ export function Contact() {
             )}
             <button
               type="submit"
-              className="rounded-full bg-accent px-16 py-3.5 text-xl font-medium text-white transition hover:bg-primary-400"
+              className="inline-flex min-w-36 items-center justify-center rounded-full bg-accent px-8 py-2.5 text-base font-bold text-white transition hover:bg-primary-400"
             >
               Submit
             </button>

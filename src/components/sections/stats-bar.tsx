@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { CSSProperties } from "react";
 import { CountUp } from "@/components/count-up";
 import { Reveal } from "@/components/reveal";
 
@@ -73,11 +74,11 @@ export function StatsBar() {
               alt=""
               width={Math.round(stat.iconWidth * 4)}
               height={Math.round(stat.iconHeight * 4)}
-              className={`shrink-0 ${stat.iconOffset}`}
+              className={`h-10 w-10 shrink-0 object-contain md:h-[var(--stat-icon-height)] md:w-[var(--stat-icon-width)] ${stat.iconOffset}`}
               style={{
-                width: `${stat.iconWidth}px`,
-                height: `${stat.iconHeight}px`,
-              }}
+                "--stat-icon-width": `${stat.iconWidth}px`,
+                "--stat-icon-height": `${stat.iconHeight}px`,
+              } as CSSProperties}
             />
             <div>
               <dd className="text-[30px] font-bold leading-[30px] text-primary-700">

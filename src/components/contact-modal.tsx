@@ -21,7 +21,7 @@ const FOCUSABLE =
 /* Box only — the floating label it pairs with lives in globals.css, which is
    also where the "field has a value" rules that raise the label are explained. */
 const FIELD_CLASS =
-  "contact-modal-field h-[60px] w-full rounded-xl border border-neutral-200 bg-white px-4 pb-2 pt-[22px] text-[15px] text-primary-950 outline-none transition-colors duration-150 hover:border-neutral-300 focus:border-primary-400 focus:ring-4 focus:ring-primary-400/20";
+  "contact-modal-field h-[60px] w-full rounded-md border border-neutral-200 bg-white px-4 pb-2 pt-[22px] text-[15px] text-primary-950 outline-none transition-colors duration-150 hover:border-neutral-300 focus:border-primary-400 focus:ring-4 focus:ring-primary-400/20";
 
 const CONTACT_CHIP_CLASS =
   "inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-[13px] text-white/90 transition hover:bg-white/20 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
@@ -196,12 +196,12 @@ export function ContactModal() {
         aria-modal="true"
         aria-labelledby={titleId}
         tabIndex={-1}
-        className="contact-modal-card relative flex max-h-[92dvh] w-full flex-col overflow-hidden rounded-t-[28px] bg-white shadow-[0_40px_90px_-30px_rgb(0_0_0/0.6)] outline-none sm:max-h-[92dvh] sm:max-w-[540px] sm:rounded-3xl"
+        className="contact-modal-card relative flex max-h-[92dvh] w-full flex-col overflow-hidden rounded-t-md bg-white shadow-[0_40px_90px_-30px_rgb(0_0_0/0.6)] outline-none sm:max-h-[92dvh] sm:max-w-[540px] sm:rounded-md"
       >
         {/* The header carries the card's own top radius: clipping a square
             corner against the white card below it leaves a pale fringe on the
             arc, which reads as a notch cut out of each top corner. */}
-        <header className="relative shrink-0 overflow-hidden rounded-t-[28px] bg-primary-700 px-6 pb-5 pt-5 text-white viewport-short:pb-4 viewport-short:pt-4 sm:rounded-t-3xl sm:px-8 sm:pb-6 sm:pt-6 sm:viewport-short:pb-4">
+        <header className="relative shrink-0 overflow-hidden rounded-t-md bg-primary-700 px-6 pb-5 pt-5 text-white viewport-short:pb-4 viewport-short:pt-4 sm:px-8 sm:pb-6 sm:pt-6 sm:viewport-short:pb-4">
           {/*
             The sunburst is the same mark as the Enquire FAB this modal opens
             from, so it stays for continuity — but anchored off the top-right

@@ -367,7 +367,7 @@ export function SolarModuleDetail() {
                 aria-label={`Show ${moduleRange.label}`}
                 aria-pressed={activeModuleId === moduleRange.id}
                 onClick={() => selectModule(moduleRange.id)}
-                className={`relative aspect-square w-full min-w-0 overflow-hidden rounded-lg border bg-white p-1 transition sm:size-24 sm:w-24 ${
+                className={`relative aspect-square w-full min-w-0 overflow-hidden rounded-md border bg-white p-1 transition sm:size-24 sm:w-24 ${
                   activeModuleId === moduleRange.id
                     ? "border-primary-400 bg-neutral-100"
                     : "border-neutral-200 hover:border-primary-300"

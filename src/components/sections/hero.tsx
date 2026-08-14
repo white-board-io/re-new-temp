@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ContactModalTrigger } from "@/components/contact-modal";
 
 const SLIDE_COUNT = 3;
@@ -11,7 +11,7 @@ const SLIDE_DURATION_MS = 8100;
 function EnquireButton({ className = "" }: { className?: string }) {
   return (
     <ContactModalTrigger
-      className={`rounded-full bg-accent px-11 py-2.5 text-xl font-medium text-white transition-colors hover:bg-primary-400 ${className}`}
+      className={`rounded-full bg-accent px-8 py-2 text-base font-medium text-white transition-colors hover:bg-primary-400 md:px-11 md:py-2.5 md:text-xl ${className}`}
     >
       Enquire Now
     </ContactModalTrigger>
@@ -24,6 +24,14 @@ function SlideFilm() {
 
 export function Hero() {
   const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    const timeout = window.setTimeout(() => {
+      setActiveSlide((slide) => (slide + 1) % SLIDE_COUNT);
+    }, SLIDE_DURATION_MS);
+
+    return () => window.clearTimeout(timeout);
+  }, [activeSlide]);
 
   const selectSlide = (i: number) => setActiveSlide(i);
 
@@ -49,7 +57,7 @@ export function Hero() {
   return (
     <section
       aria-roledescription="carousel"
-      className="relative min-h-[640px] overflow-hidden bg-primary-900 md:min-h-0 lg:[clip-path:polygon(0_0,100%_0,100%_calc(100%-56px),calc(100%-56px)_100%,56px_100%,0_calc(100%-56px))]"
+      className="relative min-h-[calc(100svh-88px)] w-full overflow-hidden bg-primary-900 md:min-h-0 lg:[clip-path:polygon(0_0,100%_0,100%_calc(100%-56px),calc(100%-56px)_100%,56px_100%,0_calc(100%-56px))]"
     >
       {/* Slide 1 */}
       <div className={slideClass(0)} aria-hidden={activeSlide !== 0}>
@@ -64,16 +72,16 @@ export function Hero() {
         />
         <SlideFilm />
         <div
-          className={`relative flex h-full flex-col items-start justify-center px-5 py-16 text-left sm:px-6 xl:px-[181px] hero-full:py-24 ${contentClass(0)}`}
+          className={`relative flex h-full flex-col items-start justify-center py-16 pl-5 pr-16 text-left sm:pl-6 sm:pr-20 md:px-6 xl:px-[181px] hero-full:py-24 ${contentClass(0)}`}
         >
-          <h1 className="max-w-6xl text-4xl font-bold leading-[1.12] tracking-hero text-white sm:text-5xl lg:text-5xl xl:max-w-[880px] xl:text-[54px]">
+          <h1 className="max-w-6xl text-[28px] font-bold leading-[1.14] tracking-hero text-white sm:text-[34px] md:text-5xl lg:text-5xl xl:max-w-[880px] xl:text-[54px]">
             Switch to clean energy with ReNew Solar Panels, engineered for
             lasting performance.
           </h1>
-          <p className="mt-8 text-lg leading-relaxed text-white sm:text-xl">
+          <p className="mt-6 text-base leading-relaxed text-white sm:text-[17px] md:mt-8 md:text-xl">
             When you put solar on your roof, the manufacturer matters.
           </p>
-          <EnquireButton className="mt-16" />
+          <EnquireButton className="mt-10 md:mt-16" />
         </div>
       </div>
 
@@ -90,17 +98,17 @@ export function Hero() {
         />
         <SlideFilm />
         <div
-          className={`relative flex h-full items-start px-5 pb-28 pt-28 sm:px-[9.25vw] sm:pt-[17.5vh] md:items-center md:pb-20 md:pt-10 hero-full:py-10 ${contentClass(1)}`}
+          className={`relative flex h-full items-start pb-28 pl-5 pr-16 pt-28 sm:pl-[9.25vw] sm:pr-20 sm:pt-[17.5vh] md:items-center md:px-[9.25vw] md:pb-20 md:pt-10 hero-full:py-10 ${contentClass(1)}`}
         >
           <div className="max-w-[760px] text-white">
-            <h2 className="text-[32px] font-bold leading-[1.12] tracking-[0.02em] sm:text-[40px] hero-full:text-[44px]">
+            <h2 className="text-[26px] font-bold leading-[1.14] tracking-[0.02em] sm:text-[32px] md:text-[40px] hero-full:text-[44px]">
               <span className="lg:block">
                 The company behind the world&apos;s
               </span>{" "}
               <span className="lg:block">clean energy transition.</span>{" "}
               <span className="lg:block">Now making the solar panels too.</span>
             </h2>
-            <p className="mt-8 text-[20px] leading-[1.55] tracking-[0.025em] text-white sm:text-[22px] hero-full:mt-10 hero-full:text-[24px]">
+            <p className="mt-6 text-base leading-[1.55] tracking-[0.025em] text-white sm:text-lg md:mt-8 md:text-[22px] hero-full:mt-10 hero-full:text-[24px]">
               20 GW portfolio
               <br />
               18.6M+ tonnes of CO₂ avoided
@@ -111,7 +119,7 @@ export function Hero() {
               href="https://www.renew.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-10 inline-flex min-h-11 min-w-[204px] items-center justify-center rounded-full bg-accent px-10 text-[20px] font-medium text-white transition-colors hover:bg-primary-400 hero-full:mt-14"
+              className="mt-8 inline-flex min-h-10 min-w-[168px] items-center justify-center rounded-full bg-accent px-8 text-base font-medium text-white transition-colors hover:bg-primary-400 md:mt-10 md:min-h-11 md:min-w-[204px] md:px-10 md:text-[20px] hero-full:mt-14"
             >
               Visit ReNew
             </a>
@@ -143,25 +151,25 @@ export function Hero() {
           />
         </div>
         <div
-          className={`relative flex h-full flex-col items-start justify-center px-5 py-16 text-left sm:px-6 xl:px-[181px] hero-full:py-24 ${contentClass(2)}`}
+          className={`relative flex h-full flex-col items-start justify-center py-16 pl-5 pr-16 text-left sm:pl-6 sm:pr-20 md:px-6 xl:px-[181px] hero-full:py-24 ${contentClass(2)}`}
         >
           {/* Shares slide 1's headline scale so the carousel keeps one type
               size as it cycles. "Net zero does not wait." holds one line from
               xl up: it needs ~590px at 54px, and the sunburst starts 1101px
               into the copy column, so no viewport-based clamp is required. */}
-          <h2 className="max-w-[661px] text-4xl font-bold leading-[1.12] tracking-hero text-white sm:text-5xl xl:max-w-none xl:text-[54px]">
+          <h2 className="max-w-[661px] text-[28px] font-bold leading-[1.14] tracking-hero text-white sm:text-[34px] md:text-5xl xl:max-w-none xl:text-[54px]">
             <span className="xl:block">
               Net <span className="text-primary-400">zero</span> does not wait.
             </span>{" "}
             <span className="xl:block">Neither do we.</span>
           </h2>
-          <p className="mt-6 text-lg font-medium leading-relaxed tracking-hero text-white sm:text-xl xl:mt-[34px] xl:text-2xl xl:leading-10">
+          <p className="mt-5 text-base font-medium leading-relaxed tracking-hero text-white sm:text-[17px] md:mt-6 md:text-xl xl:mt-[34px] xl:text-2xl xl:leading-10">
             6.5 GW Integrated Module Capacity
             <br />
             Three World-Class Plants
           </p>
           <ContactModalTrigger
-            className="mt-10 inline-flex min-h-[45px] min-w-[204px] items-center justify-center rounded-full bg-primary-400 px-8 text-xl font-medium text-white transition-colors hover:bg-accent xl:mt-[62px]"
+            className="mt-8 inline-flex min-h-10 min-w-[168px] items-center justify-center rounded-full bg-primary-400 px-7 text-base font-medium text-white transition-colors hover:bg-accent md:mt-10 md:min-h-[45px] md:min-w-[204px] md:px-8 md:text-xl xl:mt-[62px]"
           >
             Enquire Now
           </ContactModalTrigger>
@@ -170,7 +178,7 @@ export function Hero() {
 
       {/* Shared slide progress */}
       <div
-        className="absolute inset-x-0 bottom-6 flex items-center justify-center gap-4 hero-full:bottom-14"
+        className="absolute inset-x-0 bottom-7 flex items-center justify-center gap-2 md:bottom-6 md:gap-4 hero-full:bottom-14"
         role="tablist"
         aria-label="Hero slides"
       >
@@ -182,19 +190,20 @@ export function Hero() {
             aria-selected={activeSlide === i}
             aria-label={`Slide ${i + 1}`}
             onClick={() => selectSlide(i)}
-            className="flex h-8 w-[88px] items-center"
+            className="flex size-8 items-center justify-center md:h-8 md:w-[88px] md:justify-start"
           >
-            <span className="h-2 w-full overflow-hidden rounded-lg bg-white">
+            <span
+              className={`relative size-2.5 overflow-hidden rounded-full transition-colors md:h-2 md:w-full md:rounded-md md:bg-white ${
+                activeSlide === i ? "bg-primary-400" : "bg-white/80"
+              }`}
+            >
               {activeSlide === i && (
                 <span
                   aria-hidden
-                  className="hero-progress-fill block h-full w-full bg-primary-400"
+                  className="hero-progress-fill absolute inset-0 block h-full w-full bg-primary-400 opacity-0 md:opacity-100"
                   style={{
                     animationDuration: `${SLIDE_DURATION_MS}ms`,
                   }}
-                  onAnimationEnd={() =>
-                    setActiveSlide((slide) => (slide + 1) % SLIDE_COUNT)
-                  }
                 />
               )}
             </span>

@@ -70,6 +70,7 @@ export function SavingsCalculator() {
   const [category, setCategory] = useState<Category>("residential");
   const [unitCost, setUnitCost] = useState(DEFAULT_UNIT_COST);
   const [isManualCost, setIsManualCost] = useState(false);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
   const [locationStatus, setLocationStatus] = useState("Choose your state manually");
 
   const changeState = (next: string) => {
@@ -112,8 +113,11 @@ export function SavingsCalculator() {
 
         <Reveal stagger delay={150} className="mt-14 grid gap-8 lg:grid-cols-[1fr_1.34fr]">
           <form
-            className="min-w-0 rounded-2xl border border-neutral-200 bg-white p-5 min-[360px]:p-8 lg:flex lg:flex-col lg:justify-between"
-            onSubmit={(e) => e.preventDefault()}
+            className="min-w-0 rounded-md border border-neutral-200 bg-white p-5 min-[360px]:p-8 lg:flex lg:flex-col lg:justify-between"
+            onSubmit={(e) => {
+              e.preventDefault();
+              setHasSubmitted(true);
+            }}
           >
             <h3 className="text-2xl font-bold text-primary-950">Your details</h3>
             <p className="mt-1 text-neutral-500">
@@ -134,7 +138,7 @@ export function SavingsCalculator() {
                 max={5000}
                 value={usage}
                 onChange={(e) => setUsage(e.target.value)}
-                className="w-28 rounded-lg border border-neutral-300 px-4 py-3 text-primary-950 focus:border-primary-700 focus:outline-none"
+                className="w-28 rounded-md border border-neutral-300 px-4 py-3 text-primary-950 focus:border-primary-700 focus:outline-none"
               />
               <input
                 type="range"
@@ -158,7 +162,7 @@ export function SavingsCalculator() {
               onChange={changeState}
               options={STATES}
               className="mt-2"
-              buttonClassName="relative w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 pr-12 text-left text-primary-950 transition focus:border-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-700/10"
+              buttonClassName="relative w-full rounded-md border border-neutral-300 bg-white px-4 py-3 pr-12 text-left text-primary-950 transition focus:border-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-700/10"
               iconClassName="text-neutral-500"
             />
             <p className="mt-2 text-sm text-neutral-500" aria-live="polite">
@@ -169,7 +173,7 @@ export function SavingsCalculator() {
             <div
               role="radiogroup"
               aria-label="Customer category"
-              className="mt-3 flex rounded-xl bg-surface-warm p-1.5"
+              className="mt-3 flex rounded-md bg-surface-warm p-1.5"
             >
               {CATEGORIES.map((c) => (
                 <button
@@ -178,7 +182,7 @@ export function SavingsCalculator() {
                   role="radio"
                   aria-checked={category === c}
                   onClick={() => changeCategory(c)}
-                  className={`min-w-0 flex-1 rounded-lg px-1 py-2.5 text-[11px] font-bold transition min-[360px]:px-2 min-[360px]:text-sm ${
+                  className={`min-w-0 flex-1 rounded-md px-1 py-2.5 text-[11px] font-bold transition min-[360px]:px-2 min-[360px]:text-sm ${
                     category === c
                       ? "bg-primary-700 text-white"
                       : "text-neutral-600 hover:text-primary-950"
@@ -219,7 +223,7 @@ export function SavingsCalculator() {
               </button>
             </div>
             <div
-              className={`mt-3 flex items-center rounded-lg border px-4 py-3 ${
+              className={`mt-3 flex items-center rounded-md border px-4 py-3 ${
                 isManualCost
                   ? "border-neutral-300 focus-within:border-primary-700"
                   : "border-neutral-200 bg-neutral-100"
@@ -244,111 +248,127 @@ export function SavingsCalculator() {
                 ? "Enter the unit cost shown on your electricity bill."
                 : "Auto value is ₹8.00. Switch to Manual to edit."}
             </p>
+            <button
+              type="submit"
+              className="mt-8 inline-flex min-w-36 items-center justify-center rounded-full bg-accent px-8 py-2.5 text-base font-bold text-white transition hover:bg-primary-400 lg:hidden"
+            >
+              Calculate savings
+            </button>
           </form>
 
-          <div className="min-w-0 flex flex-col gap-4">
-            <div className="rounded-2xl bg-primary-700 p-5 text-white">
-              <p className="text-sm font-bold uppercase tracking-widest">
-                Recommended plant size
-              </p>
-              <p className="mt-2 text-5xl font-bold">
-                {twoDecimals(result.plantSize)} kW
-              </p>
-              <p className="mt-2 flex items-center gap-3 border-t border-white/20 pt-2">
-                <Zap aria-hidden className="size-5 fill-primary-400 text-primary-400" />
-                <span>
-                  Generates about{" "}
-                  <strong>
-                    {twoDecimals(result.dailyGeneration)} units
-                  </strong>{" "}
-                  every day
-                </span>
-              </p>
-            </div>
-
-            <div className="min-w-0 rounded-2xl border border-neutral-200 p-5 min-[360px]:p-6">
-              <h3 className="flex min-w-0 items-center gap-3 text-xl font-bold text-primary-950 min-[360px]:text-2xl">
-                <Zap aria-hidden className="size-6 shrink-0 text-primary-700" />
-                Electricity generation
-              </h3>
-              <dl className="mt-3 divide-y divide-neutral-100">
-                {(
-                  [
-                    ["Monthly", result.monthlyGeneration],
-                    ["Annually", result.annualGeneration],
-                    ["Lifetime (30 yr)", result.lifetimeGeneration],
-                  ] as const
-                ).map(([label, value]) => (
-                  <div key={label} className="flex items-center justify-between gap-3 py-3">
-                    <dt className="text-neutral-600">{label}</dt>
-                    <dd className="shrink-0 text-lg font-bold text-primary-950 min-[360px]:text-xl">
-                      {inr(value)} kWh
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-
-            <div className="min-w-0 rounded-2xl border border-neutral-200 p-5 min-[360px]:p-6">
-              <h3 className="flex min-w-0 items-center gap-3 text-xl font-bold text-primary-950 min-[360px]:text-2xl">
-                <IndianRupee aria-hidden className="size-6 shrink-0 text-primary-700" />
-                Bill savings
-              </h3>
-              <div className="mt-4 grid gap-4 sm:grid-cols-3">
-                {(
-                  [
-                    ["Monthly", result.monthlySavings, false],
-                    ["Annually", result.annualSavings, false],
-                    ["Lifetime", result.lifetimeSavings, true],
-                  ] as const
-                ).map(([label, value, highlight]) => (
-                  <div
-                    key={label}
-                    className={`rounded-xl p-4 ${
-                      highlight ? "bg-primary-700 text-white" : "bg-surface-warm"
-                    }`}
-                  >
-                    <p
-                      className={`text-xs font-bold uppercase tracking-widest ${
-                        highlight ? "text-white/80" : "text-neutral-500"
-                      }`}
-                    >
-                      {label}
+          <div className="min-w-0">
+            <div
+              className={`grid min-w-0 transition-[grid-template-rows,opacity] duration-500 ease-out lg:grid-rows-[1fr] lg:opacity-100 ${
+                hasSubmitted ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+              }`}
+            >
+              <div className="min-h-0 overflow-hidden">
+                <div className="flex min-w-0 flex-col gap-4">
+                  <div className="rounded-md bg-primary-700 p-5 text-white">
+                    <p className="text-sm font-bold uppercase tracking-widest">
+                      Recommended plant size
                     </p>
-                    <p
-                      className={`mt-2 text-2xl font-bold ${
-                        highlight ? "" : "text-primary-950"
-                      }`}
-                    >
-                      ₹ {inr(value)}
+                    <p className="mt-2 text-5xl font-bold">
+                      {twoDecimals(result.plantSize)} kW
+                    </p>
+                    <p className="mt-2 flex items-center gap-3 border-t border-white/20 pt-2">
+                      <Zap aria-hidden className="size-5 fill-primary-400 text-primary-400" />
+                      <span>
+                        Generates about{" "}
+                        <strong>
+                          {twoDecimals(result.dailyGeneration)} units
+                        </strong>{" "}
+                        every day
+                      </span>
                     </p>
                   </div>
-                ))}
-              </div>
-              <p className="mt-3 text-sm text-neutral-500">
-                Estimated savings at ₹{Number(unitCost || 0).toFixed(2)}/kWh.
-              </p>
-            </div>
 
-            <div className="min-w-0 rounded-2xl bg-surface-mint p-5 min-[360px]:p-6">
-              <h3 className="flex min-w-0 items-center gap-3 text-xl font-bold text-primary-950 min-[360px]:text-2xl">
-                <Leaf aria-hidden className="size-6 shrink-0 text-primary-700" />
-                Environmental impact
-              </h3>
-              <div className="mt-4 grid gap-8 sm:grid-cols-2 sm:divide-x sm:divide-primary-950/10">
-                <div>
-                  <p className="text-4xl font-bold text-primary-950">
-                    {twoDecimals(result.carbonReduced)}
-                  </p>
-                  <p className="mt-2 text-neutral-600">
-                    tonnes of CO₂e avoided over 30 years
-                  </p>
-                </div>
-                <div className="sm:pl-8">
-                  <p className="text-4xl font-bold text-primary-950">
-                    {twoDecimals(result.treeEquivalent)}
-                  </p>
-                  <p className="mt-2 text-neutral-600">trees planted, every year</p>
+                  <div className="min-w-0 rounded-md border border-neutral-200 p-5 min-[360px]:p-6">
+                    <h3 className="flex min-w-0 items-center gap-3 text-xl font-bold text-primary-950 min-[360px]:text-2xl">
+                      <Zap aria-hidden className="size-6 shrink-0 text-primary-700" />
+                      Electricity generation
+                    </h3>
+                    <dl className="mt-3 divide-y divide-neutral-100">
+                      {(
+                        [
+                          ["Monthly", result.monthlyGeneration],
+                          ["Annually", result.annualGeneration],
+                          ["Lifetime (30 yr)", result.lifetimeGeneration],
+                        ] as const
+                      ).map(([label, value]) => (
+                        <div key={label} className="flex items-center justify-between gap-3 py-3">
+                          <dt className="text-neutral-600">{label}</dt>
+                          <dd className="shrink-0 text-lg font-bold text-primary-950 min-[360px]:text-xl">
+                            {inr(value)} kWh
+                          </dd>
+                        </div>
+                      ))}
+                    </dl>
+                  </div>
+
+                  <div className="min-w-0 rounded-md border border-neutral-200 p-5 min-[360px]:p-6">
+                    <h3 className="flex min-w-0 items-center gap-3 text-xl font-bold text-primary-950 min-[360px]:text-2xl">
+                      <IndianRupee aria-hidden className="size-6 shrink-0 text-primary-700" />
+                      Bill savings
+                    </h3>
+                    <div className="mt-4 grid gap-4 sm:grid-cols-3">
+                      {(
+                        [
+                          ["Monthly", result.monthlySavings, false],
+                          ["Annually", result.annualSavings, false],
+                          ["Lifetime", result.lifetimeSavings, true],
+                        ] as const
+                      ).map(([label, value, highlight]) => (
+                        <div
+                          key={label}
+                          className={`rounded-md p-4 ${
+                            highlight ? "bg-primary-700 text-white" : "bg-surface-warm"
+                          }`}
+                        >
+                          <p
+                            className={`text-xs font-bold uppercase tracking-widest ${
+                              highlight ? "text-white/80" : "text-neutral-500"
+                            }`}
+                          >
+                            {label}
+                          </p>
+                          <p
+                            className={`mt-2 text-2xl font-bold ${
+                              highlight ? "" : "text-primary-950"
+                            }`}
+                          >
+                            ₹ {inr(value)}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                    <p className="mt-3 text-sm text-neutral-500">
+                      Estimated savings at ₹{Number(unitCost || 0).toFixed(2)}/kWh.
+                    </p>
+                  </div>
+
+                  <div className="min-w-0 rounded-md bg-surface-mint p-5 min-[360px]:p-6">
+                    <h3 className="flex min-w-0 items-center gap-3 text-xl font-bold text-primary-950 min-[360px]:text-2xl">
+                      <Leaf aria-hidden className="size-6 shrink-0 text-primary-700" />
+                      Environmental impact
+                    </h3>
+                    <div className="mt-4 grid gap-8 sm:grid-cols-2 sm:divide-x sm:divide-primary-950/10">
+                      <div>
+                        <p className="text-4xl font-bold text-primary-950">
+                          {twoDecimals(result.carbonReduced)}
+                        </p>
+                        <p className="mt-2 text-neutral-600">
+                          tonnes of CO₂e avoided over 30 years
+                        </p>
+                      </div>
+                      <div className="sm:pl-8">
+                        <p className="text-4xl font-bold text-primary-950">
+                          {twoDecimals(result.treeEquivalent)}
+                        </p>
+                        <p className="mt-2 text-neutral-600">trees planted, every year</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

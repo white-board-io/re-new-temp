@@ -182,7 +182,7 @@ export function SolarCellDetail() {
                   aria-label={`Show solar cell product view ${index + 1}`}
                   aria-pressed={selectedImage === index}
                   onClick={() => setSelectedImage(index)}
-                  className={`relative aspect-square w-full min-w-0 overflow-hidden rounded-lg border bg-white p-1 transition sm:size-24 sm:w-24 ${
+                  className={`relative aspect-square w-full min-w-0 overflow-hidden rounded-md border bg-white p-1 transition sm:size-24 sm:w-24 ${
                     selectedImage === index
                       ? "border-primary-400 bg-neutral-100"
                       : "border-neutral-200 hover:border-primary-300"

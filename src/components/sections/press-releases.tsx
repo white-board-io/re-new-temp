@@ -32,11 +32,11 @@ export function PressReleases() {
   return (
     <section id="press-releases" className="bg-white pb-section md:py-section">
       <div className="mx-auto max-w-content px-4 sm:px-6">
-        <Reveal as="header" className="text-center">
+        <Reveal as="header" className="text-left">
           <h2 className="text-4xl font-bold text-primary-950 sm:text-[54px] sm:leading-[62px]">
             Press Releases
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-xl leading-8 text-neutral-500">
+          <p className="mt-6 max-w-2xl text-xl leading-8 text-neutral-500">
             The latest updates from India&apos;s leading solar module manufacturer.
             <br className="hidden sm:block" /> Milestones, investments, and projects making
             headlines.
@@ -51,7 +51,7 @@ export function PressReleases() {
           {releases.map((release) => (
             <article
               key={release.title}
-              className="flex min-h-full w-[88%] shrink-0 snap-start flex-col overflow-hidden rounded-2xl bg-neutral-100 md:w-auto md:shrink md:rounded-md"
+              className="flex min-h-full w-[88%] shrink-0 snap-start flex-col overflow-hidden rounded-md bg-neutral-100 md:w-auto md:shrink"
             >
               <Image
                 src={release.image}
@@ -73,7 +73,7 @@ export function PressReleases() {
                     href={release.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex w-fit items-center justify-center rounded-full border-2 border-primary-700 px-10 py-2 text-lg font-bold text-primary-700 transition-colors hover:bg-primary-700 hover:text-white"
+                    className="inline-flex min-w-36 items-center justify-center rounded-full border-2 border-primary-700 px-8 py-2.5 text-base font-bold text-primary-700 transition-colors hover:bg-primary-700 hover:text-white"
                   >
                     Read more
                   </a>

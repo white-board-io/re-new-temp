@@ -17,7 +17,7 @@ export function OurProjects() {
       </div>
 
       <div className="relative mx-auto max-w-content px-4 md:-mt-24 sm:px-6 lg:-mt-40">
-        <Reveal className="relative -mx-4 overflow-hidden bg-primary-700 px-7 py-12 text-center text-white sm:-mx-6 md:mx-0 md:rounded-md md:text-left lg:px-20 lg:py-14 xl:mx-[22px]">
+        <Reveal className="relative -mx-4 overflow-hidden bg-primary-700 px-7 py-12 text-left text-white sm:-mx-6 md:mx-0 md:rounded-md lg:px-20 lg:py-14 xl:mx-[22px]">
           {/* Two sunbursts, each a full circle centred on one of the card's
               horizontal edges so the card's own overflow-hidden clips it to the
               half the design shows: the larger one hangs off the top edge, the
@@ -47,7 +47,7 @@ export function OurProjects() {
               className="w-full animate-sunburst [animation-direction:reverse] motion-reduce:animate-none"
             />
           </div>
-          <div className="relative grid items-end justify-items-center gap-10 lg:grid-cols-[1fr_auto] lg:justify-items-stretch">
+          <div className="relative grid items-end justify-items-start gap-10 lg:grid-cols-[1fr_auto] lg:justify-items-stretch">
             <div>
               <p className="text-xl font-bold uppercase leading-8 text-primary-300">
                 Projects
@@ -62,7 +62,7 @@ export function OurProjects() {
             </div>
             <Link
               href="/projects"
-              className="inline-flex w-fit items-center justify-center rounded-full bg-accent px-12 py-3 text-xl font-medium text-white transition-colors hover:bg-primary-400 lg:mb-5"
+              className="inline-flex w-fit items-center justify-center rounded-full bg-accent px-12 py-3 text-xl font-medium text-white transition-colors hover:bg-primary-400 lg:mb-5 lg:justify-self-end"
             >
               Know More
             </Link>

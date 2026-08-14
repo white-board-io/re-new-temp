@@ -36,7 +36,7 @@ const plants: Plant[] = [
     map: "/images/manufacturing/dholera-tab.webp",
     mapAlt: "Jaipur manufacturing facility",
     mapLabelClassName: "text-2xl sm:text-[32px]",
-    eyebrow: "4 GW under one roof.",
+    eyebrow: "4 GW module manufacturing capacity under a single roof.",
     headline: "India's largest\nsingle-location module\nmanufacturing facility.",
     video: {
       src: "/videos/manufacturing/jaipur.webm",
@@ -83,8 +83,8 @@ const plants: Plant[] = [
       },
       {
         label: "Daily output",
-        value: "17,000/day",
-        details: "Approximately 17,000 modules manufactured per day.",
+        value: "23,000/day",
+        details: "23000 modules produced every day.",
         icon: "output",
       },
       {
@@ -96,9 +96,9 @@ const plants: Plant[] = [
       },
     ],
     paragraphs: [
-      "The Jaipur plant is ReNew Solar's flagship manufacturing facility and one of the largest single-location solar module manufacturing plants in India. Operating at 4 GW capacity under a single roof, it is designed for high-volume, consistent output — purpose-built to meet the supply requirements of large-scale utility and commercial projects.",
+      "The Jaipur plant is ReNew Solar's flagship manufacturing facility, with 4 GW module manufacturing capacity under a single roof. Spread across 22 acres, it produces 23000 modules every day and is designed for high-volume, consistent output.",
       "The plant produces TOPCon and Mono PERC bifacial modules using advanced automation across the full production line, with rigorous in-line quality control at every stage. An in-house NABL accredited PV Module Test Lab — accredited under ISO/IEC 17025:2017 — ensures every batch meets international performance and reliability standards before dispatch.",
-      "The facility was the first of its scale to supply 100% Made-in-India modules for a 1.3 GW utility project, with 90% of those panels manufactured on-site in Rajasthan. It operates in compliance with BIS certification requirements and is ALMM approved, making it fully eligible for government and public sector procurement.",
+      "The facility is LEED Gold certified and powered by a 7.2 MW rooftop solar system. It has been honoured with the British Safety Council's 5-Star Rating and Sword of Honour.",
     ],
     sustainabilityTitle:
       "The Jaipur plant is one of India's few LEED Gold certified solar module manufacturing facilities.",
@@ -112,8 +112,8 @@ const plants: Plant[] = [
     map: "/images/manufacturing/jaipur-tab.webp",
     mapAlt: "Dholera cell and module manufacturing facility",
     mapLabelClassName: "text-2xl sm:text-[32px]",
-    eyebrow: "Built for the next generation.",
-    headline: "Advanced TOPCon cell and module manufacturing at scale.",
+    eyebrow: "6.5 GW solar cell manufacturing capacity.",
+    headline: "Advanced solar cell and module manufacturing at scale.",
     video: {
       src: "/videos/manufacturing/dholera.webm",
       title: "Dholera manufacturing facility video",
@@ -153,8 +153,8 @@ const plants: Plant[] = [
       },
       {
         label: "Cell capacity",
-        value: "2.5 GW",
-        details: "2.5 GW",
+        value: "6.5 GW",
+        details: "6.5 GW solar cell manufacturing capacity",
         icon: "output",
       },
       {
@@ -171,9 +171,9 @@ const plants: Plant[] = [
       },
     ],
     paragraphs: [
-      "Located in Gujarat's Special Investment Region, ReNew's Dholera facility combines high-efficiency cell and module manufacturing with an operating model designed for dependable, repeatable quality.",
+      "Located in Gujarat's Special Investment Region, ReNew's Dholera facility has 6.5 GW solar cell manufacturing capacity and 2.4 GW module manufacturing capacity across 55 acres.",
       "AI-driven defect diagnostics and automated material movement systems improve precision across the production line, while in-line controls help every product meet ReNew's performance and reliability benchmarks.",
-      "The site is being expanded with a 4 GW TOPCon facility, strengthening ReNew's vertically integrated manufacturing capability and India's domestic solar supply chain.",
+      "The site includes a 4 GW TOPCon facility under development, strengthening ReNew's vertically integrated manufacturing capability and India's domestic solar supply chain.",
     ],
     sustainabilityTitle: "Designed to raise the efficiency standard for domestic solar manufacturing.",
     sustainabilityBody:
@@ -186,7 +186,7 @@ const plants: Plant[] = [
     map: "/images/manufacturing-detail.png",
     mapAlt: "Outline map for Visakhapatnam, Andhra Pradesh",
     mapLabelClassName: "text-xl sm:text-[26px]",
-    eyebrow: "6.5 GW at the source.",
+    eyebrow: "6.5 GW wafer and ingot manufacturing facility (upcoming).",
     headline: "A wafer and ingot facility strengthening India's solar value chain.",
     gallery: [
       {
@@ -235,9 +235,9 @@ const plants: Plant[] = [
       },
     ],
     paragraphs: [
-      "ReNew's Visakhapatnam facility is designed to manufacture wafers and ingots at scale, adding critical upstream capacity to India's fast-growing solar manufacturing ecosystem.",
+      "ReNew Solar Panel's third plant will complete the value chain from ingot to module, making it one of the most integrated solar manufacturers in India.",
+      "The upcoming Visakhapatnam facility is designed to manufacture wafers and ingots at 6.5 GW scale, adding critical upstream capacity to India's fast-growing solar manufacturing ecosystem.",
       "Its integrated production approach improves supply resilience and gives ReNew greater control over quality at the earliest stages of the module value chain.",
-      "With 6.5 GW of planned capacity, the facility is positioned to support dependable domestic production for utility, commercial, industrial and residential solar demand.",
     ],
     sustainabilityTitle: "Building a more resilient and self-reliant solar manufacturing ecosystem.",
     sustainabilityBody:
@@ -551,7 +551,7 @@ export function ManufacturingDetail() {
                 aria-label="Previous manufacturing stat"
                 disabled={statsPage === 0}
                 onClick={() => scrollToStatsPage(statsPage - 1)}
-                className="flex size-12 items-center justify-center rounded-lg bg-neutral-200 text-neutral-600 transition enabled:hover:bg-neutral-300 disabled:opacity-40"
+                className="flex size-12 items-center justify-center rounded-md bg-neutral-200 text-neutral-600 transition enabled:hover:bg-neutral-300 disabled:opacity-40"
               >
                 <ChevronLeft aria-hidden className="size-5" />
               </button>
@@ -560,7 +560,7 @@ export function ManufacturingDetail() {
                 aria-label="Next manufacturing stat"
                 disabled={statsPage >= statsPageCount - 1}
                 onClick={() => scrollToStatsPage(statsPage + 1)}
-                className="flex size-12 items-center justify-center rounded-lg bg-neutral-200 text-neutral-600 transition enabled:hover:bg-neutral-300 disabled:opacity-40"
+                className="flex size-12 items-center justify-center rounded-md bg-neutral-200 text-neutral-600 transition enabled:hover:bg-neutral-300 disabled:opacity-40"
               >
                 <ChevronRight aria-hidden className="size-5" />
               </button>

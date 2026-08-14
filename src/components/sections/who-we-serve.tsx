@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ContactModalTrigger } from "@/components/contact-modal";
 import { Reveal } from "@/components/reveal";
 
@@ -33,13 +33,58 @@ const GROW = "duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]";
 
 export function WhoWeServe() {
   const [active, setActive] = useState<number | null>(null);
+  const cardRefs = useRef<Array<HTMLElement | null>>([]);
+
+  useEffect(() => {
+    const mobileQuery = window.matchMedia("(max-width: 767px)");
+    let observer: IntersectionObserver | null = null;
+
+    const syncMobileActive = () => {
+      observer?.disconnect();
+      observer = null;
+
+      if (!mobileQuery.matches) {
+        setActive(null);
+        return;
+      }
+
+      setActive(0);
+      observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+          if (!visible) return;
+
+          const index = cardRefs.current.findIndex(
+            (card) => card === visible.target,
+          );
+          if (index >= 0) setActive(index);
+        },
+        { threshold: [0.45, 0.6, 0.75] },
+      );
+
+      for (const card of cardRefs.current) {
+        if (card) observer.observe(card);
+      }
+    };
+
+    syncMobileActive();
+    mobileQuery.addEventListener("change", syncMobileActive);
+
+    return () => {
+      observer?.disconnect();
+      mobileQuery.removeEventListener("change", syncMobileActive);
+    };
+  }, []);
 
   return (
     <section
       id="who-we-serve"
-      className="relative overflow-hidden bg-gradient-to-b from-surface-tint to-white pb-section pt-section md:pt-[calc(var(--spacing-section)*2)]"
+      className="relative overflow-hidden bg-gradient-to-b from-surface-tint to-white pb-16 pt-14 md:pb-section md:pt-[calc(var(--spacing-section)*2)]"
     >
-      <div className="pointer-events-none absolute right-[18%] top-0 w-[clamp(200px,42vw,608px)] -translate-y-1/2">
+      <div className="pointer-events-none absolute right-4 top-0 w-32 -translate-y-1/2 sm:w-40 md:right-[18%] md:w-[clamp(200px,42vw,608px)]">
         <Image
           src="/images/sunburst_full.svg"
           alt=""
@@ -48,32 +93,36 @@ export function WhoWeServe() {
           className="w-full animate-sunburst motion-reduce:animate-none"
         />
       </div>
-      <div className="relative mx-auto max-w-content px-4 text-center sm:px-6 md:text-left">
+      <div className="relative mx-auto max-w-content px-5 text-left sm:px-6">
         <Reveal>
-          <p className="text-2xl font-bold uppercase leading-8 text-primary-700">
+          <p className="text-xl font-bold uppercase leading-7 text-primary-700 md:text-2xl md:leading-8">
             Who We Serve
           </p>
-          <h2 className="mt-6 text-4xl font-bold text-primary-950 sm:text-[54px] sm:leading-[58px]">
+          <h2 className="mt-4 text-[34px] font-bold leading-[40px] text-primary-950 sm:text-[42px] sm:leading-[48px] md:mt-6 md:text-[54px] md:leading-[58px]">
             Solar for <span className="text-primary-400">Every Life</span>
           </h2>
-          <ul className="mt-6 flex flex-wrap justify-center gap-x-8 gap-y-2 text-lg text-neutral-500 md:justify-start">
-            <li className="flex items-center gap-2">
+          <ul className="mt-5 flex flex-col items-start gap-3 pr-14 text-base leading-6 text-neutral-500 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-2 sm:pr-0 md:mt-6 md:text-lg">
+            <li className="flex items-start gap-2">
               <Image
                 src="/images/icon-factory.svg"
                 alt=""
                 width={26}
                 height={26}
+                className="mt-0.5 size-5 shrink-0 md:size-[26px]"
               />
-              Manufactured by us
+              <span className="min-w-0">Manufactured by us</span>
             </li>
-            <li className="flex items-center gap-2">
+            <li className="flex items-start gap-2">
               <Image
                 src="/images/icon-handshake.svg"
                 alt=""
                 width={26}
                 height={26}
+                className="mt-0.5 size-5 shrink-0 md:size-[26px]"
               />
-              Installed by our certified partner network
+              <span className="min-w-0">
+                Installed by our certified partner network
+              </span>
             </li>
           </ul>
         </Reveal>
@@ -81,7 +130,7 @@ export function WhoWeServe() {
         <Reveal
           stagger
           delay={150}
-          className="reveal-track mt-10 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 md:mt-16 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0 lg:mt-24 lg:gap-12 xl:gap-[90px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="reveal-track mt-14 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 md:mt-16 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0 lg:mt-24 lg:gap-12 xl:gap-[90px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           onMouseLeave={() => setActive(null)}
           onBlur={(event) => {
             if (!event.currentTarget.contains(event.relatedTarget)) {
@@ -95,12 +144,15 @@ export function WhoWeServe() {
             return (
               <article
                 key={card.title.join(" ")}
+                ref={(node) => {
+                  cardRefs.current[index] = node;
+                }}
                 tabIndex={0}
                 onClick={() => setActive(index)}
                 onMouseEnter={() => setActive(index)}
                 onMouseLeave={() => setActive(null)}
                 onFocus={() => setActive(index)}
-                className={`relative h-[460px] w-[92%] shrink-0 snap-start focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-700 md:h-[510px] md:w-auto md:shrink lg:h-[540px] ${
+                className={`relative h-[460px] w-[86%] shrink-0 snap-start focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-700 sm:w-[82%] md:h-[510px] md:w-auto md:shrink lg:h-[540px] ${
                   isActive ? "z-10" : "z-0"
                 }`}
               >
@@ -124,12 +176,12 @@ export function WhoWeServe() {
                     className={`absolute inset-0 transition-colors duration-500 ${
                       isActive
                         ? "bg-gradient-to-t from-primary-950/85 via-primary-950/35 to-transparent md:bg-primary-700/85"
-                        : "bg-gradient-to-t from-primary-950/85 via-primary-950/35 to-transparent md:via-primary-950/10"
+                        : "bg-gradient-to-t from-primary-950/60 via-primary-950/15 to-transparent md:from-primary-950/85 md:via-primary-950/10"
                     }`}
                   />
 
                   <h3
-                    className={`absolute bottom-5 left-5 z-10 max-w-48 text-2xl font-bold leading-tight text-white transition-[opacity,translate] duration-300 md:bottom-16 md:left-8 md:max-w-56 md:text-[28px] ${
+                    className={`absolute bottom-5 left-5 z-10 max-w-48 text-left text-[34px] font-semibold leading-[42px] tracking-normal align-bottom text-white transition-[opacity,translate] duration-300 md:bottom-12 md:left-12 md:max-w-56 ${
                       isActive
                         ? "translate-y-2 opacity-0"
                         : "translate-y-2 opacity-0 md:translate-y-0 md:opacity-100 md:delay-200"
@@ -143,7 +195,7 @@ export function WhoWeServe() {
                   </h3>
 
                   <div
-                    className={`absolute inset-x-8 top-9 z-10 text-center text-[34px] font-bold leading-tight text-white transition-[opacity,translate] duration-500 md:top-16 md:text-[34px] xl:inset-x-12 xl:text-[42px] ${
+                    className={`absolute inset-x-6 top-14 z-10 text-left text-[32px] font-semibold leading-[39px] tracking-normal align-bottom text-white transition-[opacity,translate] duration-500 md:inset-x-8 md:top-16 md:text-center md:text-[34px] md:leading-[42px] xl:inset-x-12 xl:text-[42px] ${
                       isActive
                         ? "translate-y-0 opacity-100 delay-150"
                         : "translate-y-0 opacity-100 md:pointer-events-none md:translate-y-3 md:opacity-0"
@@ -157,13 +209,13 @@ export function WhoWeServe() {
                   </div>
 
                   <div
-                    className={`absolute inset-x-8 bottom-8 top-[150px] z-10 flex flex-col items-center text-center text-white transition-[opacity,translate] duration-500 md:bottom-10 md:top-[190px] xl:inset-x-12 xl:top-[220px] ${
+                    className={`absolute inset-x-6 bottom-12 top-[176px] z-10 flex flex-col items-start text-left text-white transition-[opacity,translate] duration-500 md:inset-x-8 md:bottom-10 md:top-[190px] md:items-center md:text-center xl:inset-x-12 xl:top-[220px] ${
                       isActive
                         ? "translate-y-0 opacity-100 delay-200"
                         : "translate-y-0 opacity-100 md:pointer-events-none md:translate-y-4 md:opacity-0"
                     }`}
                   >
-                    <p className="mx-auto max-w-[430px] text-sm leading-5 lg:text-base lg:leading-6 xl:text-lg xl:leading-7">
+                    <p className="max-w-[430px] text-sm leading-5 md:mx-auto lg:text-base lg:leading-6 xl:text-lg xl:leading-7">
                       {card.description}
                     </p>
                     <ContactModalTrigger

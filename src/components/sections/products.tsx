@@ -106,9 +106,9 @@ export function Products() {
       </div>
 
       <div className="mx-auto max-w-content px-4 sm:px-6">
-        <Reveal className="text-center">
+        <Reveal className="text-left md:text-center">
           <p className="text-2xl font-bold uppercase leading-8 text-primary-700">Products</p>
-          <h2 className="mx-auto mt-8 max-w-4xl text-4xl font-bold text-primary-950 sm:text-[54px] sm:leading-[62px]">
+          <h2 className="mt-8 max-w-4xl text-4xl font-bold text-primary-950 md:mx-auto sm:text-[54px] sm:leading-[62px]">
             The <span className="text-primary-700">right panel</span> for your home, your
             business, your project.
           </h2>
@@ -146,11 +146,11 @@ export function Products() {
                   sizes="(min-width: 768px) 62vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-primary-950/55 md:hidden" />
-                <h3 className="absolute left-1/2 top-8 z-10 -translate-x-1/2 text-center text-2xl font-bold uppercase leading-8 text-white md:left-10 md:top-10 md:translate-x-0 md:text-left md:text-primary-950">
+                <h3 className="absolute left-8 top-8 z-10 whitespace-nowrap text-left text-2xl font-bold uppercase leading-8 text-white md:left-10 md:top-10 md:whitespace-normal md:text-primary-950">
                   {product.title}
                 </h3>
                 <div
-                  className={`absolute inset-x-8 bottom-8 ${contentPosition} z-10 flex flex-col items-center text-center md:bottom-12 md:left-[47%] md:right-12 md:items-stretch md:text-left ${
+                  className={`absolute inset-x-8 bottom-8 ${contentPosition} z-10 flex flex-col items-start text-left md:bottom-12 md:left-[47%] md:right-12 md:items-stretch ${
                     isActive ? "" : "md:pointer-events-none"
                   }`}
                 >
@@ -161,7 +161,7 @@ export function Products() {
                         href={feature.href}
                         className="group mt-3 block rounded-sm border-b border-white/30 pb-3 text-sm leading-5 text-white transition hover:text-white/90 first:mt-0 last:border-b-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:mt-6 md:pb-6 md:text-base md:leading-6 lg:text-xl lg:leading-7"
                       >
-                        <strong className="text-lg font-extrabold leading-6 underline-offset-4 group-hover:underline md:text-xl md:leading-7 lg:text-2xl lg:leading-8">
+                        <strong className="whitespace-nowrap text-lg font-extrabold leading-6 underline-offset-4 group-hover:underline md:whitespace-normal md:text-xl md:leading-7 lg:text-2xl lg:leading-8">
                           {feature.lead}
                         </strong>
                         {feature.rest ? (
@@ -184,7 +184,7 @@ export function Products() {
                   </div>
                   <Link
                     href={product.href}
-                    className={`mb-8 mt-auto self-center rounded-full bg-accent px-7 py-2.5 text-base font-medium text-white hover:bg-primary-400 md:mb-0 md:self-start md:px-8 md:text-xl ${contentIn(
+                    className={`mb-8 mt-auto self-start rounded-full bg-accent px-7 py-2.5 text-base font-medium text-white hover:bg-primary-400 md:mb-0 md:px-8 md:text-xl ${contentIn(
                       isActive,
                       "md:delay-[450ms]",
                     )}`}

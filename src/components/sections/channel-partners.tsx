@@ -46,7 +46,7 @@ function VideoCard({ video, onOpen }: VideoCardProps) {
       type="button"
       aria-label={`Open ${video.title} video`}
       onClick={() => onOpen(video)}
-      className={`group relative aspect-video w-[88%] shrink-0 snap-start overflow-hidden rounded-2xl bg-primary-950 md:w-[calc(50%-12px)] xl:aspect-auto xl:rounded-[6px] ${video.desktopSize}`}
+      className={`group relative aspect-video w-[88%] shrink-0 snap-start overflow-hidden rounded-md bg-primary-950 md:w-[calc(50%-12px)] xl:aspect-auto ${video.desktopSize}`}
     >
       <Image
         src={video.poster}
@@ -102,7 +102,7 @@ function VideoModal({
         if (event.target === event.currentTarget) onClose();
       }}
     >
-      <div className="relative w-full max-w-6xl overflow-hidden rounded-2xl bg-primary-950 shadow-[0_30px_90px_rgba(0,0,0,0.45)]">
+      <div className="relative w-full max-w-6xl overflow-hidden rounded-md bg-primary-950 shadow-[0_30px_90px_rgba(0,0,0,0.45)]">
         <button
           type="button"
           aria-label="Close video"
@@ -158,7 +158,7 @@ export function ChannelPartners() {
 
   return (
     <section id="channel-partners" className="bg-gradient-to-b from-surface-tint to-white">
-      <div className="relative overflow-hidden bg-primary-950 pb-64 pt-24 text-center">
+      <div className="relative overflow-hidden bg-primary-950 pb-64 pt-24 text-left">
         <Image
           src="/images/partners-header-bg.webp"
           alt=""
@@ -212,7 +212,7 @@ export function ChannelPartners() {
               aria-label="Previous videos"
               disabled={page === 0}
               onClick={() => scrollToPage(page - 1)}
-              className="flex size-12 items-center justify-center rounded-lg bg-neutral-200 text-neutral-600 transition enabled:hover:bg-neutral-300 disabled:opacity-40"
+              className="flex size-12 items-center justify-center rounded-md bg-neutral-200 text-neutral-600 transition enabled:hover:bg-neutral-300 disabled:opacity-40"
             >
               <ChevronLeft aria-hidden className="size-5" />
             </button>
@@ -221,7 +221,7 @@ export function ChannelPartners() {
               aria-label="Next videos"
               disabled={page >= pageCount - 1}
               onClick={() => scrollToPage(page + 1)}
-              className="flex size-12 items-center justify-center rounded-lg bg-neutral-200 text-neutral-600 transition enabled:hover:bg-neutral-300 disabled:opacity-40"
+              className="flex size-12 items-center justify-center rounded-md bg-neutral-200 text-neutral-600 transition enabled:hover:bg-neutral-300 disabled:opacity-40"
             >
               <ChevronRight aria-hidden className="size-5" />
             </button>

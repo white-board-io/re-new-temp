@@ -53,10 +53,10 @@ export function WhyRenew({ spaciousTop = false }: { spaciousTop?: boolean } = {}
       }
     >
       <Reveal className="mx-auto max-w-content px-4 text-center sm:px-6">
-        <p className="text-2xl font-bold uppercase leading-8 text-primary-700">
+        <p className="text-xl font-bold uppercase leading-7 text-primary-700 sm:text-2xl sm:leading-8">
           Why ReNew Solar Panels
         </p>
-        <h2 className="mt-8 text-4xl font-bold text-primary-950 sm:text-[54px] sm:leading-[62px]">
+        <h2 className="mt-6 text-[32px] font-bold leading-[40px] text-primary-950 sm:mt-8 sm:text-[44px] sm:leading-[52px] lg:text-[48px] lg:leading-[56px]">
           Built for India&apos;s sun. Backed for 30 years.
         </h2>
       </Reveal>

@@ -9,38 +9,44 @@ import { Reveal } from "@/components/reveal";
 const plants = [
   {
     title: ["Jaipur,", "Rajasthan"],
+    href: "/manufacturing#jaipur",
     image: { src: "/images/Jaipur.webp", width: 648, height: 554 },
     imageClassName: "max-w-[480px]",
     alt: "Aerial view of the Jaipur, Rajasthan plant within the outline of Rajasthan state",
-    caption: "4 GW module manufacturing capacity under a single roof.",
-    mobileSummary: "4 GW module capacity under one roof.",
-    mobileDetails: "4 GW module manufacturing capacity under a single roof.",
-    details: "4 GW module manufacturing capacity under a single roof.",
+    caption: "4 GW module manufacturing capacity under a single roof",
+    mobileSummary: "4 GW module manufacturing capacity under a single roof",
+    mobileDetails:
+      "Spread across 22 acres. 23000 modules produced every day. LEED Gold certified. Powered by a 7.2 MW rooftop solar system. Honoured with the British Safety Council's 5-Star Rating and Sword of Honour.",
+    details:
+      "Spread across 22 acres. 23000 modules produced every day. LEED Gold certified. Powered by a 7.2 MW rooftop solar system. Honoured with the British Safety Council's 5-Star Rating and Sword of Honour.",
   },
   {
     title: ["Dholera,", "Gujarat"],
+    href: "/manufacturing#dholera",
     image: { src: "/images/_Dholera.webp", width: 478, height: 688 },
     imageClassName: "max-w-[332px]",
     detailContainerClassName: "inset-x-6 xl:inset-x-10",
     detailTextClassName: "max-w-[280px]",
     alt: "Aerial view of the Dholera, Gujarat plant within the outline of Gujarat state",
-    caption: "2.4 GW module manufacturing capacity across 55 acres.",
-    mobileSummary: "2.4 GW capacity across 55 acres, with 4 GW TOPCon in development.",
+    caption: "6.5 GW solar cell manufacturing capacity",
+    mobileSummary: "6.5 GW solar cell manufacturing capacity",
     mobileDetails:
-      "2.4 GW module manufacturing capacity across 55 acres in Gujarat's Special Investment Region, with a 4 GW TOPCon facility under development. Equipped with AI-driven defect diagnostics and automated material movement systems.",
+      "2.4 GW module manufacturing capacity, spread across 55 acres in Gujarat's Special Investment Region (including a 4 GW TOPCon facility under development). Equipped with AI-driven defect diagnostics and automated material movement systems.",
     details:
-      "(including a 4 GW TOPCon facility under development) and 2.4 GW module manufacturing capacity, spread across 55 acres in Gujarat's Special Investment Region. Equipped with AI-driven defect diagnostics and automated material movement systems.",
+      "2.4 GW module manufacturing capacity, spread across 55 acres in Gujarat's Special Investment Region (including a 4 GW TOPCon facility under development). Equipped with AI-driven defect diagnostics and automated material movement systems.",
   },
   {
     title: ["Visakhapatnam,", "Andhra Pradesh"],
+    href: "/manufacturing#vizag",
     image: { src: "/images/Visakhapatnam.webp", width: 710, height: 542 },
     imageClassName: "max-w-[500px]",
     alt: "Aerial view of the Visakhapatnam, Andhra Pradesh plant within the outline of Andhra Pradesh state",
-    caption: "6.5 GW wafer and ingot manufacturing facility",
-    mobileSummary: "6.5 GW wafer and ingot manufacturing facility",
-    mobileDetails: "6.5 GW wafer and ingot manufacturing facility",
-    details: "6.5 GW wafer and ingot manufacturing facility",
-    status: "(In pipeline)",
+    caption: "6.5 GW wafer and ingot manufacturing facility (upcoming)",
+    mobileSummary: "6.5 GW wafer and ingot manufacturing facility (upcoming)",
+    mobileDetails:
+      "ReNew Solar Panel's third plant will complete the value chain from ingot to module, making it one of the most integrated solar manufacturers in India.",
+    details:
+      "ReNew Solar Panel's third plant will complete the value chain from ingot to module, making it one of the most integrated solar manufacturers in India.",
   },
 ];
 
@@ -110,18 +116,19 @@ export function Manufacturing() {
             const detailTextClassName = plant.detailTextClassName ?? "max-w-[420px]";
 
             return (
-              <article
+              <Link
                 key={plant.title.join(" ")}
-                tabIndex={0}
+                href={plant.href}
+                aria-label={`View ${plant.title.join(" ")} manufacturing details`}
                 onMouseEnter={() => setActive(index)}
                 onMouseLeave={() => setActive(null)}
                 onFocus={() => setActive(index)}
-                className={`relative h-[360px] w-[78%] shrink-0 snap-start focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:h-[500px] md:w-auto md:shrink ${
+                className={`relative block h-[360px] w-[78%] shrink-0 snap-start focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:h-[500px] md:w-auto md:shrink ${
                   isActive ? "z-10" : "z-0"
                 }`}
               >
                 <div
-                  className={`absolute inset-0 origin-center overflow-hidden rounded-2xl max-md:bg-primary-900 max-md:shadow-[0_8px_18px_rgba(0,0,0,0.18)] max-md:ring-1 max-md:ring-white/10 md:rounded-md md:transition-[scale,background-color,box-shadow] motion-reduce:transition-none ${GROW} ${
+                  className={`absolute inset-0 origin-center overflow-hidden rounded-md max-md:bg-primary-900 max-md:shadow-[0_8px_18px_rgba(0,0,0,0.18)] max-md:ring-1 max-md:ring-white/10 md:transition-[scale,background-color,box-shadow] motion-reduce:transition-none ${GROW} ${
                     isActive
                       ? "md:bg-black/25 md:shadow-[0_8px_18px_rgba(0,0,0,0.2)] md:scale-[1.04] xl:scale-[1.13]"
                       : "md:scale-100"
@@ -140,16 +147,15 @@ export function Manufacturing() {
                   </div>
 
                   <div className="absolute inset-x-5 bottom-5 top-9 z-10 flex flex-col items-center text-center text-white md:hidden">
-                    <h3 className="text-[29px] font-bold leading-[1.12]">
+                    <h3 className="text-[27px] font-bold leading-[1.12]">
                       {plant.title.map((line) => (
                         <span key={line} className="block">
                           {line}
                         </span>
                       ))}
                     </h3>
-                    <p className="mt-10 text-md font-bold leading-5">
+                    <p className="mt-5 text-sm font-normal leading-5">
                       {plant.mobileDetails}
-                      {plant.status ? <span className="mt-3 block">{plant.status}</span> : null}
                     </p>
                   </div>
 
@@ -182,7 +188,6 @@ export function Manufacturing() {
                     <figcaption className="mx-auto max-w-[240px] text-center text-lg font-bold leading-6 md:mt-4 md:max-w-md md:text-xl md:leading-7 xl:mt-6 xl:text-2xl xl:leading-8">
                       <span className="block md:hidden">{plant.mobileSummary}</span>
                       <span className="hidden md:block">{plant.caption}</span>
-                      {plant.status ? <span className="block">{plant.status}</span> : null}
                     </figcaption>
                   </figure>
 
@@ -201,13 +206,12 @@ export function Manufacturing() {
                         </span>
                       ))}
                     </h3>
-                    <p className={`mt-8 ${detailTextClassName} text-base leading-6 xl:mt-10 xl:text-lg xl:leading-8`}>
+                    <p className={`mt-6 ${detailTextClassName} text-base font-normal leading-6 xl:mt-8 xl:text-lg xl:leading-8`}>
                       {plant.details}
-                      {plant.status ? <span className="block">{plant.status}</span> : null}
                     </p>
                   </div>
                 </div>
-              </article>
+              </Link>
             );
           })}
         </Reveal>

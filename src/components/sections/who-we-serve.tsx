@@ -152,14 +152,14 @@ export function WhoWeServe() {
                 onMouseEnter={() => setActive(index)}
                 onMouseLeave={() => setActive(null)}
                 onFocus={() => setActive(index)}
-                className={`relative h-[460px] w-[86%] shrink-0 snap-start focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-700 sm:w-[82%] md:h-[510px] md:w-auto md:shrink lg:h-[540px] ${
+                className={`relative h-[430px] w-[86%] shrink-0 snap-start focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-700 sm:w-[82%] md:h-[470px] md:w-auto md:shrink lg:h-[500px] ${
                   isActive ? "z-10" : "z-0"
                 }`}
               >
                 <div
                   className={`absolute inset-0 origin-center overflow-hidden rounded-[6px] transition-[scale,box-shadow] motion-reduce:transition-none ${GROW} ${
                     isActive
-                      ? "shadow-[0_10px_22px_rgba(0,0,0,0.2)] md:scale-[1.07] xl:scale-[1.18]"
+                      ? "shadow-[0_10px_22px_rgba(0,0,0,0.2)] md:scale-[1.04] xl:scale-[1.1]"
                       : "scale-100"
                   }`}
                 >
@@ -195,31 +195,24 @@ export function WhoWeServe() {
                   </h3>
 
                   <div
-                    className={`absolute inset-x-6 top-14 z-10 text-left text-[32px] font-semibold leading-[39px] tracking-normal align-bottom text-white transition-[opacity,translate] duration-500 md:inset-x-8 md:top-16 md:text-center md:text-[34px] md:leading-[42px] xl:inset-x-12 xl:text-[42px] ${
-                      isActive
-                        ? "translate-y-0 opacity-100 delay-150"
-                        : "translate-y-0 opacity-100 md:pointer-events-none md:translate-y-3 md:opacity-0"
-                    }`}
-                  >
-                    {card.title.map((line) => (
-                      <span key={line} className="block">
-                        {line}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div
-                    className={`absolute inset-x-6 bottom-12 top-[176px] z-10 flex flex-col items-start text-left text-white transition-[opacity,translate] duration-500 md:inset-x-8 md:bottom-10 md:top-[190px] md:items-center md:text-center xl:inset-x-12 xl:top-[220px] ${
+                    className={`absolute inset-x-6 bottom-12 top-14 z-10 flex flex-col items-start gap-5 text-left text-white transition-[opacity,translate] duration-500 md:inset-x-8 md:bottom-10 md:top-16 md:items-center md:gap-6 md:text-center xl:inset-x-12 ${
                       isActive
                         ? "translate-y-0 opacity-100 delay-200"
                         : "translate-y-0 opacity-100 md:pointer-events-none md:translate-y-4 md:opacity-0"
                     }`}
                   >
+                    <h3 className="text-[32px] font-semibold leading-[39px] tracking-normal md:text-[34px] md:leading-[42px] xl:text-[42px]">
+                      {card.title.map((line) => (
+                        <span key={line} className="block">
+                          {line}
+                        </span>
+                      ))}
+                    </h3>
                     <p className="max-w-[430px] text-sm leading-5 md:mx-auto lg:text-base lg:leading-6 xl:text-lg xl:leading-7">
                       {card.description}
                     </p>
                     <ContactModalTrigger
-                      className="mt-auto rounded-full bg-white px-7 py-2.5 text-sm font-bold text-primary-950 hover:bg-primary-50 md:px-8 md:text-base"
+                      className="rounded-full bg-white px-7 py-2.5 text-sm font-bold text-primary-950 hover:bg-primary-50 md:px-8 md:text-base"
                     >
                       Get in Touch
                     </ContactModalTrigger>

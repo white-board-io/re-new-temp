@@ -443,28 +443,32 @@ export function ManufacturingDetail() {
         <section className="mx-auto max-w-[1580px] px-4 py-20 sm:px-6 lg:py-24">
           <Reveal
             stagger
-            className={`grid w-full items-start gap-14 pb-20 lg:gap-12 lg:pb-[150px] ${
+            className={`grid w-full items-start gap-14 pb-20 lg:items-stretch lg:gap-12 lg:pb-[150px] ${
               isVizag ? "justify-items-center" : "lg:grid-cols-2"
             }`}
           >
-            <div className={`w-full max-w-none ${isVizag ? "text-center" : ""}`}>
+            <div
+              className={`w-full max-w-none ${
+                isVizag ? "text-center" : "lg:flex lg:h-full lg:flex-col lg:justify-between"
+              }`}
+            >
               <p
-                className={`text-4xl font-extrabold uppercase leading-[1.08] tracking-[0.03em] text-primary-700 sm:text-[60px] sm:leading-[64px] ${
-                  isVizag ? "mx-auto max-w-[760px]" : "max-w-[400px]"
+                className={`text-4xl font-extrabold uppercase leading-[1.08] tracking-[0.03em] text-primary-700 sm:text-[48px] sm:leading-[54px] ${
+                  isVizag ? "mx-auto max-w-[760px]" : "max-w-[620px]"
                 }`}
               >
                 {activePlant.eyebrow}
               </p>
               <h2
-                className={`mt-10 whitespace-pre-line text-4xl font-normal leading-tight tracking-[0.03em] text-primary-950 sm:text-[60px] sm:leading-[70px] ${
-                  isVizag ? "mx-auto max-w-[980px]" : "max-w-[650px]"
+                className={`mt-8 whitespace-pre-line text-4xl font-normal leading-tight tracking-[0.03em] text-primary-950 sm:text-[46px] sm:leading-[54px] ${
+                  isVizag ? "mx-auto max-w-[980px]" : "max-w-[650px] lg:mt-0"
                 }`}
               >
                 {activePlant.headline}
               </h2>
             </div>
             {!isVizag ? (
-              <div className="relative mx-auto flex aspect-[741/378] w-full max-w-none items-start justify-center overflow-hidden lg:mx-0">
+              <div className="relative mx-auto flex aspect-[741/430] w-full max-w-none items-start justify-center overflow-hidden lg:mx-0">
                 <Image
                   src={activePlant.map}
                   alt={activePlant.mapAlt}

@@ -49,7 +49,7 @@ export function WhoWeServe() {
           className="w-full animate-sunburst motion-reduce:animate-none"
         />
       </div>
-      <div className="relative mx-auto max-w-content px-5 text-left sm:px-6">
+      <div className="relative mx-auto max-w-content px-5 text-left sm:px-6 md:text-center">
         <Reveal>
           <p className="text-xl font-bold uppercase leading-7 text-primary-700 md:text-2xl md:leading-8">
             Who We Serve
@@ -148,20 +148,20 @@ export function WhoWeServe() {
                   </h3>
 
                   <div
-                    className={`absolute inset-x-6 bottom-8 top-20 z-10 flex flex-col items-start gap-5 text-left text-white transition-[opacity,translate] duration-500 md:inset-x-8 md:bottom-8 md:top-24 md:items-center md:gap-6 md:text-center lg:top-28 xl:inset-x-12 ${
+                    className={`absolute inset-x-6 inset-y-8 z-10 flex flex-col items-start justify-center gap-5 text-left text-white transition-[opacity,translate] duration-500 md:inset-x-8 md:items-center md:gap-6 md:text-center xl:inset-x-12 ${
                       isActive
                         ? "translate-y-0 opacity-100 delay-200"
                         : "translate-y-0 opacity-100 md:pointer-events-none md:translate-y-4 md:opacity-0"
                     }`}
                   >
-                    <h3 className="text-[32px] font-semibold leading-[39px] tracking-normal md:text-[34px] md:leading-[42px] xl:text-[42px]">
+                    <h3 className="min-h-[78px] text-[32px] font-semibold leading-[39px] tracking-normal md:min-h-[84px] md:text-[34px] md:leading-[42px] xl:text-[42px]">
                       {card.title.map((line) => (
                         <span key={line} className="block">
                           {line}
                         </span>
                       ))}
                     </h3>
-                    <p className="max-w-[430px] text-sm leading-5 md:mx-auto lg:text-base lg:leading-6 xl:text-lg xl:leading-7">
+                    <p className="flex max-w-[430px] items-center text-sm leading-5 md:mx-auto md:min-h-[168px] lg:text-base lg:leading-6 xl:min-h-[200px] xl:text-lg xl:leading-7">
                       {card.description}
                     </p>
                     <ContactModalTrigger

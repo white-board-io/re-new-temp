@@ -32,11 +32,11 @@ export function PressReleases() {
   return (
     <section id="press-releases" className="bg-white pb-section md:py-section">
       <div className="mx-auto max-w-content px-4 sm:px-6">
-        <Reveal as="header" className="text-left">
+        <Reveal as="header" className="text-left md:text-center">
           <h2 className="text-[28px] font-bold leading-[1.14] text-primary-950 sm:text-[34px] md:text-[54px] md:leading-[62px]">
             Press Releases
           </h2>
-          <p className="mt-6 max-w-2xl text-xl leading-8 text-neutral-500">
+          <p className="mt-6 max-w-2xl text-xl leading-8 text-neutral-500 md:mx-auto">
             The latest updates from India&apos;s leading solar module manufacturer.
             <br className="hidden sm:block" /> Milestones, investments, and projects making
             headlines.

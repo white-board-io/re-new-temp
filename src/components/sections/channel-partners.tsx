@@ -158,7 +158,7 @@ export function ChannelPartners() {
 
   return (
     <section id="channel-partners" className="bg-gradient-to-b from-surface-tint to-white">
-      <div className="relative overflow-hidden bg-primary-950 pb-64 pt-24 text-left">
+      <div className="relative overflow-hidden bg-primary-950 pb-64 pt-24 text-left md:text-center">
         <Image
           src="/images/partners-header-bg.webp"
           alt=""

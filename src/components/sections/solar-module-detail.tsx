@@ -478,11 +478,14 @@ export function SolarModuleDetail() {
                     className="grid w-full gap-3 text-center lg:grid-cols-[44px_minmax(0,520px)] lg:items-start lg:gap-7 lg:text-left"
                   >
                     <FeatureIcon icon={feature.icon} />
-                    <span className="mx-auto w-full max-w-[520px] lg:mx-0">
+                    <span
+                      className="group relative mx-auto w-full max-w-[520px] lg:mx-0 lg:cursor-default lg:focus-visible:outline lg:focus-visible:outline-2 lg:focus-visible:outline-offset-4 lg:focus-visible:outline-primary-700"
+                      tabIndex={0}
+                    >
                       <span className="block text-xl font-bold leading-tight text-[#143b58] sm:text-3xl">
                         {feature.title}
                       </span>
-                      <span className="block pt-3 text-sm leading-6 text-[#143b58] sm:pt-4 sm:text-xl sm:leading-8">
+                      <span className="block pt-3 text-sm leading-6 text-[#143b58] sm:pt-4 sm:text-xl sm:leading-8 lg:pointer-events-none lg:absolute lg:left-0 lg:top-full lg:z-20 lg:w-full lg:translate-y-3 lg:rounded lg:border-l-2 lg:border-primary-400 lg:bg-white/95 lg:px-4 lg:py-3 lg:opacity-0 lg:shadow-[0_10px_30px_rgba(20,59,88,0.12)] lg:backdrop-blur-sm lg:transition-[opacity,transform] lg:duration-[900ms] lg:ease-[cubic-bezier(0.25,0.1,0.25,1)] lg:group-focus-within:pointer-events-auto lg:group-focus-within:translate-y-0 lg:group-focus-within:opacity-100 lg:group-hover:pointer-events-auto lg:group-hover:translate-y-0 lg:group-hover:opacity-100 motion-reduce:transition-none motion-reduce:transform-none">
                         {feature.description}
                       </span>
                     </span>

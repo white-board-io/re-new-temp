@@ -28,11 +28,11 @@ export function Blogs() {
   return (
     <section id="blogs" className="bg-white pb-section md:py-section">
       <div className="mx-auto max-w-content px-4 sm:px-6">
-        <Reveal as="header" className="text-left">
+        <Reveal as="header" className="text-left md:text-center">
           <h2 className="text-[28px] font-bold leading-[1.14] text-primary-950 sm:text-[34px] md:text-[54px] md:leading-[62px]">
             Blogs
           </h2>
-          <p className="mt-6 max-w-3xl text-xl leading-8 text-neutral-500">
+          <p className="mt-6 max-w-3xl text-xl leading-8 text-neutral-500 md:mx-auto">
             Discover updates, ideas, and breakthroughs from ReNew Solar Panels business.
           </p>
         </Reveal>

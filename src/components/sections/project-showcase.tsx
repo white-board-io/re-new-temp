@@ -7,7 +7,7 @@ import { Reveal } from "@/components/reveal";
 const PROJECT_SLIDES = [
   {
     capacity: "1000 MWp",
-    module: "Bifacial 540 Wp TOPCon",
+    module: "Bifacial 540 Wp TOPConPERC",
     developer: "ReNew",
     offtaker: "Solar Energy Corporation of India",
     location: "Rajasthan",
@@ -173,8 +173,8 @@ export function ProjectShowcase() {
         <div className="absolute inset-0 bg-black/45" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.48)_0%,rgba(0,0,0,0.24)_38%,rgba(0,0,0,0.1)_100%)]" />
 
-        <div className="relative mx-auto flex h-full max-w-content items-center px-4 sm:px-6">
-          <div className="absolute bottom-8 right-4 flex gap-3 md:left-4 md:right-auto md:top-1/2 md:bottom-auto md:-translate-y-1/2 md:flex-col md:gap-5 lg:-left-16 xl:-left-14">
+        <div className="relative mx-auto flex h-full max-w-content items-start px-4 pt-16 sm:px-6 sm:pt-20 lg:pt-24">
+          <div className="absolute bottom-8 right-4 flex gap-3 md:bottom-auto md:top-1/2 md:-translate-y-1/2 md:flex-col md:gap-5 lg:right-20 xl:right-28">
             {PROJECT_SLIDES.map((slide, slideIndex) => {
               const isActive = slideIndex === activeSlide;
 
@@ -207,28 +207,25 @@ export function ProjectShowcase() {
 
           {/* One fade as the showcase arrives. Slide-to-slide changes are the
               scroll track's job, so this settles once and stays put. */}
-          <Reveal className="max-w-2xl pl-0 text-white md:pl-24 lg:pl-20">
+          <Reveal className="max-w-2xl pl-0 text-white md:pl-20 lg:pl-24 xl:pl-28">
             <p className="text-5xl font-bold leading-none text-accent sm:text-[64px]">
               {PROJECT_SLIDES[activeSlide].capacity}
             </p>
 
-            <dl className="mt-8 space-y-5 text-xl leading-8 sm:mt-10 sm:text-2xl sm:leading-9">
-              <div>
-                <dt className="font-bold">Module</dt>
-                <dd>{PROJECT_SLIDES[activeSlide].module}</dd>
-              </div>
-              <div>
-                <dt className="font-bold">Developer</dt>
-                <dd>{PROJECT_SLIDES[activeSlide].developer}</dd>
-              </div>
-              <div>
-                <dt className="font-bold">Offtaker</dt>
-                <dd>{PROJECT_SLIDES[activeSlide].offtaker}</dd>
-              </div>
-              <div>
-                <dt className="font-bold">Location</dt>
-                <dd>{PROJECT_SLIDES[activeSlide].location}</dd>
-              </div>
+            <dl className="mt-8 w-full max-w-[520px] text-base leading-6 sm:mt-10 sm:text-xl sm:leading-8">
+              {(
+                [
+                  ["Module", PROJECT_SLIDES[activeSlide].module],
+                  ["Developer", PROJECT_SLIDES[activeSlide].developer],
+                  ["Offtaker", PROJECT_SLIDES[activeSlide].offtaker],
+                  ["Location", PROJECT_SLIDES[activeSlide].location],
+                ] as const
+              ).map(([label, value]) => (
+                <div key={label} className="flex gap-1 border-b border-white/25 py-2.5">
+                  <dt className="font-bold">{label}</dt>
+                  <dd>{value}</dd>
+                </div>
+              ))}
             </dl>
           </Reveal>
         </div>

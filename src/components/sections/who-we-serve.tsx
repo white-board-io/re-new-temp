@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { ContactModalTrigger } from "@/components/contact-modal";
 import { Reveal } from "@/components/reveal";
 
@@ -32,67 +32,8 @@ const cards = [
 const GROW = "duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]";
 
 export function WhoWeServe() {
-  const [scrollActive, setScrollActive] = useState<number | null>(null);
   const [interactionActive, setInteractionActive] = useState<number | null>(null);
-  const cardRefs = useRef<Array<HTMLElement | null>>([]);
-  const active = interactionActive ?? scrollActive;
-
-  useEffect(() => {
-    let frame = 0;
-
-    const updateScrollActive = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => {
-        const viewportCenter = {
-          x: window.innerWidth / 2,
-          y: window.innerHeight / 2,
-        };
-
-        const closest = cardRefs.current.reduce<{
-          index: number;
-          distance: number;
-        } | null>((best, card, index) => {
-          if (!card) return best;
-
-          const rect = card.getBoundingClientRect();
-          const visible =
-            rect.bottom > 0 &&
-            rect.top < window.innerHeight &&
-            rect.right > 0 &&
-            rect.left < window.innerWidth;
-
-          if (!visible) return best;
-
-          const cardCenter = {
-            x: rect.left + rect.width / 2,
-            y: rect.top + rect.height / 2,
-          };
-          const distance = Math.hypot(
-            cardCenter.x - viewportCenter.x,
-            cardCenter.y - viewportCenter.y,
-          );
-
-          if (!best || distance < best.distance) {
-            return { index, distance };
-          }
-
-          return best;
-        }, null);
-
-        setScrollActive(closest?.index ?? null);
-      });
-    };
-
-    updateScrollActive();
-    window.addEventListener("scroll", updateScrollActive, { passive: true });
-    window.addEventListener("resize", updateScrollActive);
-
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", updateScrollActive);
-      window.removeEventListener("resize", updateScrollActive);
-    };
-  }, []);
+  const active = interactionActive;
 
   return (
     <section
@@ -159,9 +100,6 @@ export function WhoWeServe() {
             return (
               <article
                 key={card.title.join(" ")}
-                ref={(node) => {
-                  cardRefs.current[index] = node;
-                }}
                 tabIndex={0}
                 onClick={() => setInteractionActive(index)}
                 onMouseEnter={() => setInteractionActive(index)}

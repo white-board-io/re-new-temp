@@ -5,8 +5,6 @@ import { useState, type ComponentType } from "react";
 import { ContactModalTrigger } from "@/components/contact-modal";
 import { Reveal } from "@/components/reveal";
 import {
-  ChevronLeft,
-  ChevronRight,
   Cpu,
   Gauge,
   ShieldCheck,
@@ -108,8 +106,8 @@ const datasheetHref = "/downloads/product-datasheets/m10r-p-type-perc-bifacial.p
 
 function CardIcon({ icon: Icon }: { icon: ComponentType<LucideProps> }) {
   return (
-    <span aria-hidden className="flex h-20 items-center justify-center text-primary-700">
-      <Icon className="size-16" strokeWidth={1.6} />
+    <span aria-hidden className="flex h-12 items-center justify-center text-primary-700 sm:h-20">
+      <Icon className="size-10 sm:size-16" strokeWidth={1.6} />
     </span>
   );
 }
@@ -118,15 +116,9 @@ export function SolarCellDetail() {
   const [selectedImage, setSelectedImage] = useState(0);
   const [activeSlide, setActiveSlide] = useState(0);
 
-  const moveSlide = (step: number) => {
-    setActiveSlide((current) =>
-      (current + step + carouselImages.length) % carouselImages.length,
-    );
-  };
-
   return (
     <>
-      <section className="relative flex min-h-[460px] items-start justify-center overflow-hidden px-4 pb-20 pt-20 text-center sm:min-h-[560px] sm:px-6 lg:min-h-[704px] lg:pt-[114px]">
+      <section className="relative flex min-h-[360px] items-start justify-center overflow-hidden px-4 pb-12 pt-12 text-center sm:min-h-[560px] sm:px-6 sm:pb-20 sm:pt-20 lg:min-h-[704px] lg:pt-[114px]">
         <Image
           src="/images/solarcell.webp"
           alt="Solar panels across a desert landscape"
@@ -137,12 +129,12 @@ export function SolarCellDetail() {
         />
         <div className="absolute inset-0 bg-white/10" />
         <Reveal className="relative max-w-5xl text-primary-950">
-          <h1 className="text-[28px] font-bold leading-[1.14] sm:text-[34px] lg:text-[60px] lg:leading-[64px] lg:tracking-hero">
+          <h1 className="text-2xl font-bold leading-[1.14] sm:text-[34px] lg:text-[60px] lg:leading-[64px] lg:tracking-hero">
             The cell at the heart of every
             <br />
             ReNew Solar modules.
           </h1>
-          <p className="mx-auto mt-8 max-w-3xl text-xl font-normal leading-8 lg:mt-7 lg:text-2xl">
+          <p className="mx-auto mt-5 max-w-3xl text-base font-normal leading-6 sm:mt-8 sm:text-xl sm:leading-8 lg:mt-7 lg:text-2xl">
             High-efficiency bifacial cells manufactured at our Dholera facility.{" "}
             <br className="hidden sm:block" />
             Built for precision. Graded for performance.
@@ -162,10 +154,10 @@ export function SolarCellDetail() {
 
         <Reveal
           stagger
-          className="mx-auto grid max-w-content gap-14 px-4 py-20 sm:px-6 lg:grid-cols-[1.08fr_1fr] lg:gap-24 lg:py-28 xl:px-0"
+          className="mx-auto grid max-w-content gap-8 px-4 py-12 sm:gap-14 sm:px-6 sm:py-20 lg:grid-cols-[1.08fr_1fr] lg:gap-24 lg:py-28 xl:px-0"
         >
           <div>
-            <div className="relative mx-auto h-[430px] max-w-[660px] sm:h-[560px] lg:h-[640px]">
+            <div className="relative mx-auto h-[320px] max-w-[660px] sm:h-[560px] lg:h-[640px]">
               <Image
                 src={gallery[selectedImage].src}
                 alt={gallery[selectedImage].alt}
@@ -194,17 +186,19 @@ export function SolarCellDetail() {
             </div>
           </div>
 
-          <div className="pt-4 text-center text-primary-950 lg:pt-10 lg:text-left">
+          <div className="text-center text-primary-950 lg:pt-10 lg:text-left">
             <h2 className="text-[28px] font-bold leading-[1.14] sm:text-4xl">
               {productName}
             </h2>
-            <p className="mt-4 text-2xl font-bold text-primary-700">Right. Reliable. Ready.</p>
+            <p className="mt-3 text-xl font-bold text-primary-700 sm:mt-4 sm:text-2xl">
+              High Conversion Efficiency.
+            </p>
 
-            <h3 className="mt-12 text-left text-2xl font-bold text-primary-950 sm:mt-16">
+            <h3 className="mt-12 hidden text-left text-2xl font-bold text-primary-950 sm:mt-16 sm:block">
               Product Specifications
             </h3>
 
-            <dl className="mt-6 text-left text-lg sm:text-xl">
+            <dl className="mt-6 hidden text-left text-lg sm:block sm:text-xl">
               <div className="border-t border-neutral-200 py-8">
                 <dt>Type</dt>
                 <dd className="mt-2 text-neutral-500">
@@ -229,16 +223,16 @@ export function SolarCellDetail() {
               </div>
             </dl>
 
-            <div className="mt-16 flex flex-wrap justify-center gap-6 lg:justify-start">
+            <div className="mt-8 flex flex-wrap justify-center gap-4 sm:mt-16 sm:gap-6 lg:justify-start">
               <ContactModalTrigger
-                className="inline-flex min-h-10 min-w-[168px] items-center justify-center rounded-full bg-primary-400 px-8 py-0 text-base font-bold text-white transition hover:bg-primary-500 md:px-12 md:py-4 md:text-xl"
+                className="inline-flex min-h-10 w-[220px] items-center justify-center rounded-full bg-primary-400 px-6 py-0 text-base font-bold text-white transition hover:bg-primary-500 md:w-auto md:min-w-[168px] md:px-12 md:py-4 md:text-xl"
               >
                 Enquire Now
               </ContactModalTrigger>
               <a
                 href={datasheetHref}
                 download
-                className="inline-flex min-h-10 min-w-[168px] items-center justify-center rounded-full bg-primary-950 px-8 py-0 text-base font-bold text-white transition hover:bg-primary-900 md:px-12 md:py-4 md:text-xl"
+                className="inline-flex min-h-10 w-[220px] items-center justify-center rounded-full bg-primary-950 px-6 py-0 text-base font-bold text-white transition hover:bg-primary-900 md:w-auto md:min-w-[168px] md:px-12 md:py-4 md:text-xl"
               >
                 Download Datasheet
               </a>
@@ -247,7 +241,7 @@ export function SolarCellDetail() {
         </Reveal>
 
         <div
-          className="px-4 pb-36 pt-16 sm:px-6 sm:pt-20 xl:px-0"
+          className="px-4 pb-20 pt-12 sm:px-6 sm:pb-36 sm:pt-20 xl:px-0"
           style={{
             background:
               "linear-gradient(180deg, #F0F6F3 0%, rgba(240, 246, 243, 0) 100%)",
@@ -255,33 +249,33 @@ export function SolarCellDetail() {
         >
           <div className="mx-auto max-w-content">
             <Reveal>
-              <p className="text-center text-xl font-bold uppercase leading-8 text-primary-700 sm:text-2xl">
+              <p className="text-center text-base font-bold uppercase leading-6 text-primary-700 sm:text-2xl sm:leading-8">
                 What goes into every ReNew solar panel
               </p>
             </Reveal>
-            <Reveal stagger className="mt-10 grid gap-8 md:grid-cols-2 xl:grid-cols-4">
+            <Reveal stagger className="mt-8 grid gap-5 sm:mt-10 sm:gap-8 md:grid-cols-2 xl:grid-cols-4">
               {featureCards.map((feature) => (
                 <article
                   key={feature.description}
-                  className="flex min-h-[445px] flex-col items-center justify-start rounded-md bg-[#0069340F] px-10 pb-12 pt-16 text-center text-[#143b58]"
+                  className="flex min-h-[270px] flex-col items-center justify-start rounded-md bg-[#0069340F] px-6 pb-8 pt-8 text-center text-[#143b58] sm:min-h-[445px] sm:px-10 sm:pb-12 sm:pt-16"
                 >
                   <CardIcon icon={feature.icon} />
-                  <h2 className="mt-10 text-xl font-bold leading-6">{feature.title}</h2>
-                  <p className="mt-10 text-lg leading-7">{feature.description}</p>
+                  <h2 className="mt-5 text-lg font-bold leading-6 sm:mt-10 sm:text-xl">{feature.title}</h2>
+                  <p className="mt-5 text-sm leading-6 sm:mt-10 sm:text-lg sm:leading-7">{feature.description}</p>
                 </article>
               ))}
             </Reveal>
           </div>
         </div>
 
-        <div className="relative pb-24 pt-1 sm:pb-32">
+        <div className="relative pb-20 pt-1 sm:pb-32">
           <div
             aria-hidden
             className="absolute inset-x-0 bottom-0 top-[141px] bg-primary-700 sm:top-[181px] lg:top-[338px]"
           />
-          <div className="relative mx-auto max-w-[1532px] px-4 sm:px-6 xl:px-0">
+          <div className="relative mx-auto max-w-[1532px] px-0 sm:px-6 xl:px-0">
             <Reveal className="relative">
-              <div className="relative aspect-[1532/676] min-h-[280px] w-full overflow-hidden rounded-md bg-primary-950 sm:min-h-[360px] lg:min-h-0">
+              <div className="relative aspect-[1532/676] min-h-[280px] w-full overflow-hidden bg-primary-950 sm:min-h-[360px] sm:rounded-md lg:min-h-0">
                 <Image
                   key={carouselImages[activeSlide].src}
                   src={carouselImages[activeSlide].src}
@@ -290,39 +284,21 @@ export function SolarCellDetail() {
                   sizes="(min-width: 1536px) 1532px, 100vw"
                   className="object-cover transition-opacity duration-500"
                 />
-
-                <div className="absolute inset-x-0 bottom-10 flex justify-center gap-5">
-                  {carouselImages.map((image, index) => (
-                    <button
-                      key={image.src}
-                      type="button"
-                      aria-label={`Show manufacturing image ${index + 1}`}
-                      aria-pressed={activeSlide === index}
-                      onClick={() => setActiveSlide(index)}
-                      className={`h-2.5 w-14 rounded-full transition ${
-                        activeSlide === index ? "bg-primary-400" : "bg-white"
-                      }`}
-                    />
-                  ))}
-                </div>
               </div>
-
-              <button
-                type="button"
-                aria-label="Previous manufacturing image"
-                onClick={() => moveSlide(-1)}
-                className="absolute left-4 top-1/2 flex size-14 -translate-y-1/2 items-center justify-center rounded-md bg-white/90 text-primary-950 transition hover:bg-white sm:left-6 lg:-left-24"
-              >
-                <ChevronLeft aria-hidden className="size-8" strokeWidth={1.7} />
-              </button>
-              <button
-                type="button"
-                aria-label="Next manufacturing image"
-                onClick={() => moveSlide(1)}
-                className="absolute right-4 top-1/2 flex size-14 -translate-y-1/2 items-center justify-center rounded-md bg-white/90 text-primary-950 transition hover:bg-white sm:right-6 lg:-right-24"
-              >
-                <ChevronRight aria-hidden className="size-8" strokeWidth={1.7} />
-              </button>
+              <div className="mt-5 flex justify-center gap-3 sm:mt-8">
+                {carouselImages.map((image, index) => (
+                  <button
+                    key={image.src}
+                    type="button"
+                    aria-label={`Show manufacturing image ${index + 1}`}
+                    aria-pressed={activeSlide === index}
+                    onClick={() => setActiveSlide(index)}
+                    className={`size-2.5 rounded-full transition sm:size-3 ${
+                      activeSlide === index ? "bg-primary-400" : "bg-white"
+                    }`}
+                  />
+                ))}
+              </div>
             </Reveal>
           </div>
         </div>

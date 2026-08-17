@@ -420,12 +420,8 @@ export function ManufacturingDetail() {
                       ? "Dholera"
                       : "Visakhapatnam"}
                 </span> */}
-                <span className="sm:hidden">
-                  {plant.id === "jaipur"
-                    ? "Jaipur"
-                    : plant.id === "dholera"
-                      ? "Dholera"
-                      : "Visakhapatnam"}
+                <span className="whitespace-pre-line leading-tight sm:hidden">
+                  {plant.shortName}
                 </span>
                 <span className="hidden sm:inline">{plant.name}</span>
                 <span
@@ -453,14 +449,21 @@ export function ManufacturingDetail() {
               }`}
             >
               <p
-                className={`text-[28px] font-extrabold uppercase leading-[1.14] tracking-[0.03em] text-primary-700 sm:text-[34px] md:text-[48px] md:leading-[54px] ${
+                className={`text-base font-bold uppercase tracking-[0.18em] text-primary-700 sm:text-xl md:text-2xl lg:hidden ${
+                  isVizag ? "mx-auto max-w-[760px]" : "max-w-[620px]"
+                }`}
+              >
+                {activePlant.name}
+              </p>
+              <p
+                className={`mt-5 text-2xl font-extrabold uppercase leading-[1.14] tracking-[0.03em] text-primary-700 sm:text-[34px] md:text-[48px] md:leading-[54px] lg:mt-0 ${
                   isVizag ? "mx-auto max-w-[760px]" : "max-w-[620px]"
                 }`}
               >
                 {activePlant.eyebrow}
               </p>
               <h2
-                className={`mt-8 whitespace-pre-line text-[28px] font-normal leading-[1.14] tracking-[0.03em] text-primary-950 sm:text-[34px] md:text-[46px] md:leading-[54px] ${
+                className={`mt-7 whitespace-pre-line text-2xl font-normal leading-[1.16] tracking-[0.03em] text-primary-950 sm:text-[34px] md:text-[46px] md:leading-[54px] ${
                   isVizag ? "mx-auto max-w-[980px]" : "max-w-[650px] lg:mt-0"
                 }`}
               >
@@ -573,7 +576,7 @@ export function ManufacturingDetail() {
 
           <Reveal
             stagger
-            className="mt-16 space-y-10 text-xl font-light leading-9 text-neutral-500 sm:mt-[120px] sm:text-[26px] sm:leading-[1.55]"
+            className="mt-14 space-y-7 text-base font-light leading-7 text-neutral-500 sm:mt-[120px] sm:space-y-10 sm:text-[26px] sm:leading-[1.55]"
           >
             {activePlant.paragraphs.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
@@ -587,21 +590,21 @@ export function ManufacturingDetail() {
             alt=""
             width={560}
             height={300}
-            className="pointer-events-none absolute -right-10 -top-16 w-96 opacity-70 lg:w-[560px]"
+            className="pointer-events-none absolute -right-8 -top-10 w-56 opacity-60 sm:w-96 lg:-right-10 lg:-top-16 lg:w-[560px] lg:opacity-70"
           />
           <Reveal className="relative mx-auto max-w-6xl px-4 text-center sm:px-6">
             <p className="text-xl font-bold uppercase text-primary-700">Sustainability Credentials</p>
-            <h2 className="mt-12 text-[28px] font-bold leading-[1.14] text-primary-950 sm:text-[34px] md:text-[50px]">
+            <h2 className="mt-10 text-2xl font-bold leading-[1.14] text-primary-950 sm:mt-12 sm:text-[34px] md:text-[50px]">
               {activePlant.sustainabilityTitle}
             </h2>
-            <p className="mx-auto mt-12 max-w-5xl text-xl font-light leading-9 text-neutral-500 sm:text-2xl sm:leading-10">
+            <p className="mx-auto mt-8 max-w-5xl text-base font-light leading-7 text-neutral-500 sm:mt-12 sm:text-2xl sm:leading-10">
               {activePlant.sustainabilityBody}
             </p>
           </Reveal>
 
           {showSustainabilityMedia ? (
-            <Reveal as="figure" className="relative mx-auto mt-20 max-w-[1580px] px-4 sm:px-6">
-              <div className="relative aspect-[16/7] overflow-hidden rounded-md">
+            <Reveal as="figure" className="relative mx-[calc(50%-50vw)] mt-16 w-screen lg:mx-auto lg:mt-20 lg:max-w-[1580px] lg:px-4 xl:px-0">
+              <div className="relative aspect-[21/9] min-h-[260px] w-full overflow-hidden bg-primary-950 lg:aspect-[16/7] lg:min-h-0 lg:rounded-md">
                 {activePlant.video ? (
                   <video
                     key={activePlant.id}

@@ -124,6 +124,7 @@ type ModuleRange = {
   id: ModuleId;
   label: string;
   title: string;
+  tagline: string;
   range: string;
   efficiency: string;
   cellType: string;
@@ -147,6 +148,7 @@ const moduleRanges: ModuleRange[] = [
     id: "g12r-topcon-bifacial",
     label: "G12R TOPCon Bifacial",
     title: "G12R TOPCon Bifacial Module",
+    tagline: "Right. Reliable. Ready.",
     range: "605 to 640 Wp",
     efficiency: "Up to 23.69%",
     cellType: "N-type TOPCon, 132 half-cut G12R cells",
@@ -168,6 +170,7 @@ const moduleRanges: ModuleRange[] = [
     id: "m10r-topcon",
     label: "M10R TOPCon",
     title: "M10R TOPCon Module",
+    tagline: "Durable. Adaptable.",
     range: "570 to 590 Wp",
     efficiency: "Up to 22.84%",
     cellType: "Bifacial TOPCon, 144 half-cut M10 cells",
@@ -188,6 +191,7 @@ const moduleRanges: ModuleRange[] = [
     id: "m10r-perc",
     label: "M10R PERC",
     title: "M10R PERC Module",
+    tagline: "Reliable. Resilient.",
     range: "530 to 560 Wp",
     efficiency: "Up to 21.68%",
     cellType: "Bifacial Mono PERC, 144 half-cut M10 cells",
@@ -245,7 +249,6 @@ function FeatureIcon({ icon: Icon }: { icon: ComponentType<LucideProps> }) {
 }
 
 export function SolarModuleDetail() {
-  const [activeFeature, setActiveFeature] = useState(1);
   const [activeModuleId, setActiveModuleId] =
     useState<ModuleRange["id"]>("g12r-topcon-bifacial");
   const activeModule =
@@ -279,7 +282,7 @@ export function SolarModuleDetail() {
 
   return (
     <>
-      <section className="relative flex min-h-[460px] items-start justify-center overflow-hidden px-4 pb-20 pt-20 text-center sm:min-h-[560px] sm:px-6 lg:min-h-[704px] lg:pt-[114px]">
+      <section className="relative flex min-h-[360px] items-start justify-center overflow-hidden px-4 pb-12 pt-14 text-center sm:min-h-[560px] sm:px-6 sm:pb-20 sm:pt-20 lg:min-h-[704px] lg:pt-[114px]">
         <Image
           src="/images/solarmodule.webp"
           alt="A large solar farm across green hills at sunrise"
@@ -290,12 +293,12 @@ export function SolarModuleDetail() {
         />
         <div className="absolute inset-0 bg-white/15" />
         <Reveal className="relative max-w-5xl text-primary-950">
-          <h1 className="text-[28px] font-bold leading-[1.14] sm:text-[34px] lg:text-[60px] lg:leading-[64px] lg:tracking-hero">
+          <h1 className="text-2xl font-bold leading-[1.14] sm:text-[34px] lg:text-[60px] lg:leading-[64px] lg:tracking-hero">
             Engineered for performance.
             <br />
             Built for the long run.
           </h1>
-          <p className="mx-auto mt-8 max-w-2xl text-xl font-normal leading-8 lg:mt-7 lg:text-2xl">
+          <p className="mx-auto mt-5 max-w-2xl text-base font-normal leading-6 sm:mt-8 sm:text-xl sm:leading-8 lg:mt-7 lg:text-2xl">
             Three module offerings built for homes, businesses, and large-scale utility
             projects across India.
           </p>
@@ -346,10 +349,10 @@ export function SolarModuleDetail() {
           stagger
           id="module-panel"
           role="tabpanel"
-          className="mx-auto grid max-w-content gap-14 px-4 py-20 sm:px-6 lg:grid-cols-[1.08fr_1fr] lg:gap-24 lg:py-28 xl:px-0"
+          className="mx-auto grid max-w-content gap-8 px-4 py-12 sm:gap-14 sm:px-6 sm:py-20 lg:grid-cols-[1.08fr_1fr] lg:gap-24 lg:py-28 xl:px-0"
         >
         <div>
-          <div className="relative mx-auto mt-4 h-[540px] max-w-[860px] sm:mt-6 sm:h-[720px] lg:mt-8 lg:h-[820px]">
+          <div className="relative mx-auto h-[360px] max-w-[860px] sm:mt-6 sm:h-[720px] lg:mt-8 lg:h-[820px]">
             <Image
               src={activeModule.imageSrc}
               alt={activeModule.imageAlt}
@@ -386,71 +389,71 @@ export function SolarModuleDetail() {
           */}
         </div>
 
-        <div className="pt-4 text-center text-primary-950 lg:pt-10 lg:text-left">
+        <div className="text-center text-primary-950 lg:pt-10 lg:text-left">
           <h2 className="text-[28px] font-bold leading-[1.14] sm:text-4xl">{activeModule.title}</h2>
-          <p className="mt-4 text-2xl font-bold text-primary-700">Right. Reliable. Ready.</p>
+          <p className="mt-3 text-xl font-bold text-primary-700 sm:mt-4 sm:text-2xl">{activeModule.tagline}</p>
 
-          <dl className="mt-8 grid grid-cols-2 border-t border-neutral-200 text-left text-sm leading-5 sm:mt-16 sm:grid-cols-6 sm:text-xl sm:leading-normal">
-            <div className="col-span-1 border-b border-neutral-200 py-5 pr-2 sm:col-span-3 sm:py-8 sm:pr-4">
+          <dl className="mt-6 grid grid-cols-2 border-t border-neutral-200 text-left text-sm leading-5 sm:mt-16 sm:grid-cols-6 sm:text-xl sm:leading-normal">
+            <div className="col-span-1 border-b border-neutral-200 py-4 pr-2 sm:col-span-3 sm:py-8 sm:pr-4">
               <dt>Range</dt>
               <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.range}</dd>
             </div>
-            <div className="col-span-1 border-b border-neutral-200 py-5 pl-2 text-right sm:col-span-3 sm:py-8 sm:pl-4 sm:text-left">
+            <div className="col-span-1 border-b border-neutral-200 py-4 pl-2 text-right sm:col-span-3 sm:py-8 sm:pl-4 sm:text-left">
               <dt>Efficiency</dt>
               <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.efficiency}</dd>
             </div>
-            <div className="col-span-2 border-b border-neutral-200 py-5 sm:col-span-6 sm:py-8">
+            <div className="col-span-2 border-b border-neutral-200 py-4 sm:col-span-6 sm:py-8">
               <dt>Cell Type</dt>
               <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.cellType}</dd>
             </div>
-            <div className="col-span-1 border-b border-neutral-200 py-5 pr-2 sm:col-span-2 sm:py-8 sm:pr-4">
+            <div className="col-span-1 border-b border-neutral-200 py-4 pr-2 sm:col-span-2 sm:py-8 sm:pr-4">
               <dt>Bifaciality Factor</dt>
               <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.bifacialityFactor}</dd>
             </div>
-            <div className="col-span-1 border-b border-neutral-200 py-5 pl-2 text-right sm:col-span-2 sm:px-2 sm:py-8 sm:text-left">
+            <div className="col-span-1 border-b border-neutral-200 py-4 pl-2 text-right sm:col-span-2 sm:px-2 sm:py-8 sm:text-left">
               <dt>Power Warranty</dt>
               <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.powerWarranty}</dd>
             </div>
-            <div className="col-span-1 border-b border-neutral-200 py-5 pr-2 sm:col-span-2 sm:py-8 sm:pl-4 sm:pr-0">
+            <div className="col-span-1 border-b border-neutral-200 py-4 pr-2 sm:col-span-2 sm:py-8 sm:pl-4 sm:pr-0">
               <dt>Product Warranty</dt>
               <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.productWarranty}</dd>
             </div>
-            <div className="col-span-1 border-b border-neutral-200 py-5 pl-2 text-right sm:col-span-3 sm:py-8 sm:pl-0 sm:pr-4 sm:text-left">
+            <div className="col-span-1 border-b border-neutral-200 py-4 pl-2 text-right sm:col-span-3 sm:py-8 sm:pl-0 sm:pr-4 sm:text-left">
               <dt>First Year Degradation</dt>
               <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.firstYearDegradation}</dd>
             </div>
-            <div className="col-span-1 border-b border-neutral-200 py-5 pr-2 sm:col-span-3 sm:py-8 sm:pl-4 sm:pr-0">
+            <div className="col-span-1 border-b border-neutral-200 py-4 pr-2 sm:col-span-3 sm:py-8 sm:pl-4 sm:pr-0">
               <dt>Annual Power Attenuation</dt>
               <dd className="mt-1 text-neutral-500 sm:mt-2">
                 {activeModule.annualPowerAttenuation}
               </dd>
             </div>
-            <div className="col-span-1 border-b border-neutral-200 py-5 pl-2 text-right sm:col-span-3 sm:py-8 sm:pl-0 sm:pr-4 sm:text-left">
+            <div className="col-span-1 border-b border-neutral-200 py-4 pl-2 text-right sm:col-span-3 sm:py-8 sm:pl-0 sm:pr-4 sm:text-left">
               <dt>Dimensions</dt>
               <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.dimensions}</dd>
             </div>
-            <div className="col-span-1 border-b border-neutral-200 py-5 pr-2 sm:col-span-3 sm:py-8 sm:pl-4 sm:pr-0">
+            <div className="col-span-1 border-b border-neutral-200 py-4 pr-2 sm:col-span-3 sm:py-8 sm:pl-4 sm:pr-0">
               <dt>Weight</dt>
               <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.weight}</dd>
             </div>
             {activeModule.almmApproved ? (
-              <div className="col-span-1 border-b border-neutral-200 py-5 pl-2 text-right sm:col-span-6 sm:py-8 sm:pl-0 sm:text-left">
+              <div className="col-span-1 border-b border-neutral-200 py-4 pl-2 text-right sm:col-span-6 sm:py-8 sm:pl-0 sm:text-left">
                 <dt>ALMM Approved</dt>
                 <dd className="mt-1 text-neutral-500 sm:mt-2">{activeModule.almmApproved}</dd>
               </div>
             ) : null}
           </dl>
 
-          <div className="mt-16 flex flex-wrap justify-center gap-6 lg:justify-start">
+          <div className="mt-8 flex flex-wrap justify-center gap-4 sm:mt-16 sm:gap-6 lg:justify-start">
             <ContactModalTrigger
-              className="inline-flex min-h-10 min-w-[168px] items-center justify-center rounded-full bg-primary-400 px-8 py-0 text-base font-bold text-white transition hover:bg-primary-500 md:px-12 md:py-4 md:text-xl"
+              className="inline-flex min-h-10 w-[220px] items-center justify-center rounded-full bg-primary-400 px-6 py-0 text-base font-bold text-white transition hover:bg-primary-500 md:min-h-[60px] md:w-auto md:min-w-[168px] md:px-12 md:py-4 md:text-xl"
             >
               Enquire Now
             </ContactModalTrigger>
             <a
               href={activeModule.datasheetHref}
               download
-              className="inline-flex min-h-10 min-w-[168px] items-center justify-center rounded-full bg-primary-950 px-8 py-0 text-base font-bold text-white transition hover:bg-primary-900 md:px-12 md:py-4 md:text-xl"
+              className="inline-flex min-h-10 w-[220px] items-center justify-center rounded-full bg-primary-950 px-6 py-0 text-base font-bold text-white transition hover:bg-primary-900 md:min-h-[60px] md:w-auto md:min-w-[168px] md:px-12 md:py-4 md:text-xl"
             >
               Download Datasheet
             </a>
@@ -461,43 +464,29 @@ export function SolarModuleDetail() {
       <div className="bg-[linear-gradient(180deg,#F0F6F3_0%,rgba(240,246,243,0)_30%,#FFFFFF_100%)]">
         <Reveal
           stagger
-          className="mx-auto grid max-w-content gap-16 px-4 pb-44 pt-16 sm:px-6 lg:grid-cols-[0.98fr_1fr] lg:gap-24 lg:pb-64 lg:pt-24 xl:px-0"
+          className="mx-auto grid max-w-content gap-10 px-4 pb-20 pt-10 sm:gap-16 sm:px-6 sm:pb-44 sm:pt-16 lg:grid-cols-[0.98fr_1fr] lg:gap-24 lg:pb-64 lg:pt-24 xl:px-0"
         >
           <div className="pt-0">
-            <p className="mb-14 text-center text-[20px] font-semibold uppercase leading-[40px] tracking-normal text-primary-700 lg:text-left">
+            <p className="mb-8 text-center text-base font-semibold uppercase leading-6 tracking-normal text-primary-700 sm:mb-14 sm:text-[20px] sm:leading-[40px] lg:text-left">
               What goes into every ReNew solar panel
             </p>
-            <div className="space-y-10 sm:space-y-12">
-              {activeModuleFeatures.map((feature, index) => {
-                const active = activeFeature === index;
+            <div className="space-y-8 sm:space-y-12">
+              {activeModuleFeatures.map((feature) => {
                 return (
-                  <button
+                  <div
                     key={`${activeModuleId}-${feature.title}`}
-                    type="button"
-                    onMouseEnter={() => setActiveFeature(index)}
-                    onFocus={() => setActiveFeature(index)}
-                    onClick={() => setActiveFeature(index)}
-                    aria-expanded={active}
-                    className="grid w-full gap-4 text-center lg:grid-cols-[44px_minmax(0,520px)] lg:items-start lg:gap-7 lg:text-left"
+                    className="grid w-full gap-3 text-center lg:grid-cols-[44px_minmax(0,520px)] lg:items-start lg:gap-7 lg:text-left"
                   >
                     <FeatureIcon icon={feature.icon} />
                     <span className="mx-auto w-full max-w-[520px] lg:mx-0">
-                      <span className="block text-2xl font-bold leading-tight text-[#143b58] sm:text-3xl">
+                      <span className="block text-xl font-bold leading-tight text-[#143b58] sm:text-3xl">
                         {feature.title}
                       </span>
-                      <span
-                        className={`mx-auto grid transition-[grid-template-rows,opacity] duration-500 ease-out motion-reduce:transition-none lg:mx-0 ${
-                          active ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-                        }`}
-                      >
-                        <span className="min-h-0 overflow-hidden">
-                          <span className="block pt-4 text-lg leading-7 text-[#143b58] sm:text-xl sm:leading-8">
-                            {feature.description}
-                          </span>
-                        </span>
+                      <span className="block pt-3 text-sm leading-6 text-[#143b58] sm:pt-4 sm:text-xl sm:leading-8">
+                        {feature.description}
                       </span>
                     </span>
-                  </button>
+                  </div>
                 );
               })}
             </div>
@@ -505,7 +494,7 @@ export function SolarModuleDetail() {
 
           <div className="pt-2 lg:pt-0">
             <div className="mx-auto max-w-[560px]">
-              <p className="mb-14 text-left text-[20px] font-semibold uppercase leading-[40px] tracking-normal text-primary-700">
+              <p className="mb-8 text-left text-base font-semibold uppercase leading-6 tracking-normal text-primary-700 sm:mb-14 sm:text-[20px] sm:leading-[40px]">
                 Performance you can count on
               </p>
               <PowerOutputChart

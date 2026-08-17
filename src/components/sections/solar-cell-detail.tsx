@@ -14,16 +14,16 @@ import {
 
 const gallery = [
   {
-    src: "/images/products/solar-cell/m10r-p-type-bifacial-perc-1.webp",
-    alt: "M10R P-type bifacial PERC solar cell product view",
+    src: "/images/products/solar-cell/m10r-p-type-bifacial-perc-3.webp",
+    alt: "M10R P-type bifacial PERC solar cell alternate product view",
   },
   {
     src: "/images/products/solar-cell/m10r-p-type-bifacial-perc-2.webp",
     alt: "M10R P-type bifacial PERC solar cell detail view",
   },
   {
-    src: "/images/products/solar-cell/m10r-p-type-bifacial-perc-3.webp",
-    alt: "M10R P-type bifacial PERC solar cell alternate product view",
+    src: "/images/products/solar-cell/m10r-p-type-bifacial-perc-1.webp",
+    alt: "M10R P-type bifacial PERC solar cell product view",
   },
 ];
 

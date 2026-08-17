@@ -101,7 +101,7 @@ export function SavingsCalculator() {
             <p className="text-2xl font-bold uppercase leading-8 text-primary-700">
               Solar Calculator
             </p>
-            <h2 className="mt-6 max-w-xl text-4xl font-bold text-primary-950 sm:text-[54px] sm:leading-[62px]">
+            <h2 className="mt-6 max-w-xl text-[28px] font-bold leading-[1.14] text-primary-950 sm:text-[34px] md:text-[54px] md:leading-[62px]">
               How much could you <span className="text-primary-700">save</span> this year?
             </h2>
           </div>
@@ -250,7 +250,7 @@ export function SavingsCalculator() {
             </p>
             <button
               type="submit"
-              className="mt-8 inline-flex min-w-36 items-center justify-center rounded-full bg-accent px-8 py-2.5 text-base font-bold text-white transition hover:bg-primary-400 lg:hidden"
+              className="mt-8 inline-flex min-h-[50px] w-full items-center justify-center rounded-full bg-primary-700 px-4 py-3 text-base font-bold text-white transition hover:bg-primary-800 lg:hidden"
             >
               Calculate savings
             </button>

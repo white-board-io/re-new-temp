@@ -11,7 +11,7 @@ const SLIDE_DURATION_MS = 8100;
 function EnquireButton({ className = "" }: { className?: string }) {
   return (
     <ContactModalTrigger
-      className={`rounded-full bg-accent px-8 py-2 text-base font-medium text-white transition-colors hover:bg-primary-400 md:px-11 md:py-2.5 md:text-xl ${className}`}
+      className={`inline-flex min-h-10 min-w-[168px] items-center justify-center rounded-full bg-accent px-8 py-0 text-base font-medium text-white transition-colors hover:bg-primary-400 md:px-11 md:py-2.5 md:text-xl ${className}`}
     >
       Enquire Now
     </ContactModalTrigger>
@@ -169,7 +169,7 @@ export function Hero() {
             Three World-Class Plants
           </p>
           <ContactModalTrigger
-            className="mt-8 inline-flex min-h-10 min-w-[168px] items-center justify-center rounded-full bg-primary-400 px-7 text-base font-medium text-white transition-colors hover:bg-accent md:mt-10 md:min-h-[45px] md:min-w-[204px] md:px-8 md:text-xl xl:mt-[62px]"
+            className="mt-8 inline-flex min-h-10 min-w-[168px] items-center justify-center rounded-full bg-primary-400 px-8 text-base font-medium text-white transition-colors hover:bg-accent md:mt-10 md:min-h-[45px] md:min-w-[204px] md:px-8 md:text-xl xl:mt-[62px]"
           >
             Enquire Now
           </ContactModalTrigger>

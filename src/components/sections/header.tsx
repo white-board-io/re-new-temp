@@ -202,20 +202,20 @@ export function Header({
               ))}
               <li className="flex flex-col items-start gap-3 pt-2">
                 <ContactModalTrigger
-                  className="rounded-full border border-primary-700 px-5 py-2 text-sm font-bold text-primary-700"
+                  className="inline-flex min-h-10 min-w-[168px] items-center justify-center rounded-full border border-primary-700 px-8 py-0 text-base font-bold text-primary-700"
                 >
                   Contact Us
                 </ContactModalTrigger>
                 <a
                   href="tel:9220440044"
-                  className="inline-flex items-center gap-2 rounded-full border border-primary-200 px-5 py-2 text-sm font-bold text-primary-700"
+                  className="inline-flex min-h-10 min-w-[168px] items-center justify-center gap-2 rounded-full border border-primary-200 px-8 py-0 text-base font-bold text-primary-700"
                 >
                   <Phone aria-hidden className="size-4" />
                   <span>Call Us 9220 440 044</span>
                 </a>
                 <a
                   href={savingsHref}
-                  className="rounded-full bg-primary-950 px-5 py-2 text-sm font-bold text-white"
+                  className="inline-flex min-h-10 min-w-[168px] items-center justify-center rounded-full bg-primary-950 px-8 py-0 text-base font-bold text-white"
                 >
                   Solar Calculator
                 </a>

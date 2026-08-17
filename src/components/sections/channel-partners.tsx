@@ -170,7 +170,7 @@ export function ChannelPartners() {
           <p className="text-2xl font-bold uppercase leading-8 text-primary-400">
             Channel Partners
           </p>
-          <h2 className="mt-6 text-4xl font-bold text-white sm:text-[54px] sm:leading-[62px]">
+          <h2 className="mt-6 text-[28px] font-bold leading-[1.14] text-white sm:text-[34px] md:text-[54px] md:leading-[62px]">
             Why our Channel Partners Trust Us
           </h2>
         </Reveal>
@@ -230,7 +230,7 @@ export function ChannelPartners() {
 
         <Reveal className="flex flex-wrap justify-center gap-10 pb-24 pt-16 md:pb-[calc(var(--spacing-section)*2)] lg:-mt-2 lg:pt-0">
           <ContactModalTrigger
-            className="rounded-full border border-primary-950 px-8 py-3 text-lg font-bold text-primary-950 transition hover:bg-primary-50"
+            className="inline-flex min-h-10 min-w-[168px] items-center justify-center rounded-full border border-primary-950 px-8 py-0 text-base font-bold text-primary-950 transition hover:bg-primary-50 md:py-3 md:text-lg"
           >
             Become a Channel Partner
           </ContactModalTrigger>

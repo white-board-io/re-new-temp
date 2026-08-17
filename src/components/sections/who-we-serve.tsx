@@ -32,50 +32,65 @@ const cards = [
 const GROW = "duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]";
 
 export function WhoWeServe() {
-  const [active, setActive] = useState<number | null>(null);
+  const [scrollActive, setScrollActive] = useState<number | null>(null);
+  const [interactionActive, setInteractionActive] = useState<number | null>(null);
   const cardRefs = useRef<Array<HTMLElement | null>>([]);
+  const active = interactionActive ?? scrollActive;
 
   useEffect(() => {
-    const mobileQuery = window.matchMedia("(max-width: 767px)");
-    let observer: IntersectionObserver | null = null;
+    let frame = 0;
 
-    const syncMobileActive = () => {
-      observer?.disconnect();
-      observer = null;
+    const updateScrollActive = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const viewportCenter = {
+          x: window.innerWidth / 2,
+          y: window.innerHeight / 2,
+        };
 
-      if (!mobileQuery.matches) {
-        setActive(null);
-        return;
-      }
+        const closest = cardRefs.current.reduce<{
+          index: number;
+          distance: number;
+        } | null>((best, card, index) => {
+          if (!card) return best;
 
-      setActive(0);
-      observer = new IntersectionObserver(
-        (entries) => {
-          const visible = entries
-            .filter((entry) => entry.isIntersecting)
-            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+          const rect = card.getBoundingClientRect();
+          const visible =
+            rect.bottom > 0 &&
+            rect.top < window.innerHeight &&
+            rect.right > 0 &&
+            rect.left < window.innerWidth;
 
-          if (!visible) return;
+          if (!visible) return best;
 
-          const index = cardRefs.current.findIndex(
-            (card) => card === visible.target,
+          const cardCenter = {
+            x: rect.left + rect.width / 2,
+            y: rect.top + rect.height / 2,
+          };
+          const distance = Math.hypot(
+            cardCenter.x - viewportCenter.x,
+            cardCenter.y - viewportCenter.y,
           );
-          if (index >= 0) setActive(index);
-        },
-        { threshold: [0.45, 0.6, 0.75] },
-      );
 
-      for (const card of cardRefs.current) {
-        if (card) observer.observe(card);
-      }
+          if (!best || distance < best.distance) {
+            return { index, distance };
+          }
+
+          return best;
+        }, null);
+
+        setScrollActive(closest?.index ?? null);
+      });
     };
 
-    syncMobileActive();
-    mobileQuery.addEventListener("change", syncMobileActive);
+    updateScrollActive();
+    window.addEventListener("scroll", updateScrollActive, { passive: true });
+    window.addEventListener("resize", updateScrollActive);
 
     return () => {
-      observer?.disconnect();
-      mobileQuery.removeEventListener("change", syncMobileActive);
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", updateScrollActive);
+      window.removeEventListener("resize", updateScrollActive);
     };
   }, []);
 
@@ -98,10 +113,10 @@ export function WhoWeServe() {
           <p className="text-xl font-bold uppercase leading-7 text-primary-700 md:text-2xl md:leading-8">
             Who We Serve
           </p>
-          <h2 className="mt-4 text-[34px] font-bold leading-[40px] text-primary-950 sm:text-[42px] sm:leading-[48px] md:mt-6 md:text-[54px] md:leading-[58px]">
+          <h2 className="mt-4 text-[28px] font-bold leading-[1.14] text-primary-950 sm:text-[34px] md:mt-6 md:text-[54px] md:leading-[58px]">
             Solar for <span className="text-primary-400">Every Life</span>
           </h2>
-          <ul className="mt-5 flex flex-col items-start gap-3 pr-14 text-base leading-6 text-neutral-500 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-2 sm:pr-0 md:mt-6 md:text-lg">
+          <ul className="mt-5 flex flex-col items-start gap-3 text-base leading-6 text-neutral-500 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-2 md:mt-6 md:text-lg">
             <li className="flex items-start gap-2">
               <Image
                 src="/images/icon-factory.svg"
@@ -120,7 +135,7 @@ export function WhoWeServe() {
                 height={26}
                 className="mt-0.5 size-5 shrink-0 md:size-[26px]"
               />
-              <span className="min-w-0">
+              <span className="min-w-0 whitespace-nowrap text-[15px] sm:text-base md:text-lg">
                 Installed by our certified partner network
               </span>
             </li>
@@ -131,10 +146,10 @@ export function WhoWeServe() {
           stagger
           delay={150}
           className="reveal-track mt-14 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 md:mt-16 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0 lg:mt-24 lg:gap-12 xl:gap-[90px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-          onMouseLeave={() => setActive(null)}
+          onMouseLeave={() => setInteractionActive(null)}
           onBlur={(event) => {
             if (!event.currentTarget.contains(event.relatedTarget)) {
-              setActive(null);
+              setInteractionActive(null);
             }
           }}
         >
@@ -148,10 +163,10 @@ export function WhoWeServe() {
                   cardRefs.current[index] = node;
                 }}
                 tabIndex={0}
-                onClick={() => setActive(index)}
-                onMouseEnter={() => setActive(index)}
-                onMouseLeave={() => setActive(null)}
-                onFocus={() => setActive(index)}
+                onClick={() => setInteractionActive(index)}
+                onMouseEnter={() => setInteractionActive(index)}
+                onMouseLeave={() => setInteractionActive(null)}
+                onFocus={() => setInteractionActive(index)}
                 className={`relative h-[430px] w-[86%] shrink-0 snap-start focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-700 sm:w-[82%] md:h-[470px] md:w-auto md:shrink lg:h-[500px] ${
                   isActive ? "z-10" : "z-0"
                 }`}
@@ -181,7 +196,7 @@ export function WhoWeServe() {
                   />
 
                   <h3
-                    className={`absolute bottom-5 left-5 z-10 max-w-48 text-left text-[34px] font-semibold leading-[42px] tracking-normal align-bottom text-white transition-[opacity,translate] duration-300 md:bottom-12 md:left-12 md:max-w-56 ${
+                    className={`absolute bottom-4 left-5 z-10 max-w-48 text-left text-[34px] font-semibold leading-[42px] tracking-normal align-bottom text-white transition-[opacity,translate] duration-300 md:bottom-8 md:left-12 md:max-w-56 lg:bottom-9 ${
                       isActive
                         ? "translate-y-2 opacity-0"
                         : "translate-y-2 opacity-0 md:translate-y-0 md:opacity-100 md:delay-200"
@@ -195,7 +210,7 @@ export function WhoWeServe() {
                   </h3>
 
                   <div
-                    className={`absolute inset-x-6 bottom-12 top-14 z-10 flex flex-col items-start gap-5 text-left text-white transition-[opacity,translate] duration-500 md:inset-x-8 md:bottom-10 md:top-16 md:items-center md:gap-6 md:text-center xl:inset-x-12 ${
+                    className={`absolute inset-x-6 bottom-8 top-20 z-10 flex flex-col items-start gap-5 text-left text-white transition-[opacity,translate] duration-500 md:inset-x-8 md:bottom-8 md:top-24 md:items-center md:gap-6 md:text-center lg:top-28 xl:inset-x-12 ${
                       isActive
                         ? "translate-y-0 opacity-100 delay-200"
                         : "translate-y-0 opacity-100 md:pointer-events-none md:translate-y-4 md:opacity-0"
@@ -212,7 +227,7 @@ export function WhoWeServe() {
                       {card.description}
                     </p>
                     <ContactModalTrigger
-                      className="rounded-full bg-white px-7 py-2.5 text-sm font-bold text-primary-950 hover:bg-primary-50 md:px-8 md:text-base"
+                      className="inline-flex min-h-10 min-w-[168px] items-center justify-center rounded-full bg-white px-8 py-0 text-base font-bold text-primary-950 hover:bg-primary-50"
                     >
                       Get in Touch
                     </ContactModalTrigger>

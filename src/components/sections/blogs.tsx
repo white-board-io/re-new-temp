@@ -29,7 +29,7 @@ export function Blogs() {
     <section id="blogs" className="bg-white pb-section md:py-section">
       <div className="mx-auto max-w-content px-4 sm:px-6">
         <Reveal as="header" className="text-left">
-          <h2 className="text-4xl font-bold text-primary-950 sm:text-[54px] sm:leading-[62px]">
+          <h2 className="text-[28px] font-bold leading-[1.14] text-primary-950 sm:text-[34px] md:text-[54px] md:leading-[62px]">
             Blogs
           </h2>
           <p className="mt-6 max-w-3xl text-xl leading-8 text-neutral-500">
@@ -64,7 +64,7 @@ export function Blogs() {
                     href={post.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-w-36 items-center justify-center rounded-full border-2 border-primary-700 px-8 py-2.5 text-base font-bold text-primary-700 transition-colors hover:bg-primary-700 hover:text-white"
+                    className="inline-flex min-h-10 min-w-[168px] items-center justify-center rounded-full border-2 border-primary-700 px-8 py-0 text-base font-bold text-primary-700 transition-colors hover:bg-primary-700 hover:text-white md:py-2.5"
                   >
                     Read more
                   </a>

@@ -369,7 +369,7 @@ export function ManufacturingDetail() {
         />
         <div className="absolute inset-0 -z-10 bg-primary-950/70" />
         <Reveal className="mx-auto max-w-content px-4 py-20 text-center sm:px-6">
-          <h1 className="text-4xl font-light leading-tight tracking-wide sm:text-[42px] lg:text-[46px]">
+          <h1 className="text-[28px] font-light leading-[1.14] tracking-wide sm:text-[34px] lg:text-[46px]">
             Driving solar innovation through
             <strong className="mt-2 block font-bold text-primary-400">
               World-class Manufacturing Facilities
@@ -453,14 +453,14 @@ export function ManufacturingDetail() {
               }`}
             >
               <p
-                className={`text-4xl font-extrabold uppercase leading-[1.08] tracking-[0.03em] text-primary-700 sm:text-[48px] sm:leading-[54px] ${
+                className={`text-[28px] font-extrabold uppercase leading-[1.14] tracking-[0.03em] text-primary-700 sm:text-[34px] md:text-[48px] md:leading-[54px] ${
                   isVizag ? "mx-auto max-w-[760px]" : "max-w-[620px]"
                 }`}
               >
                 {activePlant.eyebrow}
               </p>
               <h2
-                className={`mt-8 whitespace-pre-line text-4xl font-normal leading-tight tracking-[0.03em] text-primary-950 sm:text-[46px] sm:leading-[54px] ${
+                className={`mt-8 whitespace-pre-line text-[28px] font-normal leading-[1.14] tracking-[0.03em] text-primary-950 sm:text-[34px] md:text-[46px] md:leading-[54px] ${
                   isVizag ? "mx-auto max-w-[980px]" : "max-w-[650px] lg:mt-0"
                 }`}
               >
@@ -591,7 +591,7 @@ export function ManufacturingDetail() {
           />
           <Reveal className="relative mx-auto max-w-6xl px-4 text-center sm:px-6">
             <p className="text-xl font-bold uppercase text-primary-700">Sustainability Credentials</p>
-            <h2 className="mt-12 text-4xl font-bold leading-tight text-primary-950 sm:text-[50px]">
+            <h2 className="mt-12 text-[28px] font-bold leading-[1.14] text-primary-950 sm:text-[34px] md:text-[50px]">
               {activePlant.sustainabilityTitle}
             </h2>
             <p className="mx-auto mt-12 max-w-5xl text-xl font-light leading-9 text-neutral-500 sm:text-2xl sm:leading-10">

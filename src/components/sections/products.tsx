@@ -108,7 +108,7 @@ export function Products() {
       <div className="mx-auto max-w-content px-4 sm:px-6">
         <Reveal className="text-left md:text-center">
           <p className="text-2xl font-bold uppercase leading-8 text-primary-700">Products</p>
-          <h2 className="mt-8 max-w-4xl text-4xl font-bold text-primary-950 md:mx-auto sm:text-[54px] sm:leading-[62px]">
+          <h2 className="mt-8 max-w-4xl text-[28px] font-bold leading-[1.14] text-primary-950 sm:text-[34px] md:mx-auto md:text-[54px] md:leading-[62px]">
             The <span className="text-primary-700">right panel</span> for your home, your
             business, your project.
           </h2>
@@ -184,7 +184,7 @@ export function Products() {
                   </div>
                   <Link
                     href={product.href}
-                    className={`mb-8 mt-auto self-start rounded-full bg-accent px-7 py-2.5 text-base font-medium text-white hover:bg-primary-400 md:mb-0 md:px-8 md:text-xl ${contentIn(
+                    className={`mb-8 mt-auto inline-flex min-h-10 min-w-[168px] items-center justify-center self-start rounded-full bg-accent px-8 py-0 text-base font-medium text-white hover:bg-primary-400 md:mb-0 md:px-8 md:py-2.5 md:text-xl ${contentIn(
                       isActive,
                       "md:delay-[450ms]",
                     )}`}

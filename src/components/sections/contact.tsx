@@ -71,7 +71,7 @@ export function Contact() {
         <div className="min-w-0">
           <h2
             aria-label="Power your next Home, Project, or Business with ReNew Solar Panels."
-            className="max-w-lg text-4xl font-bold sm:text-[54px] sm:leading-[62px]"
+            className="max-w-lg text-[28px] font-bold leading-[1.14] sm:text-[34px] md:text-[54px] md:leading-[62px]"
           >
             Power your next{" "}
             <span aria-hidden className="inline-block align-baseline text-accent">
@@ -145,7 +145,7 @@ export function Contact() {
             )}
             <button
               type="submit"
-              className="inline-flex min-w-36 items-center justify-center rounded-full bg-accent px-8 py-2.5 text-base font-bold text-white transition hover:bg-primary-400"
+              className="inline-flex min-h-10 min-w-[168px] items-center justify-center rounded-full bg-accent px-8 py-0 text-base font-bold text-white transition hover:bg-primary-400 md:py-2.5"
             >
               Submit
             </button>

@@ -105,11 +105,11 @@ const socials = [
 
 export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) {
   return (
-    <footer className="bg-primary-950 pt-24 text-white">
+    <footer className="bg-primary-950 pt-14 text-white md:pt-24">
       <div className="mx-auto max-w-[1650px] px-4 sm:px-6 xl:px-0">
         <Reveal
           stagger
-          className="grid gap-14 lg:grid-cols-[1fr_1.4fr] xl:grid-cols-[620px_1fr] xl:gap-[140px]"
+          className="grid gap-8 md:gap-14 lg:grid-cols-[1fr_1.4fr] xl:grid-cols-[620px_1fr] xl:gap-[140px]"
         >
           <div>
             <Image
@@ -117,15 +117,15 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
               alt="ReNew Solar Panels"
               width={239}
               height={159}
-              className="h-40 w-auto"
+              className="h-28 w-auto md:h-40"
             />
-            <p className="mt-20 max-w-[480px] text-lg font-light leading-8 text-white/90 xl:mt-[88px] xl:text-xl">
+            <p className="mt-8 max-w-[480px] text-base font-light leading-7 text-white/90 md:mt-20 md:text-lg md:leading-8 xl:mt-[88px] xl:text-xl">
               ReNew Solar Panels is the manufacturing arm of ReNew, India&apos;s leading
               decarbonisation solutions company listed on Nasdaq. With three world-class
               facilities in Jaipur, Dholera, and Vizag, we build the panels that are powering
               India&apos;s net-zero future.
             </p>
-            <ul className="mt-14 flex max-w-xs items-center justify-between gap-2 sm:mt-20 sm:justify-start sm:gap-4 xl:mt-[88px] xl:max-w-none xl:gap-[52px]">
+            <ul className="mt-8 flex max-w-xs items-center justify-between gap-2 sm:mt-20 sm:justify-start sm:gap-4 xl:mt-[88px] xl:max-w-none xl:gap-[52px]">
               {socials.map(({ label, href, Icon }) => (
                 <li key={label}>
                   <a
@@ -144,7 +144,7 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
 
           <nav
             aria-label="Footer"
-            className="grid gap-12 sm:grid-cols-2 xl:grid-cols-[213px_159px_210px_158px] xl:gap-[50px] xl:pt-[170px]"
+            className="grid gap-7 sm:grid-cols-2 sm:gap-12 xl:grid-cols-[213px_159px_210px_158px] xl:gap-[50px] xl:pt-[170px]"
           >
             <div>
               <a
@@ -159,7 +159,7 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
                     {linkColumns[0].heading}
                   </Link>
                 </h3>
-                <ul className="mt-6 space-y-4">
+                <ul className="mt-3 space-y-2 sm:mt-6 sm:space-y-4">
                   {linkColumns[0].links.map((link) => (
                     <li key={link.label}>
                       <Link
@@ -183,7 +183,7 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
               </a>
               <div className="sm:mt-16 xl:mt-14">
                 <h3 className="text-xl font-bold leading-8">{linkColumns[1].heading}</h3>
-                <ul className="mt-6 space-y-4">
+                <ul className="mt-3 space-y-2 sm:mt-6 sm:space-y-4">
                   {linkColumns[1].links.map((link) => (
                     <li key={link.label}>
                       <Link
@@ -207,7 +207,7 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
               </a>
               <div className="sm:mt-16 xl:mt-14">
                 <h3 className="text-xl font-bold leading-8">Support Portals</h3>
-                <ul className="mt-6 space-y-6">
+                <ul className="mt-3 space-y-3 sm:mt-6 sm:space-y-6">
                   {portals.map((portal) => (
                     <li key={portal.label}>
                       <p className="text-[10px] font-light leading-[22px] text-white/60">
@@ -236,7 +236,7 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
               </a>
               <div className="sm:mt-16 xl:mt-14">
                 <h3 className="text-xl font-bold leading-8">Corporate</h3>
-                <ul className="mt-6 space-y-4">
+                <ul className="mt-3 space-y-2 sm:mt-6 sm:space-y-4">
                   <li>
                     <a
                       href="/downloads/corporate-brochure/corporate-brochure.pdf"
@@ -252,7 +252,7 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
           </nav>
         </Reveal>
       </div>
-      <div className="mt-20 h-16 bg-[linear-gradient(to_right,transparent,rgb(141_198_63_/_0.55)_25%,rgb(141_198_63_/_0.85)_50%,rgb(0_107_56_/_0.35)_68%,rgb(141_198_63_/_0.16)_74%,transparent_82%,transparent)] bg-[length:100%_1px] bg-top bg-no-repeat" aria-hidden />
+      <div className="mt-10 h-10 bg-[linear-gradient(to_right,transparent,rgb(141_198_63_/_0.55)_25%,rgb(141_198_63_/_0.85)_50%,rgb(0_107_56_/_0.35)_68%,rgb(141_198_63_/_0.16)_74%,transparent_82%,transparent)] bg-[length:100%_1px] bg-top bg-no-repeat md:mt-20 md:h-16" aria-hidden />
     </footer>
   );
 }

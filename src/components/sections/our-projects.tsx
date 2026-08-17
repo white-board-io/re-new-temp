@@ -52,7 +52,7 @@ export function OurProjects() {
               <p className="text-xl font-bold uppercase leading-8 text-primary-300">
                 Projects
               </p>
-              <h2 className="mt-7 text-4xl font-bold leading-tight sm:text-[54px] sm:leading-15.5">
+              <h2 className="mt-7 text-[28px] font-bold leading-[1.14] sm:text-[34px] md:text-[54px] md:leading-15.5">
                 Solar solutions across every scale.
               </h2>
               <p className="mt-7 max-w-xl text-xl leading-8 text-white/95">
@@ -62,7 +62,7 @@ export function OurProjects() {
             </div>
             <Link
               href="/projects"
-              className="inline-flex w-fit items-center justify-center rounded-full bg-accent px-12 py-3 text-xl font-medium text-white transition-colors hover:bg-primary-400 lg:mb-5 lg:justify-self-end"
+              className="inline-flex min-h-10 min-w-[168px] w-fit items-center justify-center rounded-full bg-accent px-8 py-0 text-base font-medium text-white transition-colors hover:bg-primary-400 md:px-12 md:py-3 md:text-xl lg:mb-5 lg:justify-self-end"
             >
               Know More
             </Link>

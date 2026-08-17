@@ -10,10 +10,9 @@ const stats = [
     icon: "/images/stat-capacity.png",
     iconWidth: 80.57,
     iconHeight: 89.14,
-    iconOffset: "xl:mt-[0.43px]",
     gap: "xl:gap-[47.43px]",
     labelWidth: "xl:w-[156px]",
-    labelMargin: "xl:mt-[17px]",
+    labelMargin: "xl:mt-2",
     itemOffset: "",
   },
   {
@@ -22,10 +21,9 @@ const stats = [
     icon: "/images/stat-plants.svg",
     iconWidth: 90,
     iconHeight: 87,
-    iconOffset: "xl:mt-[3px]",
     gap: "xl:gap-[35px]",
     labelWidth: "xl:w-[134px]",
-    labelMargin: "xl:mt-[15px]",
+    labelMargin: "xl:mt-2",
     itemOffset: "",
   },
   {
@@ -34,10 +32,9 @@ const stats = [
     icon: "/images/stat-modules.png",
     iconWidth: 86.81,
     iconHeight: 85.81,
-    iconOffset: "xl:mt-[2px]",
     gap: "xl:gap-[36.19px]",
     labelWidth: "xl:w-[88px]",
-    labelMargin: "xl:mt-[9px]",
+    labelMargin: "xl:mt-2",
     itemOffset: "xl:mt-1",
   },
   {
@@ -46,10 +43,9 @@ const stats = [
     icon: "/images/stat-investment.png",
     iconWidth: 81.15,
     iconHeight: 80.8,
-    iconOffset: "xl:mt-[6.13px]",
     gap: "xl:gap-[34.07px]",
     labelWidth: "xl:w-[158px]",
-    labelMargin: "xl:mt-[9px]",
+    labelMargin: "xl:mt-2",
     itemOffset: "xl:mt-1",
   },
 ];
@@ -67,25 +63,28 @@ export function StatsBar() {
         {stats.map((stat) => (
           <div
             key={stat.label}
-            className={`flex items-start gap-4 ${stat.gap} ${stat.itemOffset}`}
+            className={`grid grid-cols-[auto_1fr] items-stretch gap-4 ${stat.gap} ${stat.itemOffset}`}
           >
-            <Image
-              src={stat.icon}
-              alt=""
-              width={Math.round(stat.iconWidth * 4)}
-              height={Math.round(stat.iconHeight * 4)}
-              className={`h-10 w-10 shrink-0 object-contain md:h-[var(--stat-icon-height)] md:w-[var(--stat-icon-width)] ${stat.iconOffset}`}
+            <div
+              className="relative shrink-0 self-stretch"
               style={{
-                "--stat-icon-width": `${stat.iconWidth}px`,
-                "--stat-icon-height": `${stat.iconHeight}px`,
+                aspectRatio: `${stat.iconWidth} / ${stat.iconHeight}`,
               } as CSSProperties}
-            />
+            >
+              <Image
+                src={stat.icon}
+                alt=""
+                fill
+                sizes="(min-width: 768px) 100px, 72px"
+                className="object-contain"
+              />
+            </div>
             <div>
               <dd className="text-[30px] font-bold leading-[30px] text-primary-700">
                 <CountUp value={stat.value} />
               </dd>
               <dt
-                className={`mt-3 text-[18px] font-medium leading-[26px] text-neutral-500 lg:text-[16px] lg:leading-[22px] xl:text-[18px] xl:leading-[26px] ${stat.labelMargin} ${stat.labelWidth}`}
+                className={`mt-2 text-[18px] font-medium leading-[26px] text-neutral-500 lg:text-[16px] lg:leading-[22px] xl:text-[18px] xl:leading-[26px] ${stat.labelMargin} ${stat.labelWidth}`}
               >
                 {stat.label}
               </dt>

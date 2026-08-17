@@ -91,7 +91,7 @@ function DownloadIcon() {
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden
-      className="size-6"
+      className="size-5 sm:size-6"
     >
       <circle cx="12" cy="12" r="9" />
       <path d="M12 7v9m-4-4 4 4 4-4" />
@@ -133,13 +133,13 @@ export function Downloads() {
                     key={item.label}
                     className="group flex min-h-28 flex-col justify-center gap-5 border-b border-neutral-200 px-4 py-6 transition-colors hover:bg-surface-tint sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:px-9"
                   >
-                    <p className="text-xl font-light leading-tight text-neutral-500 transition-colors group-hover:text-primary-700 sm:text-2xl lg:text-[30px]">
+                    <p className="text-xl font-bold leading-tight text-primary-700 transition-colors group-hover:text-primary-800 sm:text-2xl lg:text-[30px]">
                       {item.label}
                     </p>
                     <a
                       href={item.href}
                       download
-                      className="inline-flex w-full shrink-0 items-center justify-center gap-4 rounded-full bg-neutral-400 px-8 py-2.5 text-lg font-bold text-white transition-colors group-hover:bg-primary-700 sm:w-[245px]"
+                      className="inline-flex min-h-10 w-fit shrink-0 items-center justify-center gap-3 self-center rounded-full bg-neutral-400 px-8 py-0 text-base font-bold text-white transition-colors group-hover:bg-primary-700 sm:w-[245px] sm:gap-4 sm:self-auto sm:text-lg md:py-2.5"
                     >
                       Download
                       <DownloadIcon />

@@ -60,7 +60,7 @@ export function Manufacturing() {
       id="manufacturing"
       className="relative overflow-hidden bg-primary-950 py-16 text-white md:pb-[calc(var(--spacing-section)*1.75)] md:pt-[calc(var(--spacing-section)*2)]"
     >
-      <div className="pointer-events-none absolute right-[18%] top-0 w-[clamp(200px,42vw,608px)] -translate-y-1/2">
+      <div className="pointer-events-none absolute right-[-32px] top-0 w-36 -translate-y-1/2 sm:w-44 md:right-[18%] md:w-[clamp(200px,42vw,608px)]">
         <Image
           src="/images/sunburst_full-dark.svg"
           alt=""
@@ -72,11 +72,11 @@ export function Manufacturing() {
       <div className="relative mx-auto max-w-content px-4 sm:px-6">
         <Reveal
           stagger
-          className="flex flex-col gap-6 text-center md:gap-10 md:text-left lg:flex-row lg:items-end lg:justify-between"
+          className="flex flex-col gap-6 text-left md:gap-10 lg:flex-row lg:items-end lg:justify-between"
         >
           <div>
             <p className="text-2xl font-bold uppercase leading-8">Manufacturing</p>
-            <h2 className="mt-4 text-4xl font-bold sm:text-[54px] sm:leading-[62px] md:mt-6">
+            <h2 className="mt-4 text-[28px] font-bold leading-[1.14] sm:text-[34px] md:mt-6 md:text-[54px] md:leading-[62px]">
               Built at scale.
               <br />
               Built to last.
@@ -88,11 +88,11 @@ export function Manufacturing() {
               Know More
             </Link>
           </div>
-          <p className="text-center md:text-left lg:text-right">
+          <p className="text-left lg:text-right">
             <span className="text-4xl font-bold">
               <CountUp value="9.3+ GW" />
             </span>
-            <span className="mx-auto mt-2 block max-w-64 text-xl leading-7 md:mx-0 lg:ml-auto">
+            <span className="mt-2 block max-w-64 text-xl leading-7 lg:ml-auto">
               of cells and modules dispatched till June 2026.
             </span>
           </p>
@@ -123,7 +123,7 @@ export function Manufacturing() {
                 onMouseEnter={() => setActive(index)}
                 onMouseLeave={() => setActive(null)}
                 onFocus={() => setActive(index)}
-                className={`relative block h-[360px] w-[78%] shrink-0 snap-start focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:h-[500px] md:w-auto md:shrink ${
+                className={`relative block h-[320px] w-[78%] shrink-0 snap-start focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:h-[500px] md:w-auto md:shrink ${
                   isActive ? "z-10" : "z-0"
                 }`}
               >
@@ -134,29 +134,27 @@ export function Manufacturing() {
                       : "md:scale-100"
                   }`}
                 >
-                  <div className="absolute inset-0 md:hidden">
-                    <Image
-                      src={plant.image.src}
-                      alt={plant.alt}
-                      width={plant.image.width}
-                      height={plant.image.height}
-                      className={`absolute left-1/2 top-1/2 max-h-[235px] w-full -translate-x-1/2 -translate-y-1/2 object-contain opacity-85 ${plant.imageClassName}`}
-                      sizes="88vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary-950/95 via-primary-950/70 to-primary-950/35" />
-                  </div>
-
-                  <div className="absolute inset-x-5 bottom-5 top-9 z-10 flex flex-col items-center text-center text-white md:hidden">
-                    <h3 className="text-[27px] font-bold leading-[1.12]">
+                  <div className="absolute inset-x-5 bottom-4 top-5 z-10 flex flex-col items-center text-center text-white md:hidden">
+                    <h3 className="text-[24px] font-bold leading-[1.12] [text-wrap:balance]">
                       {plant.title.map((line) => (
                         <span key={line} className="block">
                           {line}
                         </span>
                       ))}
                     </h3>
-                    <p className="mt-5 text-sm font-normal leading-5">
-                      {plant.mobileDetails}
-                    </p>
+                    <div className="relative mt-3 min-h-0 w-full flex-1 overflow-hidden">
+                      <Image
+                        src={plant.image.src}
+                        alt=""
+                        width={plant.image.width}
+                        height={plant.image.height}
+                        className={`absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 object-contain opacity-85 ${plant.imageClassName}`}
+                        sizes="88vw"
+                      />
+                      <p className="absolute left-1/2 top-1/2 z-10 w-[88%] -translate-x-1/2 -translate-y-1/2 text-center text-[14px] font-normal leading-[19px] [text-shadow:0_1px_3px_rgb(0_0_0_/_0.95)] [text-wrap:pretty]">
+                        {plant.mobileDetails}
+                      </p>
+                    </div>
                   </div>
 
                   <figure
@@ -219,7 +217,7 @@ export function Manufacturing() {
         <Reveal className="mb-8 mt-4 flex justify-center md:hidden">
           <Link
             href="/manufacturing"
-            className="inline-flex min-w-36 items-center justify-center rounded-full bg-accent px-8 py-3 text-base font-bold text-white hover:bg-primary-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            className="inline-flex min-h-10 min-w-[168px] items-center justify-center rounded-full bg-accent px-8 py-0 text-base font-bold text-white hover:bg-primary-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
           >
             Know More
           </Link>

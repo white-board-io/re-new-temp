@@ -137,7 +137,7 @@ export function SolarCellDetail() {
         />
         <div className="absolute inset-0 bg-white/10" />
         <Reveal className="relative max-w-5xl text-primary-950">
-          <h1 className="text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-[60px] lg:leading-[64px] lg:tracking-hero">
+          <h1 className="text-[28px] font-bold leading-[1.14] sm:text-[34px] lg:text-[60px] lg:leading-[64px] lg:tracking-hero">
             The cell at the heart of every
             <br />
             ReNew Solar modules.
@@ -195,7 +195,7 @@ export function SolarCellDetail() {
           </div>
 
           <div className="pt-4 text-center text-primary-950 lg:pt-10 lg:text-left">
-            <h2 className="text-3xl font-bold sm:text-4xl">
+            <h2 className="text-[28px] font-bold leading-[1.14] sm:text-4xl">
               {productName}
             </h2>
             <p className="mt-4 text-2xl font-bold text-primary-700">Right. Reliable. Ready.</p>
@@ -231,14 +231,14 @@ export function SolarCellDetail() {
 
             <div className="mt-16 flex flex-wrap justify-center gap-6 lg:justify-start">
               <ContactModalTrigger
-                className="rounded-full bg-primary-400 px-12 py-4 text-xl font-bold text-white transition hover:bg-primary-500"
+                className="inline-flex min-h-10 min-w-[168px] items-center justify-center rounded-full bg-primary-400 px-8 py-0 text-base font-bold text-white transition hover:bg-primary-500 md:px-12 md:py-4 md:text-xl"
               >
                 Enquire Now
               </ContactModalTrigger>
               <a
                 href={datasheetHref}
                 download
-                className="rounded-full bg-primary-950 px-12 py-4 text-xl font-bold text-white transition hover:bg-primary-900"
+                className="inline-flex min-h-10 min-w-[168px] items-center justify-center rounded-full bg-primary-950 px-8 py-0 text-base font-bold text-white transition hover:bg-primary-900 md:px-12 md:py-4 md:text-xl"
               >
                 Download Datasheet
               </a>

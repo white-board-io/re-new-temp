@@ -33,7 +33,7 @@ export default function DownloadsPage() {
           />
           <div className="absolute inset-0 bg-black/25" aria-hidden />
           <Reveal className="relative mx-auto w-full max-w-content px-4 sm:px-6">
-            <h1 className="text-4xl font-normal text-white sm:text-5xl lg:text-[54px]">
+            <h1 className="text-[28px] font-normal leading-[1.14] text-white sm:text-[34px] lg:text-[54px]">
               Downloads
             </h1>
           </Reveal>

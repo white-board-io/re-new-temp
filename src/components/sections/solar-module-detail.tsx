@@ -458,83 +458,101 @@ export function SolarModuleDetail() {
         </div>
       </Reveal>
 
-      <Reveal
-        stagger
-        className="mx-auto grid max-w-content gap-16 px-4 pb-44 pt-16 sm:px-6 lg:grid-cols-[0.98fr_1fr] lg:gap-24 lg:pb-64 lg:pt-24 xl:px-0"
-      >
-        <div className="pt-0">
-          <p className="mb-14 text-center text-[20px] font-semibold uppercase leading-[40px] tracking-normal text-primary-700 lg:text-left">
-            What goes into every ReNew solar panel
-          </p>
-          <div className="space-y-10 sm:space-y-12">
-            {activeModuleFeatures.map((feature, index) => {
-              const active = activeFeature === index;
-              return (
-                <button
-                  key={`${activeModuleId}-${feature.title}`}
-                  type="button"
-                  onMouseEnter={() => setActiveFeature(index)}
-                  onFocus={() => setActiveFeature(index)}
-                  onClick={() => setActiveFeature(index)}
-                  aria-expanded={active}
-                  className="grid w-full gap-4 text-center lg:grid-cols-[44px_minmax(0,520px)] lg:items-start lg:gap-7 lg:text-left"
-                >
-                  <FeatureIcon icon={feature.icon} />
-                  <span className="mx-auto w-full max-w-[520px] lg:mx-0">
-                    <span className="block text-2xl font-bold leading-tight text-[#143b58] sm:text-3xl">
-                      {feature.title}
-                    </span>
-                    <span
-                      className={`mx-auto grid transition-[grid-template-rows,opacity] duration-500 ease-out motion-reduce:transition-none lg:mx-0 ${
-                        active ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-                      }`}
-                    >
-                      <span className="min-h-0 overflow-hidden">
-                        <span className="block pt-4 text-lg leading-7 text-[#143b58] sm:text-xl sm:leading-8">
-                          {feature.description}
+      <div className="bg-[linear-gradient(180deg,#F0F6F3_0%,rgba(240,246,243,0)_30%,#FFFFFF_100%)]">
+        <Reveal
+          stagger
+          className="mx-auto grid max-w-content gap-16 px-4 pb-44 pt-16 sm:px-6 lg:grid-cols-[0.98fr_1fr] lg:gap-24 lg:pb-64 lg:pt-24 xl:px-0"
+        >
+          <div className="pt-0">
+            <p className="mb-14 text-center text-[20px] font-semibold uppercase leading-[40px] tracking-normal text-primary-700 lg:text-left">
+              What goes into every ReNew solar panel
+            </p>
+            <div className="space-y-10 sm:space-y-12">
+              {activeModuleFeatures.map((feature, index) => {
+                const active = activeFeature === index;
+                return (
+                  <button
+                    key={`${activeModuleId}-${feature.title}`}
+                    type="button"
+                    onMouseEnter={() => setActiveFeature(index)}
+                    onFocus={() => setActiveFeature(index)}
+                    onClick={() => setActiveFeature(index)}
+                    aria-expanded={active}
+                    className="grid w-full gap-4 text-center lg:grid-cols-[44px_minmax(0,520px)] lg:items-start lg:gap-7 lg:text-left"
+                  >
+                    <FeatureIcon icon={feature.icon} />
+                    <span className="mx-auto w-full max-w-[520px] lg:mx-0">
+                      <span className="block text-2xl font-bold leading-tight text-[#143b58] sm:text-3xl">
+                        {feature.title}
+                      </span>
+                      <span
+                        className={`mx-auto grid transition-[grid-template-rows,opacity] duration-500 ease-out motion-reduce:transition-none lg:mx-0 ${
+                          active ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                        }`}
+                      >
+                        <span className="min-h-0 overflow-hidden">
+                          <span className="block pt-4 text-lg leading-7 text-[#143b58] sm:text-xl sm:leading-8">
+                            {feature.description}
+                          </span>
                         </span>
                       </span>
                     </span>
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        <div className="pt-2 lg:pt-0">
-          <div className="mx-auto max-w-[560px]">
-            <p className="mb-14 text-left text-[20px] font-semibold uppercase leading-[40px] tracking-normal text-primary-700">
-              Performance you can count on
-            </p>
-            <PowerOutputChart
-              annualAttenuation={activeModule.annualAttenuation}
-              firstYearOutput={activeModule.firstYearOutput}
-              replayKey={activeModuleId}
-            />
-          </div>
-        </div>
-      </Reveal>
-
-      <div className="mx-auto max-w-content px-4 pb-36 text-center sm:px-6 xl:px-0">
-        <Reveal stagger className="grid grid-cols-3 gap-3 sm:gap-14 md:gap-8">
-          {applications.map((application) => (
-            <div key={application.line1} className="flex flex-col items-center">
-              <span className="flex size-16 items-center justify-center rounded-full bg-primary-700 sm:size-32">
-                <application.icon
-                  aria-hidden
-                  className="size-8 text-white sm:size-16"
-                  strokeWidth={1.8}
-                />
-              </span>
-              <p className="mt-4 max-w-sm text-[11px] font-bold leading-4 text-[#143b58] sm:mt-10 sm:text-2xl sm:leading-8">
-                {application.line1}
-                <br />
-                {application.line2}
-              </p>
+                  </button>
+                );
+              })}
             </div>
-          ))}
+          </div>
+
+          <div className="pt-2 lg:pt-0">
+            <div className="mx-auto max-w-[560px]">
+              <p className="mb-14 text-left text-[20px] font-semibold uppercase leading-[40px] tracking-normal text-primary-700">
+                Performance you can count on
+              </p>
+              <PowerOutputChart
+                annualAttenuation={activeModule.annualAttenuation}
+                firstYearOutput={activeModule.firstYearOutput}
+                replayKey={activeModuleId}
+              />
+            </div>
+          </div>
         </Reveal>
+      </div>
+
+      <div className="relative overflow-hidden bg-[#F2F2F2] py-16 text-center sm:py-20 lg:py-24">
+        <div className="pointer-events-none absolute left-4 top-0 w-40 -translate-y-1/2 opacity-20 sm:left-12 sm:w-56 lg:left-[7%] lg:w-[360px]">
+          <Image
+            src="/images/sunburst_full.svg"
+            alt=""
+            width={702}
+            height={701}
+            className="w-full animate-sunburst motion-reduce:animate-none"
+          />
+        </div>
+        <div className="relative mx-auto max-w-content px-4 sm:px-6 xl:px-0">
+          <Reveal>
+            <p className="text-xl font-bold uppercase leading-8 text-primary-700 sm:text-2xl">
+              Ideal Applications
+            </p>
+          </Reveal>
+          <Reveal stagger className="mt-10 grid grid-cols-3 gap-3 sm:mt-14 sm:gap-14 md:gap-8">
+            {applications.map((application) => (
+              <div key={application.line1} className="flex flex-col items-center">
+                <span className="flex size-16 items-center justify-center rounded-full bg-primary-700 sm:size-32">
+                  <application.icon
+                    aria-hidden
+                    className="size-8 text-white sm:size-16"
+                    strokeWidth={1.8}
+                  />
+                </span>
+                <p className="mt-4 max-w-sm text-[11px] font-bold leading-4 text-[#143b58] sm:mt-10 sm:text-2xl sm:leading-8">
+                  {application.line1}
+                  <br />
+                  {application.line2}
+                </p>
+              </div>
+            ))}
+          </Reveal>
+        </div>
       </div>
 
     </section>

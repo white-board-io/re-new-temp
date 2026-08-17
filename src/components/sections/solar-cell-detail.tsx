@@ -246,19 +246,32 @@ export function SolarCellDetail() {
           </div>
         </Reveal>
 
-        <div className="mx-auto max-w-content px-4 pb-36 pt-8 sm:px-6 lg:pt-7 xl:px-0">
-          <Reveal stagger className="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
-            {featureCards.map((feature) => (
-              <article
-                key={feature.description}
-                className="flex min-h-[445px] flex-col items-center justify-start rounded-md bg-surface-tint px-10 pb-12 pt-16 text-center text-[#143b58]"
-              >
-                <CardIcon icon={feature.icon} />
-                <h2 className="mt-10 text-xl font-bold leading-6">{feature.title}</h2>
-                <p className="mt-10 text-lg leading-7">{feature.description}</p>
-              </article>
-            ))}
-          </Reveal>
+        <div
+          className="px-4 pb-36 pt-16 sm:px-6 sm:pt-20 xl:px-0"
+          style={{
+            background:
+              "linear-gradient(180deg, #F0F6F3 0%, rgba(240, 246, 243, 0) 100%)",
+          }}
+        >
+          <div className="mx-auto max-w-content">
+            <Reveal>
+              <p className="text-center text-xl font-bold uppercase leading-8 text-primary-700 sm:text-2xl">
+                What goes into every ReNew solar panel
+              </p>
+            </Reveal>
+            <Reveal stagger className="mt-10 grid gap-8 md:grid-cols-2 xl:grid-cols-4">
+              {featureCards.map((feature) => (
+                <article
+                  key={feature.description}
+                  className="flex min-h-[445px] flex-col items-center justify-start rounded-md bg-[#0069340F] px-10 pb-12 pt-16 text-center text-[#143b58]"
+                >
+                  <CardIcon icon={feature.icon} />
+                  <h2 className="mt-10 text-xl font-bold leading-6">{feature.title}</h2>
+                  <p className="mt-10 text-lg leading-7">{feature.description}</p>
+                </article>
+              ))}
+            </Reveal>
+          </div>
         </div>
 
         <div className="relative pb-24 pt-1 sm:pb-32">

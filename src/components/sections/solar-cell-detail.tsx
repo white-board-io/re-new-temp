@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, type ComponentType } from "react";
+import { useEffect, useRef, useState, type ComponentType } from "react";
 import { ContactModalTrigger } from "@/components/contact-modal";
 import { Reveal } from "@/components/reveal";
 import {
@@ -95,11 +95,9 @@ const carouselImages = [
     src: "/images/figma-jaipur-manufacturing-line.png",
     alt: "Solar cell manufacturing equipment",
   },
-  {
-    src: "/images/figma-jaipur-aerial.jpg",
-    alt: "Aerial view of a ReNew manufacturing facility",
-  },
 ];
+
+const CAROUSEL_INTERVAL_MS = 5000;
 
 const productName = "M10R PERC Cell P-Type";
 const datasheetHref = "/downloads/product-datasheets/m10r-p-type-perc-bifacial.pdf";
@@ -115,6 +113,84 @@ function CardIcon({ icon: Icon }: { icon: ComponentType<LucideProps> }) {
 export function SolarCellDetail() {
   const [selectedImage, setSelectedImage] = useState(0);
   const [activeSlide, setActiveSlide] = useState(0);
+  const carouselTrackRef = useRef<HTMLDivElement>(null);
+  const ignoreCarouselScrollRef = useRef(false);
+  const ignoreCarouselScrollTimerRef = useRef<number | null>(null);
+  const pendingCarouselSlideRef = useRef<number | null>(null);
+  const manualCarouselStartSlideRef = useRef<number | null>(null);
+  const manualCarouselSettleTimerRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    const timeout = window.setTimeout(() => {
+      const nextSlide = (activeSlide + 1) % carouselImages.length;
+      const carousel = carouselTrackRef.current;
+
+      ignoreCarouselScrollRef.current = true;
+      pendingCarouselSlideRef.current = nextSlide;
+      if (ignoreCarouselScrollTimerRef.current !== null) {
+        window.clearTimeout(ignoreCarouselScrollTimerRef.current);
+      }
+      ignoreCarouselScrollTimerRef.current = window.setTimeout(() => {
+        const pendingSlide = pendingCarouselSlideRef.current;
+        if (pendingSlide !== null) {
+          const track = carouselTrackRef.current;
+          track?.scrollTo({
+            left: (track?.clientWidth ?? 0) * pendingSlide,
+            behavior: "auto",
+          });
+          setActiveSlide(pendingSlide);
+          pendingCarouselSlideRef.current = null;
+        }
+        ignoreCarouselScrollRef.current = false;
+      }, 1000);
+      setActiveSlide(nextSlide);
+      carousel?.scrollTo({
+        left: carousel.clientWidth * nextSlide,
+        behavior: "auto",
+      });
+    }, CAROUSEL_INTERVAL_MS);
+
+    return () => window.clearTimeout(timeout);
+  }, [activeSlide]);
+
+  useEffect(() => {
+    return () => {
+      if (ignoreCarouselScrollTimerRef.current !== null) {
+        window.clearTimeout(ignoreCarouselScrollTimerRef.current);
+      }
+      if (manualCarouselSettleTimerRef.current !== null) {
+        window.clearTimeout(manualCarouselSettleTimerRef.current);
+      }
+    };
+  }, []);
+
+  const selectCarouselSlide = (slide: number) => {
+    const carousel = carouselTrackRef.current;
+
+    ignoreCarouselScrollRef.current = true;
+    pendingCarouselSlideRef.current = slide;
+    if (ignoreCarouselScrollTimerRef.current !== null) {
+      window.clearTimeout(ignoreCarouselScrollTimerRef.current);
+    }
+    ignoreCarouselScrollTimerRef.current = window.setTimeout(() => {
+      const pendingSlide = pendingCarouselSlideRef.current;
+      if (pendingSlide !== null) {
+        const track = carouselTrackRef.current;
+        track?.scrollTo({
+          left: (track?.clientWidth ?? 0) * pendingSlide,
+          behavior: "auto",
+        });
+        setActiveSlide(pendingSlide);
+        pendingCarouselSlideRef.current = null;
+      }
+      ignoreCarouselScrollRef.current = false;
+    }, 1000);
+    setActiveSlide(slide);
+    carousel?.scrollTo({
+      left: carousel.clientWidth * slide,
+      behavior: "auto",
+    });
+  };
 
   return (
     <>
@@ -275,15 +351,85 @@ export function SolarCellDetail() {
           />
           <div className="relative mx-auto max-w-[1532px] px-0 sm:px-6 xl:px-0">
             <Reveal className="relative">
-              <div className="relative aspect-[1532/676] min-h-[280px] w-full overflow-hidden bg-primary-950 sm:min-h-[360px] sm:rounded-md lg:min-h-0">
-                <Image
-                  key={carouselImages[activeSlide].src}
-                  src={carouselImages[activeSlide].src}
-                  alt={carouselImages[activeSlide].alt}
-                  fill
-                  sizes="(min-width: 1536px) 1532px, 100vw"
-                  className="object-cover transition-opacity duration-500"
-                />
+              <div
+                ref={carouselTrackRef}
+                role="group"
+                aria-roledescription="carousel"
+                aria-label="Solar cell manufacturing images"
+                className="relative flex aspect-[1532/676] min-h-[280px] w-full snap-x snap-mandatory overflow-x-auto overscroll-x-contain bg-primary-950 [scrollbar-width:none] sm:min-h-[360px] sm:rounded-md lg:min-h-0 [&::-webkit-scrollbar]:hidden"
+                onPointerDown={() => {
+                  ignoreCarouselScrollRef.current = false;
+                  pendingCarouselSlideRef.current = null;
+                  manualCarouselStartSlideRef.current = activeSlide;
+                  if (ignoreCarouselScrollTimerRef.current !== null) {
+                    window.clearTimeout(ignoreCarouselScrollTimerRef.current);
+                  }
+                }}
+                onWheel={(event) => {
+                  if (
+                    Math.abs(event.deltaX) > Math.abs(event.deltaY) &&
+                    manualCarouselStartSlideRef.current === null
+                  ) {
+                    manualCarouselStartSlideRef.current = activeSlide;
+                  }
+                }}
+                onScroll={(event) => {
+                  const carousel = event.currentTarget;
+                  if (ignoreCarouselScrollRef.current) return;
+
+                  const nextSlide = Math.round(
+                    carousel.scrollLeft / carousel.clientWidth,
+                  );
+                  const startSlide = manualCarouselStartSlideRef.current;
+
+                  if (startSlide !== null) {
+                    const startLeft = carousel.clientWidth * startSlide;
+                    const direction = Math.sign(carousel.scrollLeft - startLeft);
+                    const adjacentSlide = Math.min(
+                      carouselImages.length - 1,
+                      Math.max(0, startSlide + direction),
+                    );
+
+                    setActiveSlide(adjacentSlide);
+                    if (manualCarouselSettleTimerRef.current !== null) {
+                      window.clearTimeout(manualCarouselSettleTimerRef.current);
+                    }
+                    manualCarouselSettleTimerRef.current = window.setTimeout(() => {
+                      const track = carouselTrackRef.current;
+                      track?.scrollTo({
+                        left: (track?.clientWidth ?? 0) * adjacentSlide,
+                        behavior: "auto",
+                      });
+                      setActiveSlide(adjacentSlide);
+                      manualCarouselStartSlideRef.current = null;
+                      manualCarouselSettleTimerRef.current = null;
+                    }, 180);
+                    return;
+                  }
+
+                  if (nextSlide >= 0 && nextSlide < carouselImages.length) {
+                    setActiveSlide((slide) =>
+                      slide === nextSlide ? slide : nextSlide,
+                    );
+                  }
+                }}
+              >
+                {carouselImages.map((image, index) => (
+                  <div
+                    key={image.src}
+                    className="relative h-full min-w-full snap-center snap-always"
+                  >
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      draggable={false}
+                      fill
+                      sizes="(min-width: 1536px) 1532px, 100vw"
+                      aria-hidden={activeSlide !== index}
+                      className="select-none object-cover"
+                    />
+                  </div>
+                ))}
               </div>
               <div className="mt-5 flex justify-center gap-3 sm:mt-8">
                 {carouselImages.map((image, index) => (
@@ -292,7 +438,7 @@ export function SolarCellDetail() {
                     type="button"
                     aria-label={`Show manufacturing image ${index + 1}`}
                     aria-pressed={activeSlide === index}
-                    onClick={() => setActiveSlide(index)}
+                    onClick={() => selectCarouselSlide(index)}
                     className={`size-2.5 rounded-full transition sm:size-3 ${
                       activeSlide === index ? "bg-primary-400" : "bg-white"
                     }`}

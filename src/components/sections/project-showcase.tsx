@@ -174,7 +174,7 @@ export function ProjectShowcase() {
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.48)_0%,rgba(0,0,0,0.24)_38%,rgba(0,0,0,0.1)_100%)]" />
 
         <div className="relative mx-auto flex h-full max-w-content items-start px-4 pt-16 sm:px-6 sm:pt-20 lg:pt-24">
-          <div className="absolute bottom-8 right-4 flex gap-3 md:bottom-auto md:top-1/2 md:-translate-y-1/2 md:flex-col md:gap-5 lg:right-20 xl:right-28">
+          <div className="absolute bottom-8 left-4 flex gap-3 md:bottom-auto md:left-6 md:top-44 md:flex-col md:gap-5 lg:left-12 lg:top-48 xl:left-16">
             {PROJECT_SLIDES.map((slide, slideIndex) => {
               const isActive = slideIndex === activeSlide;
 
@@ -221,9 +221,12 @@ export function ProjectShowcase() {
                   ["Location", PROJECT_SLIDES[activeSlide].location],
                 ] as const
               ).map(([label, value]) => (
-                <div key={label} className="flex gap-1 border-b border-white/25 py-2.5">
-                  <dt className="font-bold">{label}</dt>
-                  <dd>{value}</dd>
+                <div
+                  key={label}
+                  className="relative flex flex-wrap items-baseline gap-x-2 gap-y-1 py-2.5 after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-[linear-gradient(90deg,var(--color-accent)_0%,rgba(255,255,255,0.58)_45%,rgba(255,255,255,0)_100%)]"
+                >
+                  <dt className="font-bold text-white">{label}:</dt>
+                  <dd className="font-normal text-white">{value}</dd>
                 </div>
               ))}
             </dl>

@@ -113,7 +113,7 @@ const plants: Plant[] = [
     mapAlt: "Dholera cell and module manufacturing facility",
     mapLabelClassName: "text-2xl sm:text-[32px]",
     eyebrow: "6.5 GW solar cell manufacturing capacity.",
-    headline: "Advanced solar cell and module manufacturing at scale.",
+    headline: "Advanced solar cell and module\nmanufacturing at scale.",
     video: {
       src: "/videos/manufacturing/dholera.webm",
       title: "Dholera manufacturing facility video",
@@ -294,6 +294,7 @@ export function ManufacturingDetail() {
   const [statsPage, setStatsPage] = useState(0);
   const [statsPageCount, setStatsPageCount] = useState(1);
   const activePlant = plants.find((plant) => plant.id === activeId) ?? plants[0];
+  const isDholera = activePlant.id === "dholera";
   const isVizag = activePlant.id === "vizag";
   const statsGridClass =
     activePlant.stats.length === 3
@@ -445,7 +446,11 @@ export function ManufacturingDetail() {
           >
             <div
               className={`w-full max-w-none ${
-                isVizag ? "text-center" : "lg:flex lg:h-full lg:flex-col lg:justify-between"
+                isVizag
+                  ? "text-center"
+                  : isDholera
+                    ? "lg:flex lg:h-full lg:flex-col lg:justify-start"
+                    : "lg:flex lg:h-full lg:flex-col lg:justify-between"
               }`}
             >
               <p
@@ -464,7 +469,11 @@ export function ManufacturingDetail() {
               </p>
               <h2
                 className={`mt-7 whitespace-pre-line text-2xl font-normal leading-[1.16] tracking-[0.03em] text-primary-950 sm:text-[34px] md:text-[46px] md:leading-[54px] ${
-                  isVizag ? "mx-auto max-w-[980px]" : "max-w-[650px] lg:mt-0"
+                  isVizag
+                    ? "mx-auto max-w-[980px]"
+                    : isDholera
+                      ? "max-w-[660px] text-balance lg:mt-14"
+                      : "max-w-[650px] lg:mt-0"
                 }`}
               >
                 {activePlant.headline}

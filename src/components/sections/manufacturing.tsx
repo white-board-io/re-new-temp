@@ -169,7 +169,7 @@ export function Manufacturing() {
                         : "md:scale-100 md:opacity-100 md:delay-200"
                     }`}
                   >
-                    <div className="relative flex min-h-[220px] w-full items-center justify-center md:min-h-[320px] xl:min-h-[390px]">
+                    <div className="relative flex min-h-[220px] w-full items-center justify-center md:min-h-[320px] xl:min-h-[300px]">
                       <Image
                         src={plant.image.src}
                         alt={plant.alt}

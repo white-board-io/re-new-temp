@@ -126,7 +126,7 @@ export function WhoWeServe() {
           className="w-full animate-sunburst motion-reduce:animate-none"
         />
       </div>
-      <div className="relative mx-auto max-w-content px-5 text-left sm:px-6 md:text-center">
+      <div className="relative mx-auto max-w-content px-5 text-left sm:px-6">
         <Reveal>
           <p className="text-xl font-bold uppercase leading-7 text-primary-700 md:text-2xl md:leading-8">
             Who We Serve
@@ -229,7 +229,7 @@ export function WhoWeServe() {
                   </h3>
 
                   <div
-                    className={`absolute inset-x-6 inset-y-8 z-10 flex flex-col items-start justify-center gap-5 text-left text-white transition-[opacity,translate] duration-500 md:inset-x-8 md:items-center md:gap-6 md:text-center xl:inset-x-12 ${
+                    className={`absolute inset-x-6 inset-y-8 z-10 flex flex-col items-start justify-center gap-5 text-left text-white transition-[opacity,translate] duration-500 md:inset-x-8 md:gap-6 xl:inset-x-12 ${
                       isActive
                         ? "translate-y-0 opacity-100 delay-200"
                         : "translate-y-0 opacity-100 md:pointer-events-none md:translate-y-4 md:opacity-0"
@@ -242,7 +242,7 @@ export function WhoWeServe() {
                         </span>
                       ))}
                     </h3>
-                    <p className="flex max-w-[430px] items-center text-sm leading-5 md:mx-auto md:min-h-[168px] lg:text-base lg:leading-6 xl:min-h-[200px] xl:text-lg xl:leading-7">
+                    <p className="flex max-w-[430px] items-center text-sm leading-5 md:min-h-[168px] lg:text-base lg:leading-6 xl:min-h-[200px] xl:text-lg xl:leading-7">
                       {card.description}
                     </p>
                     <ContactModalTrigger

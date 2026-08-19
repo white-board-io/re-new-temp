@@ -117,7 +117,7 @@ export function Downloads() {
               <Reveal>
                 <h2
                   id={`${group.id}-title`}
-                  className="text-lg font-normal uppercase tracking-[0.02em] text-primary-700 sm:text-xl"
+                  className="text-lg font-semibold uppercase tracking-[0.02em] text-primary-700 sm:text-xl lg:text-[24px]"
                 >
                   {group.title}
                 </h2>
@@ -133,13 +133,13 @@ export function Downloads() {
                     key={item.label}
                     className="group flex min-h-28 flex-col justify-center gap-5 border-b border-neutral-200 px-4 py-6 transition-colors hover:bg-surface-tint sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:px-9"
                   >
-                    <p className="text-xl font-bold leading-tight text-primary-700 transition-colors group-hover:text-primary-800 sm:text-2xl lg:text-[30px]">
+                    <p className="text-lg font-normal leading-tight text-primary-700 transition-colors group-hover:text-primary-800 sm:text-2xl lg:text-[30px]">
                       {item.label}
                     </p>
                     <a
                       href={item.href}
                       download
-                      className="inline-flex min-h-10 w-fit shrink-0 items-center justify-center gap-3 self-center rounded-full bg-primary-700 px-8 py-0 text-base font-bold text-white transition-colors group-hover:bg-primary-800 sm:w-[245px] sm:gap-4 sm:self-auto sm:text-lg md:bg-neutral-400 md:py-2.5 md:group-hover:bg-primary-700"
+                      className="inline-flex min-h-8 w-fit shrink-0 items-center justify-center gap-3 self-center rounded-full bg-primary-700 px-8 py-0 text-base font-bold text-white transition-colors group-hover:bg-primary-900 sm:w-[245px] sm:gap-4 sm:self-auto sm:text-lg md:bg-primary-800 md:py-2.5 md:group-hover:bg-primary-900"
                     >
                       Download
                       <DownloadIcon />

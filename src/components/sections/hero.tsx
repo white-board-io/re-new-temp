@@ -1,12 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ContactModalTrigger } from "@/components/contact-modal";
 
 const SLIDE_COUNT = 3;
 // Every slide stays visible for roughly one full background-video loop.
 const SLIDE_DURATION_MS = 8100;
+const WHEEL_LOCK_MS = 850;
+const SWIPE_THRESHOLD_PX = 48;
+const SUBTEXT_SIZE_CLASS = "text-base sm:text-lg md:text-[22px] hero-full:text-[24px]";
 
 function EnquireButton({ className = "" }: { className?: string }) {
   return (
@@ -23,7 +26,15 @@ function SlideFilm() {
 }
 
 export function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const activeSlideRef = useRef(0);
+  const wheelLockRef = useRef(false);
+  const pointerStartRef = useRef<{ x: number; y: number } | null>(null);
   const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    activeSlideRef.current = activeSlide;
+  }, [activeSlide]);
 
   useEffect(() => {
     const timeout = window.setTimeout(() => {
@@ -33,7 +44,69 @@ export function Hero() {
     return () => window.clearTimeout(timeout);
   }, [activeSlide]);
 
-  const selectSlide = (i: number) => setActiveSlide(i);
+  useEffect(() => {
+    let wheelLockTimer = 0;
+
+    const handleWheel = (event: WheelEvent) => {
+      const section = sectionRef.current;
+      if (!section || Math.abs(event.deltaY) < 1) return;
+      if (!section.contains(event.target as Node)) return;
+
+      const direction = event.deltaY > 0 ? 1 : -1;
+      const nextSlide = activeSlideRef.current + direction;
+      if (nextSlide < 0 || nextSlide >= SLIDE_COUNT) return;
+
+      event.preventDefault();
+      if (wheelLockRef.current) return;
+
+      wheelLockRef.current = true;
+      activeSlideRef.current = nextSlide;
+      setActiveSlide(nextSlide);
+
+      window.clearTimeout(wheelLockTimer);
+      wheelLockTimer = window.setTimeout(() => {
+        wheelLockRef.current = false;
+      }, WHEEL_LOCK_MS);
+    };
+
+    window.addEventListener("wheel", handleWheel, { passive: false });
+
+    return () => {
+      window.clearTimeout(wheelLockTimer);
+      window.removeEventListener("wheel", handleWheel);
+    };
+  }, []);
+
+  const selectSlide = (i: number) => {
+    activeSlideRef.current = i;
+    setActiveSlide(i);
+  };
+
+  const selectAdjacentSlide = (direction: 1 | -1) => {
+    const nextSlide = activeSlideRef.current + direction;
+    if (nextSlide < 0 || nextSlide >= SLIDE_COUNT) return;
+
+    selectSlide(nextSlide);
+  };
+
+  const handlePointerDown = (event: React.PointerEvent<HTMLElement>) => {
+    pointerStartRef.current = { x: event.clientX, y: event.clientY };
+  };
+
+  const handlePointerEnd = (event: React.PointerEvent<HTMLElement>) => {
+    const start = pointerStartRef.current;
+    pointerStartRef.current = null;
+    if (!start) return;
+
+    const deltaX = event.clientX - start.x;
+    const deltaY = event.clientY - start.y;
+    const isHorizontalSwipe =
+      Math.abs(deltaX) >= SWIPE_THRESHOLD_PX && Math.abs(deltaX) > Math.abs(deltaY) * 1.2;
+
+    if (!isHorizontalSwipe) return;
+
+    selectAdjacentSlide(deltaX < 0 ? 1 : -1);
+  };
 
   // Slides crossfade while settling from a slight zoom; their content rises
   // into place a beat later for a staggered entrance.
@@ -56,8 +129,14 @@ export function Hero() {
   // content is therefore centred rather than pinned, so it rides the squeeze.
   return (
     <section
+      ref={sectionRef}
       aria-roledescription="carousel"
-      className="relative min-h-[calc(100svh-88px)] w-full overflow-hidden bg-primary-900 md:min-h-0 lg:[clip-path:polygon(0_0,100%_0,100%_calc(100%-56px),calc(100%-56px)_100%,56px_100%,0_calc(100%-56px))]"
+      onPointerDown={handlePointerDown}
+      onPointerUp={handlePointerEnd}
+      onPointerCancel={() => {
+        pointerStartRef.current = null;
+      }}
+      className="relative min-h-[calc(100svh-88px)] w-full touch-pan-y overflow-hidden bg-primary-900 md:min-h-0 lg:[clip-path:polygon(0_0,100%_0,100%_calc(100%-56px),calc(100%-56px)_100%,56px_100%,0_calc(100%-56px))]"
     >
       {/* Slide 1 */}
       <div className={slideClass(0)} aria-hidden={activeSlide !== 0}>
@@ -78,7 +157,7 @@ export function Hero() {
             Switch to clean energy with ReNew Solar Panels, engineered for
             lasting performance.
           </h1>
-          <p className="mt-6 text-base leading-relaxed text-white sm:text-[17px] md:mt-8 md:text-xl">
+          <p className={`mt-6 leading-relaxed text-white md:mt-8 ${SUBTEXT_SIZE_CLASS}`}>
             When you put solar on your roof, the manufacturer matters.
           </p>
           <EnquireButton className="mt-10 md:mt-16" />
@@ -108,7 +187,7 @@ export function Hero() {
               <span className="lg:block">clean energy transition.</span>{" "}
               <span className="lg:block">Now making the solar panels too.</span>
             </h2>
-            <p className="mt-6 text-base leading-[1.55] tracking-[0.025em] text-white sm:text-lg md:mt-8 md:text-[22px] hero-full:mt-10 hero-full:text-[24px]">
+            <p className={`mt-6 leading-[1.55] tracking-[0.025em] text-white md:mt-8 hero-full:mt-10 ${SUBTEXT_SIZE_CLASS}`}>
               20 GW portfolio
               <br />
               18.6M+ tonnes of CO₂ avoided
@@ -163,7 +242,7 @@ export function Hero() {
             </span>{" "}
             <span className="xl:block">Neither do we.</span>
           </h2>
-          <p className="mt-5 text-base font-medium leading-relaxed tracking-hero text-white sm:text-[17px] md:mt-6 md:text-xl xl:mt-[34px] xl:text-2xl xl:leading-10">
+          <p className={`mt-5 font-medium leading-relaxed tracking-hero text-white md:mt-6 xl:mt-[34px] xl:leading-10 ${SUBTEXT_SIZE_CLASS}`}>
             6.5 GW Integrated Module Capacity
             <br />
             Three World-Class Plants

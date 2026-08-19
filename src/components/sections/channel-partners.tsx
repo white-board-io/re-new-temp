@@ -9,25 +9,25 @@ import { Reveal } from "@/components/reveal";
 const videos = [
   {
     src: "/videos/channel-partners/partners-in-success-p3.webm",
-    poster: "/images/channel-partners/partners-in-success-p3.jpg",
+    poster: "/images/channel-partners/CP-1.webp",
     title: "Partners in success P3",
     desktopSize: "xl:h-[510px] xl:w-[803px]",
   },
   {
     src: "/videos/channel-partners/partners-in-success-rev3.webm",
-    poster: "/images/channel-partners/partners-in-success-rev3.jpg",
+    poster: "/images/channel-partners/CP-2.webp",
     title: "Partners in success rev3",
     desktopSize: "xl:h-[510px] xl:w-[793px]",
   },
   {
     src: "/videos/channel-partners/partners-in-success-suntrik-vinay-bansal.webm",
-    poster: "/images/channel-partners/partners-in-success-suntrik-vinay-bansal.jpg",
+    poster: "/images/channel-partners/CP-3.webp",
     title: "Partners in success Suntrik Vinay Bansal",
     desktopSize: "xl:h-[510px] xl:w-[803px]",
   },
   {
     src: "/videos/channel-partners/womens-day-rev1.webm",
-    poster: "/images/channel-partners/womens-day-rev1.jpg",
+    poster: "/images/channel-partners/CP-4.webp",
     title: "Womens Day rev1",
     desktopSize: "xl:h-[510px] xl:w-[793px]",
   },

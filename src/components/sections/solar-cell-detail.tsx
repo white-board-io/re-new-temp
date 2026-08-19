@@ -270,28 +270,28 @@ export function SolarCellDetail() {
               High Conversion Efficiency.
             </p>
 
-            <h3 className="mt-12 hidden text-left text-2xl font-bold text-primary-950 sm:mt-16 sm:block">
+            <h3 className="mt-8 text-left text-xl font-bold text-primary-950 sm:mt-16 sm:text-2xl">
               Product Specifications
             </h3>
 
-            <dl className="mt-6 hidden text-left text-lg sm:block sm:text-xl">
-              <div className="border-t border-neutral-200 py-8">
+            <dl className="mt-4 text-left text-base sm:mt-6 sm:text-xl">
+              <div className="border-t border-neutral-200 py-5 sm:py-8">
                 <dt>Type</dt>
                 <dd className="mt-2 text-neutral-500">
                   High conversion efficiency bifacial PERC cell
                 </dd>
               </div>
-              <div className="border-t border-neutral-200 py-8">
+              <div className="border-t border-neutral-200 py-5 sm:py-8">
                 <dt>Cell Grade</dt>
                 <dd className="mt-2 text-neutral-500">High efficiency bifacial PERC</dd>
               </div>
-              <div className="border-t border-neutral-200 py-8">
+              <div className="border-t border-neutral-200 py-5 sm:py-8">
                 <dt>Testing Standard</dt>
                 <dd className="mt-2 text-neutral-500">
                   Standard Test Conditions — 1000 W/m², AM 1.5G spectrum, 25°C
                 </dd>
               </div>
-              <div className="border-y border-neutral-200 py-8">
+              <div className="border-y border-neutral-200 py-5 sm:py-8">
                 <dt>Quality Inspection</dt>
                 <dd className="mt-2 text-neutral-500">
                   Visual grading from 50 cm. Colour and defect sorting by an inspection machine.

@@ -123,7 +123,7 @@ export function Manufacturing() {
                 onMouseEnter={() => setActive(index)}
                 onMouseLeave={() => setActive(null)}
                 onFocus={() => setActive(index)}
-                className={`relative block h-[320px] w-[78%] shrink-0 snap-start focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:h-[500px] md:w-auto md:shrink ${
+                className={`relative block h-[430px] w-[78%] shrink-0 snap-start focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:h-[500px] md:w-auto md:shrink ${
                   isActive ? "z-10" : "z-0"
                 }`}
               >
@@ -134,24 +134,29 @@ export function Manufacturing() {
                       : "md:scale-100"
                   }`}
                 >
-                  <div className="absolute inset-x-5 bottom-4 top-5 z-10 flex flex-col items-center text-center text-white md:hidden">
-                    <h3 className="text-[24px] font-bold leading-[1.12] [text-wrap:balance]">
-                      {plant.title.map((line) => (
-                        <span key={line} className="block">
-                          {line}
-                        </span>
-                      ))}
-                    </h3>
-                    <div className="relative mt-3 min-h-0 w-full flex-1 overflow-hidden">
+                  <div className="absolute inset-x-5 inset-y-6 z-10 flex flex-col items-center justify-center text-center text-white md:hidden">
+                    <div className="-translate-y-6">
+                      <h3 className="text-[24px] font-bold leading-[1.12] [text-wrap:balance]">
+                        {plant.title.map((line) => (
+                          <span key={line} className="block">
+                            {line}
+                          </span>
+                        ))}
+                      </h3>
+                      <p className="mt-3 py-6 max-w-[240px] text-[18px] font-bold leading-5 text-primary-100 [text-wrap:balance]">
+                        {plant.mobileSummary}
+                      </p>
+                    </div>
+                    <div className="relative -mt-2 w-full overflow-visible">
                       <Image
                         src={plant.image.src}
                         alt=""
                         width={plant.image.width}
                         height={plant.image.height}
-                        className={`absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 object-contain opacity-85 ${plant.imageClassName}`}
+                        className={`absolute left-1/2 top-1/2 h-[210px] w-full -translate-x-1/2 -translate-y-1/2 object-contain opacity-25 ${plant.imageClassName}`}
                         sizes="88vw"
                       />
-                      <p className="absolute left-1/2 top-1/2 z-10 w-[88%] -translate-x-1/2 -translate-y-1/2 text-center text-[14px] font-normal leading-[19px] [text-shadow:0_1px_3px_rgb(0_0_0_/_0.95)] [text-wrap:pretty]">
+                      <p className="relative z-10 mx-auto w-[88%] text-center text-[14px] font-normal leading-5 [text-shadow:0_1px_3px_rgb(0_0_0_/_0.95)] [text-wrap:pretty]">
                         {plant.mobileDetails}
                       </p>
                     </div>

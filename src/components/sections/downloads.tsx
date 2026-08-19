@@ -139,7 +139,7 @@ export function Downloads() {
                     <a
                       href={item.href}
                       download
-                      className="inline-flex min-h-10 w-fit shrink-0 items-center justify-center gap-3 self-center rounded-full bg-neutral-400 px-8 py-0 text-base font-bold text-white transition-colors group-hover:bg-primary-700 sm:w-[245px] sm:gap-4 sm:self-auto sm:text-lg md:py-2.5"
+                      className="inline-flex min-h-10 w-fit shrink-0 items-center justify-center gap-3 self-center rounded-full bg-primary-700 px-8 py-0 text-base font-bold text-white transition-colors group-hover:bg-primary-800 sm:w-[245px] sm:gap-4 sm:self-auto sm:text-lg md:bg-neutral-400 md:py-2.5 md:group-hover:bg-primary-700"
                     >
                       Download
                       <DownloadIcon />

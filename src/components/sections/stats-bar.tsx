@@ -66,7 +66,7 @@ export function StatsBar() {
             className={`grid grid-cols-[auto_1fr] items-stretch gap-4 ${stat.gap} ${stat.itemOffset}`}
           >
             <div
-              className="relative shrink-0 self-stretch"
+              className="relative h-14 shrink-0 self-center md:h-auto md:self-stretch"
               style={{
                 aspectRatio: `${stat.iconWidth} / ${stat.iconHeight}`,
               } as CSSProperties}

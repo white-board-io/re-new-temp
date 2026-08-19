@@ -225,7 +225,7 @@ export function ProjectShowcase() {
                   key={label}
                   className="relative flex flex-wrap items-baseline gap-x-2 gap-y-1 py-2.5 after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-[linear-gradient(90deg,var(--color-accent)_0%,rgba(255,255,255,0.58)_45%,rgba(255,255,255,0)_100%)]"
                 >
-                  <dt className="font-bold text-white">{label}:</dt>
+                  <dt className="font-extrabold text-white md:font-bold">{label}:</dt>
                   <dd className="font-normal text-white">{value}</dd>
                 </div>
               ))}

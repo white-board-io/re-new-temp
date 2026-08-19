@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ContactModalTrigger } from "@/components/contact-modal";
 import { Reveal } from "@/components/reveal";
 
@@ -30,13 +30,90 @@ const cards = [
 ];
 
 const GROW = "duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]";
+const MOBILE_CARD_QUERY = "(max-width: 767.98px)";
 
 export function WhoWeServe() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const cardRefs = useRef<Array<HTMLElement | null>>([]);
   const [interactionActive, setInteractionActive] = useState<number | null>(null);
-  const active = interactionActive;
+  const [scrollActive, setScrollActive] = useState<number | null>(null);
+  const active = scrollActive ?? interactionActive;
+
+  useEffect(() => {
+    const media = window.matchMedia(MOBILE_CARD_QUERY);
+    const track = sectionRef.current?.querySelector<HTMLElement>(
+      "[data-who-we-serve-track]",
+    );
+    let frame = 0;
+
+    const updateActiveCard = () => {
+      frame = 0;
+
+      if (!media.matches || !track) {
+        setScrollActive(null);
+        return;
+      }
+
+      const trackRect = track.getBoundingClientRect();
+      const visibleLeft = Math.max(trackRect.left, 0);
+      const visibleRight = Math.min(trackRect.right, window.innerWidth);
+      const visibleTop = Math.max(trackRect.top, 0);
+      const visibleBottom = Math.min(trackRect.bottom, window.innerHeight);
+
+      if (visibleRight <= visibleLeft || visibleBottom <= visibleTop) {
+        setScrollActive(null);
+        return;
+      }
+
+      let nextActive: number | null = null;
+      let bestArea = 0;
+
+      cardRefs.current.forEach((card, index) => {
+        if (!card) return;
+
+        const rect = card.getBoundingClientRect();
+        const width = Math.max(
+          0,
+          Math.min(rect.right, visibleRight) - Math.max(rect.left, visibleLeft),
+        );
+        const height = Math.max(
+          0,
+          Math.min(rect.bottom, visibleBottom) - Math.max(rect.top, visibleTop),
+        );
+        const area = width * height;
+
+        if (area > bestArea) {
+          bestArea = area;
+          nextActive = index;
+        }
+      });
+
+      setScrollActive((current) => (current === nextActive ? current : nextActive));
+    };
+
+    const scheduleUpdate = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(updateActiveCard);
+    };
+
+    scheduleUpdate();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+    track?.addEventListener("scroll", scheduleUpdate, { passive: true });
+    media.addEventListener("change", scheduleUpdate);
+
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      track?.removeEventListener("scroll", scheduleUpdate);
+      media.removeEventListener("change", scheduleUpdate);
+    };
+  }, []);
 
   return (
     <section
+      ref={sectionRef}
       id="who-we-serve"
       className="relative overflow-hidden bg-gradient-to-b from-surface-tint to-white pb-16 pt-14 md:pb-section md:pt-[calc(var(--spacing-section)*2)]"
     >
@@ -86,6 +163,7 @@ export function WhoWeServe() {
         <Reveal
           stagger
           delay={150}
+          data-who-we-serve-track
           className="reveal-track mt-14 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 md:mt-16 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0 lg:mt-24 lg:gap-12 xl:gap-[90px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           onMouseLeave={() => setInteractionActive(null)}
           onBlur={(event) => {
@@ -100,6 +178,9 @@ export function WhoWeServe() {
             return (
               <article
                 key={card.title.join(" ")}
+                ref={(node) => {
+                  cardRefs.current[index] = node;
+                }}
                 tabIndex={0}
                 onClick={() => setInteractionActive(index)}
                 onMouseEnter={() => setInteractionActive(index)}
@@ -128,7 +209,7 @@ export function WhoWeServe() {
                   <div
                     className={`absolute inset-0 transition-colors duration-500 ${
                       isActive
-                        ? "bg-gradient-to-t from-primary-950/85 via-primary-950/35 to-transparent md:bg-primary-700/85"
+                        ? "bg-gradient-to-br from-primary-700/95 via-primary-700/85 to-primary-400/80 md:bg-none md:bg-primary-700/85"
                         : "bg-gradient-to-t from-primary-950/60 via-primary-950/15 to-transparent md:from-primary-950/85 md:via-primary-950/10"
                     }`}
                   />

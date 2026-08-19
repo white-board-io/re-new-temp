@@ -178,7 +178,7 @@ export function Hero() {
 
       {/* Shared slide progress */}
       <div
-        className="absolute inset-x-0 bottom-7 flex items-center justify-center gap-2 md:bottom-6 md:gap-4 hero-full:bottom-14"
+        className="absolute inset-x-0 bottom-7 flex items-center justify-start gap-2 pl-5 sm:pl-6 md:bottom-6 md:justify-center md:gap-4 md:pl-0 hero-full:bottom-14"
         role="tablist"
         aria-label="Hero slides"
       >

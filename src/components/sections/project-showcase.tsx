@@ -173,38 +173,38 @@ export function ProjectShowcase() {
         <div className="absolute inset-0 bg-black/45" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.48)_0%,rgba(0,0,0,0.24)_38%,rgba(0,0,0,0.1)_100%)]" />
 
+        <div className="absolute left-4 top-1/2 z-10 flex -translate-y-1/2 flex-col gap-5 sm:left-6 lg:left-12 xl:left-[181px]">
+          {PROJECT_SLIDES.map((slide, slideIndex) => {
+            const isActive = slideIndex === activeSlide;
+
+            return (
+              <button
+                key={slide.capacity}
+                type="button"
+                aria-label={`Show ${slide.capacity} project`}
+                aria-current={isActive ? "true" : undefined}
+                onClick={() => {
+                  const track = trackRef.current;
+                  if (!track) return;
+
+                  const { stickyTop, stickyHeight } = getStickyMetrics();
+                  const top = track.getBoundingClientRect().top + window.scrollY;
+                  window.scrollTo({
+                    top: top - stickyTop + slideIndex * stickyHeight,
+                    behavior: "smooth",
+                  });
+                }}
+                className={`size-3 origin-left rounded-full border transition ${
+                  isActive
+                    ? "scale-150 border-accent bg-transparent"
+                    : "border-white/70 bg-white/70 hover:border-white hover:bg-white"
+                }`}
+              />
+            );
+          })}
+        </div>
+
         <div className="relative mx-auto flex h-full max-w-content items-start px-4 pt-16 sm:px-6 sm:pt-20 lg:pt-24">
-          <div className="absolute bottom-8 left-4 flex gap-3 md:bottom-auto md:left-6 md:top-44 md:flex-col md:gap-5 lg:left-12 lg:top-48 xl:left-16">
-            {PROJECT_SLIDES.map((slide, slideIndex) => {
-              const isActive = slideIndex === activeSlide;
-
-              return (
-                <button
-                  key={slide.capacity}
-                  type="button"
-                  aria-label={`Show ${slide.capacity} project`}
-                  aria-current={isActive ? "true" : undefined}
-                  onClick={() => {
-                    const track = trackRef.current;
-                    if (!track) return;
-
-                    const { stickyTop, stickyHeight } = getStickyMetrics();
-                    const top = track.getBoundingClientRect().top + window.scrollY;
-                    window.scrollTo({
-                      top: top - stickyTop + slideIndex * stickyHeight,
-                      behavior: "smooth",
-                    });
-                  }}
-                  className={`size-3 rounded-full border transition ${
-                    isActive
-                      ? "scale-150 border-accent bg-transparent"
-                      : "border-white/70 bg-white/70 hover:border-white hover:bg-white"
-                  }`}
-                />
-              );
-            })}
-          </div>
-
           {/* One fade as the showcase arrives. Slide-to-slide changes are the
               scroll track's job, so this settles once and stays put. */}
           <Reveal className="max-w-2xl pl-0 text-white md:pl-20 lg:pl-24 xl:pl-28">

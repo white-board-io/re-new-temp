@@ -79,7 +79,7 @@ export function Contact() {
                 {rotatingWord}
               </span>
             </span>{" "}
-            with ReNew Solar Panels.
+            <span className="whitespace-nowrap">with ReNew Solar Panels.</span>
           </h2>
           <p className="mt-8 max-w-md text-2xl leading-9 text-white/90">
             Tell us what you need and our team will get back to you within 24 hours.

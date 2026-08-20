@@ -1,5 +1,5 @@
 const items = [
-  "3 Plants - Jaipur, Dholera & Vizag",
+  "3 Manufacturing Plants - Jaipur, Dholera & Vizag",
   "9.3+ GW Dispatched",
   "6.4 Lakh Cells Produced Daily",
   "23,000 Modules Per Day",

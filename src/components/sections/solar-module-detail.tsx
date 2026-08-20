@@ -475,17 +475,17 @@ export function SolarModuleDetail() {
                 return (
                   <div
                     key={`${activeModuleId}-${feature.title}`}
-                    className="grid w-full gap-3 text-center lg:grid-cols-[44px_minmax(0,520px)] lg:items-start lg:gap-7 lg:text-left"
+                    className="grid w-full gap-3 text-center lg:grid-cols-[44px_minmax(0,540px)] lg:items-start lg:gap-7 lg:text-left"
                   >
                     <FeatureIcon icon={feature.icon} />
                     <span
-                      className="group mx-auto w-full max-w-[520px] lg:mx-0 lg:cursor-default lg:focus-visible:outline lg:focus-visible:outline-2 lg:focus-visible:outline-offset-4 lg:focus-visible:outline-primary-700"
+                      className="group mx-auto w-full max-w-[540px] lg:mx-0 lg:cursor-default lg:focus-visible:outline lg:focus-visible:outline-2 lg:focus-visible:outline-offset-4 lg:focus-visible:outline-primary-700"
                       tabIndex={0}
                     >
                       <span className="block text-xl font-bold leading-tight text-[#143b58] sm:text-3xl">
                         {feature.title}
                       </span>
-                      <span className="grid pt-3 text-sm leading-6 text-[#143b58] sm:pt-4 sm:text-xl sm:leading-8 lg:grid-rows-[0fr] lg:pt-0 lg:translate-y-2 lg:opacity-0 lg:transition-[grid-template-rows,opacity,padding-top,transform] lg:duration-[900ms] lg:ease-[cubic-bezier(0.25,0.1,0.25,1)] lg:group-focus-within:grid-rows-[1fr] lg:group-focus-within:pt-4 lg:group-focus-within:translate-y-0 lg:group-focus-within:opacity-100 lg:group-hover:grid-rows-[1fr] lg:group-hover:pt-4 lg:group-hover:translate-y-0 lg:group-hover:opacity-100 motion-reduce:transition-none motion-reduce:transform-none">
+                      <span className="grid pt-3 text-xs leading-6 text-[#143b58] sm:pt-4 sm:text-lg sm:leading-7 lg:grid-rows-[0fr] lg:pt-0 lg:translate-y-2 lg:opacity-0 lg:transition-[grid-template-rows,opacity,padding-top,transform] lg:duration-[900ms] lg:ease-[cubic-bezier(0.25,0.1,0.25,1)] lg:group-focus-within:grid-rows-[1fr] lg:group-focus-within:pt-4 lg:group-focus-within:translate-y-0 lg:group-focus-within:opacity-100 lg:group-hover:grid-rows-[1fr] lg:group-hover:pt-4 lg:group-hover:translate-y-0 lg:group-hover:opacity-100 motion-reduce:transition-none motion-reduce:transform-none">
                         <span className="overflow-hidden">
                           {feature.description}
                         </span>

@@ -606,7 +606,7 @@ export function ManufacturingDetail() {
             <h2 className="mt-10 text-2xl font-bold leading-[1.14] text-primary-950 sm:mt-12 sm:text-[34px] md:text-[50px]">
               {activePlant.sustainabilityTitle}
             </h2>
-            <p className="mx-auto mt-8 max-w-5xl text-base font-light leading-7 text-neutral-500 sm:mt-12 sm:text-2xl sm:leading-10">
+            <p className="mx-auto mt-8 max-w-6xl text-base font-light leading-7 text-neutral-500 sm:mt-12 sm:text-2xl sm:leading-10">
               {activePlant.sustainabilityBody}
             </p>
           </Reveal>

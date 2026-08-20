@@ -66,17 +66,19 @@ export function Contact() {
       {/* Copy column, then the form a beat later. */}
       <Reveal
         stagger
-        className="mx-auto grid max-w-content gap-14 px-4 sm:px-6 lg:grid-cols-2 lg:gap-24 xl:grid-cols-[560px_545px] xl:gap-[323px]"
+        className="mx-auto grid max-w-content gap-14 px-4 sm:px-6 lg:grid-cols-2 lg:gap-24 xl:ml-[181px] xl:mr-0 xl:w-[1428px] xl:max-w-none xl:grid-cols-[560px_545px] xl:gap-[323px] xl:px-0"
       >
         <div className="min-w-0">
           <h2
             aria-label="Power your next Home, Project, or Business with ReNew Solar Panels."
             className="max-w-lg text-[28px] font-bold leading-[1.14] sm:text-[34px] md:text-[54px] md:leading-[62px]"
           >
-            Power your next{" "}
-            <span aria-hidden className="inline-block align-baseline text-accent">
-              <span key={rotatingWord} className="contact-rotating-word inline-block">
-                {rotatingWord}
+            <span className="whitespace-nowrap">
+              Power your next{" "}
+              <span aria-hidden className="inline-block align-baseline text-accent">
+                <span key={rotatingWord} className="contact-rotating-word inline-block">
+                  {rotatingWord}
+                </span>
               </span>
             </span>{" "}
             <span className="whitespace-nowrap">with ReNew Solar Panels.</span>

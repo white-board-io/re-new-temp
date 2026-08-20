@@ -97,7 +97,7 @@ const plants: Plant[] = [
     ],
     paragraphs: [
       "The Jaipur plant is ReNew Solar's flagship manufacturing facility, with 4 GW module manufacturing capacity under a single roof. Spread across 22 acres, it produces 23000 modules every day and is designed for high-volume, consistent output.",
-      "The plant produces TOPCon and Mono PERC bifacial modules using advanced automation across the full production line, with rigorous in-line quality control at every stage. An in-house NABL accredited PV Module Test Lab — accredited under ISO/IEC 17025:2017 — ensures every batch meets international performance and reliability standards before dispatch.",
+      "The plant produces TOPCon and Mono PERC bifacial modules using advanced automation across the full production line, with rigorous inline quality control at every stage. An in-house NABL accredited PV Module Test Lab — accredited under ISO/IEC 17025:2017 — ensures every batch meets international performance and reliability standards before dispatch.",
       "The facility is LEED Gold certified and powered by a 7.2 MW rooftop solar system. It has been honoured with the British Safety Council's 5-Star Rating and Sword of Honour.",
     ],
     sustainabilityTitle:

@@ -25,7 +25,7 @@ const cards = [
     image: "/images/For-large-scale-projects.webp",
     position: "object-center",
     description:
-      "19.4 GW of integrated solar manufacturing capacity. PAN-India reach. On-time delivery. When your project demands scale, we have the infrastructure to match it — backed by India's leading renewable energy company.",
+      "6.5 GW of integrated manufacturing capacity. PAN-India reach. On-time delivery. When your project demands scale, we have the infrastructure to match it — backed by India's leading renewable energy company.",
   },
 ];
 
@@ -132,7 +132,7 @@ export function WhoWeServe() {
             Who We Serve
           </p>
           <h2 className="mt-4 text-[28px] font-bold leading-[1.14] text-primary-950 sm:text-[34px] md:mt-6 md:text-[54px] md:leading-[58px]">
-            Solar for <span className="text-primary-400">Every Life</span>
+            Solar for <span className="text-primary-400">Every One</span>
           </h2>
           <ul className="mt-5 flex flex-col items-start gap-3 text-base leading-6 text-neutral-500 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-2 md:mt-6 md:text-lg">
             <li className="flex items-start gap-2">

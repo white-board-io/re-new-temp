@@ -13,8 +13,8 @@ const plants = [
     image: { src: "/images/Jaipur.webp", width: 648, height: 554 },
     imageClassName: "max-w-[480px]",
     alt: "Aerial view of the Jaipur, Rajasthan plant within the outline of Rajasthan state",
-    caption: "4 GW module manufacturing capacity under a single roof",
-    mobileSummary: "4 GW module manufacturing capacity under a single roof",
+    caption: "4 GW module\nmanufacturing capacity under a single roof",
+    mobileSummary: "4 GW module\nmanufacturing capacity under a single roof",
     mobileDetails:
       "Spread across 22 acres. 23000 modules produced every day. LEED Gold certified. Powered by a 7.2 MW rooftop solar system. Honoured with the British Safety Council's 5-Star Rating and Sword of Honour.",
     details:
@@ -28,8 +28,8 @@ const plants = [
     detailContainerClassName: "inset-x-6 xl:inset-x-10",
     detailTextClassName: "max-w-[280px]",
     alt: "Aerial view of the Dholera, Gujarat plant within the outline of Gujarat state",
-    caption: "6.5 GW solar cell manufacturing capacity",
-    mobileSummary: "6.5 GW solar cell manufacturing capacity",
+    caption: "6.5 GW solar cell\nmanufacturing capacity",
+    mobileSummary: "6.5 GW solar cell\nmanufacturing capacity",
     mobileDetails:
       "2.4 GW module manufacturing capacity, spread across 55 acres in Gujarat's Special Investment Region (including a 4 GW TOPCon facility under development). Equipped with AI-driven defect diagnostics and automated material movement systems.",
     details:
@@ -41,8 +41,8 @@ const plants = [
     image: { src: "/images/Visakhapatnam.webp", width: 710, height: 542 },
     imageClassName: "max-w-[500px]",
     alt: "Aerial view of the Visakhapatnam, Andhra Pradesh plant within the outline of Andhra Pradesh state",
-    caption: "6.5 GW wafer and ingot manufacturing facility (upcoming)",
-    mobileSummary: "6.5 GW wafer and ingot manufacturing facility (upcoming)",
+    caption: "6.5 GW wafer and ingot\nmanufacturing facility (upcoming)",
+    mobileSummary: "6.5 GW wafer and ingot\nmanufacturing facility (upcoming)",
     mobileDetails:
       "ReNew Solar Panel's third plant will complete the value chain from ingot to module, making it one of the most integrated solar manufacturers in India.",
     details:
@@ -188,7 +188,7 @@ export function Manufacturing() {
                         </h3>
                       </div>
                     </div>
-                    <figcaption className="mx-auto max-w-[240px] text-center text-lg font-bold leading-6 md:mt-4 md:max-w-md md:text-xl md:leading-7 xl:mt-6 xl:text-2xl xl:leading-8">
+                    <figcaption className="mx-auto text-center text-lg font-bold leading-6 whitespace-pre-line md:mt-4 md:max-w-md md:text-xl md:leading-7 xl:mt-6 xl:text-2xl xl:leading-8">
                       <span className="block md:hidden">{plant.mobileSummary}</span>
                       <span className="hidden md:block">{plant.caption}</span>
                     </figcaption>

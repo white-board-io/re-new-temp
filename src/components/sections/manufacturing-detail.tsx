@@ -103,7 +103,7 @@ const plants: Plant[] = [
     sustainabilityTitle:
       "The Jaipur plant is one of India's few LEED Gold certified solar module manufacturing facilities.",
     sustainabilityBody:
-      "The facility runs on a 7.2 MW rooftop solar system comprising 13,340 of its own panels, generating 10 million kWh annually. An internal sewage treatment plant recycles 80 to 90% of treated water within the premises. The plant has generated over 1,900 direct jobs, with a Centre of Excellence focused on women in STEM.",
+      "The facility runs on a 7.2 MW rooftop solar system comprising its own panels, generating 10 million kWh annually. An internal sewage treatment plant recycles 80 to 90% of treated water within the premises. The plant has generated over 1,900 direct jobs, with a Centre of Excellence focused on women in STEM.",
   },
   {
     id: "dholera",
@@ -112,7 +112,7 @@ const plants: Plant[] = [
     map: "/images/manufacturing/jaipur-tab.webp",
     mapAlt: "Dholera cell and module manufacturing facility",
     mapLabelClassName: "text-2xl sm:text-[32px]",
-    eyebrow: "6.5 GW solar cell manufacturing capacity.",
+    eyebrow: "6.5 GW cell and 2.4\u00A0GW\u00A0module manufacturing capacity.",
     headline: "Advanced solar cell and module\nmanufacturing at scale.",
     video: {
       src: "/videos/manufacturing/dholera.webm",
@@ -154,7 +154,7 @@ const plants: Plant[] = [
       {
         label: "Cell capacity",
         value: "6.5 GW",
-        details: "6.5 GW solar cell manufacturing capacity",
+        details: "6.5 GW cell and 2.4 GW module manufacturing capacity",
         icon: "output",
       },
       {

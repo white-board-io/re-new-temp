@@ -25,7 +25,7 @@ const cards = [
     image: "/images/For-large-scale-projects.webp",
     position: "object-center",
     description:
-      "6.5 GW of integrated manufacturing capacity. PAN-India reach. On-time delivery. When your project demands scale, we have the infrastructure to match it — backed by India's leading renewable energy company.",
+      "6.5 GW of integrated manufacturing solar capacity. PAN-India reach. On-time delivery. When your project demands scale, we have the infrastructure to match it — backed by India's leading renewable energy company.",
   },
 ];
 

@@ -3,7 +3,7 @@ const items = [
   "9.3+ GW Dispatched",
   "6.4 Lakh Cells Produced Daily",
   "23,000 Modules Per Day",
-  "7 times Bloomberg Tier 1",
+  "6 times Bloomberg Tier 1",
 ];
 
 function TickerRun({ hidden = false }: { hidden?: boolean }) {

@@ -585,7 +585,7 @@ export function ManufacturingDetail() {
 
           <Reveal
             stagger
-            className="mt-14 space-y-7 text-base font-light leading-7 text-neutral-500 sm:mt-[120px] sm:space-y-10 sm:text-[26px] sm:leading-[1.55]"
+            className="mt-14 space-y-7 text-[16px] font-light leading-7 text-neutral-500 sm:mt-[120px] sm:space-y-10 sm:text-[26px] sm:leading-[1.55]"
           >
             {activePlant.paragraphs.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
@@ -593,7 +593,7 @@ export function ManufacturingDetail() {
           </Reveal>
         </section>
 
-        <section className="relative overflow-hidden bg-surface-tint py-24 lg:py-32">
+        <section className="relative overflow-hidden bg-surface-tint pb-8 pt-24 lg:py-32">
           <Image
             src="/images/sunburst.svg"
             alt=""
@@ -606,7 +606,7 @@ export function ManufacturingDetail() {
             <h2 className="mt-10 text-2xl font-bold leading-[1.14] text-primary-950 sm:mt-12 sm:text-[34px] md:text-[50px]">
               {activePlant.sustainabilityTitle}
             </h2>
-            <p className="mx-auto mt-8 max-w-6xl text-base font-light leading-7 text-neutral-500 sm:mt-12 sm:text-2xl sm:leading-10">
+            <p className="mx-auto mt-8 max-w-6xl text-[17px] font-light leading-6 text-neutral-500 sm:mt-12 sm:text-2xl sm:leading-10">
               {activePlant.sustainabilityBody}
             </p>
           </Reveal>

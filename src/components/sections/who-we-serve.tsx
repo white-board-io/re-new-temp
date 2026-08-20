@@ -7,25 +7,25 @@ import { Reveal } from "@/components/reveal";
 
 const cards = [
   {
-    title: ["For your", "Home"],
+    title: ["For Your", "Home"],
     image: "/images/For-your-home.webp",
     position: "object-[48%_50%]",
     description:
       "Lower your electricity bill from day one. ReNew Solar Panels are designed for Indian weather — high efficiency, low maintenance, and backed by a 30-year power warranty.",
   },
   {
-    title: ["For your", "Business"],
+    title: ["For Your", "Business"],
     image: "/images/For-your-business.webp",
     position: "object-center",
     description:
       "When your energy costs are high, and your timelines are tight, you need a manufacturer you can count on — consistent availability, committed supply, and panels that perform.",
   },
   {
-    title: ["For large-scale", "Projects"],
+    title: ["Large Spale", "Projects"],
     image: "/images/For-large-scale-projects.webp",
     position: "object-center",
     description:
-      "19.4 GW of integrated solar manufacturing capacity. PAN India reach. On-time delivery. When your project demands scale, we have the infrastructure to match it — backed by India's leading renewable energy company.",
+      "19.4 GW of integrated solar manufacturing capacity. PAN-India reach. On-time delivery. When your project demands scale, we have the infrastructure to match it — backed by India's leading renewable energy company.",
   },
 ];
 

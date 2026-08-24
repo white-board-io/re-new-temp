@@ -35,7 +35,7 @@ const products: Product[] = [
     href: "/products/solar-module",
     features: [
       {
-        lead: "G12R TOPCon Bifacial",
+        lead: "G12R TOPCon",
         href: "/products/solar-module#g12r-topcon-bifacial",
         rest: "Range up to 640 Wp | Efficiency up to 23.69%",
       },
@@ -146,15 +146,47 @@ export function Products() {
                   sizes="(min-width: 768px) 62vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-primary-950/55 md:hidden" />
-                <h3 className="absolute left-8 top-8 z-10 whitespace-nowrap text-left text-2xl font-bold uppercase leading-8 text-white md:left-10 md:top-10 md:whitespace-normal md:text-primary-950">
+                <div
+                  className={`pointer-events-none absolute inset-0 hidden bg-gradient-to-b from-primary-950/55 via-primary-950/15 to-primary-950/70 transition-opacity duration-300 md:block ${
+                    isActive ? "opacity-0" : "opacity-100"
+                  }`}
+                />
+                <h3
+                  className={`absolute left-8 top-8 z-10 whitespace-nowrap text-left text-2xl font-bold uppercase leading-8 text-white md:left-10 md:top-10 md:whitespace-normal ${
+                    isActive
+                      ? "md:text-primary-950"
+                      : "md:text-white md:[text-shadow:0_2px_8px_rgba(0,0,0,0.45)]"
+                  }`}
+                >
                   {product.title}
                 </h3>
                 <div
-                  className={`absolute inset-x-8 bottom-8 ${contentPosition} z-10 flex flex-col items-start text-left md:bottom-12 md:left-[47%] md:right-12 md:items-stretch ${
-                    isActive ? "" : "md:pointer-events-none"
+                  className={`absolute inset-x-10 top-[104px] z-10 max-w-[22rem] text-left text-white transition-opacity duration-300 ${
+                    isActive ? "hidden" : "hidden opacity-100 md:block"
                   }`}
                 >
-                  <div className={contentIn(isActive, "md:delay-[350ms]")}>
+                  {product.features.map((feature) => (
+                    <Link
+                      key={feature.lead}
+                      href={feature.href}
+                      className="block border-b border-white/35 py-3 text-lg font-extrabold leading-6 underline-offset-4 [text-shadow:0_2px_8px_rgba(0,0,0,0.45)] first:pt-0 last:border-b-0 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white lg:text-xl lg:leading-7"
+                    >
+                      {feature.lead}
+                    </Link>
+                  ))}
+                </div>
+                <div
+                  className={`absolute inset-x-8 bottom-8 ${contentPosition} z-10 flex flex-col items-start text-left ${
+                    isActive
+                      ? "md:bottom-12 md:left-[47%] md:right-12 md:items-stretch"
+                      : "md:!top-auto md:inset-x-10 md:bottom-10 md:items-start"
+                  }`}
+                >
+                  <div
+                    className={`${contentIn(isActive, "md:delay-[350ms]")} ${
+                      isActive ? "" : "md:hidden"
+                    }`}
+                  >
                     {product.features.map((feature) => (
                       <Link
                         key={feature.lead}
@@ -184,10 +216,11 @@ export function Products() {
                   </div>
                   <Link
                     href={product.href}
-                    className={`mb-8 mt-auto inline-flex min-h-10 min-w-[168px] items-center justify-center self-start rounded-full bg-accent px-8 py-0 text-base font-medium text-white hover:bg-primary-400 md:mb-0 md:px-8 md:py-2.5 md:text-xl ${contentIn(
-                      isActive,
-                      "md:delay-[450ms]",
-                    )}`}
+                    className={`mb-8 mt-auto inline-flex min-h-10 min-w-[168px] items-center justify-center self-start rounded-full bg-accent px-8 py-0 text-base font-medium text-white hover:bg-primary-400 md:mb-0 md:px-8 md:py-2.5 md:text-xl md:transition-[opacity,transform,background-color] md:ease-out ${
+                      isActive
+                        ? "md:translate-y-0 md:opacity-100 md:duration-500 md:delay-[450ms]"
+                        : "md:translate-y-0 md:opacity-100 md:duration-300"
+                    }`}
                   >
                     Know More
                   </Link>

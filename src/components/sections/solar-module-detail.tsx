@@ -146,8 +146,8 @@ type ModuleRange = {
 const moduleRanges: ModuleRange[] = [
   {
     id: "g12r-topcon-bifacial",
-    label: "G12R TOPCon Bifacial",
-    title: "G12R TOPCon Bifacial Module",
+    label: "G12R TOPCon",
+    title: "G12R TOPCon",
     tagline: "Right. Reliable. Ready.",
     range: "605 to 640 Wp",
     efficiency: "Up to 23.69%",
@@ -169,7 +169,7 @@ const moduleRanges: ModuleRange[] = [
   {
     id: "m10r-topcon",
     label: "M10R TOPCon",
-    title: "M10R TOPCon Module",
+    title: "M10R TOPCon",
     tagline: "Durable. Adaptable.",
     range: "570 to 590 Wp",
     efficiency: "Up to 22.84%",
@@ -190,7 +190,7 @@ const moduleRanges: ModuleRange[] = [
   {
     id: "m10r-perc",
     label: "M10R PERC",
-    title: "M10R PERC Module",
+    title: "M10R PERC",
     tagline: "Reliable. Resilient.",
     range: "530 to 560 Wp",
     efficiency: "Up to 21.68%",

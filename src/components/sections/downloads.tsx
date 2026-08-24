@@ -6,7 +6,7 @@ const downloadGroups = [
     title: "Product Datasheets",
     items: [
       {
-        label: "G12R TOPCon Bifacial Module",
+        label: "G12R TOPCon",
         href: "/downloads/product-datasheets/g12r-topcon-bifacial-module.pdf",
       },
       {

@@ -10,7 +10,7 @@ import { WhyRenew } from "@/components/sections/why-renew";
 export const metadata: Metadata = {
   title: "Solar Modules — ReNew Solar Panels",
   description:
-    "Explore ReNew's G12R TOPCon bifacial solar module, engineered for dependable performance across utility, commercial, industrial, and residential installations.",
+    "Explore ReNew's G12R TOPCon, engineered for dependable performance across utility, commercial, industrial, and residential installations.",
 };
 
 export default function SolarModulePage() {

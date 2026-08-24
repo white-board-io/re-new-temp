@@ -173,7 +173,7 @@ export function ProjectShowcase() {
         <div className="absolute inset-0 bg-black/45" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.48)_0%,rgba(0,0,0,0.24)_38%,rgba(0,0,0,0.1)_100%)]" />
 
-        <div className="absolute left-4 top-1/2 z-10 flex -translate-y-1/2 flex-col gap-5 sm:left-6 lg:left-12 xl:left-[181px]">
+        <div className="absolute left-6 top-1/2 z-10 flex -translate-y-1/2 flex-col gap-5 sm:left-6 lg:left-16 xl:left-[245px]">
           {PROJECT_SLIDES.map((slide, slideIndex) => {
             const isActive = slideIndex === activeSlide;
 

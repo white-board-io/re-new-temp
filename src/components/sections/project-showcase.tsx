@@ -204,7 +204,7 @@ export function ProjectShowcase() {
           })}
         </div>
 
-        <div className="relative mx-auto flex h-full max-w-content items-start px-4 pt-16 sm:px-6 sm:pt-20 lg:pt-24">
+        <div className="relative mx-auto flex h-full max-w-content items-start px-4 pt-16 sm:px-6 sm:pt-20 lg:pt-24 lg:mt-12">
           {/* One fade as the showcase arrives. Slide-to-slide changes are the
               scroll track's job, so this settles once and stays put. */}
           <Reveal className="max-w-2xl pl-0 text-white md:pl-20 lg:pl-24 xl:pl-28">
@@ -215,8 +215,8 @@ export function ProjectShowcase() {
             <dl className="mt-8 w-full max-w-[520px] text-base leading-6 sm:mt-10 sm:text-xl sm:leading-8">
               {(
                 [
-                  ["Module", PROJECT_SLIDES[activeSlide].module],
-                  ["Developer", PROJECT_SLIDES[activeSlide].developer],
+                  // ["Module", PROJECT_SLIDES[activeSlide].module],
+                  // ["Developer", PROJECT_SLIDES[activeSlide].developer],
                   ["Offtaker", PROJECT_SLIDES[activeSlide].offtaker],
                   ["Location", PROJECT_SLIDES[activeSlide].location],
                 ] as const

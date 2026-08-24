@@ -152,16 +152,18 @@ export function Products() {
                   }`}
                 />
                 <h3
-                  className={`absolute left-8 top-8 z-10 whitespace-nowrap text-left text-2xl font-bold uppercase leading-8 text-white md:left-10 md:top-10 md:whitespace-normal ${
+                  className={`absolute left-8 top-8 z-10 whitespace-nowrap text-left text-2xl font-bold uppercase leading-8 text-white md:top-10 md:whitespace-normal ${
                     isActive
-                      ? "md:text-primary-950"
-                      : "md:text-white md:[text-shadow:0_2px_8px_rgba(0,0,0,0.45)]"
+                      ? "md:left-10 md:text-primary-950"
+                      : "md:left-1/2 md:-translate-x-1/2 md:text-center md:text-white md:[text-shadow:0_2px_8px_rgba(0,0,0,0.45)]"
                   }`}
                 >
                   {product.title}
                 </h3>
                 <div
-                  className={`absolute inset-x-10 top-[104px] z-10 max-w-[22rem] text-left text-white transition-opacity duration-300 ${
+                  className={`absolute inset-x-10 top-[104px] z-10 max-w-[22rem] text-left text-white transition-opacity duration-300 md:left-1/2 md:right-auto md:w-[calc(100%-5rem)] md:-translate-x-1/2 md:text-center ${
+                    !isActive ? "md:top-36 lg:top-40" : ""
+                  } ${
                     isActive ? "hidden" : "hidden opacity-100 md:block"
                   }`}
                 >
@@ -179,7 +181,7 @@ export function Products() {
                   className={`absolute inset-x-8 bottom-8 ${contentPosition} z-10 flex flex-col items-start text-left ${
                     isActive
                       ? "md:bottom-12 md:left-[47%] md:right-12 md:items-stretch"
-                      : "md:!top-auto md:inset-x-10 md:bottom-10 md:items-start"
+                      : "md:!top-auto md:inset-x-10 md:bottom-10 md:items-center md:text-center"
                   }`}
                 >
                   <div
@@ -219,7 +221,7 @@ export function Products() {
                     className={`mb-8 mt-auto inline-flex min-h-10 min-w-[168px] items-center justify-center self-start rounded-full bg-accent px-8 py-0 text-base font-medium text-white hover:bg-primary-400 md:mb-0 md:px-8 md:py-2.5 md:text-xl md:transition-[opacity,transform,background-color] md:ease-out ${
                       isActive
                         ? "md:translate-y-0 md:opacity-100 md:duration-500 md:delay-[450ms]"
-                        : "md:translate-y-0 md:opacity-100 md:duration-300"
+                        : "md:self-center md:translate-y-0 md:opacity-100 md:duration-300"
                     }`}
                   >
                     Know More

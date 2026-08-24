@@ -194,7 +194,7 @@ export function ProjectShowcase() {
                     behavior: "smooth",
                   });
                 }}
-                className={`size-3 origin-left rounded-full border transition ${
+                className={`size-3 origin-center rounded-full border transition ${
                   isActive
                     ? "scale-150 border-accent bg-transparent"
                     : "border-white/70 bg-white/70 hover:border-white hover:bg-white"

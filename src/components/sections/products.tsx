@@ -123,6 +123,7 @@ export function Products() {
         >
           {products.map((product, i) => {
             const isActive = i === active;
+            const isCollapsedSolarModule = !isActive && product.title === "Solar Modules";
             const contentPosition = product.contentPosition ?? "top-[104px] md:top-[106px]";
             return (
               <article
@@ -171,7 +172,9 @@ export function Products() {
                     <Link
                       key={feature.lead}
                       href={feature.href}
-                      className="block border-b border-white/35 py-3 text-lg font-extrabold leading-6 underline-offset-4 [text-shadow:0_2px_8px_rgba(0,0,0,0.45)] first:pt-0 last:border-b-0 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white lg:text-xl lg:leading-7"
+                      className={`block border-b border-white/35 text-lg font-extrabold leading-6 underline-offset-4 [text-shadow:0_2px_8px_rgba(0,0,0,0.45)] first:pt-0 last:border-b-0 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white lg:text-xl lg:leading-7 ${
+                        isCollapsedSolarModule ? "py-4 lg:py-5" : "py-3"
+                      }`}
                     >
                       {feature.lead}
                     </Link>

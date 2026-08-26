@@ -297,6 +297,155 @@ body {
   animation: product-chart-annotation-in 420ms ease-out both;
 }
 
+/* Decorative x/y axis arrows that sit just outside the "Years" and "Power
+   Output" titles. Each line grows out of the origin with its arrowhead riding
+   the tip, in step with the curve sweep above it. */
+@keyframes product-chart-axis-grow-x {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes product-chart-axis-grow-y {
+  from {
+    transform: scaleY(0);
+  }
+
+  to {
+    transform: scaleY(1);
+  }
+}
+
+/* The tip layer is the full length of the track with the arrowhead pinned to
+   its far end, so sliding it back by the undrawn fraction keeps the point
+   exactly on the end of the line. */
+@keyframes product-chart-axis-tip-x {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes product-chart-axis-tip-y {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.product-chart-axis-line-x,
+.product-chart-axis-line-y,
+.product-chart-axis-tip-x,
+.product-chart-axis-tip-y {
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+}
+
+.product-chart-axis-line-x {
+  animation-name: product-chart-axis-grow-x;
+  transform-origin: left center;
+}
+
+.product-chart-axis-line-y {
+  animation-name: product-chart-axis-grow-y;
+  transform-origin: center bottom;
+}
+
+.product-chart-axis-tip-x {
+  animation-name: product-chart-axis-tip-x;
+}
+
+.product-chart-axis-tip-y {
+  animation-name: product-chart-axis-tip-y;
+}
+
+/* The bolt that marks the year-30 endpoint: it arrives with the callout under
+   it, then keeps a slow charge going so the end of the warranty still reads as
+   "generating". */
+@keyframes product-chart-spark-in {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes product-chart-spark-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.62;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes product-chart-spark-halo {
+  0% {
+    opacity: 0.22;
+    transform: scale(0.8);
+  }
+
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+}
+
+.product-chart-spark,
+.product-chart-spark-bolt,
+.product-chart-spark-halo {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.product-chart-spark {
+  animation: product-chart-spark-in 420ms ease-out both;
+}
+
+/* Both loops start once the entrance has landed, and share a beat. */
+.product-chart-spark-bolt {
+  animation: product-chart-spark-pulse 2400ms 420ms ease-in-out infinite;
+}
+
+/* Transparent until its own loop starts driving it: the halo's animation is
+   delayed past the entrance, and without a resting opacity of 0 the bare circle
+   would show through as a solid green dot while the bolt scales in. */
+.product-chart-spark-halo {
+  opacity: 0;
+  animation: product-chart-spark-halo 2400ms 420ms ease-out infinite;
+}
+
 @keyframes contact-word-in {
   from {
     opacity: 0;
@@ -517,6 +666,25 @@ button.contact-modal-field[data-has-value="true"] ~ .contact-modal-label {
 
   .product-chart-annotation {
     animation: none;
+  }
+
+  .product-chart-axis-line-x,
+  .product-chart-axis-line-y,
+  .product-chart-axis-tip-x,
+  .product-chart-axis-tip-y {
+    animation: none;
+    transform: none;
+  }
+
+  /* The bolt stays put, lit but not charging. */
+  .product-chart-spark,
+  .product-chart-spark-bolt,
+  .product-chart-spark-halo {
+    animation: none;
+  }
+
+  .product-chart-spark-halo {
+    opacity: 0.18;
   }
 
   .contact-rotating-word {

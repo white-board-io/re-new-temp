@@ -1,0 +1,21 @@
+src/app/globals.css
+  s_8eb7f37eee5ce9::t_913bf1535aed00 300-448,671-689
+src/components/power-output-chart.tsx
+  s_8eb7f37eee5ce9::t_ebc516ee509f6f 29-47,71-102,128-184,257-258,260-282,284-299,301-313,315-326,328-364
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.11",
+  "base_commit_sha": "4514ac8f0afafb64dd83c2ee531a2570331a9dab",
+  "prompts": {},
+  "sessions": {
+    "s_8eb7f37eee5ce9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "39463831-d591-48c1-8aaa-e9497563f99a",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Arun Selva Kumar <arun@joinassembly.com>"
+    }
+  }
+}

@@ -81,8 +81,12 @@ export function Contact() {
             </span>{" "}
             with ReNew Solar Panels.
           </h2>
+          {/* No response-time commitment until the form has a real endpoint —
+              this form does not yet transmit anywhere, so the phone and email
+              below are the routes that actually reach the team. */}
           <p className="mt-8 max-w-md text-2xl leading-9 text-white/90">
-            Tell us what you need and our team will get back to you within 24 hours.
+            Tell us what you need — or reach the team directly on the number or
+            email below.
           </p>
           <address className="mt-12 space-y-5 not-italic">
             <a
@@ -140,7 +144,8 @@ export function Contact() {
           <div className="mt-2 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
             {submitted && (
               <p role="status" className="text-primary-200">
-                Thanks — we&apos;ll get back to you within 24 hours.
+                Thanks — please also call 9220 440 044 or email
+                pv.marketing@renew.com so we can pick this up right away.
               </p>
             )}
             <button

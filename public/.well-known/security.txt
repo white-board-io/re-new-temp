@@ -1,0 +1,8 @@
+# Vulnerability disclosure policy for ReNew Solar marketing site.
+# Please report security issues to the contact below. We will acknowledge
+# reports and will not pursue action against good-faith research.
+
+Contact: mailto:security@renew.com
+Expires: 2027-08-17T00:00:00.000Z
+Preferred-Languages: en, hi
+Canonical: https://re-new-mocha.vercel.app/.well-known/security.txt

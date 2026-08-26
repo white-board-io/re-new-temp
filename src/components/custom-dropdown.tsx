@@ -97,7 +97,25 @@ export function CustomDropdown({
 
   return (
     <div ref={rootRef} className={`relative ${className}`}>
-      <input type="hidden" name={name} value={value} data-required={required || undefined} />
+      {/* A hidden input is barred from constraint validation per the HTML spec,
+          so `required` on one is silently ignored and the form submits with no
+          selection. A *text* input does participate — but it must stay laid out
+          and focusable, because Chrome refuses to submit (and logs "not
+          focusable") when an invalid control is display:none or
+          visibility:hidden. So: transparent, stretched over the button so the
+          validation bubble anchors in the right place, click-through, and
+          skipped by the tab order. `readOnly` is deliberately NOT used — it
+          would bar validation again. */}
+      <input
+        type="text"
+        name={name}
+        value={value}
+        required={required}
+        onChange={() => {}}
+        tabIndex={-1}
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-px w-full border-0 bg-transparent p-0 text-transparent opacity-0 outline-none"
+      />
       <button
         id={dropdownId}
         type="button"

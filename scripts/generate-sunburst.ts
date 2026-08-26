@@ -38,3 +38,7 @@ for (let ring = 0; ring < rings; ring++) {
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 340" fill="${COLOR}">${squares}</svg>`;
 await Bun.write("public/images/sunburst.svg", svg);
 console.log("wrote public/images/sunburst.svg");
+
+// Marks the file as a module so top-level await type-checks; scripts/ is no
+// longer excluded from tsconfig.
+export {};

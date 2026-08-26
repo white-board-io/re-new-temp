@@ -264,10 +264,24 @@ export function ContactModal() {
                 <Check aria-hidden className="size-7" />
               </span>
               <p className="mt-5 text-xl font-bold text-primary-950">
-                Thanks — request received.
+                Thanks — request noted.
               </p>
+              {/* Deliberately no response-time commitment: this form has no
+                  endpoint yet, so the direct contact details are the only
+                  route that actually reaches the team. */}
               <p className="mt-2 max-w-[34ch] text-[15px] leading-6 text-neutral-500">
-                Our team will get back to you within 24 hours.
+                Please also call{" "}
+                <a href="tel:9220440044" className="font-bold text-primary-700 hover:underline">
+                  9220 440 044
+                </a>{" "}
+                or email{" "}
+                <a
+                  href="mailto:pv.marketing@renew.com"
+                  className="font-bold text-primary-700 hover:underline"
+                >
+                  pv.marketing@renew.com
+                </a>{" "}
+                so we can pick this up right away.
               </p>
               <button
                 type="button"

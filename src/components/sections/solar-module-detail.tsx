@@ -211,9 +211,21 @@ const moduleIds = new Set<ModuleRange["id"]>(
   moduleRanges.map((moduleRange) => moduleRange.id),
 );
 
+/*
+ * The URL fragment is the only attacker-controllable input reaching this
+ * component, and this allow-list is the control that makes it safe. Expressed
+ * as a type predicate rather than a cast so the guard is load-bearing: drop the
+ * check and the code stops compiling, instead of silently narrowing an
+ * arbitrary string into a known id. Set membership (not object lookup) is also
+ * deliberate — `__proto__` and `constructor` must not match.
+ */
+function isModuleId(value: string): value is ModuleRange["id"] {
+  return (moduleIds as ReadonlySet<string>).has(value);
+}
+
 function getModuleIdFromHash(): ModuleRange["id"] | null {
   const hash = window.location.hash.replace("#", "");
-  return moduleIds.has(hash as ModuleRange["id"]) ? (hash as ModuleRange["id"]) : null;
+  return isModuleId(hash) ? hash : null;
 }
 
 function scrollToTabContentStart(panelId: string, tabsId: string) {

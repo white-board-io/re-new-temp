@@ -247,9 +247,21 @@ const plants: Plant[] = [
 
 const plantIds = new Set<Plant["id"]>(plants.map((plant) => plant.id));
 
+/*
+ * The URL fragment is the only attacker-controllable input reaching this
+ * component, and this allow-list is the control that makes it safe. Expressed
+ * as a type predicate rather than a cast so the guard is load-bearing: drop the
+ * check and the code stops compiling, instead of silently narrowing an
+ * arbitrary string into a known id. Set membership (not object lookup) is also
+ * deliberate — `__proto__` and `constructor` must not match.
+ */
+function isPlantId(value: string): value is Plant["id"] {
+  return (plantIds as ReadonlySet<string>).has(value);
+}
+
 function getPlantIdFromHash(): Plant["id"] | null {
   const hash = window.location.hash.replace("#", "");
-  return plantIds.has(hash as Plant["id"]) ? (hash as Plant["id"]) : null;
+  return isPlantId(hash) ? hash : null;
 }
 
 function scrollToTabContentStart(panelId: string, tabsId: string) {

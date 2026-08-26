@@ -31,9 +31,15 @@ const organizationSchema = {
 export default function Home() {
   return (
     <>
+      {/* JSON.stringify does not escape `</script>`, so escaping `<` is what
+          keeps this sink safe if the schema ever becomes CMS- or feed-driven.
+          The data is static today; the escape is here so it stays safe when
+          that changes. */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(organizationSchema).replace(/</g, "\\u003c"),
+        }}
       />
       <Header />
       <PriceListTab activeSectionId="products" />

@@ -154,10 +154,20 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
                 {navItems[0].label}
               </a>
               <div className="sm:mt-16 xl:mt-14">
+                {/* headingHref is genuinely optional — the Projects column has
+                    none — so render the plain heading rather than asserting a
+                    value that would hand `undefined` to Link and throw. */}
                 <h3 className="text-xl font-bold leading-8">
-                  <Link href={linkColumns[0].headingHref!} className="hover:text-primary-300">
-                    {linkColumns[0].heading}
-                  </Link>
+                  {linkColumns[0].headingHref ? (
+                    <Link
+                      href={linkColumns[0].headingHref}
+                      className="hover:text-primary-300"
+                    >
+                      {linkColumns[0].heading}
+                    </Link>
+                  ) : (
+                    linkColumns[0].heading
+                  )}
                 </h3>
                 <ul className="mt-3 space-y-2 sm:mt-6 sm:space-y-4">
                   {linkColumns[0].links.map((link) => (

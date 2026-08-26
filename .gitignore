@@ -28,3 +28,10 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# IDE
+.idea/
+*.iml
+
+# Local archives (duplicates of the PDFs in docs/)
+docs/Archive.zip

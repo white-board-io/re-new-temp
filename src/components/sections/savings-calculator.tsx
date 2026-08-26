@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { IndianRupee, Leaf, Zap } from "lucide-react";
-import { calculateSolar } from "@/lib/solar";
+import { calculateSolar, isUsageOutOfRange, MAX_MONTHLY_UNITS } from "@/lib/solar";
 import { CustomDropdown } from "@/components/custom-dropdown";
 import { Reveal } from "@/components/reveal";
 
@@ -45,7 +45,21 @@ const STATE_TARIFFS: Record<string, number> = {
   "West Bengal": 7.3,
 };
 const STATES = Object.keys(STATE_TARIFFS);
-const DEFAULT_UNIT_COST = "8.00";
+const DEFAULT_STATE = "Maharashtra";
+
+const FALLBACK_TARIFF = 8;
+
+// The tariff for a state, as the string the cost input is bound to. Every unit
+// cost in this component comes from here — there is deliberately no flat
+// fallback constant in the render path, because one previously shadowed the
+// whole table and every state silently calculated at the same rate.
+//
+// hasOwn, not a bare index: a plain-object lookup inherits from
+// Object.prototype, so keys like "constructor" or "toString" return a function
+// rather than undefined, `?? FALLBACK` never fires, and .toFixed throws. Same
+// reasoning as the Set-based allow-lists guarding the URL fragment elsewhere.
+const tariffFor = (state: string) =>
+  (Object.hasOwn(STATE_TARIFFS, state) ? STATE_TARIFFS[state] : FALLBACK_TARIFF).toFixed(2);
 
 type Category = "residential" | "commercial" | "industrial";
 
@@ -66,9 +80,9 @@ function labelForCategory(category: Category) {
 
 export function SavingsCalculator() {
   const [usage, setUsage] = useState("500");
-  const [state, setState] = useState("Maharashtra");
+  const [state, setState] = useState(DEFAULT_STATE);
   const [category, setCategory] = useState<Category>("residential");
-  const [unitCost, setUnitCost] = useState(DEFAULT_UNIT_COST);
+  const [unitCost, setUnitCost] = useState(tariffFor(DEFAULT_STATE));
   const [isManualCost, setIsManualCost] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [locationStatus, setLocationStatus] = useState("Choose your state manually");
@@ -76,6 +90,11 @@ export function SavingsCalculator() {
   const changeState = (next: string) => {
     setState(next);
     setLocationStatus("Selected manually");
+    // Auto mode tracks the selected state's tariff. A manual override is the
+    // user's own figure, so leave it alone until they switch back to Auto.
+    if (!isManualCost) {
+      setUnitCost(tariffFor(next));
+    }
   };
 
   const changeCategory = (next: Category) => {
@@ -83,7 +102,8 @@ export function SavingsCalculator() {
   };
 
   const toggleUnitCostMode = () => {
-    if (isManualCost) setUnitCost(DEFAULT_UNIT_COST);
+    // Leaving manual mode restores the selected state's tariff, not a flat default.
+    if (isManualCost) setUnitCost(tariffFor(state));
     setIsManualCost(!isManualCost);
   };
 
@@ -151,6 +171,14 @@ export function SavingsCalculator() {
                 className="h-1 flex-1 cursor-pointer appearance-none rounded-full bg-neutral-200 accent-primary-700"
               />
             </div>
+            {/* A clamped figure must never be presented as if it were the
+                number the user entered. */}
+            {isUsageOutOfRange(usage) && (
+              <p role="status" className="mt-2 text-sm text-amber-700">
+                Capped at {MAX_MONTHLY_UNITS.toLocaleString("en-IN")} units for this
+                estimate. For larger loads, talk to our team about a custom design.
+              </p>
+            )}
 
             <label htmlFor="calc-state" className="mt-8 block text-neutral-500">
               State / Union Territory
@@ -246,7 +274,7 @@ export function SavingsCalculator() {
             <p className="mt-2 text-sm text-neutral-500">
               {isManualCost
                 ? "Enter the unit cost shown on your electricity bill."
-                : "Auto value is ₹8.00. Switch to Manual to edit."}
+                : `Auto value is the average tariff for ${state} (₹${tariffFor(state)}). Switch to Manual to edit.`}
             </p>
             <button
               type="submit"
@@ -377,8 +405,9 @@ export function SavingsCalculator() {
 
         <p className="mt-6 text-sm leading-6 text-neutral-500">
           <strong className="font-bold text-neutral-700">Disclaimer:</strong>{" "}
-          Calculations use an average electricity tariff. Actual rates may vary by state
-          and location; results are indicative only.
+          Calculations use an average residential tariff for the selected state.
+          Actual rates vary by discom, slab and customer category; results are
+          indicative only.
         </p>
       </div>
     </section>

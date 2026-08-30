@@ -138,6 +138,7 @@ type ModuleRange = {
   dimensions: string;
   weight: string;
   almmApproved?: string;
+  video?: { src: string; title: string };
   imageSrc: string;
   imageAlt: string;
   datasheetHref: string;
@@ -162,6 +163,10 @@ const moduleRanges: ModuleRange[] = [
     dimensions: "2382 × 1134 × 30 mm",
     weight: "33.5 kg",
     almmApproved: "Yes",
+    video: {
+      src: "/videos/products/solar-module/g12r.webm",
+      title: "G12R TOPCon solar module video",
+    },
     imageSrc: "/images/products/solar-module/g12r-topcon.webp",
     imageAlt: "G12R TOPCon 132 cell solar module",
     datasheetHref: "/downloads/product-datasheets/g12r-topcon-bifacial-module.pdf",
@@ -548,6 +553,28 @@ export function SolarModuleDetail() {
           </Reveal>
         </div>
       </div>
+
+      {activeModule.video ? (
+        <Reveal
+          as="figure"
+          className="relative mx-[calc(50%-50vw)] mt-10 w-screen lg:mx-auto lg:mt-20 lg:max-w-[1580px] lg:px-4 xl:px-0"
+        >
+          <div className="relative aspect-video min-h-[260px] w-full overflow-hidden bg-primary-950 lg:min-h-0 lg:rounded-md">
+            <video
+              key={activeModule.id}
+              src={activeModule.video.src}
+              autoPlay
+              controls
+              loop
+              muted
+              preload="metadata"
+              playsInline
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          </div>
+          <figcaption className="sr-only">{activeModule.video.title}</figcaption>
+        </Reveal>
+      ) : null}
 
     </section>
     </>

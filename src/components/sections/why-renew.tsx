@@ -7,7 +7,7 @@ const certifications = [
     alt: "TÜV Rheinland regular production surveillance certification",
   },
   { src: "/images/cert-tuv-round.webp", alt: "TÜV Rheinland certification" },
-  { src: "/images/cert-kiwa.webp", alt: "Kiwa PV Module Reliability Scorecard" },
+  { src: "/images/cert-kiwa.jpg", alt: "Kiwa PV Module Reliability Scorecard" },
   { src: "/images/cert-dnv.webp", alt: "DNV-GL ISO 9001 certification" },
   { src: "/images/cert-pi.webp", alt: "PI Berlin certification" },
   { src: "/images/cert-bureau.webp", alt: "Bureau Veritas certification" },

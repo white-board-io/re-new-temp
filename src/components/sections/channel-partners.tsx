@@ -25,12 +25,6 @@ const videos = [
     title: "Partners in success Suntrik Vinay Bansal",
     desktopSize: "xl:h-[510px] xl:w-[803px]",
   },
-  {
-    src: "/videos/channel-partners/womens-day-rev1.webm",
-    poster: "/images/channel-partners/CP-4.webp",
-    title: "Womens Day rev1",
-    desktopSize: "xl:h-[510px] xl:w-[793px]",
-  },
 ];
 
 type ChannelPartnerVideo = (typeof videos)[number];

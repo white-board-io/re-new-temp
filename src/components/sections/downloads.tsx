@@ -10,12 +10,20 @@ const downloadGroups = [
         href: "/downloads/product-datasheets/g12r-topcon-bifacial-module.pdf",
       },
       {
-        label: "M10R TOPCon",
+        label: "M10R TOPCon (580-610 Wp)",
         href: "/downloads/product-datasheets/m10r-topcon.pdf",
       },
       {
-        label: "M10R PERC",
+        label: "M10R PERC (530-560 Wp)",
         href: "/downloads/product-datasheets/m10r-perc.pdf",
+      },
+      {
+        label: "M10R PERC (550 W, 144-cell)",
+        href: "/downloads/product-datasheets/m10r-perc-550w-144-cell.pdf",
+      },
+      {
+        label: "M10R PERC (590-615 Wp, 156-cell)",
+        href: "/downloads/product-datasheets/m10r-perc-590-615wp-156-cell.pdf",
       },
       {
         label: "M10R PERC Cell P-Type",

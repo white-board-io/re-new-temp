@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, Menu, Phone, X } from "lucide-react";
@@ -49,9 +49,29 @@ export function Header({
   contactHref?: string;
   savingsHref?: string;
 } = {}) {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [expandedMobileItems, setExpandedMobileItems] = useState<
     Record<string, boolean>
   >({});
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) {
+      return;
+    }
+
+    const { overflow, paddingRight } = document.body.style;
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
+    document.body.style.overflow = "hidden";
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    }
+
+    return () => {
+      document.body.style.overflow = overflow;
+      document.body.style.paddingRight = paddingRight;
+    };
+  }, [isMobileMenuOpen]);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
@@ -156,6 +176,8 @@ export function Header({
             id="mobile-menu-toggle"
             className="peer sr-only xl:hidden"
             aria-label="Toggle menu"
+            checked={isMobileMenuOpen}
+            onChange={(event) => setIsMobileMenuOpen(event.currentTarget.checked)}
           />
           <label
             htmlFor="mobile-menu-toggle"

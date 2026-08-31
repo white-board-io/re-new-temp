@@ -559,7 +559,7 @@ export function SolarModuleDetail() {
           as="figure"
           className="relative mx-[calc(50%-50vw)] mt-10 w-screen lg:mx-auto lg:mt-20 lg:max-w-[1580px] lg:px-4 xl:px-0"
         >
-          <div className="relative aspect-video min-h-[260px] w-full overflow-hidden bg-primary-950 lg:min-h-0 lg:rounded-md">
+          <div className="w-full overflow-hidden bg-primary-950 lg:rounded-md">
             <video
               key={activeModule.id}
               src={activeModule.video.src}
@@ -569,7 +569,7 @@ export function SolarModuleDetail() {
               muted
               preload="metadata"
               playsInline
-              className="absolute inset-0 h-full w-full object-cover"
+              className="h-auto w-full"
             />
           </div>
           <figcaption className="sr-only">{activeModule.video.title}</figcaption>

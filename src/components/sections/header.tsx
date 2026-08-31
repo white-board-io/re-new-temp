@@ -35,7 +35,7 @@ const utilityItems = [
   { label: "Projects", href: "#our-projects" },
   { label: "Press Releases", href: "#press-releases" },
   { label: "Blogs", href: "#blogs" },
-  { label: "Why ReNew Solar Panels", href: "#why-renew" },
+  { label: "Module Warranty Registration", href: "http://warranty.renew.com" },
 ];
 
 export function Header({

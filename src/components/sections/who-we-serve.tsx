@@ -21,7 +21,7 @@ const cards = [
       "When your energy costs are high, and your timelines are tight, you need a manufacturer you can count on — consistent availability, committed supply, and panels that perform.",
   },
   {
-    title: ["For Large", "Space Projects"],
+    title: ["For Large", "Scale Projects"],
     image: "/images/For-large-scale-projects.webp",
     position: "object-center",
     description:

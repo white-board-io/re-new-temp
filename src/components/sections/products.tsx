@@ -108,9 +108,9 @@ export function Products() {
       <div className="mx-auto max-w-content px-4 sm:px-6">
         <Reveal className="text-left md:text-center">
           <p className="text-2xl font-bold uppercase leading-8 text-primary-700">Products</p>
-          <h2 className="mt-8 max-w-4xl text-[28px] font-bold leading-[1.14] text-primary-950 sm:text-[34px] md:mx-auto md:text-[54px] md:leading-[62px]">
-            The <span className="text-primary-700">right panel</span> for your home, your
-            business, your project.
+          <h2 className="mt-8 max-w-3xl text-[28px] font-bold leading-[1.14] text-primary-950 sm:text-[34px] md:mx-auto md:text-[54px] md:leading-[62px]">
+            The <span className="text-primary-700">right panel</span> for your home,
+            your business, your project.
           </h2>
         </Reveal>
 

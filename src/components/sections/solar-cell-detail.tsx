@@ -208,7 +208,7 @@ export function SolarCellDetail() {
           <h1 className="text-2xl font-bold leading-[1.14] sm:text-[34px] lg:text-[60px] lg:leading-[64px] lg:tracking-hero">
             The cell at the heart of every
             <br />
-            ReNew Solar modules.
+            ReNew Solar module.
           </h1>
           <p className="mx-auto mt-5 max-w-3xl text-base font-normal leading-6 sm:mt-8 sm:text-xl sm:leading-8 lg:mt-7 lg:text-2xl">
             High-efficiency bifacial cells manufactured at our Dholera facility.{" "}

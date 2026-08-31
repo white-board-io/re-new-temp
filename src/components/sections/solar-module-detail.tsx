@@ -304,8 +304,9 @@ export function SolarModuleDetail() {
             Built for the long run.
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-base font-normal leading-6 sm:mt-8 sm:text-xl sm:leading-8 lg:mt-7 lg:text-2xl">
-            Three module offerings built for homes, businesses, and large-scale utility
-            projects across India.
+            Three module offerings built for homes, businesses, and{" "}
+            <br className="hidden lg:inline" />
+            large-scale utility projects across India.
           </p>
         </Reveal>
       </section>

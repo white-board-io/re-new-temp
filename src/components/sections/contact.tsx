@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import { Mail, Phone } from "lucide-react";
 import { CustomDropdown } from "@/components/custom-dropdown";
 import { Reveal } from "@/components/reveal";
-import { REQUIREMENT_TYPES } from "@/components/contact-modal";
+import { REQUIREMENT_TYPES } from "@/lib/enquiry";
+import { useEnquiryForm } from "@/lib/use-enquiry-form";
 
 const ROTATING_CONTACT_WORDS = ["Home", "Project", "Business"];
 
@@ -13,11 +14,13 @@ function Field({
   label,
   type = "text",
   optional = false,
+  error,
 }: {
   name: string;
   label: string;
   type?: string;
   optional?: boolean;
+  error?: string;
 }) {
   return (
     <div className="relative">
@@ -43,12 +46,13 @@ function Field({
           <span className="text-red-500">*</span>
         )}
       </label>
+      {error && <p className="mt-2 text-sm text-red-200">{error}</p>}
     </div>
   );
 }
 
 export function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+  const { status, message, fieldErrors, submit } = useEnquiryForm("homepage-form");
   const [requirement, setRequirement] = useState("");
   const [wordIndex, setWordIndex] = useState(0);
   const rotatingWord = ROTATING_CONTACT_WORDS[wordIndex];
@@ -84,7 +88,7 @@ export function Contact() {
             <span className="whitespace-nowrap">with ReNew Solar Panels.</span>
           </h2>
           <p className="mt-8 max-w-md text-2xl leading-9 text-white/90">
-            Tell us what you need and our team will get back to you within 24 hours.
+            Tell us what you need and our team will get back to you.
           </p>
           <address className="mt-12 space-y-5 not-italic">
             <a
@@ -104,19 +108,18 @@ export function Contact() {
           </address>
         </div>
 
-        {/* TODO(batch-4-followup): external form endpoint — static export has no
-            server; submission currently just confirms locally. */}
         <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            setSubmitted(true);
+          onSubmit={async (event) => {
+            await submit(event);
+            setRequirement("");
           }}
           className="min-w-0 flex flex-col gap-5"
         >
-          <Field name="name" label="Name" />
-          <Field name="company" label="Company" optional />
-          <Field name="phone" label="Phone" type="tel" />
-          <Field name="state" label="State" />
+          <Field name="name" label="Name" error={fieldErrors.name} />
+          <Field name="company" label="Company" optional error={fieldErrors.company} />
+          <Field name="phone" label="Phone" type="tel" error={fieldErrors.phone} />
+          <Field name="email" label="Email" type="email" error={fieldErrors.email} />
+          <Field name="state" label="State" error={fieldErrors.state} />
           <div className="relative">
             <CustomDropdown
               id="contact-requirement"
@@ -138,18 +141,25 @@ export function Contact() {
                 Requirement type<span className="text-red-500">*</span>
               </label>
             )}
+            {fieldErrors.requirement && (
+              <p className="mt-2 text-sm text-red-200">{fieldErrors.requirement}</p>
+            )}
           </div>
           <div className="mt-2 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
-            {submitted && (
-              <p role="status" className="text-primary-200">
-                Thanks — we&apos;ll get back to you within 24 hours.
-              </p>
-            )}
+            <p
+              role="status"
+              aria-live="polite"
+              className={status === "error" ? "text-red-200" : "text-primary-200"}
+            >
+              {status === "sent" && "Thanks for contacting us - We will get back to you shortly!"}
+              {status === "error" && message}
+            </p>
             <button
               type="submit"
-              className="inline-flex min-h-10 min-w-[168px] items-center justify-center rounded-full bg-accent px-8 py-0 text-base font-bold text-white transition hover:bg-primary-400 md:py-2.5"
+              disabled={status === "sending"}
+              className="inline-flex min-h-10 min-w-[168px] items-center justify-center rounded-full bg-accent px-8 py-0 text-base font-bold text-white transition hover:bg-primary-400 disabled:cursor-not-allowed disabled:opacity-60 md:py-2.5"
             >
-              Submit
+              {status === "sending" ? "Sending…" : "Submit"}
             </button>
           </div>
         </form>

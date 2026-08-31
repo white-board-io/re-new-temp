@@ -4,16 +4,10 @@ import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import Image from "next/image";
 import { Check, Mail, Phone, X } from "lucide-react";
 import { CustomDropdown } from "@/components/custom-dropdown";
+import { REQUIREMENT_TYPES } from "@/lib/enquiry";
+import { useEnquiryForm } from "@/lib/use-enquiry-form";
 
 const OPEN_CONTACT_MODAL_EVENT = "renew:open-contact-modal";
-
-export const REQUIREMENT_TYPES = [
-  "Residential Rooftop",
-  "Commercial & Industrial",
-  "Utility-scale Project",
-  "Channel Partnership",
-  "Other",
-];
 
 const FOCUSABLE =
   'a[href], button:not(:disabled), input:not(:disabled), select:not(:disabled), textarea:not(:disabled), [tabindex]:not([tabindex="-1"])';
@@ -37,6 +31,7 @@ function ModalField({
   type = "text",
   autoComplete,
   optional = false,
+  error,
 }: {
   id: string;
   name: string;
@@ -44,6 +39,7 @@ function ModalField({
   type?: string;
   autoComplete?: string;
   optional?: boolean;
+  error?: string;
 }) {
   return (
     <div className="relative">
@@ -69,6 +65,7 @@ function ModalField({
           <span className="text-red-500">*</span>
         )}
       </label>
+      {error && <p className="mt-1.5 text-[13px] leading-5 text-red-600">{error}</p>}
     </div>
   );
 }
@@ -97,8 +94,9 @@ export function ContactModalTrigger({
 
 export function ContactModal() {
   const [isOpen, setIsOpen] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
   const [requirement, setRequirement] = useState("");
+  const { status, message, fieldErrors, submit, reset } =
+    useEnquiryForm("enquire-modal");
   const panelRef = useRef<HTMLElement>(null);
   const openerRef = useRef<HTMLElement | null>(null);
   const uid = useId();
@@ -107,14 +105,14 @@ export function ContactModal() {
   useEffect(() => {
     function handleOpen() {
       openerRef.current = document.activeElement as HTMLElement | null;
-      setSubmitted(false);
+      reset();
       setRequirement("");
       setIsOpen(true);
     }
 
     window.addEventListener(OPEN_CONTACT_MODAL_EVENT, handleOpen);
     return () => window.removeEventListener(OPEN_CONTACT_MODAL_EVENT, handleOpen);
-  }, []);
+  }, [reset]);
 
   useEffect(() => {
     if (!isOpen) {
@@ -241,7 +239,7 @@ export function ContactModal() {
               Tell us about your project
             </h2>
             <p className="mt-2 max-w-[44ch] text-[14px] leading-5 text-white/75 viewport-short:hidden">
-              Share a few details and our team will get back to you within 24 hours.
+              Share a few details and our team will get back to you.
             </p>
 
             <div className="mt-4 flex flex-wrap gap-2 viewport-short:hidden">
@@ -258,7 +256,7 @@ export function ContactModal() {
         </header>
 
         <div className="min-h-0 flex-1 overflow-visible px-6 pb-6 pt-4 sm:px-8 sm:pb-7 sm:pt-5">
-          {submitted ? (
+          {status === "sent" ? (
             <div role="status" className="flex flex-col items-center py-8 text-center">
               <span className="flex size-14 items-center justify-center rounded-full bg-primary-100 text-primary-700">
                 <Check aria-hidden className="size-7" />
@@ -267,7 +265,7 @@ export function ContactModal() {
                 Thanks — request received.
               </p>
               <p className="mt-2 max-w-[34ch] text-[15px] leading-6 text-neutral-500">
-                Our team will get back to you within 24 hours.
+                Our team will review your details and get back to you.
               </p>
               <button
                 type="button"
@@ -278,22 +276,29 @@ export function ContactModal() {
               </button>
             </div>
           ) : (
-            /* TODO(batch-4-followup): shares the Contact section's missing form
-               endpoint — a static export has no server, so this confirms locally. */
             <form
-              onSubmit={(event) => {
-                event.preventDefault();
-                setSubmitted(true);
+              onSubmit={async (event) => {
+                await submit(event);
+                // `form.reset()` only clears native inputs; the dropdown holds
+                // its value in React state, so it has to be cleared by hand.
+                setRequirement("");
               }}
               className="grid gap-3.5"
             >
-              <ModalField id={`${uid}-name`} name="name" label="Name" autoComplete="name" />
+              <ModalField
+                id={`${uid}-name`}
+                name="name"
+                label="Name"
+                autoComplete="name"
+                error={fieldErrors.name}
+              />
               <ModalField
                 id={`${uid}-company`}
                 name="company"
                 label="Company"
                 autoComplete="organization"
                 optional
+                error={fieldErrors.company}
               />
               <ModalField
                 id={`${uid}-phone`}
@@ -301,6 +306,7 @@ export function ContactModal() {
                 label="Phone"
                 type="tel"
                 autoComplete="tel"
+                error={fieldErrors.phone}
               />
               <ModalField
                 id={`${uid}-email`}
@@ -308,6 +314,7 @@ export function ContactModal() {
                 label="Email"
                 type="email"
                 autoComplete="email"
+                error={fieldErrors.email}
               />
 
               <div className="relative">
@@ -326,13 +333,29 @@ export function ContactModal() {
                 <label htmlFor={`${uid}-requirement`} className="contact-modal-label">
                   Requirement type<span className="text-red-500">*</span>
                 </label>
+                {fieldErrors.requirement && (
+                  <p className="mt-1.5 text-[13px] leading-5 text-red-600">
+                    {fieldErrors.requirement}
+                  </p>
+                )}
               </div>
+
+              {/* Failures keep the filled-in form on screen — the success state
+                  replaces it, but an error must not cost the user their typing.
+                  This line carries the summary only; the specifics sit against
+                  the fields they belong to. */}
+              {status === "error" && (
+                <p role="alert" className="text-[13px] leading-5 text-red-600">
+                  {message}
+                </p>
+              )}
 
               <button
                 type="submit"
-                className="mt-1 flex h-[50px] w-full items-center justify-center rounded-full bg-primary-700 text-[15px] font-medium text-white transition-colors hover:bg-primary-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700"
+                disabled={status === "sending"}
+                className="mt-1 flex h-[50px] w-full items-center justify-center rounded-full bg-primary-700 text-[15px] font-medium text-white transition-colors hover:bg-primary-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700 disabled:cursor-not-allowed disabled:opacity-60"
               >
-                Submit
+                {status === "sending" ? "Sending…" : "Submit"}
               </button>
             </form>
           )}

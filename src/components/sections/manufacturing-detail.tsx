@@ -171,9 +171,9 @@ const plants: Plant[] = [
       },
     ],
     paragraphs: [
-      "Located in Gujarat's Special Investment Region, ReNew's Dholera facility has 6.5 GW solar cell manufacturing capacity and 2.4 GW module manufacturing capacity across 55 acres.",
-      "AI-driven defect diagnostics and automated material movement systems improve precision across the production line, while in-line controls help every product meet ReNew's performance and reliability benchmarks.",
-      "The site includes a 4 GW TOPCon facility under development, strengthening ReNew's vertically integrated manufacturing capability and India's domestic solar supply chain.",
+      "Spread across 55 acres in Gujarat's Special Investment Region, ReNew Solar Panel's Dholera facility brings solar cell and module manufacturing together at one location, strengthening its vertically integrated manufacturing capabilities. The plant currently houses 2.5 GW of solar cell manufacturing capacity and 2.4 GW of solar module manufacturing capacity.",
+      "Built for high levels of automation, the LEED Gold-certified facility uses AI-driven defect diagnostics, automated packing lines and advanced material handling systems across the production process. It is also among the first plants in India to deploy automatic material movement for heavy carrier lifting in the cell line, improving precision, efficiency and safety on the manufacturing floor.",
+      "Dholera is also central to ReNew Solar Panel's next phase of solar manufacturing. A new 4 GW TOPCon cell facility is currently under development, designed to expand domestic production of high-efficiency solar cells and deepen ReNew's integration across the solar value chain. Once operational, the expansion will take ReNew Solar Panel's total solar cell manufacturing capacity to approximately 6.5 GW, further strengthening India's domestic solar supply chain.",
     ],
     sustainabilityTitle: "Designed to raise the efficiency standard for domestic solar manufacturing.",
     sustainabilityBody:

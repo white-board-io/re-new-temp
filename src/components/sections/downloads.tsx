@@ -17,14 +17,14 @@ const downloadGroups = [
         label: "M10R PERC (530-560 Wp)",
         href: "/downloads/product-datasheets/m10r-perc.pdf",
       },
-      {
-        label: "M10R PERC (550 W, 144-cell)",
-        href: "/downloads/product-datasheets/m10r-perc-550w-144-cell.pdf",
-      },
-      {
-        label: "M10R PERC (590-615 Wp, 156-cell)",
-        href: "/downloads/product-datasheets/m10r-perc-590-615wp-156-cell.pdf",
-      },
+      // {
+      //   label: "M10R PERC (550 W, 144-cell)",
+      //   href: "/downloads/product-datasheets/m10r-perc-550w-144-cell.pdf",
+      // },
+      // {
+      //   label: "M10R PERC (590-615 Wp, 156-cell)",
+      //   href: "/downloads/product-datasheets/m10r-perc-590-615wp-156-cell.pdf",
+      // },
       {
         label: "M10R PERC Cell P-Type",
         href: "/downloads/product-datasheets/m10r-p-type-perc-bifacial.pdf",

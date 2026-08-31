@@ -36,7 +36,7 @@ const plants: Plant[] = [
     map: "/images/manufacturing/dholera-tab.webp",
     mapAlt: "Jaipur manufacturing facility",
     mapLabelClassName: "text-2xl sm:text-[32px]",
-    eyebrow: "4 GW module manufacturing capacity under a single roof.",
+    eyebrow: "4 GW module manufacturing capacity under a single roof",
     headline: "India's largest\nsingle-location module\nmanufacturing facility.",
     video: {
       src: "/videos/manufacturing/jaipur.webm",
@@ -112,7 +112,7 @@ const plants: Plant[] = [
     map: "/images/manufacturing/jaipur-tab.webp",
     mapAlt: "Dholera cell and module manufacturing facility",
     mapLabelClassName: "text-2xl sm:text-[32px]",
-    eyebrow: "6.5 GW cell and 2.4\u00A0GW\u00A0module manufacturing capacity.",
+    eyebrow: "6.5 GW cell and 2.4\u00A0GW\u00A0module manufacturing capacity",
     headline: "Advanced solar cell and module\nmanufacturing at scale.",
     video: {
       src: "/videos/manufacturing/dholera.webm",

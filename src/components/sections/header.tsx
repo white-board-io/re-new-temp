@@ -117,12 +117,12 @@ export function Header({
                     <ul className="invisible absolute left-0 top-full w-max min-w-[min(190px,9.895833vw)] translate-y-2 rounded-md border border-neutral-100 bg-white py-[min(10px,0.520833vw)] opacity-0 shadow-lg transition group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
                       {item.children.map((child) => (
                         <li key={`${item.label}-${child.label}`}>
-                          <Link
+                          <a
                             href={child.href}
                             className="block px-[min(18px,0.9375vw)] py-[min(8px,0.416667vw)] text-[min(16px,0.833333vw)] leading-[min(24px,1.25vw)] text-neutral-800 hover:bg-primary-50 hover:text-primary-700"
                           >
                             {child.label}
-                          </Link>
+                          </a>
                         </li>
                       ))}
                     </ul>
@@ -178,12 +178,12 @@ export function Header({
                     <ul className="mt-2 space-y-2 border-l border-primary-200 pl-4">
                       {item.children.map((child) => (
                         <li key={`${item.label}-${child.label}`}>
-                          <Link
+                          <a
                             href={child.href}
                             className="text-base text-neutral-600"
                           >
                             {child.label}
-                          </Link>
+                          </a>
                         </li>
                       ))}
                     </ul>

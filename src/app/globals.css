@@ -542,6 +542,19 @@ button.contact-modal-field[data-has-value="true"] ~ .contact-modal-label {
   text-transform: uppercase;
 }
 
+/* The custom dropdown keeps its button inside a wrapper, so its label needs
+ * to inspect that wrapper rather than look for a direct button sibling. */
+.contact-modal-dropdown:has(> button.contact-modal-field:focus) ~ .contact-modal-label,
+.contact-modal-dropdown:has(> button.contact-modal-field[aria-expanded="true"]) ~ .contact-modal-label,
+.contact-modal-dropdown:has(> button.contact-modal-field[data-has-value="true"]) ~ .contact-modal-label {
+  top: 10px;
+  translate: 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 /*
  * Scroll reveals (see components/reveal.tsx). Content rests slightly low and
  * transparent, then settles once the observer marks it .reveal-in.

@@ -326,6 +326,7 @@ export function ContactModal() {
                   options={REQUIREMENT_TYPES}
                   placeholder="Requirement type"
                   required
+                  className="contact-modal-dropdown"
                   buttonClassName={`${FIELD_CLASS} relative pr-12 text-left`}
                   menuClassName="bottom-full mb-2 mt-0 border-0 py-1 shadow-[0_16px_36px_rgba(0,0,0,0.14)]"
                   iconClassName="text-neutral-400"

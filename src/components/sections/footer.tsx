@@ -243,7 +243,7 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
                       download
                       className="text-lg font-light leading-7 text-white/90 hover:text-primary-300"
                     >
-                      Corporate Brochure
+                      Manufacturing Brochure
                     </a>
                   </li>
                 </ul>

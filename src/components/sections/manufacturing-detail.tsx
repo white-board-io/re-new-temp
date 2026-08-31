@@ -186,7 +186,7 @@ const plants: Plant[] = [
     map: "/images/manufacturing-detail.png",
     mapAlt: "Outline map for Visakhapatnam, Andhra Pradesh",
     mapLabelClassName: "text-xl sm:text-[26px]",
-    eyebrow: "6.5 GW wafer and ingot manufacturing facility (upcoming).",
+    eyebrow: "6.5 GW wafer and ingot manufacturing facility (upcoming)",
     headline: "A wafer and ingot facility strengthening India's solar value chain.",
     gallery: [
       {

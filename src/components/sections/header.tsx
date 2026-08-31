@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, Menu, Phone, X } from "lucide-react";
@@ -46,6 +49,10 @@ export function Header({
   contactHref?: string;
   savingsHref?: string;
 } = {}) {
+  const [expandedMobileItems, setExpandedMobileItems] = useState<
+    Record<string, boolean>
+  >({});
+
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       <div className="hidden bg-surface-gray lg:absolute lg:inset-x-0 lg:top-0 lg:z-10 lg:block lg:h-8 lg:bg-[linear-gradient(to_left,#ebebeb_0%,#ebebeb_16%,#f1f1f1_42%,#fafafa_72%,#fff_100%)] xl:h-[min(32px,1.666667vw)]">
@@ -165,17 +172,49 @@ export function Header({
             <ul className="flex flex-col gap-4">
               {navItems.map((item) => (
                 <li key={item.href}>
-                  <a
-                    href={`${sectionPrefix}${item.href}`}
-                    className="inline-flex items-center gap-1 text-lg text-black"
-                  >
-                    {item.label}
-                    {item.children && (
-                      <ChevronDown aria-hidden className="size-5" />
-                    )}
-                  </a>
+                  {item.children ? (
+                    <div className="flex items-center justify-between gap-3">
+                      <a
+                        href={`${sectionPrefix}${item.href}`}
+                        className="text-lg text-black"
+                      >
+                        {item.label}
+                      </a>
+                      <button
+                        type="button"
+                        aria-expanded={expandedMobileItems[item.label] ?? false}
+                        aria-controls={`mobile-${item.label.toLowerCase()}-submenu`}
+                        aria-label={`${expandedMobileItems[item.label] ? "Collapse" : "Expand"} ${item.label}`}
+                        onClick={() =>
+                          setExpandedMobileItems((current) => ({
+                            ...current,
+                            [item.label]: !current[item.label],
+                          }))
+                        }
+                        className="flex size-11 shrink-0 items-center justify-center text-primary-950"
+                      >
+                        <ChevronDown
+                          aria-hidden
+                          className={`size-5 transition-transform duration-200 ${
+                            expandedMobileItems[item.label] ? "rotate-180" : ""
+                          }`}
+                        />
+                      </button>
+                    </div>
+                  ) : (
+                    <a
+                      href={`${sectionPrefix}${item.href}`}
+                      className="inline-flex items-center gap-1 text-lg text-black"
+                    >
+                      {item.label}
+                    </a>
+                  )}
                   {item.children && (
-                    <ul className="mt-2 space-y-2 border-l border-primary-200 pl-4">
+                    <ul
+                      id={`mobile-${item.label.toLowerCase()}-submenu`}
+                      hidden={!expandedMobileItems[item.label]}
+                      className="mt-2 space-y-2 border-l border-primary-200 pl-4"
+                    >
                       {item.children.map((child) => (
                         <li key={`${item.label}-${child.label}`}>
                           <a

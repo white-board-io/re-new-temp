@@ -21,7 +21,7 @@ const linkColumns = [
   },
   {
     heading: "Projects",
-    headingHref: undefined,
+    headingHref: "#our-projects",
     links: [
       { label: "Blogs", href: "#blogs" },
       { label: "Press Releases", href: "#press-releases" },
@@ -37,7 +37,7 @@ const portals = [
     href: "https://warranty.renew.com",
   },
   {
-    caption: "Register a Complain",
+    caption: "Register a Complaint",
     label: "renew.freshdesk.com",
     href: "https://renew.freshdesk.com",
   },
@@ -182,7 +182,11 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
                 {navItems[1].label}
               </a>
               <div className="sm:mt-16 xl:mt-14">
-                <h3 className="text-xl font-bold leading-8">{linkColumns[1].heading}</h3>
+                <h3 className="text-xl font-bold leading-8">
+                  <Link href={`${sectionPrefix}${linkColumns[1].headingHref!}`} className="hover:text-primary-300">
+                    {linkColumns[1].heading}
+                  </Link>
+                </h3>
                 <ul className="mt-3 space-y-2 sm:mt-6 sm:space-y-4">
                   {linkColumns[1].links.map((link) => (
                     <li key={link.label}>

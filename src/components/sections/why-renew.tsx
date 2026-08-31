@@ -18,7 +18,6 @@ const certifications = [
   { src: "/images/cert-ammonia.webp", alt: "Ammonia resistance certification" },
   { src: "/images/cert-salt-mist.webp", alt: "Salt mist resistance certification" },
   { src: "/images/cert-almm.webp", alt: "ALMM approved" },
-  { src: "/images/cert-pvel.webp", alt: "Kiwa PVEL certification" },
 ];
 
 function LogoRun({ hidden = false }: { hidden?: boolean }) {

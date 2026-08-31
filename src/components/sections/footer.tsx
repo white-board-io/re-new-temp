@@ -239,7 +239,7 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
                 <ul className="mt-3 space-y-2 sm:mt-6 sm:space-y-4">
                   <li>
                     <a
-                      href="/downloads/corporate-brochure/corporate-brochure.pdf"
+                      href="/downloads/corporate-brochure/manufacturing-brouchure.pdf"
                       download
                       className="text-lg font-light leading-7 text-white/90 hover:text-primary-300"
                     >

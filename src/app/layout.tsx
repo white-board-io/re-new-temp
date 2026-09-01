@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Lato } from "next/font/google";
+import { Inter, Lato } from "next/font/google";
 import { ContactModal } from "@/components/contact-modal";
 import { EnquireFab } from "@/components/sections/enquire-fab";
 import "./globals.css";
@@ -8,6 +8,12 @@ const lato = Lato({
   variable: "--font-lato",
   subsets: ["latin"],
   weight: ["300", "400", "700", "900"],
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["500", "700"],
 });
 
 export const metadata: Metadata = {
@@ -45,7 +51,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${lato.variable} h-full`}>
+    <html lang="en" className={`${lato.variable} ${inter.variable} h-full`}>
       <body className="min-h-full flex flex-col">
         {children}
         <EnquireFab />

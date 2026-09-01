@@ -35,11 +35,19 @@ const portals = [
     caption: "Module Warranty Registration",
     label: "warranty.renew.com",
     href: "https://warranty.renew.com",
+    external: true,
   },
   {
     caption: "Register a Complaint",
     label: "renew.freshdesk.com",
     href: "https://renew.freshdesk.com",
+    external: true,
+  },
+  {
+    caption: "PM Surya Ghar",
+    label: "Muft Bijli Yojana",
+    href: "/muft-bijli-yojana",
+    external: false,
   },
 ];
 
@@ -187,12 +195,12 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
                     {linkColumns[1].heading}
                   </Link>
                 </h3>
-                <ul className="mt-3 space-y-2 sm:mt-6 sm:space-y-4">
+                <ul className="mt-3 space-y-2 sm:mt-10 sm:space-y-10">
                   {linkColumns[1].links.map((link) => (
                     <li key={link.label}>
                       <Link
                         href={`${sectionPrefix}${link.href}`}
-                        className="text-lg font-light leading-7 text-white/90 hover:text-primary-300"
+                        className="text-xl font-semibold leading-8 text-white/90 hover:text-primary-300"
                       >
                         {link.label}
                       </Link>
@@ -217,14 +225,23 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
                       <p className="text-[10px] font-light leading-[22px] text-white/60">
                         {portal.caption}
                       </p>
-                      <a
-                        href={portal.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block text-lg font-light leading-[22px] underline hover:text-primary-300"
-                      >
-                        {portal.label}
-                      </a>
+                      {portal.external ? (
+                        <a
+                          href={portal.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-block text-lg font-light leading-[22px] underline hover:text-primary-300"
+                        >
+                          {portal.label}
+                        </a>
+                      ) : (
+                        <Link
+                          href={portal.href}
+                          className="inline-block text-lg font-light leading-[22px] underline hover:text-primary-300"
+                        >
+                          {portal.label}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>

@@ -38,8 +38,44 @@ const utilityItems = [
   { label: "Projects", href: "#our-projects" },
   { label: "Press Releases", href: "#press-releases" },
   { label: "Blogs", href: "#blogs" },
-  { label: "Module Warranty Registration", href: "http://warranty.renew.com" },
+  { label: "Module Warranty Registration", href: "https://warranty.renew.com" },
+  { label: "Muft Bijli Yojana", href: "/muft-bijli-yojana" },
 ];
+
+function getUtilityHref(href: string, sectionPrefix: string) {
+  if (href.startsWith("http") || href.startsWith("/")) {
+    return href;
+  }
+
+  return `${sectionPrefix}${href}`;
+}
+
+function UtilityLink({
+  href,
+  label,
+  sectionPrefix,
+}: {
+  href: string;
+  label: string;
+  sectionPrefix: string;
+}) {
+  const resolvedHref = getUtilityHref(href, sectionPrefix);
+  const className = "transition-colors hover:text-primary-700";
+
+  if (resolvedHref.startsWith("http")) {
+    return (
+      <a href={resolvedHref} className={className}>
+        {label}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={resolvedHref} className={className}>
+      {label}
+    </Link>
+  );
+}
 
 export function Header({
   sectionPrefix = "",
@@ -87,19 +123,18 @@ export function Header({
                   key={item.href}
                   className="relative flex items-center px-6 first:pl-0 xl:px-[min(26px,1.354167vw)] [&:not(:first-child)]:before:absolute [&:not(:first-child)]:before:left-0 [&:not(:first-child)]:before:top-1/2 [&:not(:first-child)]:before:h-[45%] [&:not(:first-child)]:before:-translate-y-1/2 [&:not(:first-child)]:before:w-px [&:not(:first-child)]:before:bg-neutral-500 [&:not(:first-child)]:before:content-['']"
                 >
-                  <a
-                    href={`${sectionPrefix}${item.href}`}
-                    className="transition-colors hover:text-primary-700"
-                  >
-                    {item.label}
-                  </a>
+                  <UtilityLink
+                    href={item.href}
+                    label={item.label}
+                    sectionPrefix={sectionPrefix}
+                  />
                 </li>
               ))}
             </ul>
           </nav>
           <a
             href="tel:9220440044"
-            className="inline-flex items-center normal-case text-primary-700 xl:absolute xl:right-[min(196px,10.208333vw)] xl:top-0 xl:h-[min(32px,1.666667vw)] xl:w-[min(248px,12.916667vw)] xl:justify-end xl:text-[min(14px,0.729167vw)] xl:leading-[min(32px,1.666667vw)]"
+            className="inline-flex shrink-0 items-center normal-case text-primary-700 xl:absolute xl:right-[min(196px,10.208333vw)] xl:top-0 xl:h-[min(32px,1.666667vw)] xl:justify-end xl:text-[min(14px,0.729167vw)] xl:leading-[min(32px,1.666667vw)]"
           >
             <span>Call Us&nbsp;</span>
             <strong className="font-bold">9220 440 044</strong>
@@ -253,12 +288,11 @@ export function Header({
               ))}
               {utilityItems.map((item) => (
                 <li key={item.href}>
-                  <a
-                    href={`${sectionPrefix}${item.href}`}
-                    className="text-lg text-black"
-                  >
-                    {item.label}
-                  </a>
+                  <UtilityLink
+                    href={item.href}
+                    label={item.label}
+                    sectionPrefix={sectionPrefix}
+                  />
                 </li>
               ))}
               <li className="flex flex-col items-start gap-3 pt-2">

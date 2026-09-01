@@ -144,7 +144,7 @@ function StepCard({ step }: { step: ProcessStep }) {
             href={step.href}
             target="_blank"
             rel="noreferrer"
-            className="mt-9 inline-flex min-h-[56px] items-center rounded-[6px] bg-[#77BB44] px-8 text-lg font-bold leading-8 text-white transition-colors hover:bg-[#6aa83c] lg:h-[69px] lg:w-[338px] lg:justify-center lg:px-0 lg:text-[20px]"
+            className="mt-9 inline-flex min-h-[56px] items-center rounded-[44px] bg-[#77BB44] px-8 text-lg font-bold leading-8 text-white transition-colors hover:bg-[#6aa83c] lg:h-[69px] lg:w-[338px] lg:justify-center lg:px-0 lg:text-[20px]"
           >
             {step.cta}
           </Link>

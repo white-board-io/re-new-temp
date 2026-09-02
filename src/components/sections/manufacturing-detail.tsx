@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useEffect, useRef, useState, type SyntheticEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/reveal";
 
 type Plant = {
@@ -14,7 +14,7 @@ type Plant = {
   mapLabelClassName: string;
   eyebrow: string;
   headline: string;
-  video?: { src: string; title: string; maxDuration?: number };
+  video?: { src: string; title: string };
   gallery: Array<{ src: string; alt: string }>;
   sustainabilityImage: { src: string; alt: string };
   stats: Array<{
@@ -39,9 +39,8 @@ const plants: Plant[] = [
     eyebrow: "4 GW module manufacturing capacity under a single roof",
     headline: "India's largest\nsingle-location module\nmanufacturing facility.",
     video: {
-      src: "/videos/manufacturing/jaipur.webm",
+      src: "/videos/manufacturing/Jaipur-n.webm",
       title: "Jaipur manufacturing facility video",
-      maxDuration: 50,
     },
     gallery: [
       {
@@ -297,7 +296,6 @@ export function ManufacturingDetail() {
   const activePlant = plants.find((plant) => plant.id === activeId) ?? plants[0];
   const isDholera = activePlant.id === "dholera";
   const isVizag = activePlant.id === "vizag";
-  const activeVideoMaxDuration = activePlant.video?.maxDuration;
   const statsGridClass =
     activePlant.stats.length === 3
       ? "sm:grid-cols-3 xl:mx-auto xl:max-w-[1120px] xl:gap-[72px]"
@@ -357,20 +355,6 @@ export function ManufacturingDetail() {
     const track = statsTrackRef.current;
     if (!track) return;
     track.scrollTo({ left: target * track.clientWidth, behavior: "smooth" });
-  };
-
-  const handleVideoTimeUpdate = (event: SyntheticEvent<HTMLVideoElement>) => {
-    if (!activeVideoMaxDuration || event.currentTarget.currentTime < activeVideoMaxDuration) {
-      return;
-    }
-
-    event.currentTarget.currentTime = 0;
-  };
-
-  const handleVideoSeeking = (event: SyntheticEvent<HTMLVideoElement>) => {
-    if (activeVideoMaxDuration && event.currentTarget.currentTime > activeVideoMaxDuration) {
-      event.currentTarget.currentTime = 0;
-    }
   };
 
   return (
@@ -636,12 +620,10 @@ export function ManufacturingDetail() {
                     src={activePlant.video.src}
                     autoPlay
                     controls
-                    loop={!activeVideoMaxDuration}
+                    loop
                     muted
                     preload="metadata"
                     playsInline
-                    onSeeking={handleVideoSeeking}
-                    onTimeUpdate={handleVideoTimeUpdate}
                     className="absolute inset-0 h-full w-full object-cover"
                   />
                 ) : (

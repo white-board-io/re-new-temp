@@ -164,7 +164,7 @@ function StepCard({ step }: { step: ProcessStep }) {
       )}
       <p
         aria-hidden
-        className="absolute right-8 top-6 text-[150px] font-light leading-none text-[#006B380D] sm:right-20 sm:text-[220px] lg:right-[98px] lg:top-[121px] lg:text-[315px] lg:leading-[0.72]"
+        className="absolute hidden right-8 top-6 text-[150px] font-light leading-none text-[#006B380D] sm:right-20 sm:text-[220px] lg:block lg:right-[98px] lg:top-[121px] lg:text-[315px] lg:leading-[0.72]"
       >
         {step.number}
       </p>
@@ -182,9 +182,9 @@ export function MuftBijliYojana() {
           fill
           priority
           sizes="100vw"
-          className="object-cover"
+          className="object-[75%_center] object-cover lg:object-center"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(270deg,rgba(19,42,0,0)_20%,rgba(19,42,0,0.9)_89%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(19,42,0,0.92)_0%,rgba(19,42,0,0.58)_48%,rgba(19,42,0,0)_100%)] lg:bg-[linear-gradient(270deg,rgba(19,42,0,0)_20%,rgba(19,42,0,0.9)_89%)]" />
         <div className="relative z-10 mx-auto w-full max-w-content px-4 pb-14 sm:px-6 sm:pb-20 lg:pb-[196px] xl:px-0">
           <p className="text-xl font-bold leading-8 text-white sm:text-[28px] lg:text-[32px]">Apply for</p>
           <h1 className="mt-3 max-w-[625px] text-[42px] font-bold leading-[1.12] tracking-[0.03em] text-accent sm:text-[58px] lg:text-[75px] lg:leading-[88px]">

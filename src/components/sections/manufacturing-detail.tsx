@@ -235,7 +235,7 @@ const plants: Plant[] = [
       },
     ],
     paragraphs: [
-      "ReNew Solar Panel's third plant will complete the value chain from ingot to module, making it one of the most integrated solar manufacturers in India.",
+      "ReNew Solar Panel's third plant will complete the value chain from ingot to module, making it one of the leading integrated solar manufacturers in India.",
       "The upcoming Visakhapatnam facility is designed to manufacture wafers and ingots at 6.5 GW scale, adding critical upstream capacity to India's fast-growing solar manufacturing ecosystem.",
       "Its integrated production approach improves supply resilience and gives ReNew greater control over quality at the earliest stages of the module value chain.",
     ],

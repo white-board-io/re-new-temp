@@ -1,7 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { Reveal } from "@/components/reveal";
+
+const PAGE_REVEAL_STYLE = {
+  "--reveal-shift": "38px",
+  "--reveal-duration": "1100ms",
+} as CSSProperties;
 
 type ProcessStep = {
   number: string;
@@ -120,7 +125,11 @@ function StepCard({ step }: { step: ProcessStep }) {
           : "xl:min-h-[412px]";
 
   return (
-    <article className={`relative overflow-hidden rounded-[6px] bg-[#0069340F] px-6 py-12 sm:px-12 lg:px-[69px] lg:pb-0 lg:pt-[57px] ${heightClass}`}>
+    <Reveal
+      as="article"
+      style={PAGE_REVEAL_STYLE}
+      className={`relative overflow-hidden rounded-[6px] bg-[#0069340F] px-6 py-12 sm:px-12 lg:px-[69px] lg:pb-0 lg:pt-[57px] ${heightClass}`}
+    >
       <div className="relative z-10 max-w-[1059px]">
         <div className="flex items-center gap-[22px]">
           <span className="-ml-[3px] flex size-[58px] shrink-0 items-center justify-center rounded-full bg-[#8DC63F]">
@@ -169,7 +178,7 @@ function StepCard({ step }: { step: ProcessStep }) {
       >
         {step.number}
       </p>
-    </article>
+    </Reveal>
   );
 }
 
@@ -186,7 +195,7 @@ export function MuftBijliYojana() {
           className="object-[75%_center] object-cover lg:object-center"
         />
         <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(19,42,0,0.92)_0%,rgba(19,42,0,0.58)_48%,rgba(19,42,0,0)_100%)] lg:bg-[linear-gradient(270deg,rgba(19,42,0,0)_20%,rgba(19,42,0,0.9)_89%)]" />
-        <Reveal className="relative z-10 mx-auto w-full max-w-content px-4 pb-14 sm:px-6 sm:pb-20 lg:pb-[196px] xl:px-0">
+        <Reveal style={PAGE_REVEAL_STYLE} className="relative z-10 mx-auto w-full max-w-content px-4 pb-14 sm:px-6 sm:pb-20 lg:pb-[196px] xl:px-0">
           <p className="text-xl font-bold leading-8 text-white sm:text-[28px] lg:text-[32px]">Apply for</p>
           <h1 className="mt-3 max-w-[625px] text-[42px] font-bold leading-[1.12] tracking-[0.03em] text-accent sm:text-[58px] lg:text-[75px] lg:leading-[88px]">
             <span className="font-normal">PM Surya Ghar </span>
@@ -196,18 +205,18 @@ export function MuftBijliYojana() {
       </section>
 
       <section className="mx-auto max-w-[1530px] px-4 pb-20 pt-16 sm:px-6 sm:pt-24 lg:pb-[128px] lg:pt-[109px] xl:px-0">
-        <Reveal className="mb-12 lg:mb-[78px]">
+        <Reveal style={PAGE_REVEAL_STYLE} className="mb-12 lg:mb-[78px]">
           <h2 className="text-[28px] font-bold leading-10 sm:text-[32px]">Step-by-Step Process</h2>
         </Reveal>
-        <Reveal stagger className="space-y-6 lg:space-y-[50px]">
+        <div className="space-y-6 lg:space-y-[50px]">
           {PROCESS_STEPS.map((step) => (
             <StepCard key={step.number} step={step} />
           ))}
-        </Reveal>
+        </div>
       </section>
 
       <section className="bg-[#11663A] px-4 py-16 text-white sm:px-6 sm:py-24 lg:min-h-[1287px] lg:px-0 lg:py-[156px]">
-        <Reveal stagger className="mx-auto max-w-[1392px]">
+        <Reveal stagger style={PAGE_REVEAL_STYLE} className="mx-auto max-w-[1392px]">
           <div>
             <h2 className="max-w-[597px] font-[family-name:var(--font-inter)] text-[30px] font-medium leading-10">
               <span className="block text-white">What Happens</span>
@@ -245,7 +254,7 @@ export function MuftBijliYojana() {
 
       <section className="relative overflow-hidden bg-[#0069340F] px-4 py-16 text-primary-950 sm:px-6 sm:py-24 lg:min-h-[582px] lg:px-0 lg:py-[123px]">
         <div className="mx-auto max-w-[1530px]">
-          <Reveal className="relative z-10 max-w-[1015px]">
+          <Reveal style={PAGE_REVEAL_STYLE} className="relative z-10 max-w-[1015px]">
             <h2 className="font-[family-name:var(--font-inter)] text-[28px] font-bold leading-10 text-[#132A00] sm:text-[32px]">
               Documents Commonly Required
             </h2>

@@ -210,7 +210,7 @@ const moduleRanges: ModuleRange[] = [
     dimensions: "2278 × 1134 × 30 mm",
     weight: "32.5 kg",
     almmApproved: "Yes",
-    imageSrc: "/images/products/solar-module/m10-mono-perc.webp",
+    imageSrc: "/images/products/solar-module/M10R PERC.webp",
     imageAlt: "M10 Mono PERC solar module",
     datasheetHref: "/downloads/product-datasheets/m10r-perc.pdf",
   },

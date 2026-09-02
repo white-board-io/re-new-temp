@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { Reveal } from "@/components/reveal";
 
 type ProcessStep = {
   number: string;
@@ -185,26 +186,28 @@ export function MuftBijliYojana() {
           className="object-[75%_center] object-cover lg:object-center"
         />
         <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(19,42,0,0.92)_0%,rgba(19,42,0,0.58)_48%,rgba(19,42,0,0)_100%)] lg:bg-[linear-gradient(270deg,rgba(19,42,0,0)_20%,rgba(19,42,0,0.9)_89%)]" />
-        <div className="relative z-10 mx-auto w-full max-w-content px-4 pb-14 sm:px-6 sm:pb-20 lg:pb-[196px] xl:px-0">
+        <Reveal className="relative z-10 mx-auto w-full max-w-content px-4 pb-14 sm:px-6 sm:pb-20 lg:pb-[196px] xl:px-0">
           <p className="text-xl font-bold leading-8 text-white sm:text-[28px] lg:text-[32px]">Apply for</p>
           <h1 className="mt-3 max-w-[625px] text-[42px] font-bold leading-[1.12] tracking-[0.03em] text-accent sm:text-[58px] lg:text-[75px] lg:leading-[88px]">
             <span className="font-normal">PM Surya Ghar </span>
             <span className="font-black">Muft Bijli Yojana</span>
           </h1>
-        </div>
+        </Reveal>
       </section>
 
       <section className="mx-auto max-w-[1530px] px-4 pb-20 pt-16 sm:px-6 sm:pt-24 lg:pb-[128px] lg:pt-[109px] xl:px-0">
-        <h2 className="mb-12 text-[28px] font-bold leading-10 sm:text-[32px] lg:mb-[78px]">Step-by-Step Process</h2>
-        <div className="space-y-6 lg:space-y-[50px]">
+        <Reveal className="mb-12 lg:mb-[78px]">
+          <h2 className="text-[28px] font-bold leading-10 sm:text-[32px]">Step-by-Step Process</h2>
+        </Reveal>
+        <Reveal stagger className="space-y-6 lg:space-y-[50px]">
           {PROCESS_STEPS.map((step) => (
             <StepCard key={step.number} step={step} />
           ))}
-        </div>
+        </Reveal>
       </section>
 
       <section className="bg-[#11663A] px-4 py-16 text-white sm:px-6 sm:py-24 lg:min-h-[1287px] lg:px-0 lg:py-[156px]">
-        <div className="mx-auto max-w-[1392px]">
+        <Reveal stagger className="mx-auto max-w-[1392px]">
           <div>
             <h2 className="max-w-[597px] font-[family-name:var(--font-inter)] text-[30px] font-medium leading-10">
               <span className="block text-white">What Happens</span>
@@ -223,7 +226,7 @@ export function MuftBijliYojana() {
             </div>
           </div>
 
-          <div className="mt-20 max-w-[1418px] lg:mt-[96px]">
+          <div className="mt-20 max-w-[1418px] lg:mt-[60px]">
             <h2 className="max-w-[597px] font-[family-name:var(--font-inter)] text-[30px] font-medium leading-10">
               <span className="block text-white">Subsidy Available for</span>
               <span className="block text-[#8DC63F] text-[32px] font-bold">Residential Households</span>
@@ -237,12 +240,12 @@ export function MuftBijliYojana() {
               </ul>
             </div>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       <section className="relative overflow-hidden bg-[#0069340F] px-4 py-16 text-primary-950 sm:px-6 sm:py-24 lg:min-h-[582px] lg:px-0 lg:py-[123px]">
         <div className="mx-auto max-w-[1530px]">
-          <div className="relative z-10 max-w-[1015px]">
+          <Reveal className="relative z-10 max-w-[1015px]">
             <h2 className="font-[family-name:var(--font-inter)] text-[28px] font-bold leading-10 text-[#132A00] sm:text-[32px]">
               Documents Commonly Required
             </h2>
@@ -256,7 +259,7 @@ export function MuftBijliYojana() {
                 <li>Bank account details for receiving the subsidy</li>
               </ul>
             </div>
-          </div>
+          </Reveal>
           <Image
             src="/images/muft-bijli-article-person.svg"
             alt=""

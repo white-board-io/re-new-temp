@@ -223,7 +223,7 @@ export function MuftBijliYojana() {
             </div>
           </div>
 
-          <div className="mt-20 max-w-[1418px] lg:mt-[132px]">
+          <div className="mt-20 max-w-[1418px] lg:mt-[96px]">
             <h2 className="max-w-[597px] font-[family-name:var(--font-inter)] text-[30px] font-medium leading-10">
               <span className="block text-white">Subsidy Available for</span>
               <span className="block text-[#8DC63F] text-[32px] font-bold">Residential Households</span>

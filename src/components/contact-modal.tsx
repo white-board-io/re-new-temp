@@ -230,16 +230,16 @@ export function ContactModal() {
 
           <div className="relative">
             <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary-300">
-              Enquire now
+              BECOME A CHANNEL PARTNER
             </p>
             <h2
               id={titleId}
-              className="mt-2 whitespace-nowrap pr-10 text-[24px] font-bold leading-[1.2] viewport-short:mt-1.5 viewport-short:text-[22px] sm:text-[30px]"
+              className="mt-2 whitespace-nowrap pr-10 text-xl font-bold"
             >
-              Tell us about your project
+              Partner with ReNew. Power What’s Next.
             </h2>
             <p className="mt-2 max-w-[44ch] text-[14px] leading-5 text-white/75 viewport-short:hidden">
-              Share a few details and our team will get back to you.
+              Share your details, and our team will get back to you.
             </p>
 
             <div className="mt-4 flex flex-wrap gap-2 viewport-short:hidden">

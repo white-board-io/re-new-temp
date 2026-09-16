@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { Inter, Lato } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { ContactModal } from "@/components/contact-modal";
 import { EnquireFab } from "@/components/sections/enquire-fab";
 import "./globals.css";
+
+const GA_MEASUREMENT_ID = "G-ETD1TEYXP6";
 
 const lato = Lato({
   variable: "--font-lato",
@@ -43,6 +46,9 @@ export const metadata: Metadata = {
       },
     ],
   },
+  verification: {
+    google: "QS1YLTpm4RHxaVihhtR4A6K2umllmdX2rcVZsvkhukI",
+  },
 };
 
 export default function RootLayout({
@@ -57,6 +63,7 @@ export default function RootLayout({
         <EnquireFab />
         <ContactModal />
       </body>
+      <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
     </html>
   );
 }

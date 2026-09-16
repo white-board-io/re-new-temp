@@ -9,6 +9,24 @@ import { useEnquiryForm } from "@/lib/use-enquiry-form";
 
 const OPEN_CONTACT_MODAL_EVENT = "renew:open-contact-modal";
 
+export type ContactModalVariant = "enquire" | "channel-partner";
+
+const MODAL_COPY = {
+  enquire: {
+    eyebrow: "Enquire now",
+    title: "Tell us about your project",
+    subtitle: "Share a few details and our team will get back to you.",
+    titleClassName:
+      "mt-2 whitespace-nowrap pr-10 text-[24px] font-bold leading-[1.2] viewport-short:mt-1.5 viewport-short:text-[22px] sm:text-[30px]",
+  },
+  "channel-partner": {
+    eyebrow: "BECOME A CHANNEL PARTNER",
+    title: "Partner with ReNew. Power What’s Next.",
+    subtitle: "Share your details, and our team will get back to you.",
+    titleClassName: "mt-2 whitespace-nowrap pr-10 text-xl font-bold",
+  },
+} as const;
+
 const FOCUSABLE =
   'a[href], button:not(:disabled), input:not(:disabled), select:not(:disabled), textarea:not(:disabled), [tabindex]:not([tabindex="-1"])';
 
@@ -20,8 +38,16 @@ const FIELD_CLASS =
 const CONTACT_CHIP_CLASS =
   "inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-[13px] text-white/90 transition hover:bg-white/20 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
 
-function openContactModal() {
-  window.dispatchEvent(new CustomEvent(OPEN_CONTACT_MODAL_EVENT));
+function openContactModal(variant: ContactModalVariant = "enquire") {
+  window.dispatchEvent(
+    new CustomEvent(OPEN_CONTACT_MODAL_EVENT, { detail: { variant } }),
+  );
+}
+
+function variantFromEvent(event: Event): ContactModalVariant {
+  const detail =
+    event instanceof CustomEvent ? (event.detail as { variant?: unknown }) : undefined;
+  return detail?.variant === "channel-partner" ? "channel-partner" : "enquire";
 }
 
 function ModalField({
@@ -74,17 +100,19 @@ export function ContactModalTrigger({
   children,
   className,
   ariaLabel,
+  variant = "enquire",
 }: {
   children: ReactNode;
   className?: string;
   ariaLabel?: string;
+  variant?: ContactModalVariant;
 }) {
   return (
     <button
       type="button"
       aria-label={ariaLabel}
       aria-haspopup="dialog"
-      onClick={openContactModal}
+      onClick={() => openContactModal(variant)}
       className={className}
     >
       {children}
@@ -94,19 +122,24 @@ export function ContactModalTrigger({
 
 export function ContactModal() {
   const [isOpen, setIsOpen] = useState(false);
+  const [variant, setVariant] = useState<ContactModalVariant>("enquire");
   const [requirement, setRequirement] = useState("");
-  const { status, message, fieldErrors, submit, reset } =
-    useEnquiryForm("enquire-modal");
+  const { status, message, fieldErrors, submit, reset } = useEnquiryForm(
+    variant === "channel-partner" ? "channel-partner-modal" : "enquire-modal",
+  );
   const panelRef = useRef<HTMLElement>(null);
   const openerRef = useRef<HTMLElement | null>(null);
   const uid = useId();
   const titleId = `${uid}-title`;
+  const copy = MODAL_COPY[variant];
 
   useEffect(() => {
-    function handleOpen() {
+    function handleOpen(event: Event) {
+      const nextVariant = variantFromEvent(event);
       openerRef.current = document.activeElement as HTMLElement | null;
       reset();
-      setRequirement("");
+      setVariant(nextVariant);
+      setRequirement(nextVariant === "channel-partner" ? "Channel Partnership" : "");
       setIsOpen(true);
     }
 
@@ -230,16 +263,13 @@ export function ContactModal() {
 
           <div className="relative">
             <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary-300">
-              BECOME A CHANNEL PARTNER
+              {copy.eyebrow}
             </p>
-            <h2
-              id={titleId}
-              className="mt-2 whitespace-nowrap pr-10 text-xl font-bold"
-            >
-              Partner with ReNew. Power What’s Next.
+            <h2 id={titleId} className={copy.titleClassName}>
+              {copy.title}
             </h2>
             <p className="mt-2 max-w-[44ch] text-[14px] leading-5 text-white/75 viewport-short:hidden">
-              Share your details, and our team will get back to you.
+              {copy.subtitle}
             </p>
 
             <div className="mt-4 flex flex-wrap gap-2 viewport-short:hidden">

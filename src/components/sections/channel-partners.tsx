@@ -224,6 +224,7 @@ export function ChannelPartners() {
 
         <Reveal className="flex flex-wrap justify-center gap-10 pb-24 pt-16 md:pb-[calc(var(--spacing-section)*2)] lg:-mt-2 lg:pt-0">
           <ContactModalTrigger
+            variant="channel-partner"
             className="inline-flex min-h-10 min-w-[168px] items-center justify-center rounded-full border border-primary-950 px-8 py-0 text-base font-bold text-primary-950 transition hover:bg-primary-50 md:py-3 md:text-lg"
           >
             Become a Channel Partner

@@ -26,6 +26,7 @@ export const SALES_PHONE = "9220 440 044";
 export const ENQUIRY_SOURCES = {
   "homepage-form": "Homepage contact form",
   "enquire-modal": "Enquire Now modal",
+  "channel-partner-modal": "Become a Channel Partner modal",
 } as const;
 
 export type EnquirySource = keyof typeof ENQUIRY_SOURCES;

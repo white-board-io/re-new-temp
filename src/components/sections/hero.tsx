@@ -4,12 +4,13 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { ContactModalTrigger } from "@/components/contact-modal";
 
-const SLIDE_COUNT = 3;
+const SLIDE_COUNT = 4;
 // Every slide stays visible for roughly one full background-video loop.
 const SLIDE_DURATION_MS = 8100;
 const WHEEL_LOCK_MS = 850;
 const SWIPE_THRESHOLD_PX = 48;
-const SUBTEXT_SIZE_CLASS = "text-base sm:text-lg md:text-[22px] hero-full:text-[24px]";
+const SUBTEXT_SIZE_CLASS =
+  "text-base sm:text-lg md:text-[22px] hero-full:text-[24px]";
 
 function EnquireButton({ className = "" }: { className?: string }) {
   return (
@@ -101,7 +102,8 @@ export function Hero() {
     const deltaX = event.clientX - start.x;
     const deltaY = event.clientY - start.y;
     const isHorizontalSwipe =
-      Math.abs(deltaX) >= SWIPE_THRESHOLD_PX && Math.abs(deltaX) > Math.abs(deltaY) * 1.2;
+      Math.abs(deltaX) >= SWIPE_THRESHOLD_PX &&
+      Math.abs(deltaX) > Math.abs(deltaY) * 1.2;
 
     if (!isHorizontalSwipe) return;
 
@@ -157,15 +159,81 @@ export function Hero() {
             Switch to clean energy with ReNew Solar Panels, engineered for
             lasting performance.
           </h1>
-          <p className={`mt-6 leading-relaxed text-white md:mt-8 ${SUBTEXT_SIZE_CLASS}`}>
+          <p
+            className={`mt-6 leading-relaxed text-white md:mt-8 ${SUBTEXT_SIZE_CLASS}`}
+          >
             When you put solar on your roof, the manufacturer matters.
           </p>
           <EnquireButton className="mt-10 md:mt-16" />
         </div>
       </div>
 
-      {/* Slide 2 — the company behind India's clean energy transition */}
+      {/* Slide 2 — ReNew's 15-year clean energy journey */}
       <div className={slideClass(1)} aria-hidden={activeSlide !== 1}>
+        {/* Desktop banner */}
+        <Image
+          src="/images/banner2.svg"
+          alt=""
+          fill
+          unoptimized
+          className="hidden object-cover object-center md:block"
+          sizes="100vw"
+        />
+        {/* Mobile banner */}
+        <Image
+          src="/images/Renewbanner-2mobile.webp"
+          alt=""
+          fill
+          className="object-cover object-center md:hidden"
+          sizes="100vw"
+        />
+        <Image
+          src="/images/sunburst_full.svg"
+          alt=""
+          width={702}
+          height={701}
+          className="pointer-events-none absolute left-[5%] top-[-165px] hidden w-[280px] animate-sunburst brightness-0 invert motion-reduce:animate-none md:block sm:top-[-210px] sm:w-[340px] xl:left-[100px] xl:top-[-250px] xl:w-[430px]"
+        />
+        <Image
+          src="/images/sunburst_full.svg"
+          alt=""
+          width={702}
+          height={701}
+          className="pointer-events-none absolute right-[5%] top-[-165px] hidden w-[280px] animate-sunburst brightness-0 invert motion-reduce:animate-none md:block sm:top-[-210px] sm:w-[340px] xl:right-[100px] xl:top-[-250px] xl:w-[430px]"
+        />
+        <div
+          className={`relative flex h-full flex-col items-center justify-start px-5 pt-20 text-center font-[family-name:var(--font-inter)] sm:pt-[17.5vh] md:justify-center md:pt-0 ${contentClass(1)}`}
+        >
+          <h2 className="text-[32px] font-bold leading-[38px] tracking-[0.03em] text-[#20508C] sm:text-[40px] sm:leading-[48px] md:text-[46px] md:leading-[55px] xl:text-[55px] xl:leading-[65px]">
+            Clean Energy
+            <br className="md:hidden" /> Humse Hai
+          </h2>
+          <p className="mt-1 text-[22px] font-bold leading-[28px] tracking-[0.03em] text-[#006934] sm:text-[26px] sm:leading-[32px] md:text-[30px] md:leading-[36px] xl:text-[34px] xl:leading-[40px]">
+            ReNew Badal Raha Hai
+            <br />
+            Desh Ka Mukhda
+          </p>
+          <p className="mt-5 text-[18px] font-normal leading-[20px] tracking-[0.03em] text-[#20508C] sm:text-[20px] sm:leading-[28px] md:text-[23px] md:leading-[31px] xl:mt-7 xl:text-[26px] xl:leading-[34px]">
+            15 years of powering
+            <br />
+            <strong className="font-bold mt-4">
+              India&apos;s clean
+              <br className="md:hidden" /> energy transformation
+            </strong>
+          </p>
+          <a
+            href="https://www.renew.com/clean-energy-humse-hai"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-16 inline-flex min-h-10 min-w-[210px] items-center justify-center rounded-full bg-[#8DC63F] px-8 text-[16px] font-medium leading-8 text-[#132A00] transition-colors hover:bg-[#77BB44] sm:text-[18px] md:mt-6 md:min-h-[45px] md:min-w-[240px] xl:mt-9 xl:min-w-[280px] xl:text-[20px]"
+          >
+            Explore the Journey
+          </a>
+        </div>
+      </div>
+
+      {/* Slide 3 — the company behind India's clean energy transition */}
+      <div className={slideClass(2)} aria-hidden={activeSlide !== 2}>
         <video
           src="/videos/ReNew banner2.webm"
           autoPlay
@@ -177,7 +245,7 @@ export function Hero() {
         />
         <SlideFilm />
         <div
-          className={`relative flex h-full items-start pb-28 pl-5 pr-16 pt-28 sm:pl-[9.25vw] sm:pr-20 sm:pt-[17.5vh] md:items-center md:px-[9.25vw] md:pb-20 md:pt-10 hero-full:py-10 ${contentClass(1)}`}
+          className={`relative flex h-full items-start pb-28 pl-5 pr-16 pt-28 sm:pl-[9.25vw] sm:pr-20 sm:pt-[17.5vh] md:items-center md:px-[9.25vw] md:pb-20 md:pt-10 hero-full:py-10 ${contentClass(2)}`}
         >
           <div className="max-w-[760px] text-white">
             <h2 className="text-[26px] font-bold leading-[1.14] tracking-[0.02em] sm:text-[32px] md:text-[40px] hero-full:text-[44px]">
@@ -187,7 +255,9 @@ export function Hero() {
               <span className="lg:block">clean energy transition.</span>{" "}
               <span className="lg:block">Now making the solar panels too.</span>
             </h2>
-            <p className={`mt-6 leading-[1.55] tracking-[0.025em] text-white md:mt-8 hero-full:mt-10 ${SUBTEXT_SIZE_CLASS}`}>
+            <p
+              className={`mt-6 leading-[1.55] tracking-[0.025em] text-white md:mt-8 hero-full:mt-10 ${SUBTEXT_SIZE_CLASS}`}
+            >
               20 GW portfolio
               <br />
               18.6M+ tonnes of CO₂ avoided
@@ -206,9 +276,9 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Slide 3 — net zero. The panel art is already near-black, so this slide
+      {/* Slide 4 — net zero. The panel art is already near-black, so this slide
           skips the film and lets the sunburst read at full strength. */}
-      <div className={slideClass(2)} aria-hidden={activeSlide !== 2}>
+      <div className={slideClass(3)} aria-hidden={activeSlide !== 3}>
         <Image
           src="/images/banner_3.png"
           alt=""
@@ -230,7 +300,7 @@ export function Hero() {
           />
         </div>
         <div
-          className={`relative flex h-full flex-col items-start justify-center py-16 pl-5 pr-16 text-left sm:pl-6 sm:pr-20 md:px-6 xl:px-[181px] hero-full:py-24 ${contentClass(2)}`}
+          className={`relative flex h-full flex-col items-start justify-center py-16 pl-5 pr-16 text-left sm:pl-6 sm:pr-20 md:px-6 xl:px-[181px] hero-full:py-24 ${contentClass(3)}`}
         >
           {/* Shares slide 1's headline scale so the carousel keeps one type
               size as it cycles. "Net zero does not wait." holds one line from
@@ -242,14 +312,14 @@ export function Hero() {
             </span>{" "}
             <span className="xl:block">Neither do we.</span>
           </h2>
-          <p className={`mt-5 font-medium leading-relaxed tracking-hero text-white md:mt-6 xl:mt-[34px] xl:leading-10 ${SUBTEXT_SIZE_CLASS}`}>
+          <p
+            className={`mt-5 font-medium leading-relaxed tracking-hero text-white md:mt-6 xl:mt-[34px] xl:leading-10 ${SUBTEXT_SIZE_CLASS}`}
+          >
             6.5 GW Integrated Module Capacity
             <br />
             Three World-Class Plants
           </p>
-          <ContactModalTrigger
-            className="mt-8 inline-flex min-h-10 min-w-[168px] items-center justify-center rounded-full bg-primary-400 px-8 text-base font-medium text-white transition-colors hover:bg-accent md:mt-10 md:min-h-[45px] md:min-w-[204px] md:px-8 md:text-xl xl:mt-[62px]"
-          >
+          <ContactModalTrigger className="mt-8 inline-flex min-h-10 min-w-[168px] items-center justify-center rounded-full bg-primary-400 px-8 text-base font-medium text-white transition-colors hover:bg-accent md:mt-10 md:min-h-[45px] md:min-w-[204px] md:px-8 md:text-xl xl:mt-[62px]">
             Enquire Now
           </ContactModalTrigger>
         </div>

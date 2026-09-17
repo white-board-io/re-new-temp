@@ -16,11 +16,11 @@ const lato = Lato({
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["500", "700"],
+  weight: ["400", "500", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "ReNew Solar — India's Most Reliable Solar Panels",
+  title: "ReNew Solar — Leading solar panels manufacturer",
   description:
     "ReNew Solar is the manufacturing arm of ReNew, India's leading decarbonisation solutions company. Three world-class facilities in Jaipur, Dholera, and Vizag building the panels powering India's net-zero future.",
   manifest: "/favicon_io/site.webmanifest",

@@ -11,8 +11,8 @@ import nodemailer, { type Transporter } from "nodemailer";
  */
 
 /** Verified sender for the SES account; see `.env.example`. */
-const DEFAULT_FROM = "ReNew Solar Website <pv.marketing@renew.com>";
-const DEFAULT_TO = "arun@white-board.io";
+const DEFAULT_FROM = "noreply@renewsolarpanels.com";
+const DEFAULT_TO = "pv.marketing@renew.com";
 
 function required(name: string): string {
   const value = process.env[name];

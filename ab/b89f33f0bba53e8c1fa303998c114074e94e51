@@ -1,0 +1,511 @@
+bun.lock
+  s_0273c81fd10635::t_0b5ad974a6f5ca 11,17,19,310-311,314-317,322-325,334-335,358-359,412,444-445,466-467,470-477,486-487,530-531,540-541,544-545,614-615,622-623,628-631,684-685,700-703,710-711,724-725,730-733,752-753,756-757,766-767,776-777,806,822-823,860-861,870-871,876-905,908-963,1012-1013,1040-1041,1052-1053,1066-1073,1094-1095,1124-1127,1144-1145,1148-1149,1152-1155,1174-1177,1202-1213,1222-1225,1248-1249,1260-1261,1296-1297,1306-1309
+content/blogs/budget-2022-powering-the-domestic-clean-energy-sector-empowering-global-netzero-targets.md
+  s_0273c81fd10635::t_b5f65da9715161 1-43
+content/blogs/circularity-drives-sustainability-and-profitability-for-businesses.md
+  s_0273c81fd10635::t_6d24cfb673aaee 1-51
+content/blogs/climate-action-india-renew-impact.md
+  s_0273c81fd10635::t_c589e1a1fdf1ff 1-136
+content/blogs/exploring-benefits-of-i-rec-for-businesses.md
+  s_0273c81fd10635::t_1531755ac8c8d4 1-112
+content/blogs/greenwashing-a-major-pitfall-on-the-road-to-net-zero.md
+  s_0273c81fd10635::t_77669dc6bf5c63 1-54
+content/blogs/how-embracing-digitalization-can-help-accelerate-decarbonization-efforts.md
+  s_0273c81fd10635::t_1c2789c4adf57e 1-138
+content/blogs/how-green-power-trading-can-shape-the-future-of-the-global-energy-transition.md
+  s_0273c81fd10635::t_220ad89ae820c0 1-115
+content/blogs/innovations-for-sustainable-energy-transition-virtual-power-purchase-agreements.md
+  s_0273c81fd10635::t_29c51efbac2a16 1-23
+content/blogs/renew-s-jaipur-solar-manufacturing-plant-setting-new-benchmarks-in-sustainable-innovation.md
+  s_0273c81fd10635::t_276bd1067535f1 1-77
+content/blogs/renew-solar-manufacturing-fueling-global-decarbonization-dreams.md
+  s_0273c81fd10635::t_d175ec00e7d3e9 1-104
+content/blogs/the-role-of-ai-in-accelerating-positive-climate-action.md
+  s_0273c81fd10635::t_be21d4a1417c26 1-156
+content/blogs/why-proper-installation-of-panels-is-the-key-to-maximizing-the-potential-of-solar-energy.md
+  s_0273c81fd10635::t_0430707527582d 1-42
+content/blogs/why-the-hurry-to-decarbonise.md
+  s_0273c81fd10635::t_f60b3c0cc707b9 1-93
+content/blogs/wind-energy-potential-for-the-future.md
+  s_0273c81fd10635::t_5bd6ced5f6f8df 1-55
+content/blogs/women-empowerment-key-to-addressing-climate-change.md
+  s_0273c81fd10635::t_f2e75ff9398e33 1-61
+content/blogs/world-environment-day.md
+  s_0273c81fd10635::t_b5a268ce48846c 1-75
+content/press-releases/accelerating-its-esg-goals-jindal-stainless-partners-with-renew-power-to-setup-300-mw-renewable-energy-project.md
+  s_0273c81fd10635::t_46f81a2a51b3a5 1-133
+content/press-releases/amazon-announces-its-first-utility-scale-renewable-energy-projects-in-india-2022-09-21.md
+  s_0273c81fd10635::t_fc64963db04627 1-142
+content/press-releases/announcing-the-launch-of-the-indian-wind-energy-alliance-iwea-2014-12-03.md
+  s_0273c81fd10635::t_4dbf04381eed54 1-101
+content/press-releases/canada-pension-plan-investment-board-invests-us-144-million-in-renew-power-ventures-pvt-ltd-2018-01-19.md
+  s_0273c81fd10635::t_134c5bcd84b0a3 1-91
+content/press-releases/chandigarh-airport-set-to-go-solar-with-renew-power.md
+  s_0273c81fd10635::t_df39314aca092c 1-112
+content/press-releases/cop28-presidency-recognises-renew-as-clean-energy-transition-changemaker.md
+  s_0273c81fd10635::t_9371b8d714836a 1-64
+content/press-releases/fluence-and-renew-to-set-up-local-joint-venture-to-boost-energy-storage-sector-in-india-2022-01-20.md
+  s_0273c81fd10635::t_dd091017c23df9 1-118
+content/press-releases/gift-warmth-renew-power-to-distribute-300-000-blankets-across-10-states-in-india.md
+  s_0273c81fd10635::t_34285f0eb7d889 1-93
+content/press-releases/gift-warmth-renew-to-distribute-200-000-blankets-this-winter.md
+  s_0273c81fd10635::t_9c55a9294c3f1d 1-88
+content/press-releases/iit-delhi-confers-distinguished-alumnus-award-2018-on-sumant-sinha-2018-11-05.md
+  s_0273c81fd10635::t_1738373c05042e 1-89
+content/press-releases/india-australia-rooftop-solar-training-academy-welcomes-first-cohort-in-gandhinagar.md
+  s_0273c81fd10635::t_9a0044e43cacf7 1-122
+content/press-releases/indianoil-l-t-and-renew-to-form-jv-for-development-of-green-hydrogen-business-2022-04-04.md
+  s_0273c81fd10635::t_07bdda6cf4c3c1 1-97
+content/press-releases/l-t-and-renew-announce-partnership-to-focus-on-the-green-hydrogen-business-in-india-2021-12-03.md
+  s_0273c81fd10635::t_6778760b49fd62 1-96
+content/press-releases/mitsui-to-invest-in-renew-powers-round-the-clock-project-2022-04-06.md
+  s_0273c81fd10635::t_9945d4b50cd3ba 1-89
+content/press-releases/renew-achieves-a-rating-in-cdp-climate-change-assessment-advancing-to-global-leadership-band.md
+  s_0273c81fd10635::t_15020e42ccf594 1-105
+content/press-releases/renew-adds-over-700-mw-taking-total-portfolio-to-12-8-gw-2022-06-02.md
+  s_0273c81fd10635::t_6653de4af93596 1-69
+content/press-releases/renew-and-asian-development-bank-announce-us-331-million-deal-for-a-large-scale-renewable-energy-project-in-andhra-pradesh.md
+  s_0273c81fd10635::t_3a5b994f09ec9c 1-116
+content/press-releases/renew-and-gentari-announce-strategic-collaboration-for-5-gw-renewable-capacity-in-india.md
+  s_0273c81fd10635::t_81a12211162083 1-37
+content/press-releases/renew-and-societe-generale-sign-mou-for-usd-1-billion-to-broaden-collaboration-on-energy-transition-projects.md
+  s_0273c81fd10635::t_84eaec46714ec8 1-87
+content/press-releases/renew-announces-appointment-of-three-independent-directors.md
+  s_0273c81fd10635::t_5a132610ba2749 1-54
+content/press-releases/renew-announces-clinton-global-initiative-commitment-to-business-driven-clean-energy-and-education-in-india.md
+  s_0273c81fd10635::t_044bf950a20b5b 1-40
+content/press-releases/renew-announces-date-and-conference-call-details-for-first-half-and-second-quarter-fiscal-year-2022-2021-11-15.md
+  s_0273c81fd10635::t_8b318a65651d6d 1-45
+content/press-releases/renew-announces-date-and-conference-call-details-for-first-quarter-fy25-earnings.md
+  s_0273c81fd10635::t_1f856992db0aa4 1-74
+content/press-releases/renew-announces-date-and-conference-call-details-for-first-quarter-fy26-earnings.md
+  s_0273c81fd10635::t_792f863b5ffe68 1-60
+content/press-releases/renew-announces-date-and-conference-call-details-for-first-quarter-fy27-earnings.md
+  s_0273c81fd10635::t_bdf379dfc6ec18 1-73
+content/press-releases/renew-announces-date-and-conference-call-details-for-fourth-quarter-earnings-q4-fy24-fiscal-year-2024-results-and-long-term-outlook.md
+  s_0273c81fd10635::t_609b39d062dba7 1-68
+content/press-releases/renew-announces-date-and-conference-call-details-for-fourth-quarter-earnings-q4-fy25-fiscal-year-2025-results.md
+  s_0273c81fd10635::t_0643603bf9cb74 1-71
+content/press-releases/renew-announces-date-and-conference-call-details-for-fourth-quarter-earnings-q4-fy26-fiscal-year-2026-results.md
+  s_0273c81fd10635::t_e4e25d86b6785d 1-72
+content/press-releases/renew-announces-date-and-conference-call-details-for-q1-fy-23-earnings-report-2022-08-12.md
+  s_0273c81fd10635::t_f02f61e32dfd19 1-58
+content/press-releases/renew-announces-date-and-conference-call-details-for-q1-fy-24-earnings-report.md
+  s_0273c81fd10635::t_7ca0141c0ce4c1 1-66
+content/press-releases/renew-announces-date-and-conference-call-details-for-q2-fy-24-earnings-report.md
+  s_0273c81fd10635::t_a5f972d88b3922 1-73
+content/press-releases/renew-announces-date-and-conference-call-details-for-q3-fy-22-earnings-report-2022-02-18.md
+  s_0273c81fd10635::t_8d3703a0b37402 1-26
+content/press-releases/renew-announces-date-and-conference-call-details-for-q3-fy-24-earnings-report.md
+  s_0273c81fd10635::t_15be3bbdd0aae3 1-49
+content/press-releases/renew-announces-date-and-conference-call-details-for-q4-fy-23-earnings-report.md
+  s_0273c81fd10635::t_2b6d2c91f7e34a 1-82
+content/press-releases/renew-announces-date-and-conference-call-details-for-q4-fy22-earnings-report-2022-06-08.md
+  s_0273c81fd10635::t_c2bf7da2ae2cd6 1-53
+content/press-releases/renew-announces-date-and-conference-call-details-for-second-quarter-fy25-earnings.md
+  s_0273c81fd10635::t_feccdc2c3de0f8 1-69
+content/press-releases/renew-announces-date-and-conference-call-details-for-third-quarter-fy25-earnings.md
+  s_0273c81fd10635::t_d6c5798c1a1df5 1-56
+content/press-releases/renew-announces-date-and-conference-call-details-for-third-quarter-fy26-earnings.md
+  s_0273c81fd10635::t_76deddd5ee7adf 1-35
+content/press-releases/renew-announces-long-term-agreement-with-google-to-enable-150-mw-solar-project-in-rajasthan.md
+  s_0273c81fd10635::t_3166f3a8e84516 1-87
+content/press-releases/renew-announces-price-reduction-in-solar-modules-and-cells-following-gst-cut-unlocking-massive-savings-for-consumers.md
+  s_0273c81fd10635::t_d2dd135d05adb8 1-96
+content/press-releases/renew-announces-results-for-second-quarter-and-half-year-results-for-fiscal-year-2024-us-81-million-pat-for-h1-fy24-raises-ebitda-guidance-for-fy24.md
+  s_0273c81fd10635::t_ef5fef8a11fbc4 1-163
+content/press-releases/renew-announces-results-for-the-first-quarter-for-fiscal-year-2025-q1-fy25-ended-june-30-2024-24-surge-in-operating-capacity-yoy-reiterates-fy25-mw-and-ebitda-guidance.md
+  s_0273c81fd10635::t_0bfc0c28835972 1-146
+content/press-releases/renew-announces-results-for-the-first-quarter-for-fiscal-year-2026-q1-fy26-ended-june-30-2025-43-surge-in-adj-ebitda-yoy-and-13x-increase-in-pat-23-growth-in-operating-mws-yoy.md
+  s_0273c81fd10635::t_d0e1f632f48d53 1-153
+content/press-releases/renew-announces-results-for-the-first-quarter-for-fiscal-year-2027-q1-fy27-ended-june-30-2026.md
+  s_0273c81fd10635::t_cf2e5cf9350e1e 1-176
+content/press-releases/renew-announces-results-for-the-first-quarter-q1-fy24-and-fiscal-2024-ended-june-30-2023.md
+  s_0273c81fd10635::t_12cc2ae6ecf14d 1-162
+content/press-releases/renew-announces-results-for-the-fourth-quarter-and-full-fiscal-year-2024-reports-pat-for-fy24-and-provides-long-term-outlook.md
+  s_0273c81fd10635::t_2cdcdd89aa934a 1-168
+content/press-releases/renew-announces-results-for-the-fourth-quarter-and-full-fiscal-year-reports-4x-growth-in-q4-net-profit.md
+  s_0273c81fd10635::t_eff8e63cd43e31 1-271
+content/press-releases/renew-announces-results-for-the-fourth-quarter-and-full-fiscal-year-reports-highest-ever-net-profit.md
+  s_0273c81fd10635::t_e3516a454b2cb0 1-223
+content/press-releases/renew-announces-results-for-the-fourth-quarter-q4-fy22-and-fiscal-year-2022-both-ended-march-31-2022-2022-06-14.md
+  s_0273c81fd10635::t_10e4776d2e7b68 1-130
+content/press-releases/renew-announces-results-for-the-fourth-quarter-q4-fy23-and-fiscal-2023-both-ended-march-31-2023.md
+  s_0273c81fd10635::t_e357c1b59e0a56 1-188
+content/press-releases/renew-announces-results-for-the-second-quarter-for-fiscal-year-2025-q2-fy25-ended-september-30-2024.md
+  s_0273c81fd10635::t_0ae66216a8ecf8 1-165
+content/press-releases/renew-announces-results-for-the-second-quarter-for-fiscal-year-2026-q2-fy26-ended-september-30-2025-reports-84-net-profit-increase-yoy-in-h1-fy2026.md
+  s_0273c81fd10635::t_fb3ce9f32f300a 1-188
+content/press-releases/renew-announces-results-for-the-third-quarter-and-nine-months-of-fiscal-year-2024-increases-the-bottom-end-of-adjusted-ebitda-guidance-for-fy24-by-2.md
+  s_0273c81fd10635::t_7be25051c76007 1-163
+content/press-releases/renew-announces-results-for-the-third-quarter-of-fiscal-2026-q3-fy26-and-nine-months-of-fiscal-2026-both-ended-december-31-2025.md
+  s_0273c81fd10635::t_1e67189ee3bbec 1-748
+content/press-releases/renew-announces-results-for-the-third-quarter-of-fiscal-year-2025-q3-fy25-registers-26-increase-in-operating-capacity.md
+  s_0273c81fd10635::t_dfd91d693fddbb 1-181
+content/press-releases/renew-announces-results-for-the-third-quarter-q3-fy23-and-nine-months-of-fiscal-2023-both-ended-december-31-2022.md
+  s_0273c81fd10635::t_90021a679a5f5b 1-201
+content/press-releases/renew-appoints-kailash-vaswani-as-chief-financial-officer.md
+  s_0273c81fd10635::t_5eba2bbdd7611c 1-89
+content/press-releases/renew-appoints-new-cfo-2022-05-10.md
+  s_0273c81fd10635::t_500bda753c8001 1-91
+content/press-releases/renew-becomes-first-indian-renewable-energy-company-to-refinance-dollar-denominated-bonds-2022-07-12.md
+  s_0273c81fd10635::t_3703012b07084b 1-55
+content/press-releases/renew-becomes-india-s-highest-rated-energy-company-in-s-p-global-s-corporate-sustainability-assessment.md
+  s_0273c81fd10635::t_5905d75cba333e 1-107
+content/press-releases/renew-becomes-india-s-highest-rated-pure-play-renewable-energy-company-in-s-p-global-s-corporate-sustainability-assessment.md
+  s_0273c81fd10635::t_bd6649cee57bcf 1-99
+content/press-releases/renew-chairman-and-ceo-sumant-sinha-to-lead-global-climate-action-as-alliance-co-chair.md
+  s_0273c81fd10635::t_27154634e7eb7a 1-109
+content/press-releases/renew-collaborates-with-samsung-galaxy-tab-s9-series-jaipur-literature-festival-to-drive-sustainability.md
+  s_0273c81fd10635::t_f2f9d0a5ac4b77 1-163
+content/press-releases/renew-commissions-2-4-gw-of-renewable-energy-capacity-in-fy2026.md
+  s_0273c81fd10635::t_093cb338ff0785 1-84
+content/press-releases/renew-commits-to-net-zero-by-2040-and-bolsters-esg-targets.md
+  s_0273c81fd10635::t_eb9d4cd0aeac89 1-203
+content/press-releases/renew-completes-landmark-10th-edition-of-gift-warmth-campaign-with-distribution-of-one-million-blankets.md
+  s_0273c81fd10635::t_8d974157f950e2 1-90
+content/press-releases/renew-crosses-10-gw-of-gross-renewable-energy-assets.md
+  s_0273c81fd10635::t_842a16e21299d0 1-147
+content/press-releases/renew-decarbonizes-mobility-and-mining-in-karnataka.md
+  s_0273c81fd10635::t_ce00fea957cb42 1-95
+content/press-releases/renew-dedicates-its-latest-1-gw-solar-project-to-the-people-of-rajasthan.md
+  s_0273c81fd10635::t_3143ae9afdc8c8 1-49
+content/press-releases/renew-energy-global-plc-announces-proposed-board-of-directors-for-post-combination-company-2021-06-29.md
+  s_0273c81fd10635::t_7a134eaec72a80 1-98
+content/press-releases/renew-energy-global-plc-announces-receipt-of-non-binding-proposal-from-masdar-cpp-investments-adia-and-sumant-sinha-and-establishment-of-a-special-committee.md
+  s_0273c81fd10635::t_dff19476c4f915 1-102
+content/press-releases/renew-energy-global-plc-announces-the-receipt-of-a-best-and-final-non-binding-proposal-from-masdar-cpp-investments-adia-and-sumant-sinha.md
+  s_0273c81fd10635::t_6f5c08b395fdee 1-117
+content/press-releases/renew-energy-global-plc-announces-the-receipt-of-a-final-non-binding-offer-from-masdar-cpp-investments-adia-and-sumant-sinha.md
+  s_0273c81fd10635::t_2b93aaed15e786 1-105
+content/press-releases/renew-energy-global-plc-files-annual-report-on-form-20-f-for-financial-year-ended-march-31-2022-2022-07-26.md
+  s_0273c81fd10635::t_6fefb2be8a4157 1-44
+content/press-releases/renew-energy-global-plc-files-its-annual-report-on-form-20-f-for-financial-year-ended-march-31-2023.md
+  s_0273c81fd10635::t_965ef23b6ef2fb 1-24
+content/press-releases/renew-energy-global-plc-files-its-annual-report-on-form-20-f-for-financial-year-ended-march-31-2024.md
+  s_0273c81fd10635::t_fd1ecb1a04097c 1-38
+content/press-releases/renew-energy-global-plc-files-its-annual-report-on-form-20-f-for-financial-year-ended-march-31-2025.md
+  s_0273c81fd10635::t_1e721dc9aea182 1-40
+content/press-releases/renew-energy-global-plc-to-hold-its-first-annual-general-meeting-on-august-19-2022-2022-07-11.md
+  s_0273c81fd10635::t_85da8cd5cd5887 1-62
+content/press-releases/renew-energy-global-plc-to-hold-its-second-annual-general-meeting-on-september-12-2023.md
+  s_0273c81fd10635::t_05c37f31e78e98 1-80
+content/press-releases/renew-energy-global-plc-to-hold-its-third-annual-general-meeting-on-september-20-2024.md
+  s_0273c81fd10635::t_be577743da8218 1-80
+content/press-releases/renew-energy-global-to-host-capital-markets-day-on-12th-october-2021-09-28.md
+  s_0273c81fd10635::t_4ebc2258f35448 1-46
+content/press-releases/renew-inaugurates-400-mw-solar-project-in-rajasthan.md
+  s_0273c81fd10635::t_190d2d81d1ffa0 1-108
+content/press-releases/renew-inaugurates-centre-of-excellence-at-iit-ism-dhanbad-to-scale-clean-energy-skilling.md
+  s_0273c81fd10635::t_361f2e14ad59b9 1-97
+content/press-releases/renew-inaugurates-largest-single-location-solar-project-in-rajasthan-at-1-3-gw-peak-power-capacity.md
+  s_0273c81fd10635::t_3048caf574a4a1 1-95
+content/press-releases/renew-launches-its-second-integrated-report-celebrating-15th-year-of-clean-energy-leadership.md
+  s_0273c81fd10635::t_362f3268bdf2fe 1-162
+content/press-releases/renew-launches-national-brand-campaign-clean-energy-humse-hai-with-kaun-banega-crorepati-season-18.md
+  s_0273c81fd10635::t_aada1698e74a77 1-203
+content/press-releases/renew-partners-with-jera-to-evaluate-joint-development-of-green-ammonia-project-in-india.md
+  s_0273c81fd10635::t_945459740925ef 1-103
+content/press-releases/renew-power-achieves-milestone-of-1gw-capacity.md
+  s_0273c81fd10635::t_02527a976bcdf3 1-83
+content/press-releases/renew-power-acquires-climate-connect-2020-06-04.md
+  s_0273c81fd10635::t_da946b7557acd3 1-83
+content/press-releases/renew-power-acquires-ostro-energy-2018-04-02.md
+  s_0273c81fd10635::t_bd95dc7de43f6c 1-63
+content/press-releases/renew-power-and-government-of-maharashtra-sign-mou-for-rupee-14-000-crore-proposed-investment-in-the-2018-02-19.md
+  s_0273c81fd10635::t_310e97ce4789b8 1-34
+content/press-releases/renew-power-announces-commitment-to-achieving-net-zero-emissions-by-2050-2021-04-09.md
+  s_0273c81fd10635::t_7d33edb8c15377 1-85
+content/press-releases/renew-power-announces-filing-of-a-public-proxy-statement-prospectus-on-form-f-4-in-connection-with-i-2021-05-19.md
+  s_0273c81fd10635::t_2a7fd8c3b160f3 1-203
+content/press-releases/renew-power-announces-its-commitment-to-action-at-cgi-annual-meeting-innew-york-2016-09-19.md
+  s_0273c81fd10635::t_5e0632a4e0cf35 1-96
+content/press-releases/renew-power-announces-joint-venture-with-korean-major-gs-e-c-2019-12-11.md
+  s_0273c81fd10635::t_b0e3b821f64c1d 1-67
+content/press-releases/renew-power-announces-new-affiliate-relationship-with-the-precourt-energy-institutes-storagex-initia-2021-06-08.md
+  s_0273c81fd10635::t_8dc46e2dfe4f7b 1-89
+content/press-releases/renew-power-announces-results-for-the-first-quarter-of-fiscal-year-2023-q1-fy23-ended-june-30-2022-2022-08-18.md
+  s_0273c81fd10635::t_779d58d404b92d 1-121
+content/press-releases/renew-power-announces-results-for-the-second-quarter-q2-fy22-and-first-half-of-fiscal-2022-both-ende-2021-11-17.md
+  s_0273c81fd10635::t_6ecbff5378888f 1-134
+content/press-releases/renew-power-announces-two-acquisitions-totaling-359-mws-of-renewable-energy-assets-2021-08-11.md
+  s_0273c81fd10635::t_79d82a7d2e62fe 1-109
+content/press-releases/renew-power-appoints-ajay-k-goel-as-president-solar-chiefnew-businesses-2015-05-19.md
+  s_0273c81fd10635::t_dcd119acb40fe4 1-53
+content/press-releases/renew-power-appoints-d-muthukumaran-as-cfo-2019-08-21.md
+  s_0273c81fd10635::t_e24ad929b8028e 1-62
+content/press-releases/renew-power-awards-winners-of-environment-at-tryst-2018-iit-delhi-2018-02-24.md
+  s_0273c81fd10635::t_7d117ad8a6949a 1-50
+content/press-releases/renew-power-bags-the-highest-subsidy-allocation-from-seci-for-rooftop-solar-projects-2016-11-24.md
+  s_0273c81fd10635::t_026e4733840a71 1-62
+content/press-releases/renew-power-chairman-and-ceo-makes-it-to-the-final-shortlist-of-the-prestigious-19they-entrepreneur-2018-02-17.md
+  s_0273c81fd10635::t_85fc11975072fc 1-78
+content/press-releases/renew-power-closes-non-convertible-debenture-issue-worth-rs-2-235-crore-2018-01-09.md
+  s_0273c81fd10635::t_c3ca090647799b 1-101
+content/press-releases/renew-power-commissions-300-mw-solar-plant-in-pavagada-2019-04-24.md
+  s_0273c81fd10635::t_998ae96f143a80 1-53
+content/press-releases/renew-power-commissions-40-mw-wind-project-in-karnataka-2016-01-18.md
+  s_0273c81fd10635::t_69c56bbc897549 1-78
+content/press-releases/renew-power-commissions-gujarats-first-wind-solar-hybrid-project-2022-02-08.md
+  s_0273c81fd10635::t_b8aee9d19357c4 1-73
+content/press-releases/renew-power-commissions-the-largest-solar-farm-in-telangana-2017-04-15.md
+  s_0273c81fd10635::t_22737d6bb0fccd 1-87
+content/press-releases/renew-power-commissionsaone-of-its-kind-wind-project-in-rajasthan-india-powered-by-suzlon-2015-09-21.md
+  s_0273c81fd10635::t_4aa5154cd0e051 1-76
+content/press-releases/renew-power-commits-inr-20-cr-in-fight-against-covid-19-2020-04-08.md
+  s_0273c81fd10635::t_2cfcd06430e8bb 1-63
+content/press-releases/renew-power-completes-business-combination-with-rmg-acquisition-corporation-ii-2021-08-23.md
+  s_0273c81fd10635::t_243041ce1692ae 1-156
+content/press-releases/renew-power-concludesus-375-million-green-bond-issue-2019-03-08.md
+  s_0273c81fd10635::t_95dbdb477e213d 1-52
+content/press-releases/renew-power-conferred-leed-gold-certification-by-us-green-building-council-2019-05-14.md
+  s_0273c81fd10635::t_ab53ecd88a21dc 1-70
+content/press-releases/renew-power-enters-into-a-joint-venture-agreement-with-hanwha-q-cells-2015-07-21.md
+  s_0273c81fd10635::t_6b5e8c241609b6 1-90
+content/press-releases/renew-power-enters-into-anagreement-with-hareonsolar-china-2015-07-06.md
+  s_0273c81fd10635::t_1bfeead9794dc0 1-66
+content/press-releases/renew-power-expands-its-board-of-directors-with-the-appointment-of-two-independent-directors-2015-06-24.md
+  s_0273c81fd10635::t_25f13846befedd 1-80
+content/press-releases/renew-power-expands-leadership-team-announces-three-strategic-hires-2018-10-11.md
+  s_0273c81fd10635::t_b1691beb436453 1-119
+content/press-releases/renew-power-goes-all-for-har-ghar-trianga-campaign-from-flag-on-wind-turbine-to-festooned-solar-park-2022-08-12.md
+  s_0273c81fd10635::t_63cb10cc74ea21 1-63
+content/press-releases/renew-power-hareon-solar-jv-commissions-72-mw-project-in-andhra-pradesh-2016-05-26.md
+  s_0273c81fd10635::t_f1b667031d26fa 1-101
+content/press-releases/renew-power-helped-india-avoid-10-million-metric-tons-carbon-emissions-says-its-sustainability-repor-2021-09-15.md
+  s_0273c81fd10635::t_86e6a8860adf63 1-89
+content/press-releases/renew-power-inaugurates-solar-micro-grids-in-paniyara-village-reaffirms-commitment-to-providing-off-2018-01-17.md
+  s_0273c81fd10635::t_ab9a979933e71e 1-63
+content/press-releases/renew-power-indias-leading-renewable-energy-company-announces-commissioning-of-300-mw-wind-farm-2021-03-26.md
+  s_0273c81fd10635::t_6784cb769e9c91 1-73
+content/press-releases/renew-power-indias-leading-renewable-energy-company-announces-the-commissioning-of-105-mw-solar-gene-2021-04-21.md
+  s_0273c81fd10635::t_f72ba574e4ba8e 1-73
+content/press-releases/renew-power-indias-leading-renewable-energy-company-announces-the-commissioning-of-110-mw-solar-gene-2021-04-08.md
+  s_0273c81fd10635::t_e2e9eb0d7ddb16 1-75
+content/press-releases/renew-power-indias-leading-renewable-energy-company-to-publicly-list-through-business-combination-wi-2021-02-24.md
+  s_0273c81fd10635::t_71be88694eceea 1-306
+content/press-releases/renew-power-indias-leading-renewable-energy-company-wins-200-mws-in-msedcl-solar-auction-2021-07-21.md
+  s_0273c81fd10635::t_23a6cb3af85833 1-69
+content/press-releases/renew-power-inks-pact-with-opic-to-raise-up-to-us-250-million-of-long-term-debt-financing.md
+  s_0273c81fd10635::t_0ae4ddfbb3d99b 1-160
+content/press-releases/renew-power-invests-inr-6700-crore-to-double-its-capacity-in-one-year-to-cross-2000-mw-2-gw-2017-04-05.md
+  s_0273c81fd10635::t_29dfeb1f860f30 1-74
+content/press-releases/renew-power-join-hands-with-cii-to-address-the-problem-ofstubble-burning-in-punjab-2018-10-25.md
+  s_0273c81fd10635::t_c398c119b5284f 1-112
+content/press-releases/renew-power-launches-first-corporate-campaign-in-gurugram-to-vaccinate-employees-associates-and-thei-2021-04-08.md
+  s_0273c81fd10635::t_934e12a4651400 1-55
+content/press-releases/renew-power-launches-sumant-sinha-renew-centre-of-excellence-for-energy-environment-in-collaboration-2017-09-12.md
+  s_0273c81fd10635::t_0fc39bab0cf996 1-94
+content/press-releases/renew-power-makes-a-strong-debut-at-the-cdp-ratings-for-climate-change-actions-and-transparency.md
+  s_0273c81fd10635::t_281f7e5edfe70d 1-74
+content/press-releases/renew-power-manufacturing-press-announcement-2020-07-16.md
+  s_0273c81fd10635::t_1b400cddfce310 1-65
+content/press-releases/renew-power-offers-maiden-green-issue-of-ncds-2016-11-04.md
+  s_0273c81fd10635::t_b951db93a3809b 1-57
+content/press-releases/renew-power-opensup-bond-marketfor-renewable-energy-projects-by-launching-thefirsteverinfrastructure-2015-09-23.md
+  s_0273c81fd10635::t_e7022b619577e6 1-77
+content/press-releases/renew-power-organizes-first-ever-national-green-quiz-2017-11-18.md
+  s_0273c81fd10635::t_8ffbfbe30c8f65 1-55
+content/press-releases/renew-power-partners-with-hsbc-india-to-provide-solar-power-and-climate-education-to-75-schools-2022-08-09.md
+  s_0273c81fd10635::t_9d3ae3d29eab6b 1-95
+content/press-releases/renew-power-provides-50-oxygen-concentrators-to-help-the-up-government-in-its-fight-against-covid-2021-06-10.md
+  s_0273c81fd10635::t_1e408eda24a016 1-106
+content/press-releases/renew-power-provides-50-oxygen-concentrators-to-up-government-to-help-in-its-fight-against-covid-2021-06-10.md
+  s_0273c81fd10635::t_0c59211bffdc53 1-74
+content/press-releases/renew-power-raises-300-million-via-rights-issue-2019-07-01.md
+  s_0273c81fd10635::t_54113e33b61ac4 1-44
+content/press-releases/renew-power-raises-additional-265-million-of-equity-2015-10-07.md
+  s_0273c81fd10635::t_09166c03a00375 1-126
+content/press-releases/renew-power-secures-another-round-of-equity-funding-of-200-million-from-jera-2017-02-14.md
+  s_0273c81fd10635::t_ff4dd1e018f52c 1-109
+content/press-releases/renew-power-secures-us-390-million-debt-funding-2017-01-20.md
+  s_0273c81fd10635::t_ffd13e7fdc9315 1-66
+content/press-releases/renew-power-securesadditional-opicdebt-fundingof-up-to-350-million-2019-02-21.md
+  s_0273c81fd10635::t_529260b633c76f 1-97
+content/press-releases/renew-power-selects-gujarat-for-development-of-new-solar-component-manufacturing-facility-2021-05-17.md
+  s_0273c81fd10635::t_ccc05869d11fdd 1-103
+content/press-releases/renew-power-sells-rooftop-portfolio-2022-01-28.md
+  s_0273c81fd10635::t_8ad0a250b05222 1-59
+content/press-releases/renew-power-set-to-solarize-indian-railways-2016-11-29.md
+  s_0273c81fd10635::t_3999f59bf7b2d9 1-67
+content/press-releases/renew-power-sets-up-a-centre-of-excellence-in-partnership-with-iit-delhi-2016-11-22.md
+  s_0273c81fd10635::t_01ca684c154f71 1-85
+content/press-releases/renew-power-signs-150-mw-agreement-with-microsoft.md
+  s_0273c81fd10635::t_e003748ab81a1f 1-80
+content/press-releases/renew-power-signs-framework-agreement-with-egyptian-government-to-establish-a-green-hydrogen-plant-in-the-suez-canal-economic-zone.md
+  s_0273c81fd10635::t_18e07f053af757 1-133
+content/press-releases/renew-power-signs-india-s-first-round-the-clock-renewable-energy-ppa-2021-08-07.md
+  s_0273c81fd10635::t_a28cc4a0c53dcd 1-89
+content/press-releases/renew-power-signs-mou-with-rackbank-to-power-indias-first-hyper-scale-data-center-with-100-renewable-2021-08-03.md
+  s_0273c81fd10635::t_48ce41716287cc 1-99
+content/press-releases/renew-power-spends-1-1-cr-towards-covid-relief-in-karnataka-2021-06-29.md
+  s_0273c81fd10635::t_c8940c5f0c870d 1-62
+content/press-releases/renew-power-strengthens-leadership-team-2019-10-18.md
+  s_0273c81fd10635::t_55f62da1057496 1-76
+content/press-releases/renew-power-successfully-commissions-126-mw-of-the-first-reverse-wind-auction-in-india-2018-08-28.md
+  s_0273c81fd10635::t_ced72f7fca5f18 1-120
+content/press-releases/renew-power-supports-covid-relief-efforts-in-telangana-2021-07-07.md
+  s_0273c81fd10635::t_44970ea61ab4ac 1-58
+content/press-releases/renew-power-to-participate-in-theswachhata-hi-seva-campaign-to-drive-home-the-message-of-cleanliness-2017-09-25.md
+  s_0273c81fd10635::t_b3c8334edfa569 1-65
+content/press-releases/renew-power-to-participate-in-upcoming-investor-conferences-in-june-2021-06-07.md
+  s_0273c81fd10635::t_38c03a4b05282c 1-55
+content/press-releases/renew-power-unep-partner-to-increase-access-to-clean-energy-2020-08-25.md
+  s_0273c81fd10635::t_8096f93f6eb93a 1-69
+content/press-releases/renew-power-unep-sewa-launch-one-of-a-kind-programme-to-train-women-salt-pan-workers-as-solar-techni-2022-06-30.md
+  s_0273c81fd10635::t_64cac17020d8e6 1-108
+content/press-releases/renew-power-upgrades-brand-identity-unveils-new-logo-2018-03-13.md
+  s_0273c81fd10635::t_a97a4479a44cfb 1-54
+content/press-releases/renew-power-ventures-reaches-total-equity-investments-of-390-million-2014-07-03.md
+  s_0273c81fd10635::t_8a3892582ddd10 1-165
+content/press-releases/renew-power-ventures-signs-mou-with-government-of-andhra-pradesh-for-13-000-crore-investment-in-the-2018-02-25.md
+  s_0273c81fd10635::t_c7d8cb1551d728 1-43
+content/press-releases/renew-power-ventures-signs-mou-with-government-of-uttar-pradesh-to-invest-rs-8-000-crores-for-1-200-2018-02-21.md
+  s_0273c81fd10635::t_2640e41c22cc19 1-48
+content/press-releases/renew-power-wins-3-mw-floating-solar-pv-project-at-visakhapatnam-2018-10-18.md
+  s_0273c81fd10635::t_abbf255d548475 1-100
+content/press-releases/renew-power-wins-indiasfirst-round-the-clock-renewable-energy-tender-2020-05-12.md
+  s_0273c81fd10635::t_cfbaac5321b851 1-55
+content/press-releases/renew-powerannounces-its-addition-to-the-world-economic-forums-global-lighthouse-network-of-companie-2021-03-15.md
+  s_0273c81fd10635::t_abe34085feaee7 1-115
+content/press-releases/renew-powers-edu-hub-project-in-varanasi-awarded-five-star-svagriha-rating-2018-12-19.md
+  s_0273c81fd10635::t_ce604ad968a0a0 1-99
+content/press-releases/renew-publishes-first-annual-integrated-report-aligned-with-international-integrated-reporting-standards.md
+  s_0273c81fd10635::t_95d4297e920a9d 1-149
+content/press-releases/renew-raises-400-million-through-issuance-of-green-bonds-sees-strong-demand-from-global-investors.md
+  s_0273c81fd10635::t_c8df79f9d04103 1-84
+content/press-releases/renew-ranks-among-top-renewable-power-utility-companies-globally-for-esg-says-sustainalytics.md
+  s_0273c81fd10635::t_25e6b0d55e8429 1-70
+content/press-releases/renew-rated-among-top-10-renewable-power-companies-globally-by-sustainalytics-on-esg-2021-11-30.md
+  s_0273c81fd10635::t_4d976f0ca140eb 1-57
+content/press-releases/renew-reaches-7-4-gw-of-operating-renewable-energy-capacity-in-surge-of-on-ground-additions-2021-12-21.md
+  s_0273c81fd10635::t_cd6e80f9256f89 1-70
+content/press-releases/renew-receives-carbon-neutral-status-2021-12-08.md
+  s_0273c81fd10635::t_51a5af9c496266 1-53
+content/press-releases/renew-recognised-in-top-15-climate-tech-companies-to-watch.md
+  s_0273c81fd10635::t_2eb8b2da1777a1 1-71
+content/press-releases/renew-recognized-as-one-of-the-best-companies-globally-for-esg-performance-by-refinitiv.md
+  s_0273c81fd10635::t_5b5547aa22583a 1-83
+content/press-releases/renew-refinances-us-325-million-debt-three-months-ahead-of-maturity.md
+  s_0273c81fd10635::t_cb29886ff22cd2 1-69
+content/press-releases/renew-reiterates-weather-adjusted-fy22-guidance-outlines-significant-value-accretive-growth-at-capit-2021-10-12.md
+  s_0273c81fd10635::t_4f288e0ac5adf5 1-99
+content/press-releases/renew-releases-third-sustainability-report-driving-decarbonisation.md
+  s_0273c81fd10635::t_e93b2ac4373eff 1-84
+content/press-releases/renew-repays-more-than-1-billion-to-offshore-bondholders-in-fy2023.md
+  s_0273c81fd10635::t_5003ddd5cf1cbe 1-103
+content/press-releases/renew-reports-25-6-reduction-in-scope-1-2-emissions-and-24-7-billion-units-of-clean-power-generated-in-fy-2025-26.md
+  s_0273c81fd10635::t_dae97924d829f9 1-139
+content/press-releases/renew-s-csr-initiatives-positively-support-1-million-lives-pan-india.md
+  s_0273c81fd10635::t_c15ea2df352d9b 1-120
+content/press-releases/renew-secures-100-million-marquee-investment-from-bii-to-boost-india-s-solar-manufacturing-ecosystem.md
+  s_0273c81fd10635::t_e64198d0cc8507 1-135
+content/press-releases/renew-secures-95-million-equity-investment-from-leapfrog-led-consortium-to-expand-its-commercial-industrial-platform.md
+  s_0273c81fd10635::t_d0c5620871e2da 1-44
+content/press-releases/renew-signs-2-2-gw-of-ppas-boosting-its-clean-energy-portfolio-to-15-6-gw.md
+  s_0273c81fd10635::t_73d9742468e1c0 1-35
+content/press-releases/renew-signs-437-6-mw-green-attribute-contract-with-microsoft.md
+  s_0273c81fd10635::t_f7736a9e03ba86 1-92
+content/press-releases/renew-signs-contract-to-sell-300-mw-solar-project-at-a-valuation-of-199-million.md
+  s_0273c81fd10635::t_96645a282e08fd 1-73
+content/press-releases/renew-signs-mou-with-asian-development-bank-for-us-5-3-billion.md
+  s_0273c81fd10635::t_15c0fc178ee69e 1-98
+content/press-releases/renew-signs-mous-for-inr-640-bn-us-7-8-bn-for-green-energy-projects.md
+  s_0273c81fd10635::t_0ae4189584cb99 1-70
+content/press-releases/renew-successfully-commissions-its-first-interstate-transmission-scheme-ists-project-following-investment-from-norfund-and-klp.md
+  s_0273c81fd10635::t_7a052d1ca85b1e 1-167
+content/press-releases/renew-ties-up-us-1-billion-ecb-consortium-loan-for-largest-single-project-funding-in-indian-re-secto-2022-08-17.md
+  s_0273c81fd10635::t_243e278bf5a3f2 1-66
+content/press-releases/renew-ties-up-us-1-billion-ecb-consortium-loan-for-largest-singleproject-funding-in-indian-re-sector.md
+  s_0273c81fd10635::t_eb623b241a550a 1-106
+content/press-releases/renew-to-invest-inr-22-000-crore-to-set-up-one-of-india-s-largest-hybrid-re-projects-in-andhra-pradesh.md
+  s_0273c81fd10635::t_89b57dc10f5524 1-94
+content/press-releases/renew-to-invest-inr-82-000-crore-us-9-3-billion-in-andhra-pradesh-s-green-energy-portfolio.md
+  s_0273c81fd10635::t_2679eff44234cd 1-110
+content/press-releases/renew-to-set-up-6-5-gw-solar-ingot-wafer-facility-in-andhra-pradesh-with-investment-of-inr-4-200-crore.md
+  s_0273c81fd10635::t_dcff9f82553b79 1-46
+content/press-releases/renew-unveils-new-brand-identity-as-it-reinforces-leadership-in-providing-decarbonisation-solutions.md
+  s_0273c81fd10635::t_476a0751d06358 1-83
+content/press-releases/renews-total-portfolio-rises-close-to-20-to-over-12-gw-2022-04-28.md
+  s_0273c81fd10635::t_55f5f18047a317 1-81
+content/press-releases/rmg-acquisition-corporation-ii-and-renew-power-announce-filing-of-definitive-proxy-statement-and-the-2021-07-28.md
+  s_0273c81fd10635::t_1b8504a2ddc164 1-141
+content/press-releases/rmg-acquisition-corporation-ii-announces-expected-closing-of-business-combination-with-renew-power-p-2021-08-12.md
+  s_0273c81fd10635::t_ec753a4e6d966b 1-154
+content/press-releases/rmg-acquisition-corporation-ii-announces-stockholder-approval-of-business-combination-with-renew-pow-2021-08-15.md
+  s_0273c81fd10635::t_37f9c7ca6578b0 1-102
+content/press-releases/rmg-acquisition-corporation-ii-reminds-shareholders-to-vote-in-favor-of-business-combination-with-re-2021-08-02.md
+  s_0273c81fd10635::t_ec9e5102ebb089 1-145
+content/press-releases/rmg-acquisition-corporation-ii-reminds-shareholders-to-vote-in-favor-of-previously-announced-busines-2021-08-06.md
+  s_0273c81fd10635::t_853f7caab15564 1-145
+content/press-releases/sumant-sinha-honouredwith-the-distinguished-alumnus-award-byiim-calcutta-2019-11-16.md
+  s_0273c81fd10635::t_5d9b6a82f0b2e3 1-73
+content/press-releases/sumant-sinha-joins-the-board-of-climate-group-2021-08-18.md
+  s_0273c81fd10635::t_4220326ecbf1ee 1-80
+content/press-releases/unep-partners-to-train-rural-women-on-clean-energy-livelihoods-2022-01-28.md
+  s_0273c81fd10635::t_78875a614c6bce 1-112
+content/press-releases/ungc-2021-sdg-pioneers-award-press-release-2021-06-16.md
+  s_0273c81fd10635::t_55b244bb4b1782 1-106
+content/press-releases/usispf-renew-and-the-consulate-general-of-india-bring-together-business-and-government-leaders-to-discuss-u-s-india-climate-partnership.md
+  s_0273c81fd10635::t_1c3738307550b8 1-54
+content/press-releases/vidya-school-to-generate-power-through-solar-energy-2019-08-30.md
+  s_0273c81fd10635::t_9d0066938d6d8f 1-82
+package.json
+  s_0273c81fd10635::t_a3f51658f32434 15,21,23
+.gitignore
+  s_0273c81fd10635::t_a3f6314dbfc2ac 18-19
+scripts/import_blogs.py
+  s_0273c81fd10635::t_b3b8686b1fbf6f 1-186
+scripts/import_press_releases.py
+  s_0273c81fd10635::t_e1698b56a709d4 1-269
+scripts/press_import_requirements.txt
+  s_0273c81fd10635::t_d7f02864dc68d3 1-3
+src/app/blogs/[slug]/page.tsx
+  s_0273c81fd10635::t_ca8c0cc5aeb96e 1-75
+src/app/blogs/page.tsx
+  s_0273c81fd10635::t_560e68c80ddb22 1-55
+src/app/globals.css
+  s_0273c81fd10635::t_4db0c48fcd00fe 3-32
+src/app/press-releases/[slug]/page.tsx
+  s_0273c81fd10635::t_9944bb66fe07a2 1-73
+src/app/press-releases/page.tsx
+  s_0273c81fd10635::t_2c39976733ac55 1-58
+src/components/sections/blogs.tsx
+  s_0273c81fd10635::t_dae841b123d818 2,11,18,24,34,64,69
+src/components/sections/contact.tsx
+  s_0273c81fd10635::t_5c646c8c28db62 80,88
+src/components/sections/editorial-article.tsx
+  s_0273c81fd10635::t_fdd6ff5ae27ecd 1-111
+src/components/sections/editorial-listing-page.tsx
+  s_0273c81fd10635::t_494ad7d1a68e8e 1-104
+src/components/sections/editorial-search.tsx
+  s_0273c81fd10635::t_cd8c9fab3f443d 1-36
+src/components/sections/featured-editorial.tsx
+  s_0273c81fd10635::t_1144175ea55166 1-60
+src/components/sections/footer.tsx
+  s_0273c81fd10635::t_05ca9ff323fb8b 26-27,202
+src/components/sections/header.tsx
+  s_0273c81fd10635::t_734c580acf2b31 39-40
+src/lib/blogs.ts
+  s_0273c81fd10635::t_66c8f4b6bba128 1-57
+src/lib/editorial.ts
+  s_0273c81fd10635::t_e345b8b8553864 1-16
+src/lib/press-releases.ts
+  s_0273c81fd10635::t_2682146b3b0c1b 1-76
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.11",
+  "base_commit_sha": "abb89f33f0bba53e8c1fa303998c114074e94e51",
+  "prompts": {},
+  "sessions": {
+    "s_0273c81fd10635": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0d991-ac9f-7ae0-be7f-d848f04ecf7e",
+        "model": "gpt-6-sol"
+      },
+      "human_author": "Arun Selva Kumar <arun@joinassembly.com>"
+    }
+  }
+}

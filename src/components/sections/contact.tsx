@@ -77,7 +77,7 @@ export function Contact() {
             aria-label="Power your next Home, Project, or Business with ReNew Solar Panels."
             className="max-w-lg text-[28px] font-bold leading-[1.14] sm:text-[34px] md:text-[54px] md:leading-[62px]"
           >
-            <span className="whitespace-nowrap">
+            <span className="min-[380px]:whitespace-nowrap">
               Power your next{" "}
               <span aria-hidden className="inline-block align-baseline text-accent">
                 <span key={rotatingWord} className="contact-rotating-word inline-block">
@@ -85,7 +85,7 @@ export function Contact() {
                 </span>
               </span>
             </span>{" "}
-            <span className="whitespace-nowrap">with ReNew Solar Panels.</span>
+            <span className="min-[380px]:whitespace-nowrap">with ReNew Solar Panels.</span>
           </h2>
           <p className="mt-8 max-w-md text-2xl leading-9 text-white/90">
             Tell us what you need and our team will get back to you.

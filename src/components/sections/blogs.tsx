@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Reveal } from "@/components/reveal";
 
 const posts = [
@@ -7,20 +8,20 @@ const posts = [
       "Why proper installation of panels is the key to maximizing the potential of solar energy",
     image: "/images/blog-installation.webp",
     alt: "Technicians checking the alignment of installed solar panels",
-    href: "https://www.renew.com/blog-detail/why-proper-installation-of-panels-is-the-key-to-maximizing-the-potential-of-solar-energy",
+    href: "/blogs/why-proper-installation-of-panels-is-the-key-to-maximizing-the-potential-of-solar-energy",
   },
   {
     title:
       "ReNew’s Jaipur Solar Manufacturing Plant: Setting New Benchmarks in Sustainable Innovation",
     image: "/images/blog-jaipur.webp",
     alt: "A technician monitoring automated equipment at ReNew’s Jaipur plant",
-    href: "https://www.renew.com/blog-detail/renew-s-jaipur-solar-manufacturing-plant-setting-new-benchmarks-in-sustainable-innovation",
+    href: "/blogs/renew-s-jaipur-solar-manufacturing-plant-setting-new-benchmarks-in-sustainable-innovation",
   },
   {
     title: "ReNew Solar Manufacturing: Fueling Global Decarbonization Dreams",
     image: "/images/blog-decarbonization.webp",
     alt: "ReNew technicians inspecting a solar module on the manufacturing line",
-    href: "https://www.renew.com/blog-detail/renew-solar-manufacturing-fueling-global-decarbonization-dreams",
+    href: "/blogs/renew-solar-manufacturing-fueling-global-decarbonization-dreams",
   },
 ];
 
@@ -30,7 +31,7 @@ export function Blogs() {
       <div className="mx-auto max-w-content px-4 sm:px-6">
         <Reveal as="header" className="text-left md:text-center">
           <h2 className="text-[28px] font-bold leading-[1.14] text-primary-950 sm:text-[34px] md:text-[54px] md:leading-[62px]">
-            Blogs
+            <Link href="/blogs" className="hover:text-primary-700">Blogs</Link>
           </h2>
           <p className="mt-6 max-w-3xl text-xl leading-8 text-neutral-500 md:mx-auto">
             Discover updates, ideas, and breakthroughs from ReNew Solar Panels business.
@@ -60,14 +61,12 @@ export function Blogs() {
                   {post.title}
                 </h3>
                 <div className="mt-auto pt-10">
-                  <a
+                  <Link
                     href={post.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="inline-flex min-h-10 min-w-[168px] items-center justify-center rounded-full border-2 border-primary-700 px-8 py-0 text-base font-bold text-primary-700 transition-colors hover:bg-primary-700 hover:text-white md:py-2.5"
                   >
                     Read more
-                  </a>
+                  </Link>
                 </div>
               </div>
             </article>

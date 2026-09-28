@@ -23,8 +23,8 @@ const linkColumns = [
     heading: "Projects",
     headingHref: "#our-projects",
     links: [
-      { label: "Blogs", href: "#blogs" },
-      { label: "Press Releases", href: "#press-releases" },
+      { label: "Blogs", href: "/blogs" },
+      { label: "Press Releases", href: "/press-releases" },
       { label: "Why ReNew", href: "#why-renew" },
     ],
   },
@@ -199,7 +199,7 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
                   {linkColumns[1].links.map((link) => (
                     <li key={link.label}>
                       <Link
-                        href={`${sectionPrefix}${link.href}`}
+                        href={link.href.startsWith("/") ? link.href : `${sectionPrefix}${link.href}`}
                         className="text-xl font-semibold leading-8 text-white/90 hover:text-primary-300"
                       >
                         {link.label}

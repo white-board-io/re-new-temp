@@ -1,0 +1,19 @@
+src/app/globals.css
+  s_578f74e4337aae::t_80f1ff7478c2b4 220-221
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.11",
+  "base_commit_sha": "52ac3b9a5ac2b1c2cf1d2322492c0d1495c4e492",
+  "prompts": {},
+  "sessions": {
+    "s_578f74e4337aae": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0eaf5-7bce-77a0-8f08-9127094409e7",
+        "model": "unknown"
+      },
+      "human_author": "Arun Selva Kumar <arun@joinassembly.com>"
+    }
+  }
+}

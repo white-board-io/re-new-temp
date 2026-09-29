@@ -1,0 +1,23 @@
+src/app/globals.css
+  s_578f74e4337aae::t_bdcd5cff3e4697 281-305
+src/components/sections/hero.test.mjs
+  s_578f74e4337aae::t_c497ebc3a5fc55 6,12,16-19,21,23-28
+src/components/sections/hero.tsx
+  s_578f74e4337aae::t_0eb846758a720e 9-10,30-32,34-35,38-42,49-50,52-56,58-60,62-65,67-71,73-75,77-80,83-92,95-96,100-207,272,278-281,303,309,312,314-353,452,476
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.11",
+  "base_commit_sha": "6965ebd931ecdebcb0cb28f3a232d935e3611ed3",
+  "prompts": {},
+  "sessions": {
+    "s_578f74e4337aae": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0eaf5-7bce-77a0-8f08-9127094409e7",
+        "model": "unknown"
+      },
+      "human_author": "Arun Selva Kumar <arun@joinassembly.com>"
+    }
+  }
+}

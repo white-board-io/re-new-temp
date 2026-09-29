@@ -5,9 +5,9 @@ import { useEffect, useRef, useState } from "react";
 import { ContactModalTrigger } from "@/components/contact-modal";
 
 const SLIDE_COUNT = 4;
-// Every slide stays visible for roughly one full background-video loop.
 const SLIDE_DURATION_MS = 8100;
-const WHEEL_LOCK_MS = 850;
+const FIRST_VIDEO_DURATION_MS = 10802;
+const CAMPAIGN_VIDEO_DURATION_MS = 20008;
 const SWIPE_THRESHOLD_PX = 48;
 const SUBTEXT_SIZE_CLASS =
   "text-base sm:text-lg md:text-[22px] hero-full:text-[24px]";
@@ -27,56 +27,183 @@ function SlideFilm() {
 }
 
 export function Hero() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const firstVideoRef = useRef<HTMLVideoElement>(null);
+  const campaignVideoRef = useRef<HTMLVideoElement>(null);
+  const firstVideoStartedRef = useRef(false);
   const activeSlideRef = useRef(0);
-  const wheelLockRef = useRef(false);
+  const previousSlideRef = useRef(-1);
+  const videoIntersectionRef = useRef(false);
   const pointerStartRef = useRef<{ x: number; y: number } | null>(null);
   const [activeSlide, setActiveSlide] = useState(0);
+  const [videoVisible, setVideoVisible] = useState(false);
+  const [soundEnabled, setSoundEnabled] = useState(true);
+  const [soundBlocked, setSoundBlocked] = useState(false);
+  const [firstVideoFailed, setFirstVideoFailed] = useState(false);
+  const [videoFailed, setVideoFailed] = useState(false);
 
   useEffect(() => {
     activeSlideRef.current = activeSlide;
   }, [activeSlide]);
 
   useEffect(() => {
-    const timeout = window.setTimeout(() => {
-      setActiveSlide((slide) => (slide + 1) % SLIDE_COUNT);
-    }, SLIDE_DURATION_MS);
+    const video = firstVideoRef.current;
+    if (!video) return;
 
-    return () => window.clearTimeout(timeout);
+    if (activeSlide !== 0) {
+      video.pause();
+      video.currentTime = 0;
+      return;
+    }
+
+    // Keep the initial autoplay position, then start from zero on each return.
+    if (firstVideoStartedRef.current) video.currentTime = 0;
+    firstVideoStartedRef.current = true;
+
+    if (video.ended) {
+      setActiveSlide(1);
+      return;
+    }
+
+    video.play().then(
+      () => setFirstVideoFailed(false),
+      () => setFirstVideoFailed(true),
+    );
   }, [activeSlide]);
 
   useEffect(() => {
-    let wheelLockTimer = 0;
+    const video = campaignVideoRef.current;
+    if (!video) return;
 
-    const handleWheel = (event: WheelEvent) => {
-      const section = sectionRef.current;
-      if (!section || Math.abs(event.deltaY) < 1) return;
-      if (!section.contains(event.target as Node)) return;
-
-      const direction = event.deltaY > 0 ? 1 : -1;
-      const nextSlide = activeSlideRef.current + direction;
-      if (nextSlide < 0 || nextSlide >= SLIDE_COUNT) return;
-
-      event.preventDefault();
-      if (wheelLockRef.current) return;
-
-      wheelLockRef.current = true;
-      activeSlideRef.current = nextSlide;
-      setActiveSlide(nextSlide);
-
-      window.clearTimeout(wheelLockTimer);
-      wheelLockTimer = window.setTimeout(() => {
-        wheelLockRef.current = false;
-      }, WHEEL_LOCK_MS);
+    const updateVisibility = () => {
+      setVideoVisible(
+        videoIntersectionRef.current && document.visibilityState === "visible",
+      );
     };
 
-    window.addEventListener("wheel", handleWheel, { passive: false });
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        videoIntersectionRef.current = entry.intersectionRatio >= 0.5;
+        updateVisibility();
+      },
+      { threshold: [0, 0.5, 1] },
+    );
+
+    observer.observe(video);
+    document.addEventListener("visibilitychange", updateVisibility);
 
     return () => {
-      window.clearTimeout(wheelLockTimer);
-      window.removeEventListener("wheel", handleWheel);
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", updateVisibility);
     };
   }, []);
+
+  useEffect(() => {
+    const video = campaignVideoRef.current;
+    if (!video) return;
+
+    const enteringSlide = previousSlideRef.current !== activeSlide;
+    previousSlideRef.current = activeSlide;
+
+    if (activeSlide !== 1) {
+      video.muted = true;
+      video.pause();
+      video.currentTime = 0;
+      return;
+    }
+
+    if (enteringSlide) {
+      video.pause();
+      video.currentTime = 0;
+    }
+
+    video.muted = !videoVisible || !soundEnabled;
+    video.play().then(
+      () => {
+        setVideoFailed(false);
+        if (!video.muted) setSoundBlocked(false);
+      },
+      () => {
+        if (video.muted) {
+          setVideoFailed(true);
+          return;
+        }
+
+        // Chrome and other browsers may require a user gesture before sound.
+        // Keep the carousel moving with muted playback and offer a sound button.
+        video.muted = true;
+        setSoundBlocked(true);
+        video.play().then(
+          () => setVideoFailed(false),
+          () => setVideoFailed(true),
+        );
+      },
+    );
+  }, [activeSlide, videoVisible, soundEnabled]);
+
+  useEffect(() => {
+    if ((activeSlide === 0 && !firstVideoFailed) ||
+        (activeSlide === 1 && !videoFailed)) return;
+
+    const timeout = window.setTimeout(() => {
+      setActiveSlide((slide) => (slide + 1) % SLIDE_COUNT);
+    }, activeSlide === 0
+      ? FIRST_VIDEO_DURATION_MS
+      : activeSlide === 1
+        ? CAMPAIGN_VIDEO_DURATION_MS
+        : SLIDE_DURATION_MS);
+
+    return () => window.clearTimeout(timeout);
+  }, [activeSlide, firstVideoFailed, videoFailed]);
+
+  const toggleSound = () => {
+    const video = campaignVideoRef.current;
+    if (!video) return;
+
+    if (!video.muted) {
+      video.muted = true;
+      setSoundEnabled(false);
+      return;
+    }
+
+    // This runs inside the click gesture, which can unlock sound after an
+    // earlier automatic attempt was blocked by the browser.
+    video.muted = false;
+    setSoundEnabled(true);
+    video.play().then(
+      () => {
+        setVideoFailed(false);
+        setSoundBlocked(false);
+      },
+      () => {
+        video.muted = true;
+        setSoundBlocked(true);
+        video.play().catch(() => setVideoFailed(true));
+      },
+    );
+  };
+
+  useEffect(() => {
+    if (activeSlide !== 1 || !videoVisible || !soundEnabled || !soundBlocked) {
+      return;
+    }
+
+    const retrySound = () => {
+      const video = campaignVideoRef.current;
+      if (!video || !video.muted) return;
+
+      // A click anywhere on the page can unlock audio after muted autoplay.
+      video.muted = false;
+      video.play().then(
+        () => setSoundBlocked(false),
+        () => {
+          video.muted = true;
+        },
+      );
+    };
+
+    window.addEventListener("click", retrySound);
+    return () => window.removeEventListener("click", retrySound);
+  }, [activeSlide, videoVisible, soundEnabled, soundBlocked]);
 
   const selectSlide = (i: number) => {
     activeSlideRef.current = i;
@@ -131,7 +258,6 @@ export function Hero() {
   // content is therefore centred rather than pinned, so it rides the squeeze.
   return (
     <section
-      ref={sectionRef}
       aria-roledescription="carousel"
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerEnd}
@@ -143,12 +269,16 @@ export function Hero() {
       {/* Slide 1 */}
       <div className={slideClass(0)} aria-hidden={activeSlide !== 0}>
         <video
+          ref={firstVideoRef}
           src="/videos/ReNew Banner1.webm"
           autoPlay
           muted
-          loop
           playsInline
           aria-hidden
+          onEnded={() => {
+            if (activeSlideRef.current === 0) selectSlide(1);
+          }}
+          onError={() => setFirstVideoFailed(true)}
           className="absolute inset-0 size-full object-cover object-[center_60%]"
         />
         <SlideFilm />
@@ -170,65 +300,57 @@ export function Hero() {
 
       {/* Slide 2 — ReNew's 15-year clean energy journey */}
       <div className={slideClass(1)} aria-hidden={activeSlide !== 1}>
-        {/* Desktop banner */}
-        <Image
-          src="/images/banner2.svg"
-          alt=""
-          fill
-          unoptimized
-          className="hidden object-cover object-center md:block"
-          sizes="100vw"
-        />
-        {/* Mobile banner */}
-        <Image
-          src="/images/Renewbanner-2mobile.webp"
-          alt=""
-          fill
-          className="object-cover object-center md:hidden"
-          sizes="100vw"
-        />
+        <div className="absolute inset-0 bg-[#2e6d42]" />
         <Image
           src="/images/sunburst_full.svg"
           alt=""
           width={702}
           height={701}
-          className="pointer-events-none absolute left-[5%] top-[-165px] hidden w-[280px] animate-sunburst brightness-0 invert motion-reduce:animate-none md:block sm:top-[-210px] sm:w-[340px] xl:left-[100px] xl:top-[-250px] xl:w-[430px]"
-        />
-        <Image
-          src="/images/sunburst_full.svg"
-          alt=""
-          width={702}
-          height={701}
-          className="pointer-events-none absolute right-[5%] top-[-165px] hidden w-[280px] animate-sunburst brightness-0 invert motion-reduce:animate-none md:block sm:top-[-210px] sm:w-[340px] xl:right-[100px] xl:top-[-250px] xl:w-[430px]"
+          className="pointer-events-none absolute -right-20 -top-24 w-[260px] animate-sunburst opacity-20 motion-reduce:animate-none md:-right-28 md:-top-36 md:w-[370px] xl:-right-28 xl:-top-52 xl:w-[520px]"
         />
         <div
-          className={`relative flex h-full flex-col items-center justify-start px-5 pt-20 text-center font-[family-name:var(--font-inter)] sm:pt-[17.5vh] md:justify-center md:pt-0 ${contentClass(1)}`}
+          className={`hero-campaign-content relative flex h-full flex-col items-center justify-center gap-7 px-5 pb-16 pt-8 font-[family-name:var(--font-inter)] sm:gap-8 sm:px-8 md:flex-row md:gap-[5vw] md:px-[6.9vw] md:py-12 xl:gap-[8vw] ${contentClass(1)}`}
         >
-          <h2 className="text-[32px] font-bold leading-[38px] tracking-[0.03em] text-[#20508C] sm:text-[40px] sm:leading-[48px] md:text-[46px] md:leading-[55px] xl:text-[55px] xl:leading-[65px]">
-            Clean Energy
-            <br className="md:hidden" /> Humse Hai
-          </h2>
-          <p className="mt-1 text-[22px] font-bold leading-[28px] tracking-[0.03em] text-[#006934] sm:text-[26px] sm:leading-[32px] md:text-[30px] md:leading-[36px] xl:text-[34px] xl:leading-[40px]">
-            ReNew Badal Raha Hai
-            <br />
-            Desh Ka Mukhda
-          </p>
-          <p className="mt-5 text-[18px] font-normal leading-[20px] tracking-[0.03em] text-[#20508C] sm:text-[20px] sm:leading-[28px] md:text-[23px] md:leading-[31px] xl:mt-7 xl:text-[26px] xl:leading-[34px]">
-            15 years of powering
-            <br />
-            <strong className="font-bold mt-4">
-              India&apos;s clean
-              <br className="md:hidden" /> energy transformation
-            </strong>
-          </p>
-          <a
-            href="https://www.renew.com/clean-energy-humse-hai"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-16 inline-flex min-h-10 min-w-[210px] items-center justify-center rounded-full bg-[#8DC63F] px-8 text-[16px] font-medium leading-8 text-[#132A00] transition-colors hover:bg-[#77BB44] sm:text-[18px] md:mt-6 md:min-h-[45px] md:min-w-[240px] xl:mt-9 xl:min-w-[280px] xl:text-[20px]"
-          >
-            Explore the Journey
-          </a>
+          <div className="relative w-full max-w-[936px] shrink-0 overflow-hidden bg-black md:w-[55%]">
+            <video
+              ref={campaignVideoRef}
+              src="/videos/Renew_Solar_Hindi_20s.webm"
+              poster="/images/renew-solar-hindi-poster.png"
+              preload="auto"
+              playsInline
+              aria-label="ReNew Solar's clean energy journey"
+              onEnded={() => selectSlide(2)}
+              onError={() => setVideoFailed(true)}
+              className="aspect-video w-full object-cover"
+            />
+            {videoVisible && activeSlide === 1 && (
+              <button
+                type="button"
+                onClick={toggleSound}
+                aria-label={soundEnabled && !soundBlocked ? "Mute sound" : "Enable sound"}
+                className="absolute bottom-3 right-3 rounded-full bg-black/75 px-3 py-2 text-xs font-semibold text-white shadow-lg hover:bg-black/90 sm:bottom-4 sm:right-4 sm:text-sm"
+              >
+                {soundEnabled && !soundBlocked ? "Mute sound" : "Enable sound"}
+              </button>
+            )}
+          </div>
+          <div className="relative z-10 flex w-full max-w-[300px] min-w-0 flex-none flex-col items-center text-center md:max-w-none md:flex-1 md:items-start md:text-left">
+            <h2 className="hero-campaign-heading text-[32px] font-bold leading-[1.1] tracking-[0.02em] text-[#a0cd55] sm:text-[42px] md:text-[clamp(31px,3.3vw,64px)]">
+              Clean Energy<br />Humse Hai
+            </h2>
+            <p className="hero-campaign-copy mt-5 text-[18px] leading-[1.3] tracking-[0.02em] text-white sm:text-[22px] md:mt-8 md:text-[clamp(19px,1.6vw,30px)]">
+              15 years of powering<br />
+              <strong className="font-bold">India&apos;s clean energy transformation</strong>
+            </p>
+            <a
+              href="https://www.renew.com/clean-energy-humse-hai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hero-campaign-cta mt-7 inline-flex min-h-11 min-w-[210px] items-center justify-center rounded-full bg-[#a0cd55] px-8 text-[16px] font-medium text-[#132a00] transition-colors hover:bg-[#8dc63f] md:mt-12 md:min-w-[240px] xl:min-w-[280px] xl:text-[20px]"
+            >
+              Explore the Journey
+            </a>
+          </div>
         </div>
       </div>
 
@@ -327,7 +449,7 @@ export function Hero() {
 
       {/* Shared slide progress */}
       <div
-        className="absolute inset-x-0 bottom-7 flex items-center justify-start gap-2 pl-5 sm:pl-6 md:bottom-6 md:justify-center md:gap-4 md:pl-0 hero-full:bottom-14"
+        className="absolute inset-x-0 bottom-7 flex items-center justify-center gap-2 md:bottom-6 md:gap-4 hero-full:bottom-14"
         role="tablist"
         aria-label="Hero slides"
       >
@@ -351,7 +473,7 @@ export function Hero() {
                   aria-hidden
                   className="hero-progress-fill absolute inset-0 block h-full w-full bg-primary-400 opacity-0 md:opacity-100"
                   style={{
-                    animationDuration: `${SLIDE_DURATION_MS}ms`,
+                    animationDuration: `${i === 0 ? FIRST_VIDEO_DURATION_MS : i === 1 ? CAMPAIGN_VIDEO_DURATION_MS : SLIDE_DURATION_MS}ms`,
                   }}
                 />
               )}

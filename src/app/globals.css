@@ -278,6 +278,31 @@ body {
   transform-origin: left;
 }
 
+@media (max-width: 639px) and (max-height: 650px) {
+  .first-fold > section[aria-roledescription="carousel"] {
+    min-height: 560px;
+  }
+
+  .hero-campaign-content {
+    gap: 16px;
+    padding-top: 12px;
+    padding-bottom: 36px;
+  }
+
+  .hero-campaign-heading {
+    font-size: 28px;
+  }
+
+  .hero-campaign-copy {
+    margin-top: 12px;
+    font-size: 16px;
+  }
+
+  .hero-campaign-cta {
+    margin-top: 16px;
+  }
+}
+
 /* The power-output curve sweeps in from the chart library (see
    power-output-chart.tsx); its two endpoint callouts mount once the sweep has
    passed under them and fade up on the spot. */

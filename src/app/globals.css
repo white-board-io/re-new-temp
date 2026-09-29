@@ -217,7 +217,8 @@
 @media (min-width: 1280px) {
   .first-fold {
     /* Figma canvas is hero 742 + stats 200; growth is allowed past it. */
-    --fold-floor: 700px;
+    /* Keep the 16:9 campaign video and slide controls inside the hero. */
+    --fold-floor: 900px;
     --fold-max: 1550px;
     /*
      * `main` is zoomed by --design-scale, so a raw 100svh here would be

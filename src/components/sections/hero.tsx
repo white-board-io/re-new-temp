@@ -286,8 +286,8 @@ export function Hero() {
           className={`relative flex h-full flex-col items-start justify-center py-16 pl-5 pr-16 text-left sm:pl-6 sm:pr-20 md:px-6 xl:px-[181px] hero-full:py-24 ${contentClass(0)}`}
         >
           <h1 className="max-w-6xl text-[28px] font-bold leading-[1.14] tracking-hero text-white sm:text-[34px] md:text-5xl lg:text-5xl xl:max-w-[880px] xl:text-[54px]">
-            Switch to clean energy with ReNew Solar Panels, engineered for
-            lasting performance.
+            India&apos;s Leading Solar Panel Manufacturer for Homes, Businesses
+            &amp; Utility Projects
           </h1>
           <p
             className={`mt-6 leading-relaxed text-white md:mt-8 ${SUBTEXT_SIZE_CLASS}`}

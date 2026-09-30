@@ -7,9 +7,16 @@ import { MuftBijliYojana } from "@/components/sections/muft-bijli-yojana";
 import { PriceListTab } from "@/components/sections/price-list-tab";
 
 export const metadata: Metadata = {
-  title: "PM Surya Ghar Muft Bijli Yojana — ReNew Solar Panels",
+  title: "PM Surya Ghar Solar Panels | Rooftop Solar Solutions by ReNew",
   description:
-    "A step-by-step guide to applying for the PM Surya Ghar Muft Bijli Yojana rooftop solar subsidy.",
+    "Choose ReNew Solar Panels for PM Surya Ghar Muft Bijli Yojana and maximize rooftop solar savings with reliable, high-efficiency panels.",
+  keywords: [
+    "PM Surya Ghar solar panels",
+    "Muft Bijli Yojana solar panels",
+    "rooftop solar subsidy",
+    "residential solar panels",
+    "home solar system",
+  ],
 };
 
 export default function MuftBijliYojanaPage() {

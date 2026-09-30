@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 import { Header } from "@/components/sections/header";
 import { Hero } from "@/components/sections/hero";
 import { PriceListTab } from "@/components/sections/price-list-tab";
@@ -14,6 +16,30 @@ import { Contact } from "@/components/sections/contact";
 import { Footer } from "@/components/sections/footer";
 import { PressReleases } from "@/components/sections/press-releases";
 import { Blogs } from "@/components/sections/blogs";
+
+export const metadata: Metadata = {
+  title: "ReNew Solar Panels | India's Leading Solar Panel Manufacturer",
+  description:
+    "Manufactured in India for homes, businesses and utility-scale projects. High-efficiency solar panels backed by industry-leading technology and a 30-year power warranty.",
+  keywords: [
+    "solar panels",
+    "solar panel",
+    "solar module",
+    "pv panels",
+    "pv solar panels",
+    "latest technology in solar panels in india",
+    "solar energy panel",
+    "renew solar panels",
+    "solar pv module",
+    "renew solar",
+    "latest solar panels",
+    "solar panel module",
+    "solar panel production in india",
+    "solar panel production",
+    "high power solar cells",
+    "latest solar panels in india",
+  ],
+};
 
 const organizationSchema = {
   "@context": "https://schema.org",

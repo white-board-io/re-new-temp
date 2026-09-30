@@ -1,0 +1,29 @@
+src/components/sections/muft-bijli-yojana.tsx
+  s_81f3c5a6edda39::t_30f396a539a718 199-201
+src/app/manufacturing/page.tsx
+  s_81f3c5a6edda39::t_b6b0ba08fad5a6 10,12-19
+src/app/muft-bijli-yojana/page.tsx
+  s_81f3c5a6edda39::t_d6ee2e22895ef4 10,12-19
+src/app/page.tsx
+  s_81f3c5a6edda39::t_99f47da92802d8 1-2,20-43
+src/components/sections/hero.tsx
+  s_81f3c5a6edda39::t_4cac73e92ee4ee 289-290
+src/components/sections/manufacturing-detail.tsx
+  s_81f3c5a6edda39::t_1438ea194eddf9 374,376
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.11",
+  "base_commit_sha": "096851667e156577587f3584e348ac65b48fa79e",
+  "prompts": {},
+  "sessions": {
+    "s_81f3c5a6edda39": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f203-e611-78c2-9b7d-1dd0e72e2b1c",
+        "model": "gpt-6-sol"
+      },
+      "human_author": "Arun Selva Kumar <arun@joinassembly.com>"
+    }
+  }
+}

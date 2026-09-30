@@ -1,0 +1,6 @@
+interface:
+  display_name: "Re New Temp"
+  short_description: "Repo-specific patterns and workflows for re-new-temp"
+  default_prompt: "Use the re-new-temp repo skill to follow existing architecture, testing, and workflow conventions."
+policy:
+  allow_implicit_invocation: true

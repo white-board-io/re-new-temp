@@ -1,0 +1,67 @@
+content/events/bhubaneswar-distributor-meet-2026.md
+  s_3af012de9972f2::t_4b996214401f4a 1-14
+content/events/hyderabad-distributor-meet-2025.md
+  s_3af012de9972f2::t_377bcdb6e7a779 1-21
+content/events/kreepa-green-power-expo-2024.md
+  s_3af012de9972f2::t_428508372b0ce7 1-14
+content/events/kreepa-green-power-expo-2025-26.md
+  s_3af012de9972f2::t_c2b8da31aa2d3e 1-19
+content/events/ludhiana-distributor-meet-2025.md
+  s_3af012de9972f2::t_982a7f713f3374 1-14
+content/events/maha-solar-expo-2025.md
+  s_3af012de9972f2::t_2e6c60196e7c3a 1-14
+content/events/maha-solar-expo-december-2025.md
+  s_3af012de9972f2::t_3ff882e006fbf4 1-14
+content/events/re-invest-2024.md
+  s_3af012de9972f2::t_fe553134db876d 1-14
+content/events/re-plus-2024.md
+  s_3af012de9972f2::t_dc816964ba9f90 1-47
+content/events/re-plus-2025.md
+  s_3af012de9972f2::t_37320af2616c9e 1-19
+content/events/rei-expo-2025.md
+  s_3af012de9972f2::t_ebfe2700f9f805 1-21
+content/events/renewable-energy-india-expo-2024.md
+  s_3af012de9972f2::t_094f31a24e36ee 1-42
+content/events/renewx-2026.md
+  s_3af012de9972f2::t_1cef2650d1aab5 1-14
+src/components/sections/editorial-article.tsx
+  s_3af012de9972f2::t_ff456e16b6d4cc 3,9,46-54,56-60,80-85
+src/components/sections/editorial-filters.tsx
+  s_65520ee41bd5d2::t_147b84c56fde89 1-60
+src/components/sections/editorial-listing-page.tsx
+  s_3af012de9972f2::t_55e6dc8bbed46d 4,7,18,46,49-50,53,55-56,68,74-82,86
+src/components/sections/editorial-search.tsx
+  s_65520ee41bd5d2::t_d39adf6b2026c6 7-14,30,36
+src/lib/editorial.ts
+  s_65520ee41bd5d2::t_c89dedb5143d43 17-24
+src/app/events/[slug]/page.tsx
+  s_3af012de9972f2::t_2eea79df9fb414 1-78
+src/app/events/page.tsx
+  s_3af012de9972f2::t_e4ee12ce8af74b 1-63
+src/lib/events.ts
+  s_3af012de9972f2::t_39502fbec14778 1-69
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.11",
+  "base_commit_sha": "3c586aada90f6186de504781fc6fa4f9799d64b8",
+  "prompts": {},
+  "sessions": {
+    "s_3af012de9972f2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f240b1a0-6145-449e-be57-47588083bb55",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Arun Selva Kumar <arun@joinassembly.com>"
+    },
+    "s_65520ee41bd5d2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c538f19f-ed1d-4c9f-aff5-0523465f058e",
+        "model": "unknown"
+      },
+      "human_author": "Arun Selva Kumar <arun@joinassembly.com>"
+    }
+  }
+}

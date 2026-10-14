@@ -22,7 +22,7 @@ export function FeaturedEditorial({ releases, route, label }: { releases: Editor
   if (!feature) return null;
 
   return (
-    <section aria-label={`Latest ${label.toLowerCase()}`} className="relative overflow-hidden bg-white pt-20 pb-40 sm:pt-24 sm:pb-52 xl:pt-[124px] xl:pb-[268px]">
+    <section aria-label={`Latest ${label.toLowerCase()}`} className="relative overflow-hidden bg-white py-20 sm:py-24 xl:py-[124px]">
       <div className="pointer-events-none absolute -left-[175px] top-[124px] hidden w-[350px] sm:block">
         <Image src="/images/sunburst_full.svg" alt="" width={702} height={701} className="w-full animate-sunburst motion-reduce:animate-none" />
       </div>
@@ -51,7 +51,7 @@ export function FeaturedEditorial({ releases, route, label }: { releases: Editor
         </div>
         <div className="relative min-h-[260px] overflow-hidden rounded-sm sm:min-h-[360px] lg:min-h-0">
           {releases.map((release, index) => (
-            <Image key={release.slug} src={release.imagePlaceholder ? "/images/sunburst_full.svg" : release.image || "/images/sunburst_full.svg"} alt={activeFeature === index ? (release.imagePlaceholder ? "" : release.imageAlt) : ""} aria-hidden={activeFeature !== index} fill priority={index === 0} loading={index === 0 ? undefined : "eager"} sizes="(min-width: 1024px) 603px, 100vw" className={`${release.imagePlaceholder ? "bg-surface-mint object-contain p-16" : "object-cover"} transition-opacity duration-700 motion-reduce:transition-none ${activeFeature === index ? "opacity-100" : "opacity-0"}`} />
+            <Image key={release.slug} src={release.imagePlaceholder ? "/images/sunburst_full.svg" : release.image || "/images/sunburst_full.svg"} alt={activeFeature === index ? (release.imagePlaceholder ? "" : release.imageAlt) : ""} aria-hidden={activeFeature !== index} fill priority={index === 0} loading={index === 0 ? undefined : "eager"} sizes="(min-width: 1024px) 603px, 100vw" className={`${release.imagePlaceholder ? "bg-surface-mint object-contain p-16" : "object-contain"} transition-opacity duration-700 motion-reduce:transition-none ${activeFeature === index ? "opacity-100" : "opacity-0"}`} />
           ))}
         </div>
       </div>

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Reveal } from "@/components/reveal";
 
 const releases = [
@@ -8,7 +9,7 @@ const releases = [
       "ReNew secures $100 million marquee investment from BII to boost India’s solar manufacturing ecosystem.",
     image: "/images/press-bii.webp",
     alt: "ReNew and British International Investment representatives at the BII investment announcement",
-    href: "https://www.renew.com/press-release/renew-secures-100-million-marquee-investment-from-bii-to-boost-india-s-solar-manufacturing-ecosystem",
+    href: "/press-releases/renew-secures-100-million-marquee-investment-from-bii-to-boost-india-s-solar-manufacturing-ecosystem",
   },
   {
     title: "Largest Solar Project in Rajasthan",
@@ -16,7 +17,7 @@ const releases = [
       "ReNew inaugurates its largest single-location solar project in Rajasthan at 1.3 GW peak power capacity.",
     image: "/images/press-rajasthan.webp",
     alt: "Guests at the inauguration of ReNew’s 1.3 GW solar farm in Rajasthan",
-    href: "https://www.renew.com/press-release/renew-inaugurates-largest-single-location-solar-project-in-rajasthan-at-1-3-gw-peak-power-capacity",
+    href: "/press-releases/renew-inaugurates-largest-single-location-solar-project-in-rajasthan-at-1-3-gw-peak-power-capacity",
   },
   {
     title: "1 GW Solar Project Dedicated",
@@ -24,7 +25,7 @@ const releases = [
       "ReNew dedicates its latest ~1 GW solar project to the people of Rajasthan.",
     image: "/images/press-dedication.webp",
     alt: "A ReNew leader speaking at the Rajasthan solar project dedication",
-    href: "https://www.renew.com/press-release/renew-dedicates-its-latest-1-gw-solar-project-to-the-people-of-rajasthan",
+    href: "/press-releases/renew-dedicates-its-latest-1-gw-solar-project-to-the-people-of-rajasthan",
   },
 ];
 
@@ -69,14 +70,12 @@ export function PressReleases() {
                   {release.description}
                 </p>
                 <div className="mt-auto pt-10">
-                  <a
+                  <Link
                     href={release.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="inline-flex min-h-10 min-w-[168px] items-center justify-center rounded-full border-2 border-primary-700 px-8 py-0 text-base font-bold text-primary-700 transition-colors hover:bg-primary-700 hover:text-white md:py-2.5"
                   >
                     Read more
-                  </a>
+                  </Link>
                 </div>
               </div>
             </article>

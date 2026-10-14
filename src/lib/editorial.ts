@@ -14,3 +14,11 @@ export type EditorialArticleData = EditorialSummary & {
   publisher?: string;
   localPdf?: string;
 };
+
+export type EditorialFilter = {
+  name: string;
+  label: string;
+  allLabel: string;
+  options: string[];
+  value: string;
+};

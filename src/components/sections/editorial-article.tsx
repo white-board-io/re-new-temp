@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 import type { EditorialArticleData } from "@/lib/editorial";
 
-function formatDate(date: string) {
+export function formatDate(date: string) {
   return new Date(`${date}T00:00:00Z`).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "long",
@@ -42,8 +43,21 @@ const socialLinks = [
   },
 ];
 
-export function EditorialArticle({ article, collectionLabel, collectionHref, bylineLabel = "Published By" }: { article: EditorialArticleData; collectionLabel: string; collectionHref: string; bylineLabel?: string }) {
+type ArticleDetail = { label: string; value: ReactNode };
+
+function detailClassName(index: number, count: number) {
+  if (index === count - 1) return "sm:pl-8";
+  if (index === 0) return "sm:min-w-[175px] sm:border-r sm:border-neutral-300 sm:pr-8";
+  return "sm:min-w-[173px] sm:border-r sm:border-neutral-300 sm:px-8";
+}
+
+export function EditorialArticle({ article, collectionLabel, collectionHref, bylineLabel = "Published By", details }: { article: EditorialArticleData; collectionLabel: string; collectionHref: string; bylineLabel?: string; details?: ArticleDetail[] }) {
   const heroImage = article.image && !article.imagePlaceholder ? article.image : "/images/solarmodule.webp";
+  const articleDetails = details ?? [
+    { label: "Published on", value: <time dateTime={article.date}>{formatDate(article.date)}</time> },
+    { label: bylineLabel, value: article.author || article.publisher || "ReNew" },
+    { label: "Category", value: article.category || "Press Release" },
+  ];
 
   return (
     <article>
@@ -63,18 +77,12 @@ export function EditorialArticle({ article, collectionLabel, collectionHref, byl
       <div className="mx-auto max-w-[1244px] px-4 sm:px-6">
         <div className="flex flex-wrap items-start justify-between gap-8 pb-12 pt-12 sm:pb-16 sm:pt-14 lg:gap-12">
           <dl className="grid grid-cols-2 gap-x-5 gap-y-5 text-sm text-neutral-700 sm:flex sm:gap-0 sm:text-base">
-            <div className="sm:min-w-[175px] sm:border-r sm:border-neutral-300 sm:pr-8">
-              <dt className="text-neutral-500">Published on :</dt>
-              <dd className="mt-1 font-medium"><time dateTime={article.date}>{formatDate(article.date)}</time></dd>
-            </div>
-            <div className="sm:min-w-[173px] sm:border-r sm:border-neutral-300 sm:px-8">
-              <dt className="text-neutral-500">{bylineLabel} :</dt>
-              <dd className="mt-1 font-medium">{article.author || article.publisher || "ReNew"}</dd>
-            </div>
-            <div className="sm:pl-8">
-              <dt className="text-neutral-500">Category :</dt>
-              <dd className="mt-1 font-medium">{article.category || "Press Release"}</dd>
-            </div>
+            {articleDetails.map(({ label, value }, index) => (
+              <div key={label} className={detailClassName(index, articleDetails.length)}>
+                <dt className="text-neutral-500">{label} :</dt>
+                <dd className="mt-1 font-medium">{value}</dd>
+              </div>
+            ))}
           </dl>
           <nav aria-label="ReNew social media" className="flex items-center gap-3 sm:gap-5">
             {socialLinks.map(({ label, href, path }) => (

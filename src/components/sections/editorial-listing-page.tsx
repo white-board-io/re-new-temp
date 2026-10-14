@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { EditorialFilters } from "@/components/sections/editorial-filters";
 import { FeaturedEditorial } from "@/components/sections/featured-editorial";
 import { EditorialSearch } from "@/components/sections/editorial-search";
-import type { EditorialSummary } from "@/lib/editorial";
+import type { EditorialFilter, EditorialSummary } from "@/lib/editorial";
 
 type Props = {
   featured: EditorialSummary[];
@@ -14,6 +15,7 @@ type Props = {
   description: string;
   label: string;
   route: string;
+  filters?: EditorialFilter[];
 };
 
 function formatDate(date: string) {
@@ -41,12 +43,17 @@ function EntryArtwork({ entry }: { entry: EditorialSummary }) {
   );
 }
 
-export function EditorialListingPage({ featured, entries, query, page, heading, description, label, route }: Props) {
+export function EditorialListingPage({ featured, entries, query, page, heading, description, label, route, filters = [] }: Props) {
   const visibleCount = 5 + (page - 1) * 3;
   const visibleEntries = entries.slice(0, visibleCount);
+  const filterParams = Object.fromEntries(filters.filter((filter) => filter.value).map((filter) => [filter.name, filter.value]));
+  const filtered = Object.keys(filterParams).length > 0;
   const nextParams = new URLSearchParams();
   if (query) nextParams.set("q", query);
+  for (const [name, value] of Object.entries(filterParams)) nextParams.set(name, value);
   nextParams.set("page", String(page + 1));
+  const resultCount = `${entries.length} ${entries.length === 1 ? "result" : "results"}`;
+  const summary = query ? `${resultCount} for “${query}”` : filtered ? resultCount : `${entries.length} ${heading.toLowerCase()}`;
 
   return (
     <>
@@ -58,21 +65,25 @@ export function EditorialListingPage({ featured, entries, query, page, heading, 
           <p className="mt-5 max-w-[850px] text-lg leading-7 sm:text-xl xl:mt-6 xl:text-[24px] xl:leading-9">
             {description}
           </p>
-          <EditorialSearch query={query} route={route} label={heading} />
+          <EditorialSearch query={query} route={route} label={heading} params={filterParams} />
         </div>
       </section>
 
       <FeaturedEditorial releases={featured} route={route} label={label} />
 
-      <section id={route === "/blogs" ? "blogs-list" : "releases"} aria-label={heading} className="bg-white">
-        {query && (
-          <p className="mx-auto max-w-[1530px] px-4 pb-8 text-lg text-neutral-700 sm:px-6">
-            {entries.length} {entries.length === 1 ? "result" : "results"} for “{query}”
-          </p>
+      <section id={route === "/blogs" ? "blogs-list" : route === "/events" ? "events-list" : "releases"} aria-label={heading} className="bg-white">
+        {filters.length > 0 ? (
+          <EditorialFilters filters={filters} query={query} route={route} summary={summary} />
+        ) : (
+          query && (
+            <p className="mx-auto max-w-[1530px] px-4 pb-8 text-lg text-neutral-700 sm:px-6">
+              {summary}
+            </p>
+          )
         )}
         {visibleEntries.length === 0 ? (
           <p className="mx-auto max-w-content px-4 py-24 text-center text-xl text-neutral-600 sm:px-6">
-            No {heading.toLowerCase()} match “{query}”.
+            No {heading.toLowerCase()} match {query ? `“${query}”` : "the selected filters"}{query && filtered ? " with the selected filters" : ""}.
           </p>
         ) : (
           <div>

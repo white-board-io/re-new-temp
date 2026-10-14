@@ -371,9 +371,9 @@ export function ManufacturingDetail() {
         <div className="absolute inset-0 -z-10 bg-primary-950/70" />
         <Reveal className="mx-auto max-w-content px-4 py-20 text-center sm:px-6">
           <h1 className="text-[28px] font-light leading-[1.14] tracking-wide sm:text-[34px] lg:text-[46px]">
-            Driving solar innovation through
+            One of India&apos;s Largest
             <strong className="mt-2 block font-bold text-primary-400">
-              World-class Manufacturing Facilities
+              Integrated Solar Manufacturing Networks
             </strong>
           </h1>
           <p className="mx-auto mt-9 max-w-2xl text-xl leading-8 sm:text-2xl sm:leading-9">

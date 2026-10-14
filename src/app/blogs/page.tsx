@@ -5,9 +5,9 @@ import { EditorialListingPage } from "@/components/sections/editorial-listing-pa
 import { Footer } from "@/components/sections/footer";
 import { Header } from "@/components/sections/header";
 import { PriceListTab } from "@/components/sections/price-list-tab";
-import { getAllBlogs, searchBlogs } from "@/lib/blogs";
+import { filterBlogs, getAllBlogs, getBlogCategories, getBlogYears, searchBlogs } from "@/lib/blogs";
 
-type SearchParams = Promise<{ q?: string | string[]; page?: string | string[] }>;
+type SearchParams = Promise<{ q?: string | string[]; page?: string | string[]; category?: string | string[]; year?: string | string[] }>;
 
 function first(value: string | string[] | undefined): string {
   return Array.isArray(value) ? value[0] || "" : value || "";
@@ -17,12 +17,13 @@ export async function generateMetadata({ searchParams }: { searchParams: SearchP
   const params = await searchParams;
   const query = first(params.q).trim();
   const page = Math.max(1, Number.parseInt(first(params.page), 10) || 1);
+  const filtered = Boolean(first(params.category) || first(params.year));
   return {
     metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.renew.com"),
     title: query ? `Search “${query}” | Blogs | ReNew Solar Panels` : "Blogs | ReNew Solar Panels",
     description: "Read ReNew's latest ideas and insights on clean energy, solar manufacturing, and sustainability.",
-    alternates: { canonical: page > 1 && !query ? `/blogs?page=${page}` : "/blogs" },
-    robots: query ? { index: false, follow: true } : undefined,
+    alternates: { canonical: page > 1 && !query && !filtered ? `/blogs?page=${page}` : "/blogs" },
+    robots: query || filtered ? { index: false, follow: true } : undefined,
     openGraph: {
       title: "Blogs | ReNew Solar Panels",
       description: "Ideas and insights on clean energy, solar manufacturing, and sustainability.",
@@ -36,7 +37,11 @@ export default async function BlogsRoute({ searchParams }: { searchParams: Searc
   const params = await searchParams;
   const query = first(params.q).trim().slice(0, 120);
   const allPosts = getAllBlogs();
-  const posts = searchBlogs(allPosts, query);
+  const categories = getBlogCategories(allPosts);
+  const years = getBlogYears(allPosts);
+  const category = categories.find((option) => option === first(params.category)) || "";
+  const year = years.find((option) => option === first(params.year)) || "";
+  const posts = searchBlogs(filterBlogs(allPosts, { category, year }), query);
   const requestedPage = Number.parseInt(first(params.page), 10);
   const maxPage = Math.max(1, Math.ceil(Math.max(0, posts.length - 5) / 3) + 1);
   const page = Number.isFinite(requestedPage) ? Math.min(Math.max(requestedPage, 1), maxPage) : 1;
@@ -46,7 +51,10 @@ export default async function BlogsRoute({ searchParams }: { searchParams: Searc
       <Header sectionPrefix="/" savingsHref="/#savings-calculator" />
       <div className="hidden lg:block"><PriceListTab /></div>
       <main className="pt-[88px] lg:pt-[136px] xl:pt-[138px]">
-        <EditorialListingPage featured={allPosts.slice(0, 3)} entries={posts} query={query} page={page} heading="Blogs" description="Discover updates, ideas, and breakthroughs from ReNew Solar Panels." label="Blog" route="/blogs" />
+        <EditorialListingPage featured={allPosts.slice(0, 3)} entries={posts} query={query} page={page} heading="Blogs" description="Discover updates, ideas, and breakthroughs from ReNew Solar Panels." label="Blog" route="/blogs" filters={[
+          { name: "category", label: "Filter by category", allLabel: "All categories", options: categories, value: category },
+          { name: "year", label: "Filter by year", allLabel: "All years", options: years, value: year },
+        ]} />
         <Contact />
       </main>
       <Footer sectionPrefix="/" />

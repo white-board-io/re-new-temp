@@ -55,3 +55,15 @@ export function searchBlogs(posts: BlogPost[], query: string): BlogPost[] {
     return terms.every((term) => text.includes(term));
   });
 }
+
+export function getBlogCategories(posts: BlogPost[]): string[] {
+  return [...new Set(posts.map((post) => post.category))].sort((a, b) => a.localeCompare(b));
+}
+
+export function getBlogYears(posts: BlogPost[]): string[] {
+  return [...new Set(posts.map((post) => post.date.slice(0, 4)))].sort((a, b) => b.localeCompare(a));
+}
+
+export function filterBlogs(posts: BlogPost[], { category, year }: { category: string; year: string }): BlogPost[] {
+  return posts.filter((post) => (!category || post.category === category) && (!year || post.date.startsWith(year)));
+}

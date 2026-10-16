@@ -96,6 +96,9 @@ export function EditorialListingPage({ featured, entries, query, page, heading, 
                     <h3 className="mt-6 text-[26px] font-bold leading-[1.35] text-neutral-900 transition-colors group-hover:text-primary-700 sm:text-[30px] lg:mt-7 lg:text-[32px]">
                       {entry.title}
                     </h3>
+                    <span className="mt-7 inline-flex min-h-10 min-w-[168px] items-center justify-center rounded-full border-2 border-primary-700 px-8 text-base font-bold text-primary-700 opacity-100 transition-[background-color,color,opacity] duration-200 group-hover:bg-primary-700 group-hover:text-white group-focus-visible:bg-primary-700 group-focus-visible:text-white motion-reduce:transition-none lg:opacity-0 lg:group-hover:opacity-100 lg:group-focus-visible:opacity-100 [@media(hover:none)]:opacity-100">
+                      Read More
+                    </span>
                   </div>
                 </Link>
               </article>

@@ -38,6 +38,7 @@ const utilityItems = [
   { label: "Projects", href: "#our-projects" },
   { label: "Press Releases", href: "/press-releases" },
   { label: "Blogs", href: "/blogs" },
+  { label: "Events", href: "/events" },
   { label: "Module Warranty Registration", href: "https://warranty.renew.com" },
   { label: "Muft Bijli Yojana", href: "/muft-bijli-yojana" },
 ];

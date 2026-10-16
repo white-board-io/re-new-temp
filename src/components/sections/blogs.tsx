@@ -72,6 +72,14 @@ export function Blogs() {
             </article>
           ))}
         </Reveal>
+        <div className="mt-16 flex justify-center">
+          <Link
+            href="/blogs"
+            className="inline-flex min-h-[60px] w-[300px] max-w-full items-center justify-center rounded-full bg-neutral-100 px-6 text-center text-xl font-bold leading-8 text-primary-700 transition-colors hover:bg-primary-700 hover:text-white focus-visible:bg-primary-700 focus-visible:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700"
+          >
+            View All Blogs
+          </Link>
+        </div>
       </div>
     </section>
   );

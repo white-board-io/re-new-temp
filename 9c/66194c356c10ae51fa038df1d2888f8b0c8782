@@ -1,0 +1,19 @@
+src/components/sections/footer.tsx
+  s_09382c89cf3a51::t_6ba6196f679541 3,9,13,17-21,25,29-33,36-38,40-41,44-50,52-53,55-65,69-75,78-83,88-91,96-127
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.11",
+  "base_commit_sha": "9c66194c356c10ae51fa038df1d2888f8b0c8782",
+  "prompts": {},
+  "sessions": {
+    "s_09382c89cf3a51": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5bd8b025-4346-4e30-91ed-8a6896d94308",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Arun Selva Kumar <arun@joinassembly.com>"
+    }
+  }
+}

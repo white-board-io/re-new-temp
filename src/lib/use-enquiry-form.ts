@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState, type FormEvent } from "react";
+import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
 import type { EnquiryErrors, EnquirySource } from "@/lib/enquiry";
 
 /*
@@ -20,7 +20,16 @@ export function useEnquiryForm(source: EnquirySource) {
   const [message, setMessage] = useState("");
   const [fieldErrors, setFieldErrors] = useState<EnquiryErrors>({});
 
+  // When the form was put in front of the visitor: on mount for the homepage
+  // section, and again on every `reset()` — which is what the modal calls as it
+  // opens. The server uses the gap to submit as a "was this a person" signal.
+  const shownAt = useRef(0);
+  useEffect(() => {
+    shownAt.current = Date.now();
+  }, []);
+
   const reset = useCallback(() => {
+    shownAt.current = Date.now();
     setStatus("idle");
     setMessage("");
     setFieldErrors({});
@@ -52,7 +61,11 @@ export function useEnquiryForm(source: EnquirySource) {
         const response = await fetch(ENDPOINT, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...payload, source }),
+          body: JSON.stringify({
+            ...payload,
+            source,
+            elapsedMs: Date.now() - shownAt.current,
+          }),
         });
 
         const result = (await response.json().catch(() => ({}))) as {

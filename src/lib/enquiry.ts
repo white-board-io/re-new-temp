@@ -46,6 +46,14 @@ export type Enquiry = {
   source: EnquirySource;
 };
 
+/* Bot filters shared by the forms and the route handler. The honeypot is an
+   input no person can see or tab to, so only a script fills it; the name is
+   chosen to look worth filling to a bot while matching nothing a browser's
+   autofill recognises. MIN_FILL_MS is the shortest time between a form
+   appearing and being submitted that we accept as a person. */
+export const HONEYPOT_FIELD = "company_website";
+export const MIN_FILL_MS = 2_000;
+
 /** Field-keyed messages; an empty object means the payload is good. */
 export type EnquiryErrors = Partial<Record<keyof Enquiry | "form", string>>;
 
@@ -63,6 +71,13 @@ const MAX_LENGTHS: Record<string, number> = {
    on enough digits to be dialable. */
 const PHONE_DIGITS = /\d/g;
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/* Nobody's name, company or state is a URL, and a link in one of those fields
+   is the whole point of form spam. Matches a scheme, a leading www., or a
+   domain followed by a path — but not a bare "Acme.com", which is a real
+   company name. */
+const LINK = /https?:\/\/|\bwww\.|\b[a-z0-9-]+\.[a-z]{2,}\//i;
+const LINK_FREE_FIELDS = ["name", "company", "state"] as const;
 
 function text(value: unknown): string {
   return typeof value === "string" ? value.trim() : "";
@@ -119,6 +134,12 @@ export function parseEnquiry(input: unknown): {
   for (const [field, limit] of Object.entries(MAX_LENGTHS)) {
     if (text(raw[field]).length > limit) {
       errors[field as keyof Enquiry] = `Please keep this under ${limit} characters.`;
+    }
+  }
+
+  for (const field of LINK_FREE_FIELDS) {
+    if (LINK.test(text(raw[field]))) {
+      errors[field] = "Please remove the web link from this field.";
     }
   }
 

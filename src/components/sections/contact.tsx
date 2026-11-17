@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Mail, Phone } from "lucide-react";
 import { CustomDropdown } from "@/components/custom-dropdown";
+import { EnquiryHoneypot } from "@/components/enquiry-honeypot";
 import { Reveal } from "@/components/reveal";
 import { REQUIREMENT_TYPES } from "@/lib/enquiry";
 import { useEnquiryForm } from "@/lib/use-enquiry-form";
@@ -117,6 +118,7 @@ export function Contact() {
         >
           <Field name="name" label="Name" error={fieldErrors.name} />
           <Field name="company" label="Company" optional error={fieldErrors.company} />
+          <EnquiryHoneypot id="contact-company-website" />
           <Field name="phone" label="Phone" type="tel" error={fieldErrors.phone} />
           <Field name="email" label="Email" type="email" error={fieldErrors.email} />
           <Field name="state" label="State" error={fieldErrors.state} />

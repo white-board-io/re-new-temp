@@ -4,6 +4,7 @@ import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import Image from "next/image";
 import { Check, Mail, Phone, X } from "lucide-react";
 import { CustomDropdown } from "@/components/custom-dropdown";
+import { EnquiryHoneypot } from "@/components/enquiry-honeypot";
 import { REQUIREMENT_TYPES } from "@/lib/enquiry";
 import { useEnquiryForm } from "@/lib/use-enquiry-form";
 
@@ -330,6 +331,7 @@ export function ContactModal() {
                 optional
                 error={fieldErrors.company}
               />
+              <EnquiryHoneypot id={`${uid}-company-website`} />
               <ModalField
                 id={`${uid}-phone`}
                 name="phone"

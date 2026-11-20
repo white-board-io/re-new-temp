@@ -26,58 +26,13 @@ import { enquiryRecipient, enquirySender, getTransport } from "@/lib/mailer";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-/* A public, unauthenticated endpoint that sends mail is a spam relay unless
-   something throttles it. Per-IP counters in module memory are deliberately
-   modest — they reset on redeploy and do not span instances, which is fine for
-   swatting away a single noisy client but is not a substitute for a WAF. */
-const RATE_LIMIT = { windowMs: 60_000, max: 5 };
-const hits = new Map<string, number[]>();
-
-function isRateLimited(ip: string): boolean {
-  const now = Date.now();
-  const recent = (hits.get(ip) ?? []).filter(
-    (time) => now - time < RATE_LIMIT.windowMs,
-  );
-
-  if (recent.length >= RATE_LIMIT.max) {
-    hits.set(ip, recent);
-    return true;
-  }
-
-  recent.push(now);
-  hits.set(ip, recent);
-
-  // The map would otherwise grow forever behind a rotating-IP client.
-  if (hits.size > 5_000) {
-    for (const [key, times] of hits) {
-      if (times.every((time) => now - time >= RATE_LIMIT.windowMs)) {
-        hits.delete(key);
-      }
-    }
-  }
-
-  return false;
-}
-
-/* Each proxy appends the address it saw to X-Forwarded-For, so only the
-   right-hand end of the list is trustworthy — everything to the left of it is
-   whatever the client chose to send. Reading the first entry let a bot dodge
-   the limit by inventing a new address per request.
-
-   With CloudFront talking straight to the app, the last entry is the visitor.
-   If a load balancer sits between them, the last entry is the CloudFront edge
-   and the visitor is one further left: set ENQUIRY_PROXY_HOPS=2. Leaving it at
-   the default there is still safe, only coarser (the limit is per edge node). */
-const PROXY_HOPS = Math.max(1, Number(process.env.ENQUIRY_PROXY_HOPS) || 1);
-
-function clientIp(request: Request): string {
-  const chain = (request.headers.get("x-forwarded-for") ?? "")
-    .split(",")
-    .map((entry) => entry.trim())
-    .filter(Boolean);
-
-  return chain.at(-PROXY_HOPS) ?? chain[0] ?? "unknown";
-}
+/* There is deliberately no per-visitor rate limit here. The app runs as
+   several short-lived instances, so a counter in module memory is split
+   between them and stops very little; and it has to guess the visitor's
+   address from X-Forwarded-For, which goes wrong whenever a proxy is added in
+   front. Throttling this endpoint is the job of the WAF in front of the site,
+   which sees every request and the real client address. What stays below are
+   the checks a WAF cannot make, because they are about this form. */
 
 /* A browser always sends Origin on a fetch POST, and it cannot be overridden
    from page script. Requiring it to be this site stops other pages from
@@ -110,7 +65,8 @@ function isSameSite(request: Request): boolean {
 
 /* The confirmation goes to an address the submitter typed, which may not be
    theirs. One per address per day keeps the form from being used to flood
-   somebody else's inbox. Same in-memory caveats as the rate limiter above. */
+   somebody else's inbox. It is held in module memory, so it is per instance
+   and resets on redeploy — a brake, not a guarantee. */
 const CONFIRMATION_COOLDOWN_MS = 24 * 60 * 60 * 1000;
 const confirmedAt = new Map<string, number>();
 
@@ -143,10 +99,6 @@ function fail(status: number, message: string, errors?: EnquiryErrors) {
 export async function POST(request: Request) {
   if (!isSameSite(request)) {
     return fail(403, "This form can only be submitted from our website.");
-  }
-
-  if (isRateLimited(clientIp(request))) {
-    return fail(429, "Too many submissions. Please try again in a minute.");
   }
 
   let body: unknown;

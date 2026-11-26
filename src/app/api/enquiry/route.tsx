@@ -4,7 +4,13 @@ import {
   EnquiryConfirmationEmail,
   enquiryConfirmationEmailText,
 } from "@/emails/enquiry-confirmation-email";
-import { parseEnquiry, SALES_EMAIL, type EnquiryErrors } from "@/lib/enquiry";
+import {
+  HONEYPOT_FIELD,
+  MIN_FILL_MS,
+  parseEnquiry,
+  SALES_EMAIL,
+  type EnquiryErrors,
+} from "@/lib/enquiry";
 import { enquiryRecipient, enquirySender, getTransport } from "@/lib/mailer";
 
 /*
@@ -20,42 +26,70 @@ import { enquiryRecipient, enquirySender, getTransport } from "@/lib/mailer";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-/* A public, unauthenticated endpoint that sends mail is a spam relay unless
-   something throttles it. Per-IP counters in module memory are deliberately
-   modest — they reset on redeploy and do not span instances, which is fine for
-   swatting away a single noisy client but is not a substitute for a WAF. */
-const RATE_LIMIT = { windowMs: 60_000, max: 5 };
-const hits = new Map<string, number[]>();
+/* There is deliberately no per-visitor rate limit here. The app runs as
+   several short-lived instances, so a counter in module memory is split
+   between them and stops very little; and it has to guess the visitor's
+   address from X-Forwarded-For, which goes wrong whenever a proxy is added in
+   front. Throttling this endpoint is the job of the WAF in front of the site,
+   which sees every request and the real client address. What stays below are
+   the checks a WAF cannot make, because they are about this form. */
 
-function isRateLimited(ip: string): boolean {
-  const now = Date.now();
-  const recent = (hits.get(ip) ?? []).filter(
-    (time) => now - time < RATE_LIMIT.windowMs,
-  );
+/* A browser always sends Origin on a fetch POST, and it cannot be overridden
+   from page script. Requiring it to be this site stops other pages from
+   submitting on a visitor's behalf and drops the laziest scripted clients. A
+   determined bot can forge it — this is a filter, not a lock. */
+const SITE_HOSTS = new Set(["renewsolarpanels.com", "www.renewsolarpanels.com"]);
 
-  if (recent.length >= RATE_LIMIT.max) {
-    hits.set(ip, recent);
+function isSameSite(request: Request): boolean {
+  const origin = request.headers.get("origin");
+  if (!origin) {
+    return false;
+  }
+
+  let host: string;
+  try {
+    host = new URL(origin).host;
+  } catch {
+    return false;
+  }
+
+  if (SITE_HOSTS.has(host)) {
     return true;
   }
 
-  recent.push(now);
-  hits.set(ip, recent);
+  // Covers localhost, LAN dev and any staging hostname without listing them.
+  return ["x-forwarded-host", "host"].some(
+    (header) => request.headers.get(header)?.split(",")[0]?.trim() === host,
+  );
+}
 
-  // The map would otherwise grow forever behind a rotating-IP client.
-  if (hits.size > 5_000) {
-    for (const [key, times] of hits) {
-      if (times.every((time) => now - time >= RATE_LIMIT.windowMs)) {
-        hits.delete(key);
+/* The confirmation goes to an address the submitter typed, which may not be
+   theirs. One per address per day keeps the form from being used to flood
+   somebody else's inbox. It is held in module memory, so it is per instance
+   and resets on redeploy — a brake, not a guarantee. */
+const CONFIRMATION_COOLDOWN_MS = 24 * 60 * 60 * 1000;
+const confirmedAt = new Map<string, number>();
+
+function mayConfirm(email: string): boolean {
+  const key = email.toLowerCase();
+  const now = Date.now();
+  const last = confirmedAt.get(key);
+
+  if (last !== undefined && now - last < CONFIRMATION_COOLDOWN_MS) {
+    return false;
+  }
+
+  confirmedAt.set(key, now);
+
+  if (confirmedAt.size > 5_000) {
+    for (const [address, time] of confirmedAt) {
+      if (now - time >= CONFIRMATION_COOLDOWN_MS) {
+        confirmedAt.delete(address);
       }
     }
   }
 
-  return false;
-}
-
-function clientIp(request: Request): string {
-  const forwarded = request.headers.get("x-forwarded-for");
-  return forwarded?.split(",")[0]?.trim() || "unknown";
+  return true;
 }
 
 function fail(status: number, message: string, errors?: EnquiryErrors) {
@@ -63,8 +97,8 @@ function fail(status: number, message: string, errors?: EnquiryErrors) {
 }
 
 export async function POST(request: Request) {
-  if (isRateLimited(clientIp(request))) {
-    return fail(429, "Too many submissions. Please try again in a minute.");
+  if (!isSameSite(request)) {
+    return fail(403, "This form can only be submitted from our website.");
   }
 
   let body: unknown;
@@ -72,6 +106,29 @@ export async function POST(request: Request) {
     body = await request.json();
   } catch {
     return fail(400, "Malformed request body.");
+  }
+
+  const raw =
+    typeof body === "object" && body !== null
+      ? (body as Record<string, unknown>)
+      : {};
+
+  // No person can see the honeypot, so anything in it was typed by a script.
+  // Answer as if it worked: a bot told "ok" has no reason to try another way.
+  if (typeof raw[HONEYPOT_FIELD] === "string" && raw[HONEYPOT_FIELD].trim()) {
+    return Response.json({ ok: true });
+  }
+
+  // Scripts fill and submit in milliseconds. These are visible errors rather
+  // than silent drops because a real visitor can hit them — a page cached from
+  // before this check existed sends no timing at all — and must be able to
+  // recover. The timing is client-reported, so again a filter, not a lock.
+  const elapsedMs = raw.elapsedMs;
+  if (typeof elapsedMs !== "number" || !Number.isFinite(elapsedMs)) {
+    return fail(400, "Please refresh the page and try again.");
+  }
+  if (elapsedMs < MIN_FILL_MS) {
+    return fail(400, "That was quick — please try again in a moment.");
   }
 
   const { enquiry, errors } = parseEnquiry(body);
@@ -92,7 +149,7 @@ export async function POST(request: Request) {
   const notification = (
     <EnquiryEmail enquiry={enquiry} submittedAt={`${submittedAt} IST`} />
   );
-  const confirmation = <EnquiryConfirmationEmail enquiry={enquiry} />;
+  const confirmation = <EnquiryConfirmationEmail />;
   const transport = getTransport();
 
   // The sales notification is the critical path: if it fails, the enquiry is
@@ -114,11 +171,11 @@ export async function POST(request: Request) {
     return fail(502, "We could not send your enquiry. Please try again shortly.");
   }
 
-  // The customer's own copy is a courtesy, and the homepage form does not even
-  // collect an address. Its failure must not tell someone their enquiry did not
-  // go through when it reached the sales inbox perfectly well — so it is sent
-  // best-effort, after the response is already assured, and only logged.
-  if (enquiry.email) {
+  // The customer's own copy is a courtesy. Its failure must not tell someone
+  // their enquiry did not go through when it reached the sales inbox perfectly
+  // well — so it is sent best-effort, after the response is already assured,
+  // and only logged. It carries nothing the submitter typed; see the template.
+  if (enquiry.email && mayConfirm(enquiry.email)) {
     try {
       await transport.sendMail({
         from: enquirySender(),
@@ -127,7 +184,7 @@ export async function POST(request: Request) {
         replyTo: SALES_EMAIL,
         subject: "We've received your enquiry — ReNew Solar",
         html: await render(confirmation),
-        text: enquiryConfirmationEmailText(enquiry),
+        text: enquiryConfirmationEmailText(),
       });
     } catch (error) {
       console.error("[enquiry] confirmation send failed", error);

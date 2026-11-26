@@ -88,7 +88,7 @@ export function Footer({ sectionPrefix = "" }: { sectionPrefix?: string } = {}) 
               <Link href={sectionHref("#channel-partners")} className={mainLink}>Channel Partners</Link>
               <div className="mt-7 xl:mt-[47px]">
                 <h3 className="text-lg font-semibold leading-8 xl:text-xl">Corporate</h3>
-                <a href="/downloads/corporate-brochure/corporate-brochure.pdf" download className={`mt-4 block xl:mt-[27px] ${smallLink}`}>Corporate Brochure</a>
+                <a href="/downloads/corporate-brochure/Brochure 2026 - 6pager - 10Nov_vertical layout.pdf" download className={`mt-4 block xl:mt-[27px] ${smallLink}`}>Corporate Brochure</a>
               </div>
             </div>
           </nav>

@@ -169,7 +169,7 @@ const moduleRanges: ModuleRange[] = [
     },
     imageSrc: "/images/products/solar-module/g12r-topcon.webp",
     imageAlt: "G12R TOPCon 132 cell solar module",
-    datasheetHref: "/downloads/product-datasheets/g12r-topcon-bifacial-module.pdf",
+    datasheetHref: "/downloads/product-datasheets/G12R TOPCon DCR_132_Oct26.pdf",
   },
   {
     id: "m10r-topcon",
@@ -212,7 +212,7 @@ const moduleRanges: ModuleRange[] = [
     almmApproved: "Yes",
     imageSrc: "/images/products/solar-module/M10R PERC.webp",
     imageAlt: "M10 Mono PERC solar module",
-    datasheetHref: "/downloads/product-datasheets/m10r-perc.pdf",
+    datasheetHref: "/downloads/product-datasheets/M10 R 144 Bifacial_datasheet_July26.pdf",
   },
 ];
 
